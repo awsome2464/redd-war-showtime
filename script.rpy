@@ -19,7 +19,9 @@ init python:
 define narrate = nvl_narrator
 define a = Character("Anchor", what_prefix='"', what_suffix='"')
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
-define j = Character("Jessica", what_prefix='"', what_suffix='"')
+define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
+define ja = Character("Jangle", image="jangle", what_prefix='"', what_suffix='"')
+define ji = Character("Jingle", image="jingle", what_prefix='"', what_suffix='"')
 define k = Character("Kate", image="kate", what_prefix='"', what_suffix='"')
 define kr = Character("Krag", color="#d00000", image="krag", what_prefix='"', what_suffix='"') # Mr. Sprinkles
 define l = Character("Laura", what_prefix='"', what_suffix='"')
@@ -39,6 +41,12 @@ image dakota neutral = "Characters/Dakota/neutral.png"
 image dakota sad = "Characters/Dakota/sad.png"
 image dakota small_smile = "Characters/Dakota/small_smile.png"
 image dakota smirk = "Characters/Dakota/smirk.png"
+
+image jangle = Placeholder("boy")
+
+image jessica = Placeholder("girl")
+
+image jingle = Placeholder("girl")
 
 image kate alert = "Characters/Kate/alert.png"
 image kate concerned = "Characters/Kate/concerned.png"
@@ -185,6 +193,7 @@ define audio.after_the_invasion = "audio/music/After-the-Invasion_Looping.mp3"
 define audio.bells_of_weirdness = "audio/music/Bells-of-Weirdness_Looping.mp3"
 define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 define audio.classy_ghouls = "audio/music/Classy-Ghouls-Halloween-Gathering_Looping.mp3"
+define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -443,6 +452,7 @@ screen chapterselect():
 ## Variable Defaults #############################################################################################################
 
 default persistent.gore = True
+default version = 0.0
 default l_exp = ""
 default nvl = False
 default currenttime = "4:12 PM"
@@ -512,6 +522,8 @@ label chaptername:
 
 # Shows Time, Date, and Time Remaining
 label chapterstart:
+    stop music
+    stop sound
     if renpy.variant('mobile'):
         $clickortap = "Tap"
     play sound flicker

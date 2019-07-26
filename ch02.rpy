@@ -360,6 +360,7 @@ label dakotaissorry:
     "Richard then played the video."
     scene bg arena_ext
     hide screen laura
+    show jessica at middle
     with dissolve
     pause 0.1
     j "The simple fact is that hypocritical REDD like Krag Dovason and Trosh Ranigan need to be taught a lesson!"

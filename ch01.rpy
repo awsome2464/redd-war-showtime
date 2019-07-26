@@ -105,11 +105,16 @@ label chapter_1:
     s laugh "Splendid~!"
     s happy "Now, what do you say we pick a few friends from our audience to come up and play with us?"
     m "Why, I'd say that's a great idea, Mr. Sprinkles!"
-    scene bg livingroom
-    show screen laura
-    with dissolve
+    scene bg showstage with dissolve
     pause 0.1
     "The two then each picked 2 children from the audience to come on stage."
+    show sprinkles happy at middle_s with dissolve
+    pause 0.1
+    s "Alright, everyone! It's time for a game of {i}Wacky Darts{i}!"
+    "The audience cheered as the large dartboard was pulled onto the stage."
+    "It was basically a giant wheel that you'd spin to pick a choice, but modified to look like a dartboard, while also being motorized."
+    s happy "Alright, let's get started!"
+
     "As they did, Kate turned to me with a large smile."
     show kate happy at middle with dissolve
     pause 0.1
@@ -259,7 +264,7 @@ label chapter_1:
     show kate happy at middle
     with dissolve
     pause 0.1
-    play music techno_celebration
+    play music the_calm
     k "Hi, Daddy~!!"
     show kate:
         ease 0.5 two2
@@ -384,7 +389,7 @@ label chapter_1:
     $timeleft = "21 minutes"
     call chapterstart
     pause 1
-    play music autumn_changes
+    play music the_calm
     scene bg livingroom
     with Dissolve(2.0)
     pause 0.5

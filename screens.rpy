@@ -357,7 +357,10 @@ screen main_menu():
     add 'dust3'
     add 'dust2'
     add 'dust'
+    add 'gui/menu_overlay.png'
     add 'fade_into_menu'
+    text "© 2019 Good Tales" xalign 0.99 yalign 0.99
+    text "v[version]" xalign 0.01 yalign 0.99
     add 'logo' at logo_rotate
 
     ## This empty frame darkens the main menu.
@@ -737,7 +740,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Options"), scroll="viewport"):
 
         vbox:
 
