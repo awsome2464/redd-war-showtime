@@ -114,6 +114,7 @@ label chapter_1:
     "The audience cheered as the large dartboard was pulled onto the stage."
     "It was basically a giant wheel that you'd spin to pick a choice, but modified to look like a dartboard, while also being motorized."
     s happy "Alright, let's get started!"
+    s "Will our first contestant please step forward?"
 
     "As they did, Kate turned to me with a large smile."
     show kate happy at middle with dissolve
