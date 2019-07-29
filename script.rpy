@@ -121,6 +121,7 @@ image spotlight = "spotlight.png"
 # Text Images
 image announcetext = ParameterizedText(style='announce')
 image ctc = ParameterizedText(style='ctc')
+image game_name = ParameterizedText(style='game')
 
 # Animated Images
 image ctc_arrow_1:
@@ -137,6 +138,7 @@ image ctc_arrow_nvl:
         ease 0.15 xalign 1.0
         ease 0.15 xalign 0.95
         repeat
+    
 
 # Main Menu Images
 image dust = SnowBlossom("dust_alpha", count=5, xspeed=(10, 40), yspeed=(3, 6), start=5, fast=True, horizontal=True)
@@ -194,6 +196,7 @@ define audio.bells_of_weirdness = "audio/music/Bells-of-Weirdness_Looping.mp3"
 define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 define audio.classy_ghouls = "audio/music/Classy-Ghouls-Halloween-Gathering_Looping.mp3"
 define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
+define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -242,6 +245,14 @@ transform spotlight_wander:
         repeat
 transform spotlight_focus:
     linear 0.1 xalign 0.57 yalign 0.35
+transform game_name_flash:
+    xalign 0.5 yalign 0.1
+    block:
+        alpha 1.0
+        pause 0.5
+        alpha 0.0
+        pause 0.5
+        repeat
 
 # Character Transforms
 transform middle:
@@ -336,6 +347,12 @@ style chaptersub:
     font "fonts/Stanberry.ttf"
     color "#ffffff"
     text_align 0.5
+    size 50
+style game:
+    font "fonts/Stanberry.ttf"
+    color "#14ff00"
+    text_align 0.5
+    outlines [(1.0 ,'#ffffff', 0.0, 0.0)]
     size 50
 
 

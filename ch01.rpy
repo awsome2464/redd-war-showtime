@@ -103,19 +103,34 @@ label chapter_1:
     s happy "Are you ready to have fun?"
     m "I sure am!"
     s laugh "Splendid~!"
-    s happy "Now, what do you say we pick a few friends from our audience to come up and play with us?"
+    s happy "Now, what do you say we spin the Wacky Dartboard to see what we'll play first?"
     m "Why, I'd say that's a great idea, Mr. Sprinkles!"
     scene bg showstage with dissolve
     pause 0.1
-    "The two then each picked 2 children from the audience to come on stage."
-    show sprinkles happy at middle_s with dissolve
-    pause 0.1
-    s "Alright, everyone! It's time for a game of {i}Wacky Darts{i}!"
+    play sound applause
     "The audience cheered as the large dartboard was pulled onto the stage."
     "It was basically a giant wheel that you'd spin to pick a choice, but modified to look like a dartboard, while also being motorized."
-    s happy "Alright, let's get started!"
-    s "Will our first contestant please step forward?"
-
+    show sprinkles laugh at middle_s with dissolve
+    pause 0.1
+    s "Alright, let's get started!"
+    s happy "Ms. Madeline, if you please."
+    "Ms. Madeline then handed Mr. Sprinkles a large dart with a Velcro tip as the wheel started to turn."
+    "The audience cheered and encouraged him as he dramatically spun his arm in a forward motion before finally letting go of the dart."
+    "With a small thunk, the dart stuck to the board, which then began to stop spinning."
+    "Mr. Sprinkles walked over to the board with a grin."
+    s "And our first game of the day is..."
+    "He then looked at where the dart had landed."
+    s laugh "{i}Mirror Madness!{/i}"
+    show game_name "Mirror Madness" at game_name_flash
+    play sound applause
+    "The audience cheered again as the game's name flashed onto the screen."
+    hide game_name
+    s happy "Alright, we will need 4 brave volunteers to play this game with us!"
+    scene bg livingroom
+    show screen laura
+    with dissolve
+    pause 0.1
+    "Mr. Sprinkles and Ms. Madeline each picked 2 children from the audience to join them on the stage."
     "As they did, Kate turned to me with a large smile."
     show kate happy at middle with dissolve
     pause 0.1
@@ -137,6 +152,27 @@ label chapter_1:
     show dakota neutral at two2 with dissolve
     pause 0.1
     d "Just don't cry when you don't actually end up on stage."
+    $l_exp = "concerned"
+    "..."
+    s "Alright, everyone!"
+    scene bg showstage
+    show sprinkles laugh at middle_s
+    hide screen laura
+    with dissolve
+    pause 0.1
+    s "Now that we have our players, we need to set up the game!"
+    s happy "While we do, enjoy the brief performance from our very own Jingle and Jangle!"
+    stop music fadeout(3.0)
+    play sound applause
+    hide sprinkles with dissolve
+    show jingle at two1
+    show jangle at two2
+    with dissolve
+    pause 0.1
+    "On cue, the twin mimes entered the stage with a bow."
+    play music the_twins
+    "They then got into position for their skit."
+
     "She commented before standing up and walking out of the room."
     $l_exp = "concerned"
     hide dakota with easeoutright
@@ -415,7 +451,7 @@ label chapter_1:
     l "As in she doesn't even know what will be happening."
     $l_exp = "neutral"
     l "She says he keeps telling her to just trust him and that everything will all come together."
-    r glare "Kind of a shady thing to do to your cohost, don't you think?"
+    r glare "Kind of a shady thing to do to your co-host, don't you think?"
     $l_exp = "sad"
     l "A little, yes."
     $l_exp = "concerned"
