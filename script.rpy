@@ -122,6 +122,9 @@ image spotlight = "spotlight.png"
 image announcetext = ParameterizedText(style='announce')
 image ctc = ParameterizedText(style='ctc')
 image game_name = ParameterizedText(style='game')
+image credit_1 = ParameterizedText(style='creditheader')
+image credit_2 = ParameterizedText(style='creditheader')
+image credit_3 = ParameterizedText(style='creditheader')
 
 # Animated Images
 image ctc_arrow_1:
@@ -138,6 +141,13 @@ image ctc_arrow_nvl:
         ease 0.15 xalign 1.0
         ease 0.15 xalign 0.95
         repeat
+image logo_light:
+    size(336, 337)
+    "gui/logo_light01.png"
+    pause 1
+    "gui/logo_light02.png"
+    pause 1
+    repeat
     
 
 # Main Menu Images
@@ -213,16 +223,6 @@ define audio.siren = "audio/se/siren.ogg"
 ## Transforms ###################################################################################################################
 
 # Animated Transforms
-transform logo_rotate:
-    size(336, 337)
-    xanchor 0.5 yanchor 0.5
-    xalign -0.088
-    ycenter 0.235
-    ease 1.0 rotate 5
-    block:
-        ease 2.0 rotate -10
-        ease 2.0 rotate 10
-        repeat
 transform choice_dissolve:
     alpha 0.0
     ease 1.0 alpha 1.0
@@ -253,6 +253,21 @@ transform game_name_flash:
         alpha 0.0
         pause 0.5
         repeat
+transform credit_scroll_1:
+    xalign 0.25 yalign 1.5
+    linear 15 yalign -0.5
+transform credit_scroll_2:
+    xalign 0.75 yalign 1.5
+    linear 15 yalign -0.5
+transform credit_scroll_3:
+    xalign 0.75 yalign 2.0
+    linear 13 yalign -1.0
+transform notify_transform:
+    xalign 0.95 yalign -0.1
+    on show:
+        ease 1.0 yalign 0.1
+    on hide:
+        ease 1.0 yalign -0.1
 
 # Character Transforms
 transform middle:
@@ -337,7 +352,7 @@ style credittext:
     font "fonts/Stanberry.ttf"
     color "#ffffff"
     text_align 0.5
-    size 25
+    size 50
 style chaptertext:
     font "fonts/circula-medium.otf"
     color "#d00000"
@@ -403,37 +418,10 @@ screen dateandtime():
         text "[currentdate]" style "dateandtime" xalign 0.5
 screen timeremaining():
     text "[timeleft] until the [event]" style "remaining" xalign 0.5 yalign 0.6
-screen credits():
-    if creditpos == 1:
-        vbox:
-            xalign 0.5 yalign 0.5
-            spacing 10
-            text "[credit_header]" style "creditheader" xalign 0.5
-            text "[credit_text]" style "credittext" xalign 0.5
-    elif creditpos == 2:
-        vbox:
-            xalign 0.25 yalign 0.25
-            spacing 10
-            text "[credit_header]" style "creditheader" xalign 0.5
-            text "[credit_text]" style "credittext" xalign 0.5
-    elif creditpos == 3:
-        vbox:
-            xalign 0.75 yalign 0.25
-            spacing 10
-            text "[credit_header]" style "creditheader" xalign 0.5
-            text "[credit_text]" style "credittext" xalign 0.5
-    elif creditpos == 4:
-        vbox:
-            xalign 0.25 yalign 0.75
-            spacing 10
-            text "[credit_header]" style "creditheader" xalign 0.5
-            text "[credit_text]" style "credittext" xalign 0.5
-    elif creditpos == 5:
-        vbox:
-            xalign 0.75 yalign 0.75
-            spacing 10
-            text "[credit_header]" style "creditheader" xalign 0.5
-            text "[credit_text]" style "credittext" xalign 0.5
+screen notify(message):
+    zorder 100
+    text message at notify_transform
+    timer 5.0 action Hide('notify')
 
 # Menu Screens
 screen extras():
@@ -443,8 +431,8 @@ screen extras():
         xalign 0.5 yalign 0.5
         spacing 10
         textbutton "Chapter Select" action ShowMenu('chapterselect')
-        textbutton "Achievements" action NullAction()
-        textbutton "Credits" action Jump('credits')
+        textbutton "Achievements" action ShowMenu('achievements')
+        textbutton "Credits" action [ToggleVariable('persistent.credits', True), Jump('credits')]
         textbutton "Follow Good Tales!" action NullAction()
         null height 10
         textbutton "Return" action ShowMenu('main_menu')
@@ -464,11 +452,21 @@ screen chapterselect():
             textbutton "LOCKED" action NullAction() xalign 1.0
         null height 10
         textbutton "Return" action ShowMenu("extras") xalign 0.5
+screen achievements():
+    tag menu
+    add gui.main_menu_background
+    if persistent.achievement_toosafe:
+        text "{i}Playing it TOO Safe{/i}\nEscape Atlanta" xalign 0.5 yalign 0.5
+    else:
+        text "LOCKED" xalign 0.5 yalign 0.5
+    null height 10
+    textbutton "Return" action ShowMenu("extras") xalign 0.25 yalign 0.9
 
 
 ## Variable Defaults #############################################################################################################
 
 default persistent.gore = True
+default preferences.fullscreen = True
 default version = 0.0
 default l_exp = ""
 default nvl = False
@@ -477,9 +475,7 @@ default currentdate = "March 30th, 2030"
 default timeleft = "2 hours and 48 minutes"
 default event = "War Zones are revealed"
 default clickortap = "Click"
-default creditpos = 0
-default credit_header = "Writing and Development"
-default credit_text = "Cole Goodrich"
+default badcredits = False
 
 ## Labels ########################################################################################################################
 
@@ -521,7 +517,7 @@ label before_main_menu:
         alpha 1.0
         size(672, 674)
         parallel:
-            linear 1.0 xalign 0.0 yalign 0.0
+            linear 1.0 xalign 0.5 yalign 0.1
         parallel:
             linear 1.0 size(336, 337)
     pause 1.0
@@ -585,6 +581,9 @@ label chapterstart:
 
 # Start of Story
 label start:
+    if persistent.credits:
+        $persistent.credits = False
+        return
     play sound "audio/se/gong.ogg"
     stop music fadeout(3.0)
     scene bg fade
@@ -593,9 +592,9 @@ label start:
     $save_name = "Chapter 1"
     $save_subtitle = "The Calm Before the Storm"
     if not persistent.gorewarning:
-        "This visual novel contains graphic violence and has visuals to accomodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){nw}"
+        "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){nw}"
         menu:
-            "This visual novel contains graphic violence and has visuals to accomodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
+            "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
             "Yes":
                 $persistent.gore = False
                 "Graphic images disabled."
@@ -610,7 +609,11 @@ label start:
 # Credits
 label credits:
     scene bg fade
-    play music title
+    if not badcredits:
+        play music title
+    else:
+        stop music
+    play sound flicker
     show logo:
         xalign 0.5 yalign 0.5
         alpha 0.0
@@ -627,59 +630,42 @@ label credits:
         pause 3.0
         ease 1.0 alpha 0.0
     pause 6.6
-    scene bg stage
-    with Dissolve(1)
-    $creditpos = renpy.random.randint(1, 5)
-    show screen credits
-    with dissolve
-    $renpy.pause(delay=5)
-    python:
-        credit_header = "Story"
-        credit_text = "Cole Goodrich\nSlightlySimple"
-        creditpos = renpy.random.randint(1, 5)
-    with dissolve
-    $renpy.pause(delay=5)
-    python:
-        credit_header = "Character Art"
-        credit_text = "HazardSquare"
-        creditpos = renpy.random.randint(1, 5)
-    with dissolve
-    $renpy.pause(delay=5)
-    python:
-        credit_header = "Background Art"
-        credit_text = "Mattyd\n(MacDaddyMatty.com)"
-        creditpos = renpy.random.randint(1, 5)
-    with dissolve
-    $renpy.pause(delay=5)
-    python:
-        credit_header = "Sound Effects"
-        credit_text = "freesound.org\nCole Goodrich"
-        creditpos = renpy.random.randint(1, 5)
-    with dissolve
-    $renpy.pause(delay=5)
-    python:
-        credit_header = "{image=renpy.png}"
-        credit_text = "Made with Ren'Py 7.3"
-        creditpos = renpy.random.randint(1, 5)
-    with dissolve
-    $renpy.pause(delay=5)
-    python:
-        credit_header = "Special Thanks"
-        credit_text = "God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nDems\nYou"
-        creditpos = renpy.random.randint(1, 5)
-    with dissolve
-    $renpy.pause(delay=7)
-    hide screen credits
-    with Dissolve(1.5)
-    pause 2.0
+    if not badcredits:
+        scene bg stage
+        with Dissolve(1)
+    show credit_1 "Writing and Development\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich{/color}{/font}" at credit_scroll_1
+    pause 5
+    show credit_2 "Story\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich\nSlightlySimple{/color}{/font}" at credit_scroll_2
+    pause 5
+    show credit_3 "Character Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}HazardSquare{/color}{/font}" at credit_scroll_1
+    pause 5
+    show credit_1 "Background Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}Mattyd (MacDaddyMatty.com){/color}{/font}" at credit_scroll_2
+    pause 5
+    show credit_2 "Music\n{font=fonts/Stanberry.ttf}{color=#ffffff}Eric Matyas\nCole Goodrich{/color}{/font}" at credit_scroll_1
+    pause 5
+    show credit_3 "Sound Effects\n{font=fonts/Stanberry.ttf}{color=#ffffff}freesound.org{/color}{/font}" at credit_scroll_2
+    pause 3
+    show credit_1 "Made with Ren'Py 7.3.2" at credit_scroll_1
+    pause 5
+    show credit_2 "Special Thanks\n{font=fonts/Stanberry.ttf}{color=#ffffff}God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nDems\nYou{/color}{/font}" at credit_scroll_3
+    pause 13
     scene bg fade
-    with Dissolve(3)
-    pause 2
-    show announcetext "The End" at truecenter
+    with Dissolve(3.0)
+    pause 1
+    if badcredits:
+        show announcetext "The End?" at truecenter
+    else:
+        show announcetext "The End" at truecenter
     with Dissolve(3)
     pause 3
     hide announcetext
-    stop music fadeout(6.0)
     with Dissolve(3)
-    pause 5
+    pause 2
+    show splash at truecenter
+    with Dissolve(3)
+    pause 3
+    stop music fadeout(6.0)
+    hide splash
+    with Dissolve(3)
+    pause 3
     return

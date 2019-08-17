@@ -361,7 +361,7 @@ screen main_menu():
     add 'fade_into_menu'
     text "© 2019 Good Tales" xalign 0.99 yalign 0.99
     text "v[version]" xalign 0.01 yalign 0.99
-    add 'logo' at logo_rotate
+    add 'logo_light' xalign 0.5 yalign 0.1
 
     ## This empty frame darkens the main menu.
     frame:

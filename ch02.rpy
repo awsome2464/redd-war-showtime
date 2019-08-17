@@ -207,14 +207,7 @@ label dakotaissorry:
     l "Isn't that right, Dakota?"
     d "Y-Yes... I'm really sorry, Dad."
     r "Well, I'm not the one you should be apologizing to."
-    r concerned "...but..."
-    r "I guess you weren't completely wrong about everything."
-    $l_exp = "concerned"
-    d neutral "Huh?"
-    r "I didn't realize I had treated you so unfairly."
-    r "I guess because you've always done so well at taking care of yourself, I put more focus on making sure Kate is okay."
-    r "I'm sorry, Dakota. I really am."
-    d sad "..."
+    d "..."
     "More slow footsteps could be heard coming down the stairs."
     show dakota:
         ease 0.5 right
@@ -228,7 +221,7 @@ label dakotaissorry:
     $l_exp = "neutral"
     l "Yes?"
     k "Does Kota hate me?"
-    d "No, I don't hate you, Kate! Don't ever think something like that!"
+    d "No! I don't hate you, Kate! Don't ever think something like that!"
     k "But you said--"
     d "I know, and I'm so sorry! I didn't mean it!"
     "Despite Dakota's claim, Kate latched on to her father for comfort."
@@ -320,102 +313,30 @@ label dakotaissorry:
     with Dissolve(2.0)
     pause 4
     python:
-        currenttime = "8:52 AM"
-        timeleft = "10 hours and 8 minutes"
+        currenttime = "4:52 PM"
+        timeleft = "2 hours and 8 minutes"
         l_exp = "neutral"
     call chapterstart
     pause 1
     play music classy_ghouls
-    scene bg livingroom
-    with Dissolve(2.0)
     pause 0.5
     window show dissolve
     show screen laura
     with dissolve
-    "Richard and I really did try our best to sleep, but to no avail."
-    "Having the TV on didn't really help, either; no matter where you went, there was something about the REDD War."
-    "Even the movie channels didn't help with their constant commercials."
+    "We were finally on our way to the show."
+    "We all tried our best to be happy, but in the back of our minds, we still had that fear about what was to come to our city at 7."
+    "Having the radio on didn't really help, either; no matter where you went, there was something about the REDD War."
+    "Even the normal FM channels didn't help with their constant ads."
     $l_exp = "concerned"
     "{i}'Come on down to Crazy Jack's Gun Barrel for all your REDD War needs, whether you be the predator or the prey!'{/i}"
     "You really can't escape this event if you tried."
     $l_exp = "neutral"
-    "We finally settled on the news again; if the War is going to be on every channel, I may as well pick the channel that could give us information on what to expect."
+    "We finally settled on the news again; if the War is going to be on every station, I may as well pick the one that could give us information on what to expect."
     a "All across Atlanta, protests are breaking loose outside of city hall, the central Government Safehouse, as many people are being denied access inside."
     a "Many people are calling it 'unfair' and 'proof that the poor are the ones meant to die'."
     a "The mayor has yet to comment on this."
     $l_exp = "concerned"
     l "Sounds about right."
-    show richard glare at middle_r with dissolve
+    show richard laughing at middle_r with dissolve
     pause 0.1
-    r "Speaking of protests at Safehouses, have you seen what Jessica Tate's doing right now?"
-    $l_exp = "mad"
-    l "Ugh. Do I want to know?"
-    "Richard then pointed his phone at me to show me his Twitter feed."
-    "There was a woman a bit older than us standing outside the arena where the Mr. Sprinkles show was to be held."
-    $l_exp = "rage"
-    l "Wow."
-    l "Even after it's been revealed it's a Safehouse, she's still going to protest?"
-    r concerned "Well, what do you expect? She's always been persistent."
-    l "Well, what bullshit is she spreading now?"
-    "Richard then played the video."
-    scene bg arena_ext
-    hide screen laura
-    show jessica at middle
-    with dissolve
-    pause 0.1
-    j "The simple fact is that hypocritical REDD like Krag Dovason and Trosh Ranigan need to be taught a lesson!"
-    "Crowd" "Yeah!!"
-    j "They need to see what happens when you preach about love and peace but then go and kill people!"
-    "Crowd" "Yeah!!"
-    $l_exp = "rage"
-    show screen laura
-    l "Oh, for God's sake! Krag didn't even kill anyone, you dumbass!"
-    r "You know she can't hear you, right?"
-    $l_exp = "mad"
-    l "..."
-    hide screen laura
-    j "Do we want our children being exposed to these liars??"
-    "Crowd" "No!!"
-    j "Then let's make our voices heard! Let's show Krag Dovason that Mr. Sprinkles is not welcome in our homes!"
-    j "We will not rest until {i}Mr. Sprinkles{/i} is dead and forgotten!!"
-    "Crowd" "Yeah!!!"
-    pause 0.5
-    scene bg livingroom
-    show screen laura
-    show richard concerned at middle_r
-    with dissolve
-    pause 0.1
-    l "Ugh..."
-    l "The things some people will do for attention."
-    r "I mean, I'm not a fan of the REDD, but I couldn't imagine protesting them like that."
-    $l_exp = "rage"
-    l "It's not even REDD, in general; it's that one in particular!"
-    l "I really can't believe that she has the balls to say that Krag Dovason had involvement in Trosh's actions!"
-    r glare "Well, it wouldn't be the first time a pure-hearted celebrity got thrown into the mud for someone's 15 minutes of fame."
-    r "Not to mention him being a REDD isn't doing him any favors."
-    $l_exp = "mad"
-    l "Right, because he can snap his fingers and change the fact that he's a REDD."
-    r concerned "That's not what I meant at all, Laura."
-    r "Look, let's just drop it. The last thing we need to do right now is stress."
-    $l_exp = "neutral"
-    l "..."
-    l "You're right. I'm sorry."
-    r "Nah, I should've known that little ol' Jessica would rustle your feathers, and for that, {b}I'm{/b} sorry."
-    r smile "But anyway, what do you say I whip up some breakfast?"
-    $l_exp = "smug"
-    l "Oh, really?"
-    l "You realize you don't have any reason to keep buttering me up, right?"
-    l "I mean, unless you want Round 2."
-    r "Hey, a man can't make food for his family out of the goodness of his heart?"
-    $l_exp = "smile"
-    l "Well, sure, a man can, but {b}this{/b} man never does."
-    r "Well, I feel like we could all use a welcome surprise."
-    l "Well, alright, then. Be my guest!"
-    hide richard with dissolve
-    pause 0.1
-    "Richard then went into the kitchen."
-    "God help us."
-    k "Mommy?"
-    $l_exp = "neutral"
-
-
+    r "Alright, here we are!"

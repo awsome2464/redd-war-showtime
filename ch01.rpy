@@ -172,15 +172,40 @@ label chapter_1:
     "On cue, the twin mimes entered the stage with a bow."
     play music the_twins
     "They then got into position for their skit."
-
-    "She commented before standing up and walking out of the room."
+    "{i}\[The twins then perform a slapstick comedy skit\]{/i}"
+    play sound applause
+    scene bg showstage with dissolve
+    pause 0.5
+    play music arcade_madness
+    show sprinkles laugh at middle_s with dissolve
+    pause 0.1
+    s "Ahaha! Absolutely wonderful!"
+    s happy "Alright, then! The {i}Mirror Madness{/i} maze is all set up! Let's get started, shall we?"
+    hide sprinkles with dissolve
+    pause 0.1
+    "The screen then showed a large maze in another part of the room."
+    "The maze in question had an entrance in each of its corners, with one child volunteer standing at the corner."
+    "After Mr. Sprinkles went around and had each volunteer introduce themselves, he went on to explain the game."
+    show sprinkles jeer at middle_s with dissolve
+    pause 0.1
+    s "Alright, here's how the game works:"
+    s "Each of our players will start at one of the maze's entrances."
+    s @ laugh "When I say 'go', they will all enter the maze and race to the center, the first one there being the winner!"
+    s "But as you may have been able to tell, this isn't your normal maze."
+    s laugh "The walls of this maze are covered in mirrors~!"
+    s happy "Oh, this is certainly going to be exciting!"
+    s "Alright, is everyone ready?"
+    $l_exp = "neutral"
+    scene bg livingroom
+    show screen laura
+    with dissolve
+    pause 0.1
+    "Suddenly, Dakota stood up and walked out of the room."
     $l_exp = "concerned"
-    hide dakota with easeoutright
+    show kate concerned at middle with dissolve
     pause 0.1
-    show kate concerned at middle with easeinleft
-    pause 0.1
-    k "Kota, they're about to play 'Wild, Wild Races'! That's your favorite game!"
-    d "I've seen this episode before."
+    k "Kota, where are you going?"
+    d "I've seen this episode before. The girl in the red shirt wins."
     "She then went up the stairs with both Kate and myself watching her."
     $l_exp = "sad"
     "..."
@@ -210,7 +235,7 @@ label chapter_1:
     l "You're not the only one, I assure you."
     d neutral "..."
     $l_exp = "neutral"
-    l"But sweetheart, we'd never go to the show if we didn't feel like everything would be okay."
+    l "But sweetheart, we'd never go to the show if we didn't feel like everything would be okay."
     l "You know we'd never put you girls at risk like that, right?"
     d sad "I do, but..."
     d "...I'm not scared about the show."
@@ -437,28 +462,60 @@ label chapter_1:
     "After dinner, the girls were upstairs doing their own thing while Richard and I stayed in the living room."
     "Though we weren't really talking to each other much; we were mostly just scrolling through our phones, only occasionally showing each other funny or relevant posts."
     "But then..."
-    $l_exp = "concerned"
-    l "{i}'Mr. Sprinkles' star Madeline Jarvis expresses worry about upcoming live show in Atlanta.{/i}"
-    show richard concerned at middle_r with dissolve
+    show richard glare at middle_r with dissolve
     pause 0.1
-    r "What kind of worry?"
+    r "Have you seen what Jessica Tate's doing right now?"
+    $l_exp = "mad"
+    l "Ugh. Do I want to know?"
+    "Richard then pointed his phone at me to show me his Twitter feed."
+    "There was a woman a bit older than us standing outside the arena where the Mr. Sprinkles show was to be held."
+    $l_exp = "rage"
+    l "Wow."
+    l "What bullshit is she spreading now?"
+    "Richard then played the video."
+    scene bg arena_ext
+    hide screen laura
+    show jessica at middle
+    with dissolve
+    pause 0.1
+    j "The simple fact is that hypocritical REDD like Krag Dovason and Trosh Ranigan need to be taught a lesson!"
+    "Crowd" "Yeah!!"
+    j "They need to see what happens when you preach about love and peace but then go and kill people! {b}CHILDREN{/b}, no less!"
+    "Crowd" "Yeah!!"
+    $l_exp = "rage"
+    show screen laura
+    l "Oh, for God's sake! Krag didn't even kill anyone, you dumbass!"
+    r "You know she can't hear you, right?"
+    $l_exp = "mad"
+    l "..."
+    hide screen laura
+    j "Do we want our children being exposed to these liars??"
+    "Crowd" "No!!"
+    j "Then let's make our voices heard! Let's show Krag Dovason that Mr. Sprinkles is not welcome in our homes!"
+    j "We will not rest until {i}Mr. Sprinkles{/i} is dead and forgotten!!"
+    "Crowd" "Yeah!!!"
+    pause 0.5
+    scene bg livingroom
+    show screen laura
+    show richard concerned at middle_r
+    with dissolve
+    pause 0.1
+    l "Ugh..."
+    l "The things some people will do for attention."
+    r "I mean, I'm not a fan of the REDD, but I couldn't imagine protesting them like that."
+    $l_exp = "rage"
+    l "It's not even REDD, in general; it's that one in particular!"
+    l "I really can't believe that she has the balls to say that Krag Dovason had involvement in Trosh's actions!"
+    r glare "Well, it wouldn't be the first time a pure-hearted celebrity got thrown into the mud for someone's 15 minutes of fame."
+    r "Not to mention him being a REDD isn't doing him any favors."
+    $l_exp = "mad"
+    l "Right, because he can snap his fingers and change the fact that he's a REDD."
+    r concerned "That's not what I meant at all, Laura."
+    r "Look, let's just drop it. The last thing we need to do right now is stress."
     $l_exp = "neutral"
-    l "Let's see..."
-    "I opened up the article and started reading it in my head to get an idea of the main topic."
-    $l_exp = "concerned"
-    l "It looks like her big worry is Krag Dovason's lack of communication with her in terms of the show's events."
-    r "As in she doesn't have a say in what happens?"
-    l "As in she doesn't even know what will be happening."
-    $l_exp = "neutral"
-    l "She says he keeps telling her to just trust him and that everything will all come together."
-    r glare "Kind of a shady thing to do to your co-host, don't you think?"
-    $l_exp = "sad"
-    l "A little, yes."
-    $l_exp = "concerned"
-    l "Then again, it's not really a secret that Krag and Madeline don't get along off-camera, anyway."
-    r concerned "I know, but not telling her what to expect for a big live event like this?"
-    l "I'm sure he has his reasons."
-    r glare "..."
+    l "..."
+    l "You're right. I'm sorry."
+    r "Nah, I should've known that little ol' Jessica would rustle your feathers, and for that, {b}I'm{/b} sorry."
     "Before we could get into this more, Dakota came downstairs."
     show richard:
         ease 0.5 two2_r
@@ -481,10 +538,10 @@ label chapter_1:
     hide screen laura
     with dissolve
     pause 0.5
-    show krag smile at middle_r with dissolve
-    pause 0.1
     a "Thank you for coming, Mr. Dovason!"
-    kr laughing "Oh, thank you for having me, Chuck."
+    show krag laughing at middle_r with dissolve
+    pause 0.1
+    kr "Oh, thank you for having me, Chuck."
     "Wow. Without that bright outfit and blue hair, he looks like a completely different person."
     "...well, a completely different REDD."
     "Actually, if anything, he looks just like an average REDD."
@@ -515,7 +572,7 @@ label chapter_1:
     a "Why wait 7 years into the REDD War's life to host an event like this for this purpose?"
     kr concerned "Well..."
     kr "Not to throw anyone under the bus, but this is an event I've wanted to host since the very beginning."
-    kr neutral "But the people at the studio would never back it, claiming it to be too controversial and a waste of time."
+    kr neutral "But the people at the studio would never back it, claiming it to be too controversial, expensive, and a waste of time."
     kr smile "Looking back, I suppose I shouldn't have been too surprised at the backlash I received, ahaha."
     kr concerned "But with recently-revealed events, I decided it was time now, more than ever, to host this show to earn people's trust back."
     kr "However, the studio still wouldn't fund the show, so I had no choice but to use my own money and resources to pull this event off."
@@ -526,8 +583,16 @@ label chapter_1:
     kr worried "I very much agree, Chuck."
     kr "REDD War or not, I couldn't imagine just..."
     kr concerned "..."
-    kr neutral "A-Anyway..."
-    kr smile "My goal for tomorrow's show is to pull off feats you would never see on any episode of {i}Mr. Sprinkles{/i}."
+    a "Well, for this live show being a big and grand event, you really haven't gone into much detail on it."
+    a "Even your co-host Madeline Jarvis has gone on record stating you've been very secretive about this."
+    kr neutral "Heh. Well, uh..."
+    kr "It's no secret that Madeline and I have had our share of differences on how {i}Mr. Sprinkles{/i} should be played out."
+    kr @ concerned"In fact, she's even one of the people within the studio who suggested the show be put on hiatus until this whole controversy blows over."
+    kr "But I still respect her as both a person and a colleague, despite our differences. I certainly don't wish to turn this into a blame game."
+    a "But not even telling her about the live show's events? Doesn't that seem a bit of an issue to you?"
+    kr smile "Rest assured, there's a method to my madness."
+    kr "But back to your initial question about the live show tomorrow and what it entails."
+    kr "My goal for tomorrow's show is to pull off feats you would never see on any episode of {i}Mr. Sprinkles{/i}."
     kr laughing "New games and variations of existing ones designed specifically for the event~!"
     a "Any sneak peeks on what some of these games are?"
     kr smile "Ahaha! Welllll...."
@@ -964,3 +1029,28 @@ label sleeponit:
         save_subtitle = "The Storm Approaches"
         persistent.chapter1 = True
     jump chapter_2
+
+label weshouldleave:
+    $l_exp = "sad"
+    l "...you're right. We should leave."
+    r shocked "..."
+    r smile "...I knew you'd make the right choice, honey."
+    r laughing "Now come on. Let's get packing!"
+    $l_exp = "smile"
+    "Richard and I then went upstairs to pack."
+    "It may be a challenge, but we're gonna get out of Atlanta."
+    "Let's just hope it won't be {b}too{/b} chaotic out there."
+    stop music fadeout(5.0)
+    hide screen laura
+    hide richard
+    with dissolve
+    window hide dissolve
+    pause 0.5
+    scene bg fade
+    with Dissolve(3.0)
+    pause 2
+    $badcredits = True
+    if not persistent.achievement_toosafe:
+        $persistent.achievement_toosafe = True
+        $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
+    jump credits
