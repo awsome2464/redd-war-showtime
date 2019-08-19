@@ -185,6 +185,7 @@ image bg livingroom = "BG/livingroom.jpg"
 image bg dakotaroom = "BG/dakotaroom.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg arena_ext = "BG/arenaexterior.jpg"
+image bg dressingroom = "BG/dressingroom.jpg"
 
 
 ## Custom Audio Channels #########################################################################################################
@@ -207,6 +208,7 @@ define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 define audio.classy_ghouls = "audio/music/Classy-Ghouls-Halloween-Gathering_Looping.mp3"
 define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
 define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
+define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -218,6 +220,7 @@ define audio.door_open = "audio/se/door_open.ogg"
 define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
 define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
 define audio.siren = "audio/se/siren.ogg"
+define audio.door_knock = "audio/se/doorknock.ogg"
 
 
 ## Transforms ###################################################################################################################

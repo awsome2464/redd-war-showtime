@@ -21,7 +21,7 @@ label chapter_1:
     hide spotlight
     show choice_bg
     pause 0.5
-    play music arcade_madness
+    play music sprinkles_theme
     play sound applause
     scene bg showstage with slideawayup
     pause 1.0
@@ -86,21 +86,26 @@ label chapter_1:
     hide screen laura
     with dissolve
     pause 0.1
-    s "Alright, everyone! Let's--!"
-    play sound doorbell
-    pause 1.0
-    s huh "Huh? Now who could that be?"
-    show sprinkles at left_s with easeinright
-    pause 0.1
-    play sound door_open
-    pause 1.0
-    s laugh "Aha! It's Ms. Madeline!"
+    s "Alright, everyone! Let's start the show!"
+    m "Not without me, you're not!"
+    s huh "Huh? Who said that?"
+    m "I did!"
+    "Suddenly, an energetic young woman entered the set via the fireplace on the back wall."
     play sound applause
     show sprinkles at two2_s with easeinleft
     show madeline smile at two1_m with dissolve
-    pause 0.1
+    pause 0.5
+    s laugh "Aha! Hello there, Ms. Madeline!"
     m "Hello there, Mr. Sprinkles!"
-    s happy "Are you ready to have fun?"
+    "She replied as she adjusted her hat and brushed her shoulders."
+    s happy "What were you just up to?"
+    m "I was filling in for Santa Claus while he's on vacation!"
+    s laugh "Wow! How merry!"
+    "Ms. Madeline gave an exaggerated shrug as she stared at the camera."
+    m "That's my life~!"
+    play sound "audio/se/audience_laugh.ogg"
+    "The audience gave a laugh in response."
+    s happy "Anyway, are you ready to have fun?"
     m "I sure am!"
     s laugh "Splendid~!"
     s happy "Now, what do you say we spin the Wacky Dartboard to see what we'll play first?"
@@ -176,7 +181,7 @@ label chapter_1:
     play sound applause
     scene bg showstage with dissolve
     pause 0.5
-    play music arcade_madness
+    play music sprinkles_theme
     show sprinkles laugh at middle_s with dissolve
     pause 0.1
     s "Ahaha! Absolutely wonderful!"
@@ -184,7 +189,7 @@ label chapter_1:
     hide sprinkles with dissolve
     pause 0.1
     "The screen then showed a large maze in another part of the room."
-    "The maze in question had an entrance in each of its corners, with one child volunteer standing at the corner."
+    "The maze in question had an entrance in each of its corners, with one child volunteer standing at each corner."
     "After Mr. Sprinkles went around and had each volunteer introduce themselves, he went on to explain the game."
     show sprinkles jeer at middle_s with dissolve
     pause 0.1

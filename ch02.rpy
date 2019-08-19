@@ -313,6 +313,63 @@ label dakotaissorry:
     with Dissolve(2.0)
     pause 4
     python:
+        currenttime = "2:42 PM"
+        timeleft = "4 hours and 18 minutes"
+    call chapterstart
+    pause 1
+    scene bg dressingroom with dissolve
+    pause 0.5
+    play sound door_knock
+    pause 2
+    window show dissolve
+    kr "Come in!"
+    play sound door_open
+    pause 1
+    show sprinkles happy at two1_s
+    show madeline blank at two2_m
+    with dissolve
+    pause 0.1
+    kr "Ah, Madeline! What can I do for you?"
+    "Madeline" "\"You can start by giving me a script.\""
+    show sprinkles jeer
+    kr "Now, Madeline, all things in due time~"
+    "Madeline" "\"Krag, the show is starting in 4 hours and I have no idea what the hell I'm going to be doing!\""
+    "Madeline" "\"I'm not even seeing anyone rehearsing anything on the stage!\""
+    "Madeline" "\"It's like you don't even have a plan! You're being way too secretive about this whole thing, and it's really starting to piss me off!\""
+    show sprinkles hm
+    kr "..."
+    "Madeline" "\"Krag, I'm saying all this because I want {i}Mr. Sprinkles{/i} to succeed. To get through this rough patch.\""
+    show sprinkles wut
+    kr "And yet you told the network to put our show on a hiatus."
+    "Madeline" "\"I could have told them to cancel it altogether, you know.\""
+    "Madeline" "\"Believe me, I don't want to be in this situation any more than you do, but we need to think through this logically.\""
+    "Madeline" "\"You're still relatively new to how show business works here on Earth. These things happen.\""
+    kr "..."
+    kr "I just don't want anyone to take my show away from me."
+    kr "It is an entire life's worth of ideas and planning put together at last."
+    kr "I'll do whatever it takes for {i}Mr. Sprinkles{/i} to continue."
+    "Madeline" "\"Well, sometimes, you can't always get what you want, Krag.\""
+    "Madeline" "\"I'm sorry, but that's just how it works.\""
+    kr "..."
+    "Madeline" "\"If I don't have a script or {b}any{/b} kind of direction within an hour, I'm not going to be in this live show, and that's final.\""
+    kr "..."
+    show sprinkles jeer
+    kr "Very well. I'll get back to you."
+    show madeline smile
+    "Madeline" "\"Thank you.\""
+    hide madeline with easeoutright
+    pause 1
+    show sprinkles:
+        ease 1.0 middle_s
+    pause 1.5
+    show sprinkles laugh
+    kr "Oh, you'll play a big role in this show, don't you worry..."
+    window hide dissolve
+    pause 1
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    python:
         currenttime = "4:52 PM"
         timeleft = "2 hours and 8 minutes"
         l_exp = "neutral"
@@ -336,7 +393,15 @@ label dakotaissorry:
     a "Many people are calling it 'unfair' and 'proof that the poor are the ones meant to die'."
     a "The mayor has yet to comment on this."
     $l_exp = "concerned"
-    l "Sounds about right."
-    show richard laughing at middle_r with dissolve
-    pause 0.1
+    "Sounds about right."
     r "Alright, here we are!"
+    $l_exp = "surprised"
+    "I honestly hadn't been paying attention our location, but sure enough..."
+    scene bg arena_ext with dissolve
+    pause 0.1
+    $l_exp = "smile"
+    "...we were here!"
+    k "YAAAAAAY!!"
+    show kate happy at middle with dissolve
+    pause 0.1
+
