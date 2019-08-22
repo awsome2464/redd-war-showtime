@@ -312,6 +312,10 @@ label dakotaissorry:
     scene bg fade
     with Dissolve(2.0)
     pause 4
+    $persistent.chapter2_scene1 = True
+    $renpy.end_replay()
+
+label backstagedrama:
     python:
         currenttime = "2:42 PM"
         timeleft = "4 hours and 18 minutes"
@@ -369,6 +373,9 @@ label dakotaissorry:
     scene bg fade
     with Dissolve(2.0)
     pause 4
+    $persistent.chapter2_scene2 = True
+    $renpy.end_replay()
+
     python:
         currenttime = "4:52 PM"
         timeleft = "2 hours and 8 minutes"

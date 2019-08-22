@@ -445,14 +445,25 @@ screen chapterselect():
     vbox:
         xalign 0.5 yalign 0.5
         spacing 10
-        if persistent.chapter1:
-            textbutton "Chapter 1" action Replay("chapter_1") xalign 0.0
+        text "Chapter 1" xalign 0.0 yalign 0.1
+        if persistent.chapter1_scene1:
+            textbutton "Meet the Farrs" action Replay("chapter_1") xalign 0.0
         else:
             textbutton "LOCKED" action NullAction() xalign 0.0
-        if persistent.chapter2:
-            textbutton "Chapter 2" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 1.0
+        if persistent.chapter1_scene2:
+            textbutton "Unfortunate News" action Replay("kragonnews") xalign 0.0
         else:
-            textbutton "LOCKED" action NullAction() xalign 1.0
+            textbutton "LOCKED" action NullAction() xalign 0.0
+        text "Chapter 2" xalign 0.25 yalign 0.1
+        if persistent.chapter2_scene1:
+            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.25
+        else:
+            textbutton "LOCKED" action NullAction() xalign 0.25
+        if persistent.chapter2_scene2:
+            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.25
+        else:
+            textbutton "LOCKED" action NullAction()
+
         null height 10
         textbutton "Return" action ShowMenu("extras") xalign 0.5
 screen achievements():

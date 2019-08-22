@@ -451,6 +451,10 @@ label chapter_1:
     scene bg fade
     with Dissolve(2.0)
     pause 3.0
+    $persistent.chapter1_scene1 = True
+    $renpy.end_replay()
+
+label kragonnews:
     $l_exp = "neutral"
     $currenttime = "6:39 PM"
     $timeleft = "21 minutes"
@@ -1025,6 +1029,7 @@ label sleeponit:
     stop music fadeout(3.0)
     window hide dissolve
     pause 4
+    $renpy.end_replay()
     python:
         currenttime = "5:23 AM"
         currentdate = "March 31st, 2030"
@@ -1032,7 +1037,7 @@ label sleeponit:
         event = "REDD War begins"
         save_name = "Chapter 2"
         save_subtitle = "The Storm Approaches"
-        persistent.chapter1 = True
+        persistent.chapter1_scene2 = True
     jump chapter_2
 
 label weshouldleave:
