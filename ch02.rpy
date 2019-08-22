@@ -376,6 +376,7 @@ label backstagedrama:
     $persistent.chapter2_scene2 = True
     $renpy.end_replay()
 
+label arriveatshow:
     python:
         currenttime = "4:52 PM"
         timeleft = "2 hours and 8 minutes"
