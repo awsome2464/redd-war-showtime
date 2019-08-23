@@ -454,13 +454,14 @@ screen chapterselect():
             textbutton "Unfortunate News" action Replay("kragonnews") xalign 0.0
         else:
             textbutton "LOCKED" action NullAction() xalign 0.0
+        null height 5
         text "Chapter 2" xalign 0.25 yalign 0.1
         if persistent.chapter2_scene1:
-            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.25
+            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.0
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.25
+            textbutton "LOCKED" action NullAction() xalign 0.0
         if persistent.chapter2_scene2:
-            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.25
+            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.0
         else:
             textbutton "LOCKED" action NullAction()
 
@@ -482,6 +483,7 @@ screen achievements():
 default persistent.gore = True
 default preferences.fullscreen = True
 default version = 0.0
+default save_subtitle = ""
 default l_exp = ""
 default nvl = False
 default currenttime = "4:12 PM"

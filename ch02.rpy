@@ -17,7 +17,7 @@ label chapter_2:
     l "Has anything happened?"
     r glare "Yes. A lot, actually."
     "He pointed to the screen."
-    "The main headline along the bottom was {i}'MR. SPRINKLES' STAR KRAG DOVASON SPEAKS OUT AGAINST ATLANTA WAR ZONE ANNOUNCEMENT{/i}"
+    "The main headline along the bottom was {i}'MR. SPRINKLES' STAR KRAG DOVASON SPEAKS OUT AGAINST ATLANTA WAR ZONE ANNOUNCEMENT{/i}."
     $l_exp = "concerned"
     "This ought to be good."
     "I sat down and tuned in."

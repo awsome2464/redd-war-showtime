@@ -92,6 +92,7 @@ define config.end_game_transition = None
 
 ## Used when entering a replay.
 define config.enter_replay_transition = dissolve
+define config.exit_replay_transition = dissolve
 
 
 ## A variable to set the transition used when the game starts does not exist.

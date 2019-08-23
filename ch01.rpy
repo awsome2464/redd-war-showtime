@@ -393,7 +393,7 @@ label chapter_1:
     l "Richard, the whole point of his show is to show that--"
     r @ glare "I know not all of them are like that."
     r "But as long as there's a REDD War, the ones that ARE like that will continue to just..."
-    r glare "Well, you know what that guy from the show did last year."
+    r glare "Well, you know what that producer from the show did last year."
     $l_exp = "neutral"
     "I took a deep breath and looked down."
     l "Yes, I do."
@@ -406,7 +406,7 @@ label chapter_1:
     l "I'm not denying that, Richard."
     l "But like you said, I'm not going to judge them all based on the actions of one."
     $l_exp = "surprised"
-    l "That REDD who plays Mr. Sprinkles has made it very clear that he disapproved that act of violence."
+    l "Plus, Krag Dovason has made it very clear that he disapproved his brother's actions."
     r glare "Oh, I'm sure anyone who has their show being boycotted would say something like that."
     $l_exp = "sad"
     "We looked at each other in the eye, unsure where to take this discussion before it evolves into a full argument."
@@ -487,7 +487,7 @@ label kragonnews:
     show jessica at middle
     with dissolve
     pause 0.1
-    j "The simple fact is that hypocritical REDD like Krag Dovason and Trosh Ranigan need to be taught a lesson!"
+    j "The simple fact is that hypocritical REDD like Krag and Trosh Dovason need to be taught a lesson!"
     "Crowd" "Yeah!!"
     j "They need to see what happens when you preach about love and peace but then go and kill people! {b}CHILDREN{/b}, no less!"
     "Crowd" "Yeah!!"
@@ -585,18 +585,22 @@ label kragonnews:
     kr smile "Looking back, I suppose I shouldn't have been too surprised at the backlash I received, ahaha."
     kr concerned "But with recently-revealed events, I decided it was time now, more than ever, to host this show to earn people's trust back."
     kr "However, the studio still wouldn't fund the show, so I had no choice but to use my own money and resources to pull this event off."
-    a "I assume you're referring to the news surrounding Trosh Ranigan?"
+    a "By 'recently-revealed events', I assume you're referring to the news surrounding your brother Trosh?"
     kr neutral "I am."
     a "That truly is a horrible situation."
-    a "For both him and your show."
+    a "For him, you, and your show."
     kr worried "I very much agree, Chuck."
-    kr "REDD War or not, I couldn't imagine just..."
-    kr concerned "..."
+    kr concerned "I know people are understandably upset that I wasn't as harsh to him as I should have been, but..."
+    kr "...he's still my brother, and he was very much in his legal and biological right to do what he did, even though I highly disagree with it."
+    kr @ smile "I guess it's only fitting; he was never a fan of my life decisions, either, but he was still there for me to help me achieve my dream by providing funding for the program."
+    kr "But REDD War or not, I couldn't imagine just..."
+    kr "..."
+    "Clearly sensing the darker direction the interview was turning, Chuck cleared his throat and changed the subject."
     a "Well, for this live show being a big and grand event, you really haven't gone into much detail on it."
     a "Even your co-host Madeline Jarvis has gone on record stating you've been very secretive about this."
     kr neutral "Heh. Well, uh..."
     kr "It's no secret that Madeline and I have had our share of differences on how {i}Mr. Sprinkles{/i} should be played out."
-    kr @ concerned"In fact, she's even one of the people within the studio who suggested the show be put on hiatus until this whole controversy blows over."
+    kr @ concerned "In fact, she's even one of the people within the studio who suggested the show be put on hiatus until this whole controversy blows over."
     kr "But I still respect her as both a person and a colleague, despite our differences. I certainly don't wish to turn this into a blame game."
     a "But not even telling her about the live show's events? Doesn't that seem a bit of an issue to you?"
     kr smile "Rest assured, there's a method to my madness."
@@ -803,7 +807,6 @@ label kragonnews:
     l "Richard, can I talk to you?"
     show richard glare
     "He looked up at me with a bit of a confused look."
-    "I'm sure he could figure out what this was going to be about."
     "Regardless, he stood back up and looked at our daughters."
     r "Start packing. Please."
     scene bg dakotaroom with dissolve
@@ -973,7 +976,7 @@ label sleeponit:
     l "I know it's tough, baby, but sometimes things can't always go the way we want them to."
     d "But we're really gonna stay here and {b}DIE{/b}?!"
     r "We don't know if we're staying or not, Dakota. We'll talk more about it in the morning."
-    d "And what's gonna happen if we do say?"
+    d "And what's gonna happen if we {b}do{/b} stay?"
     $l_exp = "neutral"
     l "That'll be one of the things we talk about."
     d "..."
@@ -1001,7 +1004,7 @@ label sleeponit:
 
     I don't know what was going through his mind, but I certainly couldn't stop thinking about what's to come.
 
-    Will we stay here? Will we try to get out of Atlanta? Will we even be able to get out in time?
+    Will we stay here? Will we try to get out of Atlanta? Would we even be able to get out in time?
 
     So many questions, no way to know the answers ahead of time...
     """
