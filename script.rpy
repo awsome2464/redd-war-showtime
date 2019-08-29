@@ -440,7 +440,7 @@ screen chapterselect():
     tag menu
     add gui.main_menu_background
     vbox:
-        xalign 0.25 yalign 0.1
+        xalign 0.25 yalign 0.15
         spacing 10
         text "Chapter 1" xalign 0.5
         if persistent.chapter1_scene1:
@@ -452,7 +452,7 @@ screen chapterselect():
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
     vbox:
-        xalign 0.75 yalign 0.1
+        xalign 0.75 yalign 0.15
         spacing 10
         text "Chapter 2" xalign 0.5
         if persistent.chapter2_scene1:
@@ -467,6 +467,7 @@ screen chapterselect():
             textbutton "Packed Parking" action Replay("arriveatshow", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
+    null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
