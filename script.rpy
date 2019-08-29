@@ -20,8 +20,8 @@ define narrate = nvl_narrator
 define a = Character("Anchor", what_prefix='"', what_suffix='"')
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
 define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
-define ja = Character("Jangle", image="jangle", what_prefix='"', what_suffix='"')
-define ji = Character("Jingle", image="jingle", what_prefix='"', what_suffix='"')
+define ja = Character("Jangle", color="#d00000", image="jangle", what_prefix='"', what_suffix='"')
+define ji = Character("Jingle", color="#d00000", image="jingle", what_prefix='"', what_suffix='"')
 define k = Character("Kate", image="kate", what_prefix='"', what_suffix='"')
 define kr = Character("Krag", color="#d00000", image="krag", what_prefix='"', what_suffix='"') # Mr. Sprinkles
 define l = Character("Laura", what_prefix='"', what_suffix='"')
@@ -127,30 +127,6 @@ image credit_2 = ParameterizedText(style='creditheader')
 image credit_3 = ParameterizedText(style='creditheader')
 
 # Animated Images
-image ctc_arrow_1:
-    xalign 0.5 yalign 0.99
-    "gui/ctc_arrow.png"
-    block:
-        ease 0.15 xalign 0.45
-        ease 0.15 xalign 0.5
-        repeat
-image ctc_arrow_nvl:
-    xalign 0.95 yalign 0.99
-    "gui/ctc_arrow.png"
-    block:
-        ease 0.15 xalign 1.0
-        ease 0.15 xalign 0.95
-        repeat
-image logo_light:
-    size(336, 337)
-    "gui/logo_light01.png"
-    pause 1
-    "gui/logo_light02.png"
-    pause 1
-    repeat
-    
-
-# Main Menu Images
 image dust = SnowBlossom("dust_alpha", count=5, xspeed=(10, 40), yspeed=(3, 6), start=5, fast=True, horizontal=True)
 image dust2 = SnowBlossom("dust particle 2.png", count=10, xspeed=(10, 40), yspeed=(3, 6), start=5, fast=True, horizontal=True)
 image dust3 = SnowBlossom("dust_alpha", count=5, xspeed=(-40, -10), yspeed=(3, 6), start=5, fast=True, horizontal=True)
@@ -165,6 +141,13 @@ image dust_alpha:
         alpha 0.75
     choice:
         alpha 1.0
+image logo_light:
+    size(336, 337)
+    "gui/logo_light01.png"
+    pause 1
+    "gui/logo_light02.png"
+    pause 1
+    repeat
 image fade_into_menu:
     "#000000"
     block:
@@ -172,6 +155,20 @@ image fade_into_menu:
         ease 0.05 alpha 1.0
         repeat 3
     ease 1.0 alpha 0.0
+image ctc_arrow_1:
+    xalign 0.5 yalign 0.99
+    "gui/ctc_arrow.png"
+    block:
+        ease 0.15 xalign 0.45
+        ease 0.15 xalign 0.5
+        repeat
+image ctc_arrow_nvl:
+    xalign 0.95 yalign 0.99
+    "gui/ctc_arrow.png"
+    block:
+        ease 0.15 xalign 1.0
+        ease 0.15 xalign 0.95
+        repeat
 
 
 ## Backgrounds ###################################################################################################################
@@ -443,30 +440,34 @@ screen chapterselect():
     tag menu
     add gui.main_menu_background
     vbox:
-        xalign 0.5 yalign 0.5
+        xalign 0.25 yalign 0.1
         spacing 10
-        text "Chapter 1" xalign 0.0 yalign 0.1
+        text "Chapter 1" xalign 0.5
         if persistent.chapter1_scene1:
-            textbutton "Meet the Farrs" action Replay("chapter_1") xalign 0.0
+            textbutton "Meet the Farrs" action Replay("chapter_1") xalign 0.5
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.0
+            textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter1_scene2:
-            textbutton "Unfortunate News" action Replay("kragonnews") xalign 0.0
+            textbutton "Unfortunate News" action Replay("kragonnews") xalign 0.5
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.0
-        null height 5
-        text "Chapter 2" xalign 0.25 yalign 0.1
+            textbutton "LOCKED" action NullAction() xalign 0.5
+    vbox:
+        xalign 0.75 yalign 0.1
+        spacing 10
+        text "Chapter 2" xalign 0.5
         if persistent.chapter2_scene1:
-            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.0
+            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.5
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.0
+            textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter2_scene2:
-            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.0
+            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
         else:
-            textbutton "LOCKED" action NullAction()
-
-        null height 10
-        textbutton "Return" action ShowMenu("extras") xalign 0.5
+            textbutton "LOCKED" action NullAction() xalign 0.5
+        if persistent.chapter2_scene3:
+            textbutton "Packed Parking" action Replay("arriveatshow", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+        else:
+            textbutton "LOCKED" action NullAction() xalign 0.5
+    textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
     add gui.main_menu_background
@@ -493,13 +494,27 @@ default event = "War Zones are revealed"
 default clickortap = "Click"
 default badcredits = False
 
+
 ## Labels ########################################################################################################################
 
 # Splash Screen/Main Menu Intro
 label before_main_menu:
     scene bg fade
+    if not persistent.gorewarning:
+        "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){nw}"
+        menu:
+            "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
+            "Yes":
+                $persistent.gore = False
+                "Graphic images disabled."
+            "No":
+                $persistent.gore = True
+                "Graphic images enabled."
+        window hide dissolve
+        pause 2
+        $persistent.gorewarning = True
     play music title noloop
-    if persistent.splash == True:
+    if persistent.splash:
         pause 1.0
         show announcetext "This story contains graphic violence and strong language and is\nintended for mature audiences" at truecenter
         with Dissolve(1.0)
@@ -583,11 +598,7 @@ label chapterstart:
         xalign 0.5 yalign 0.9
         pause 3
         block:
-            alpha 1.0
-            pause 1
-            alpha 0.0
-            pause 1
-            repeat
+            ease 1.0 alpha 1.0
     $renpy.pause()
     hide screen dateandtime
     hide screen timeremaining
@@ -607,19 +618,6 @@ label start:
     pause 3
     $save_name = "Chapter 1"
     $save_subtitle = "The Calm Before the Storm"
-    if not persistent.gorewarning:
-        "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){nw}"
-        menu:
-            "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
-            "Yes":
-                $persistent.gore = False
-                "Graphic images disabled."
-            "No":
-                $persistent.gore = True
-                "Graphic images enabled."
-        window hide dissolve
-        pause 2
-        $persistent.gorewarning = True
     jump chapter_1
 
 # Credits

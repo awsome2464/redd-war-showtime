@@ -451,8 +451,9 @@ label chapter_1:
     scene bg fade
     with Dissolve(2.0)
     pause 3.0
-    $persistent.chapter1_scene1 = True
     $renpy.end_replay()
+    $persistent.chapter1_scene1 = True
+
 
 label kragonnews:
     $l_exp = "neutral"

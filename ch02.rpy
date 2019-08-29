@@ -312,8 +312,9 @@ label dakotaissorry:
     scene bg fade
     with Dissolve(2.0)
     pause 4
-    $persistent.chapter2_scene1 = True
     $renpy.end_replay()
+    $persistent.chapter2_scene1 = True
+    
 
 label backstagedrama:
     python:
@@ -373,18 +374,17 @@ label backstagedrama:
     scene bg fade
     with Dissolve(2.0)
     pause 4
-    $persistent.chapter2_scene2 = True
     $renpy.end_replay()
+    $persistent.chapter2_scene2 = True
+    
 
 label arriveatshow:
     python:
-        currenttime = "4:52 PM"
-        timeleft = "2 hours and 8 minutes"
+        currenttime = "3:51 PM"
+        timeleft = "3 hours and 9 minutes"
         l_exp = "neutral"
     call chapterstart
-    pause 1
-    play music classy_ghouls
-    pause 0.5
+    pause 2
     window show dissolve
     show screen laura
     with dissolve
@@ -396,20 +396,182 @@ label arriveatshow:
     "{i}'Come on down to Crazy Jack's Gun Barrel for all your REDD War needs, whether you be the predator or the prey!'{/i}"
     "You really can't escape this event if you tried."
     $l_exp = "neutral"
-    "We finally settled on the news again; if the War is going to be on every station, I may as well pick the one that could give us information on what to expect."
-    a "All across Atlanta, protests are breaking loose outside of city hall, the central Government Safehouse, as many people are being denied access inside."
-    a "Many people are calling it 'unfair' and 'proof that the poor are the ones meant to die'."
-    a "The mayor has yet to comment on this."
+    "Eventually, we decided to just turn the radio off; I certainly wouldn't want the girls to be focusing on anything other than the live show."
+    "It shouldn't be hard to do, since a certain child of mine used this time to watch a certain TV show on her tablet."
+    play music sprinkles_theme
+    scene bg showstage
+    show sprinkles happy at middle_s
+    hide screen laura
+    with dissolve
+    pause 0.1
+    s "Alright, everyone! Let's start the show!"
+    m "Not without me, you're not!"
+    s huh "Huh? Who said that?"
+    m "I did!"
+    show sprinkles at two2_s with easeinleft
+    show madeline smile:
+        xalign 0.25 yalign -2.0
+        ease 0.5 yalign -0.15
+        ease 0.25 two1_m
+    pause 1.1
+    play sound applause
+    pause 0.5
+    s laugh "Aha! Hello there, Ms. Madeline!"
+    m "Hello there, Mr. Sprinkles!"
+    s happy "What were you just up to?"
+    m "I was helping a family of gophers redecorate their house!"
+    s laugh "Wow! How incredible!"
+    m "That's my life~!"
+    play sound "audio/se/audience_laugh.ogg"
+    pause 1
+    $l_exp = "smile"
+    scene bg fade
+    show screen laura
+    show kate happy at middle
+    with dissolve
+    pause 0.1
+    # Kate is wearing a Mr. Sprinkles top hat and tuxedo
+    k "Ehehehe!"
+    "That outfit of hers certainly wasn't cheap, but the smile she gave when she first put it on was enough to make it worth it."
+    hide kate with dissolve
+    pause 0.1
+    $l_exp = "neutral"
+    "As we drove, I occasionally checked Twitter for any potential updates I should be aware of."
+    "Apparently, there are protests breaking loose outside of city hall, the central Government Safehouse, as many people are being denied access inside."
+    "\"{i}Many people are calling it 'unfair' and 'proof that the poor are the ones meant to die'.\"{/i}"
+    "\"{i}The mayor has yet to comment on this.\"{/i}"
     $l_exp = "concerned"
     "Sounds about right."
-    r "Alright, here we are!"
+    $l_exp = "neutral"
+    s "Our first game of the day is..."
+    s "{i}Wild, Wild Races!{/i}"
+    play sound applause
+    pause 1.0
+    show kate happy at middle with dissolve
+    pause 0.1
+    k "Kota, that's your favorite game!!"
+    show kate:
+        ease 0.5 two2
+    show dakota small_smile at two1 with dissolve
+    pause 0.1
+    d "I know, Kate."
+    k "Ooo! Ooo! Do you think they'll play it on stage tonight?"
+    d "It's a 12-hour show, Kate. I'm sure they'll find time."
+    k "That would be AWESOME!!!"
+    d "Heh. Yes, it would."
+    $l_exp = "concerned"
+    "Dakota certainly has been acting a bit weird the entire way here."
     $l_exp = "surprised"
+    "There's no doubt that she's still thinking about the REDD War."
+    r "Alright, here we are!"
+    stop music fadeout(3)
+    show dakota neutral
+    show kate shocked
+    $l_exp = "concerned"
     "I honestly hadn't been paying attention our location, but sure enough..."
     scene bg arena_ext with dissolve
     pause 0.1
     $l_exp = "smile"
     "...we were here!"
-    k "YAAAAAAY!!"
+    play music classy_ghouls
     show kate happy at middle with dissolve
     pause 0.1
+    k"YAAAAAAY!!"
+    "Kate clapped with joy as we pulled into the massive parking lot."
+    hide kate
+    show richard glare at middle_r
+    with dissolve
+    pause 0.1
+    r "Well, we may be here, but it's still gonna be a while before we park and get inside..."
+    $l_exp = "neutral"
+    "He wasn't kidding; the line of cars in the parking lot was massive and moving slower than a snail."
+    $l_exp = "surprised"
+    l "We should be able to get inside before 7 o'clock, right?"
+    r concerned "Hopefully."
+    show richard:
+        ease 0.5 two1_r
+    show kate shocked at two2 with dissolve
+    pause 0.1
+    k "I hope we do!"
+    k excited "I don't wanna miss a second of the show!"
+    $l_exp = "smug"
+    "Oh, you innocent child..."
+    r laughing "I know you don't, Kate."
+    r smile "We should be fine."
+    r glare "Maybe."
+    r "If this guy would just pick up the pace..."
+    hide kate
+    show dakota confused at two2
+    with dissolve
+    pause 0.1
+    d "Hey, Mom?"
+    $l_exp = "neutral"
+    l "Yes?"
+    d "Isn't that that crazy lady you always complain about?"
+    "She asked as she pointed out her window."
+    $l_exp = "concerned"
+    "I looked to where she was pointing."
+    "..."
+    $l_exp = "rage"
+    l "...oh, you have got to be kidding."
+    scene bg arena_ext
+    show jessica at middle
+    hide screen laura
+    with dissolve
+    j "Turn back now if you value your children's lives!"
+    j "{i}Mr. Sprinkles{/i} is a menace that must be destroyed!"
+    "Crowd" "Yeah!!"
+    hide jessica
+    show screen laura
+    with dissolve
+    pause 0.1
+    l "I swear, that bi--"
+    $l_exp = "mad"
+    l "{b}woman{/b} doesn't know when to stop."
+    show kate excited at middle with dissolve
+    pause 0.1
+    k "Ooooooo~! Mommy almost said a bad word~!"
+    $l_exp = "smug"
+    l "That's right, Kate. {i}Almost{/i}."
+    "Everyone in the car then gave a laugh before changing the subject."
+    $l_exp = "neutral"
+    hide kate with dissolve
+    pause 0.1
+    "I still couldn't believe that Jessica Tate was here protesting."
+    "The arena is a Government Safehouse because of Krag Dovason's willingness to help."
+    $l_exp = "mad"
+    "Of course, that would imply that Krag is a nice guy, thus destroying her message."
+    $l_exp = "concerned"
+    "What exactly is she planning on doing once it's time for the REDD War, anyway?"
+    "Does she actually have the courage to go inside the arena for protection?"
+    $l_exp = "mad"
+    "Of course, maybe she'll continue protesting once she's inside because she has nothing better to do with her time."
+    $l_exp = "neutral"
+    "Ah, whatever. If she wants to be a dumb bitch, let her."
+    $l_exp = "smile"
+    "I'm here for a fun night with my family."
+    "I'm not going to let some lunatic take that from me."
+    hide screen laura
+    with dissolve
+    window hide dissolve
+    pause 1.0
+    stop music fadeout(3.0)
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter2_scene3 = True
 
+
+label meetandgreet:
+    python:
+        currenttime = "5:13 PM"
+        timeleft = "1 hour and 47 minutes"
+        l_exp = "neutral"
+    call chapterstart
+    pause 2
+    scene bg arena_ext with dissolve
+    window show dissolve
+    show screen laura
+    with dissolve
+    $renpy.pause()
