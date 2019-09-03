@@ -117,6 +117,7 @@ image textbox_bg:
     "gui/textbox_bg.png"
     yalign 0.99
 image spotlight = "spotlight.png"
+image commencement_overlay = "Commencement_Overlay.png"
 
 # Text Images
 image announcetext = ParameterizedText(style='announce')
@@ -183,6 +184,9 @@ image bg dakotaroom = "BG/dakotaroom.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg arena_ext = "BG/arenaexterior.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
+image bg livestage = "BG/livestage.jpg"
+image bg arena_hall = "BG/arenahall.jpeg"
+image bg commencement = "BG/commencement.png"
 
 
 ## Custom Audio Channels #########################################################################################################
@@ -206,6 +210,7 @@ define audio.classy_ghouls = "audio/music/Classy-Ghouls-Halloween-Gathering_Loop
 define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
 define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
 define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
+define audio.creaky_country_fair = "audio/music/Creaky-Country-Fair.ogg"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -218,6 +223,7 @@ define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
 define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
 define audio.siren = "audio/se/siren.ogg"
 define audio.door_knock = "audio/se/doorknock.ogg"
+define audio.crowd = "audio/se/crowd.ogg"
 
 
 ## Transforms ###################################################################################################################
@@ -269,7 +275,7 @@ transform notify_transform:
     on hide:
         ease 1.0 yalign -0.1
 
-# Character Transforms
+# Stationary Transforms
 transform middle:
     xalign 0.5 yalign 0.5
 transform middle_s:
@@ -319,12 +325,16 @@ transform sideimage:
     size(225, 225)
     xalign 0.0575 yalign 1.0
 
+transform commencement:
+
+
 
 ## Styles ########################################################################################################################
 
 style announce:
     font "fonts/circula-medium.otf"
     color "#ffffff"
+    layout "subtitle"
     text_align 0.5
     size 50
 style dateandtime:
@@ -387,7 +397,7 @@ screen laura():
     elif l_exp == "determined":
         add "laura determined" at sideimage
     elif l_exp == "excited":
-        add "laura determined" at sideimage
+        add "laura excited" at sideimage
     elif l_exp == "mad":
         add "laura mad" at sideimage
     elif l_exp == "neutral":
@@ -418,6 +428,20 @@ screen dateandtime():
         text "[currentdate]" style "dateandtime" xalign 0.5
 screen timeremaining():
     text "[timeleft] until the [event]" style "remaining" xalign 0.5 yalign 0.6
+screen gameover():
+    vbox:
+        xalign 0.5 yalign 0.5
+        if badcredits:
+            text "THE END...?" style "dateandtime"
+        else:
+            text "YOU DIED" style "dateandtime"
+screen loadorquit():
+    vbox:
+        xalign 0.5 yalign 0.85
+        spacing 10
+        textbutton "Load Game" action ShowMenu('load') xalign 0.5
+        textbutton "Main Menu" action MainMenu() xalign 0.5
+        textbutton "Quit" action Quit() xalign 0.5
 screen notify(message):
     zorder 100
     text message at notify_transform
@@ -467,7 +491,14 @@ screen chapterselect():
             textbutton "Packed Parking" action Replay("arriveatshow", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
-    null height 10
+        if persistent.chapter2_scene4:
+            textbutton "Meet and Greet" action Replay("meetandgreet", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+        else:
+            textbutton "LOCKED" action NullAction() xalign 0.5
+        if persistent.chapter2_scene5:
+            textbutton "Showtime!" action Replay("showbegins", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+        else:
+            textbutton "LOCKED" action NullAction() xalign 0.5
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
@@ -567,6 +598,7 @@ label chaptername:
 
 # Shows Time, Date, and Time Remaining
 label chapterstart:
+    $renpy.block_rollback()
     stop music
     stop sound
     if renpy.variant('mobile'):
@@ -606,6 +638,25 @@ label chapterstart:
     hide ctc
     with dissolve
     return
+
+# Game Over Screen
+label gameover:
+    $renpy.block_rollback()
+    if not badcredits:
+        play music creaky_country_fair
+    show screen gameover
+    with Dissolve(2)
+    if badcredits:
+        $renpy.pause()
+        hide screen gameover
+        with Dissolve(2)
+        pause 1
+        return
+    else:
+        pause 1
+        show screen loadorquit
+        with Dissolve(1)
+        $renpy.pause(hard=True)
 
 # Start of Story
 label start:

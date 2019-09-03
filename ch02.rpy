@@ -520,7 +520,7 @@ label arriveatshow:
     with dissolve
     j "Turn back now if you value your children's lives!"
     j "{i}Mr. Sprinkles{/i} is a menace that must be destroyed!"
-    "Crowd" "Yeah!!"
+    "Crowd" "\"Yeah!!\""
     hide jessica
     show screen laura
     with dissolve
@@ -570,8 +570,438 @@ label meetandgreet:
         l_exp = "neutral"
     call chapterstart
     pause 2
-    scene bg arena_ext with dissolve
+    play ambience crowd
+    play music the_calm
+    scene bg livestage with dissolve
     window show dissolve
     show screen laura
     with dissolve
-    $renpy.pause()
+    "Thankfully, the wait wasn't as long as we thought it would be."
+    $l_exp = "smile"
+    "We were still very early, but given the circumstances, that's not necessarily a bad thing."
+    $l_exp = "concerned"
+    "Well, unless you've got a child who takes any chance she can to complain about being bored."
+    show dakota mad at middle with dissolve
+    pause 0.1
+    d "What are we supposed to do for 2 hours?"
+    $l_exp = "neutral"
+    l "We could always walk around a bit to see what they've got."
+    $l_exp = "smile"
+    l "They're selling a lot of merch, if you're interested."
+    d neutral "Eh."
+    $l_exp = "smug"
+    l "I'm not saying you need to be as decked out as your sister."
+    d mad "I know."
+    $l_exp = "neutral"
+    l "..."
+    l "Well, it's either that or sit here on your phone."
+    l "But I'm sure you're gonna want to use it to take pictures during the show, right?"
+    d neutral "..."
+    l "So I'd save the battery if I were you."
+    d "..."
+    l "..."
+    $l_exp = "concerned"
+    "I guess feeling out of harm's way is enough to turn her back into her usual self."
+    "Though there's something to be said about having a sense of normalcy."
+    show dakota:
+        ease 0.5 two1
+    show richard glare at two2_r with dissolve
+    pause 0.1
+    r "Don't go crying to us when your battery dies, Dakota. You were warned."
+    d mad "..."
+    stop music fadeout(3)
+    stop ambience fadeout(3)
+    play sound "audio/se/chime.ogg"
+    pause 1
+    show dakota confused
+    show richard concerned
+    "Suddenly, a chime could be heard from the speakers."
+    s "Hey, howdy, hey, everyone~! It's Mr. Sprinkles here!"
+    s "In a few short moments, I will be sitting in the west hall for photos, autographs, or a simple hello~!"
+    s "I'll only be there until 6:30, so if you wish to stop by, you better hurry over to the west hall!"
+    s "Safely, of course~"
+    s "I can't wait to see you there!"
+    play music the_calm fadein(3)
+    play ambience crowd fadein(3)
+    pause 1
+    show dakota:
+        ease 0.5 left
+    show richard:
+        ease 0.5 right_r
+    show kate happy at middle with dissolve
+    pause 0.1
+    $l_exp = "surprised"
+    k "Come on!! Let's go!!"
+    "Kate grabbed on to me and tried yanking me out of my seat."
+    k "I wanna see Mr. Sprinkles!!"
+    $l_exp = "sad"
+    l "Kate, not so loud, please."
+    k @ shocked "Sorry."
+    k "I just wanna see him!"
+    $l_exp = "smug"
+    l "I know you do."
+    "I then looked over to my other daughter."
+    l "What do you say? Wanna take time away from your phone to see Mr. Sprinkles?"
+    d small_smile "..."
+    $l_exp = "excited"
+    "I suppose that answers that."
+    r laughing "I guess we better hurry; that line is gonna get long pretty quickly."
+    $l_exp = "neutral"
+    "Sure enough, the exits to the room were nearly blocked by families trying to get out."
+    $l_exp = "smile"
+    l "Well, we've got about an hour until the session ends; let's get to it!"
+    hide screen laura
+    with dissolve
+    pause 0.5
+    scene bg arena_hall with fade
+    pause 1
+    $l_exp = "neutral"
+    show screen laura
+    with dissolve
+    pause 0.1
+    "By the time we got settled in the line, there were certainly a lot of people in front of us."
+    $l_exp = "concerned"
+    "We couldn't even see the front of the line or any indication that the end led to a meet-and-greet."
+    $l_exp = "neutral"
+    "But at least the line was moving at a decent pace."
+    "I'm sure the people in front are only getting less than a minute to meet him and get autographs, but for kids, that should be enough."
+    $l_exp = "concerned"
+    "Hopefully."
+    show richard glare at middle_r with dissolve
+    pause 0.1
+    r "It's kinda weird, don't you think?"
+    $l_exp = "surprised"
+    l "What is?"
+    r "An autograph session {b}before{/b} the show?"
+    r "That's usually something these things do {b}after{/b} the show."
+    $l_exp = "smug"
+    l "You really think you're going to have the energy to stay for a meet-and-greet after a 12-hour overnight show?"
+    r @ concerned "Well, I guess that's fair."
+    r "Still. A bit weird."
+    l "Richard, we're going to watch an alien perform a show for 12 hours while other aliens outside the building cause chaos. Everything about this night is going to be weird."
+    r smile "Heh. Fair enough."
+    "{color=#d00000}???{/color}" "\"Excuse you!\""
+    $l_exp = "concerned"
+    show richard concerned
+    "We looked forward and saw a middle-aged REDD turned around and glaring at us."
+    "{color=#d00000}REDD{/color}" "\"We are not 'aliens'! This planet is our home, as well! Not just yours!\""
+    $l_exp = "sad"
+    "I was taken aback, to say the least."
+    l "I-I'm terribly sorry, Ma'am. I didn't mean to be offensive."
+    "She sighed before continuing."
+    "{color=#d00000}REDD{/color}" "\"Just watch yourself. If the wrong REDD hears you say that, especially with the upcoming event, you could get yourself in deep trouble.\""
+    $l_exp = "surprised"
+    l "..."
+    "She then faced forward again as the line moved up a bit."
+    "..."
+    "Well, that was awkward."
+    $l_exp = "concerned"
+    "I guess with the REDD, you really do need to watch what you do. Even the smallest, seemingly insignificant thing can set them off."
+    hide richard
+    show kate excited at middle
+    with dissolve
+    pause 0.1
+    k "Mommy?"
+    $l_exp = "smile"
+    l "Yes, sweetie?"
+    k "Do you think Mr. Sprinkles will like my costume?"
+    $l_exp = "smug"
+    l "Are you kidding? He's going to love it!"
+    l "I don't see anyone else here wearing such an authentic-looking Mr. Sprinkles outfit, do you?"
+    k "Nope~!"
+    k "Ooo! I wonder if he'll remember me and let me go on stage during the show!"
+    $l_exp = "excited"
+    l "Well, let's not get ahead of ourselves, Kate."
+    l "There are a lot of people here; any one of them has a chance of being picked."
+    k mad"Yeah, but none of them are wearing outfits as good as mine!"
+    $l_exp = "smile"
+    l "Still. I don't want you to get your hopes up too much, honey. Okay?"
+    k alert "Okay, Mommy..."
+    $l_exp = "sad"
+    "I hate to break the poor girl's spirit, but it would be hurt a lot worse if she fully believed she had a guaranteed chance."
+    hide kate with dissolve
+    pause 0.1
+    $l_exp = "concerned"
+    "I looked over at Dakota and saw her scrolling through her phone."
+    $l_exp = "mad"
+    "I don't know what her percentage is at, but I know she's certainly not doing herself any favors by using her phone right now."
+    "Oh well. Her loss."
+    stop music fadeout(5)
+    hide screen laura
+    with dissolve
+    pause 0.5
+    scene bg arena_hall with fade
+    pause 1
+    $l_exp = "neutral"
+    show screen laura
+    with dissolve
+    pause 0.1
+    "About a half hour later, as well as Kate rambling on about what she's the most excited about tonight, we finally saw the front of the line ahead of us."
+    $l_exp = "smile"
+    "And at the front of the line was..."
+    show kate shocked at middle with dissolve
+    pause 0.1
+    k "Mr. Sprinkles!"
+    hide kate with dissolve
+    pause 0.1
+    stop ambience fadeout(3)
+    play music sprinkles_theme
+    show sprinkles happy at middle_s with dissolve
+    pause 0.1
+    "Sure enough, there he was behind the table talking to a young fan."
+    $l_exp = "smug"
+    "I have to admit that there's always something surreal about seeing someone in person after seeing them behind a screen for so many years."
+    $l_exp = "determined"
+    "I mean, I've been to my fair share of concerts and the like before, but the feeling never goes away."
+    "But for people like Kate and Dakota who have never felt the feeling before..."
+    hide sprinkles
+    show kate happy at two1
+    show dakota small_smile at two2
+    with dissolve
+    pause 0.1
+    k "I can't believe it! He's right there!"
+    d "Yeah! And he actually looks happy to be here, too!"
+    k excited "Of course he does! He's awesome like that!"
+    $l_exp = "excited"
+    "...it's just sweet and innocent."
+    scene bg arena_hall with dissolve
+    pause 0.1
+    "Finally, it came the big moment."
+    show sprinkles laugh at middle_s with dissolve
+    pause 0.1
+    s "It was nice to meet you, Mandy! I hope you enjoy the show!"
+    s happy "Next~!"
+    show sprinkles at right_s with easeinleft
+    show kate happy at middle
+    show dakota small_smile at left
+    with easeinleft
+    pause 0.5
+    "He then looked at Kate with awe."
+    s huh "My word!"
+    k shocked "..."
+    "Mr. Sprinkles then turned to Dakota."
+    s happy "I must say that this is one fine mirror you have here!"
+    show kate happy
+    show dakota smirk
+    "Both girls gave out a giggle."
+    s huh "Although it appears to be a bit broken."
+    "He commented as he waved his arm a bit while looking at Kate."
+    "Taking the hint, Kate tried to mimic his movements."
+    s jeer "Hm. A bit delayed, I see."
+    "Finally, Kate giggled more and took off her hat."
+    k "I'm not a mirror, Mr. Sprinkles! I'm Kate!"
+    s laugh "Oh! Ahahaha!"
+    s happy "Well, you certainly had me fooled, Kate!"
+    s "And who's this with you?"
+    k excited "This is my sister, Kota!"
+    d small_smile "I-It's {b}Da{/b}kota, actually."
+    s jeer "I see. Well, it's still a very nice name."
+    d "Th-Thank you."
+    k happy "Mommy, can you take a picture of us with Mr. Sprinkles??"
+    $l_exp = "determined"
+    l "Of course!"
+    "I then took out my phone as everyone got into position."
+    l "Everyone smile~!"
+    hide screen laura
+    window hide
+    pause 0.5
+    scene bg flash
+    with Dissolve(0.25)
+    scene bg fade # Will be replaced by CG of the photo
+    with Dissolve(1.0)
+    pause 1.0
+    window show dissolve
+    k "How does it look?"
+    l "Perfect."
+    k "Yay~!"
+    scene bg arena_hall
+    show screen laura
+    show sprinkles happy at right_s
+    show kate happy at middle
+    show dakota small_smile at left
+    with dissolve
+    pause 0.1
+    s "It was certainly nice to meet you both!"
+    k "You, too, Mr. Sprinkles!"
+    d "Y-Yeah. You, too."
+    s laugh "Ne-"
+    show kate:
+        ease 0.5 alpha 0.0
+    show dakota:
+        ease 0.5 alpha 0.0
+    show sprinkles:
+        ease 0.5 two2_s
+    show richard glare at two1_r with easeinleft
+    pause 0.1
+    stop music fadeout(3)
+    r "Hold on. Can I ask you something, first?"
+    $l_exp = "sad"
+    "Richard, what the hell are you doing...?"
+    s huh "Oh.{w=0.5}{nw}"
+    s laugh "Oh.{fast} Why, certainly, Sir."
+    r concerned "I just..."
+    "He then lowered his voice a bit as he leaned forward."
+    r "...wanna make sure we're gonna be safe."
+    r "You know, concerning the {b}other{/b} event going on tonight."
+    s hm "..."
+    "He sat there for a second before regaining a smile and answering."
+    s jeer "I understand your concern, Sir, but there's nothing to worry about."
+    s "We have the best guards on the planet protecting the building, as well as the best window and door shields money can buy."
+    s "Once the event starts, nobody is getting inside this building. You have my word."
+    r "..."
+    r smile "Thanks."
+    s laugh "No problem at all, Sir."
+    s jeer "Any other questions?"
+    r "No, that's it."
+    s "Very well."
+    s laugh "Next~!"
+    scene bg arena_hall with dissolve
+    pause 0.1
+    $l_exp = "neutral"
+    "After the four of us got out of the line and started heading back towards the main stage, I leaned a bit closer to Richard."
+    show richard concerned at middle_r with dissolve
+    pause 0.1
+    $l_exp = "mad"
+    l "Was that necessary?"
+    r @ glare "To me? Yes."
+    r "I just want to make sure we get through this night in one piece. Is that such a bad thing?"
+    $l_exp = "neutral"
+    l "Of course not."
+    r "..."
+    l "..."
+    hide richard with dissolve
+    pause 0.1
+    "Well, the show's about to begin soon."
+    $l_exp = "concerned"
+    "I suppose we have enough time to look around at the vendors and get some merchandise."
+    $l_exp = "smug"
+    "Maybe even a quick meal before the show."
+    "..."
+    $l_exp = "neutral"
+    "..."
+    hide screen laura
+    with dissolve
+    nvl clear
+    nvl show dissolve
+    $nvl = True
+    narrate """
+    Who am I kidding?
+
+    I can try and be ignorant about the situation all I want, but at the end of the day, I can't fault Richard.
+
+    Once it's 7 and that siren sounds, people in Atlanta are going to die.
+
+    And the concept of a Safehouse might not be enough to deter some rebel from trying to break in.
+
+    I know I'm supposed to feel safe in a Safehouse, but when it comes to the REDD War, crazy, unexpected things can happen when you least expect them.
+
+    Maybe staying here was a mistake.
+
+    Maybe we should've left when we had the chance.
+
+    ...
+    """
+    nvl clear
+    narrate """
+    Well, it's a bit too late to go back, now isn't it?
+
+    Besides, I'm just working myself up for no reason.
+
+    I have to be.
+
+    ....
+    """
+    $nvl = False
+    nvl hide
+    scene bg fade
+    with dissolve
+    "Please, let me be."
+    window hide dissolve
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter2_scene4 = True
+    
+
+label showbegins:
+    python:
+        currenttime = "6:55 PM"
+        timeleft = "5 minutes"
+        l_exp = "surprised"
+    call chapterstart
+    pause 2
+    play ambience crowd
+    scene bg livestage
+    with Dissolve(3)
+    pause 1
+    play sound "audio/se/chime.ogg"
+    pause 3.5
+    window show dissolve
+    s "Okay, everyone~! The show will begin in exactly 5 minutes!"
+    s "Please use this time to head to your seats so we may start the show with full seats~!"
+    s "This will truly be a good night of fun; I can't wait to share it with you all!"
+    pause 1
+    show screen laura
+    with dissolve
+    pause 0.1
+    "Well, we're almost there."
+    show kate happy at middle with dissolve
+    show kate:
+        ease 0.5 yalign 0.45
+        ease 0.5 yalign 0.5
+        repeat
+    pause 0.1
+    "Kate was jumping in her seat."
+    hide kate
+    show dakota neutral at middle
+    with dissolve
+    pause 0.1
+    "Dakota was tapping her foot quickly as her hands sat in her lap."
+    hide dakota
+    show richard concerned at middle_r
+    with dissolve
+    pause 0.1
+    "And Richard was still, but was clearly showing signs of nervousness."
+    $l_exp = "excited"
+    hide richard with dissolve
+    pause 0.1
+    "Well, at least one of the Farrs were focused on the show."
+    $l_exp = "neutral"
+    stop ambience fadeout(3)
+    "Finally, after what seemed like forever, the lights started to dim."
+    "A bright red square projected onto the curtain."
+    "I looked at the time."
+    "6:59"
+    hide screen laura
+    window hide
+    queue sound ["audio/se/warning.ogg", "audio/se/commencement.ogg"]
+    scene bg commencement
+    show commencement_overlay
+    with Dissolve(5)
+    show announcetext "This is not a test. This is the official commencement of the Annual REDD War." at truecenter with dissolve
+    pause 3.5
+    hide announcetext with dissolve
+    show announcetext "At the siren, all REDD within certified War Zones will be exempt from any and all crime, including murder, for 12 consecutive hours. All humans who commit crime during these hours, excluding crimes committed for self-defense purposes, will receive the appropriate punishment at the conclusion of the REDD War." at truecenter with dissolve
+    pause 16
+    hide announcetext with dissolve
+    show announcetext "Weapons of Class 3 and lower have been authorized for use; all other weapons are forbidden." at truecenter with dissolve
+    pause 4.5
+    hide announcetext with dissolve
+    show announcetext "Government Safehouses, and by extension the contents within, have been granted immunity from the REDD War and must not be harmed." at truecenter with dissolve
+    pause 5.5
+    hide announcetext with dissolve
+    show announcetext "All emergency services will be suspended until the siren sounds again at the conclusion of the REDD War." at truecenter with dissolve
+    pause 5
+    hide announcetext with dissolve
+    show announcetext "On behalf of your government and the REDD, we thank you for your cooperation and wish you the best of luck." at truecenter with dissolve
+    pause 4.5
+    hide announcetext with dissolve
+    pause 7
+    play sound siren
+    pause 3
+    scene bg fade
+    with Dissolve(3)
+    pause 1
+    scene bg livestage
+    with Dissolve(3)
+    "End"
+

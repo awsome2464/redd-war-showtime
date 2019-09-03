@@ -489,9 +489,9 @@ label kragonnews:
     with dissolve
     pause 0.1
     j "The simple fact is that hypocritical REDD like Krag and Trosh Dovason need to be taught a lesson!"
-    "Crowd" "Yeah!!"
+    "Crowd" "\"Yeah!!\""
     j "They need to see what happens when you preach about love and peace but then go and kill people! {b}CHILDREN{/b}, no less!"
-    "Crowd" "Yeah!!"
+    "Crowd" "\"Yeah!!\""
     $l_exp = "rage"
     show screen laura
     l "Oh, for God's sake! Krag didn't even kill anyone, you dumbass!"
@@ -500,10 +500,10 @@ label kragonnews:
     l "..."
     hide screen laura
     j "Do we want our children being exposed to these liars??"
-    "Crowd" "No!!"
+    "Crowd" "\"No!!\""
     j "Then let's make our voices heard! Let's show Krag Dovason that Mr. Sprinkles is not welcome in our homes!"
     j "We will not rest until {i}Mr. Sprinkles{/i} is dead and forgotten!!"
-    "Crowd" "Yeah!!!"
+    "Crowd" "\"Yeah!!!\""
     pause 0.5
     scene bg livingroom
     show screen laura
@@ -1067,4 +1067,4 @@ label weshouldleave:
     if not persistent.achievement_toosafe:
         $persistent.achievement_toosafe = True
         $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
-    jump credits
+    jump gameover
