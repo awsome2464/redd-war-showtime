@@ -968,40 +968,34 @@ label showbegins:
     $l_exp = "neutral"
     stop ambience fadeout(3)
     "Finally, after what seemed like forever, the lights started to dim."
-    "A bright red square projected onto the curtain."
     "I looked at the time."
     "6:59"
+    play ambience "audio/se/warning.ogg"
+    "That's when we could hear the alert horn blare outside the building."
     hide screen laura
-    window hide
-    queue sound ["audio/se/warning.ogg", "audio/se/commencement.ogg"]
-    scene bg commencement
-    show commencement_overlay
-    with Dissolve(5)
-    show announcetext "This is not a test. This is the official commencement of the Annual REDD War." at truecenter with dissolve
-    pause 3.5
-    hide announcetext with dissolve
-    show announcetext "At the siren, all REDD within certified War Zones will be exempt from any and all crime, including murder, for 12 consecutive hours. All humans who commit crime during these hours, excluding crimes committed for self-defense purposes, will receive the appropriate punishment at the conclusion of the REDD War." at truecenter with dissolve
-    pause 16
-    hide announcetext with dissolve
-    show announcetext "Weapons of Class 3 and lower have been authorized for use; all other weapons are forbidden." at truecenter with dissolve
-    pause 4.5
-    hide announcetext with dissolve
-    show announcetext "Government Safehouses, and by extension the contents within, have been granted immunity from the REDD War and must not be harmed." at truecenter with dissolve
-    pause 5.5
-    hide announcetext with dissolve
-    show announcetext "All emergency services will be suspended until the siren sounds again at the conclusion of the REDD War." at truecenter with dissolve
-    pause 5
-    hide announcetext with dissolve
-    show announcetext "On behalf of your government and the REDD, we thank you for your cooperation and wish you the best of luck." at truecenter with dissolve
-    pause 4.5
-    hide announcetext with dissolve
-    pause 7
+    with dissolve
+    stop ambience
+    play sound "audio/voice/commence01.ogg"
+    "This is not a test. This is the official commencement of the Annual REDD War."
+    play sound "audio/voice/commence02.ogg"
+    "At the siren, all REDD within certified War Zones will be exempt from any and all crime, including murder, for 12 consecutive hours."
+    play sound "audio/voice/commence03.ogg"
+    "All humans who commit crime during these hours, excluding crimes committed for self-defense purposes, will receive the appropriate punishment at the conclusion of the REDD War."
+    play sound "audio/voice/commence04.ogg"
+    "Weapons of Class 3 and lower have been authorized for use; all other weapons are forbidden."
+    play sound "audio/voice/commence05.ogg"
+    "Government Safehouses, and by extension the contents within, have been granted immunity from the REDD War and must not be harmed."
+    play sound "audio/voice/commence06.ogg"
+    "All emergency services will be suspended until the siren sounds again at the conclusion of the REDD War."
+    play sound "audio/voice/commence07.ogg"
+    "On behalf of your government and the REDD, we thank you for your cooperation and wish you the best of luck."
+    play sound "audio/voice/commence08.ogg"
+    "The REDD War will begin in 5... 4... 3... 2... 1."
     play sound siren
-    pause 3
-    scene bg fade
-    with Dissolve(3)
-    pause 1
-    scene bg livestage
-    with Dissolve(3)
-    "End"
-
+    pause 5
+    $l_exp = "sad"
+    show screen laura
+    with dissolve
+    pause 0.1
+    "Well, this is it."
+    "No turning back now."
