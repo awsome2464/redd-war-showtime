@@ -900,9 +900,9 @@ label meetandgreet:
     Maybe we should've left when we had the chance.
 
     ...
-    """
-    nvl clear
-    narrate """
+    
+    {clear}
+
     Well, it's a bit too late to go back, now isn't it?
 
     Besides, I'm just working myself up for no reason.
@@ -934,7 +934,7 @@ label showbegins:
     with Dissolve(3)
     pause 1
     play sound "audio/se/chime.ogg"
-    pause 3.5
+    pause 2
     window show dissolve
     s "Okay, everyone~! The show will begin in exactly 5 minutes!"
     s "Please use this time to head to your seats so we may start the show with full seats~!"
@@ -976,21 +976,21 @@ label showbegins:
     with dissolve
     stop ambience
     play sound "audio/voice/commence01.ogg"
-    "This is not a test. This is the official commencement of the Annual REDD War."
+    an "This is not a test. This is the official commencement of the Annual REDD War."
     play sound "audio/voice/commence02.ogg"
-    "At the siren, all REDD within certified War Zones will be exempt from any and all crime, including murder, for 12 consecutive hours."
+    an "At the siren, all REDD within certified War Zones will be exempt from any and all crime, including murder, for 12 consecutive hours."
     play sound "audio/voice/commence03.ogg"
-    "All humans who commit crime during these hours, excluding crimes committed for self-defense purposes, will receive the appropriate punishment at the conclusion of the REDD War."
+    an "All humans who commit crime during these hours, excluding crimes committed for self-defense purposes, will receive the appropriate punishment at the conclusion of the REDD War."
     play sound "audio/voice/commence04.ogg"
-    "Weapons of Class 3 and lower have been authorized for use; all other weapons are forbidden."
+    an "Weapons of Class 3 and lower have been authorized for use; all other weapons are forbidden."
     play sound "audio/voice/commence05.ogg"
-    "Government Safehouses, and by extension the contents within, have been granted immunity from the REDD War and must not be harmed."
+    an "Government Safehouses, and by extension the contents within, have been granted immunity from the REDD War and must not be harmed."
     play sound "audio/voice/commence06.ogg"
-    "All emergency services will be suspended until the siren sounds again at the conclusion of the REDD War."
+    an "All emergency services will be suspended until the siren sounds again at the conclusion of the REDD War."
     play sound "audio/voice/commence07.ogg"
-    "On behalf of your government and the REDD, we thank you for your cooperation and wish you the best of luck."
+    an "On behalf of your government and the REDD, we thank you for your cooperation and wish you the best of luck."
     play sound "audio/voice/commence08.ogg"
-    "The REDD War will begin in 5... 4... 3... 2... 1."
+    an "The REDD War will begin in 5... 4... 3... 2... 1."
     play sound siren
     pause 5
     $l_exp = "sad"
@@ -999,3 +999,19 @@ label showbegins:
     pause 0.1
     "Well, this is it."
     "No turning back now."
+    "..."
+    $l_exp = "surprised"
+    "It's kinda funny."
+    "I'd been dreading this moment for 24 hours, and now that it's here..."
+    $l_exp = "concerned"
+    "...I don't feel as scared as I thought I would've."
+    $l_exp = "surprised"
+    "That's when I felt Richard grab my hand."
+    show richard concerned at middle_r with dissolve
+    pause 0.1
+    "He looked at me with a face of worry, and I can't blame him."
+    "I looked at my daughters."
+    hide richard with dissolve
+    show dakota sad at middle with dissolve
+    "Dakota looked like she was breathing very heavily while she stared ahead."
+    "It almost looked like she was going to cry."

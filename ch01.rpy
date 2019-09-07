@@ -1036,7 +1036,7 @@ label sleeponit:
     $renpy.end_replay()
     python:
         currenttime = "5:23 AM"
-        currentdate = "March 31st, 2030"
+        currentdate = "March 31st"
         timeleft = "13 hours and 37 minutes"
         event = "REDD War begins"
         save_name = "Chapter 2"

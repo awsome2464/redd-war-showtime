@@ -18,6 +18,7 @@ init python:
 
 define narrate = nvl_narrator
 define a = Character("Anchor", what_prefix='"', what_suffix='"')
+define an = Character("Announcer", what_prefix='"', what_suffix='"', what_italic=True, who_italic=True)
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
 define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
 define ja = Character("Jangle", color="#d00000", image="jangle", what_prefix='"', what_suffix='"')
@@ -425,7 +426,7 @@ screen dateandtime():
     vbox:
         xalign 0.5 yalign 0.25
         text "[currenttime]" style "dateandtime" xalign 0.5
-        text "[currentdate]" style "dateandtime" xalign 0.5
+        text "[currentdate], 2030" style "dateandtime" xalign 0.5
 screen timeremaining():
     text "[timeleft] until the [event]" style "remaining" xalign 0.5 yalign 0.6
 screen gameover():
@@ -480,23 +481,23 @@ screen chapterselect():
         spacing 10
         text "Chapter 2" xalign 0.5
         if persistent.chapter2_scene1:
-            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st, 2030", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter2_scene2:
-            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter2_scene3:
-            textbutton "Packed Parking" action Replay("arriveatshow", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Packed Parking" action Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter2_scene4:
-            textbutton "Meet and Greet" action Replay("meetandgreet", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Meet and Greet" action Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter2_scene5:
-            textbutton "Showtime!" action Replay("showbegins", scope={"currentdate": "March 31st, 2030", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Showtime!" action Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
@@ -515,12 +516,16 @@ screen achievements():
 
 default persistent.gore = True
 default preferences.fullscreen = True
+define config.replay_scope = {"replay": True, "_game_menu_screen": "pause"}
+default _game_menu_screen = "pause"
 default version = 0.0
+default replay = False
+default gameover = False
 default save_subtitle = ""
 default l_exp = ""
 default nvl = False
 default currenttime = "4:12 PM"
-default currentdate = "March 30th, 2030"
+default currentdate = "March 30th"
 default timeleft = "2 hours and 48 minutes"
 default event = "War Zones are revealed"
 default clickortap = "Click"

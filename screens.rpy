@@ -475,15 +475,16 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     use navigation
 
-    if main_menu:
-        textbutton _("Return"):
-            style "return_button"
+    # if main_menu:
+    textbutton _("Return"):
+        style "return_button"
 
-            action Return()
-    else:
-        textbutton ("Return"):
-            style "return_button"
-            action ShowMenu("save")
+        action Return()
+    
+    # else:
+    #     textbutton ("Return"):
+    #         style "return_button"
+    #         action ShowMenu("save")
 
     label title
 
@@ -594,13 +595,14 @@ style about_label_text:
 ## https://www.renpy.org/doc/html/screen_special.html#save https://
 ## www.renpy.org/doc/html/screen_special.html#load
 
-screen save():
+screen pause():
+
     tag menu
     add "gui/save_bg.jpg" at menu_lower
     vbox:
         xalign 0.5 yalign 0.5
         spacing 10
-        textbutton "Save" action ShowMenu('save_c')
+        textbutton "Save" action ShowMenu('save')
         textbutton "Load" action ShowMenu('load')
         textbutton "Options" action ShowMenu('preferences')
         textbutton "Main Menu" action MainMenu()
@@ -608,8 +610,7 @@ screen save():
         null height 10
         textbutton "Return" action Return()
 
-screen save_c():
-
+screen save():
     tag menu
 
     use file_slots(_("Save"))
