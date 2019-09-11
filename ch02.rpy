@@ -1,4 +1,11 @@
 label chapter_2:
+    python:
+        currenttime = "5:23 AM"
+        currentdate = "March 31st"
+        timeleft = "13 hours and 37 minutes"
+        event = "REDD War begins"
+        save_name = "Chapter 2"
+        save_subtitle = "The Storm Approaches"
     stop music
     call chaptername
     call chapterstart
@@ -335,31 +342,36 @@ label backstagedrama:
     with dissolve
     pause 0.1
     kr "Ah, Madeline! What can I do for you?"
-    "Madeline" "\"You can start by giving me a script.\""
+    "Madeline" "\"You can start by explaining what's going on.\""
     show sprinkles jeer
-    kr "Now, Madeline, all things in due time~"
-    "Madeline" "\"Krag, the show is starting in 4 hours and I have no idea what the hell I'm going to be doing!\""
-    "Madeline" "\"I'm not even seeing anyone rehearsing anything on the stage!\""
-    "Madeline" "\"It's like you don't even have a plan! You're being way too secretive about this whole thing, and it's really starting to piss me off!\""
+    kr "Now, Madeline, I would hate to insult your intelligence~"
+    "Madeline" "\"Krag, the show is starting in 4 hours and the stage is empty!\""
+    "Madeline" "\"I'm not even seeing anyone rehearsing anything!\""
+    "Madeline" "\"This live show is what could make or break our future, and it's like you're not taking it seriously! And frankly, it's really starting to piss me off!\""
     show sprinkles hm
     kr "..."
     "Madeline" "\"Krag, I'm saying all this because I want {i}Mr. Sprinkles{/i} to succeed. To get through this rough patch.\""
     show sprinkles wut
-    kr "And yet you told the network to put our show on a hiatus."
+    kr "And yet you told the network to put the show on a hiatus."
     "Madeline" "\"I could have told them to cancel it altogether, you know.\""
     "Madeline" "\"Believe me, I don't want to be in this situation any more than you do, but we need to think through this logically.\""
     "Madeline" "\"You're still relatively new to how show business works here on Earth. These things happen.\""
     kr "..."
-    kr "I just don't want anyone to take my show away from me."
-    kr "It is an entire life's worth of ideas and planning put together at last."
-    kr "I'll do whatever it takes for {i}Mr. Sprinkles{/i} to continue."
-    "Madeline" "\"Well, sometimes, you can't always get what you want, Krag.\""
+    kr "{i}Mr. Sprinkles{/i} is an entire life's worth of ideas and planning put together at last."
+    kr "I'm not going to let anyone take my show away from me."
+    "Madeline" "\"{b}Our{/b} show, Krag.\""
+    "Madeline" "\"You may have created it, and you may be the title character, but you're not the {b}only{/b} character.\""
+    "Madeline" "\"You're not the only one who loves to perform on the show. Seeing children's happiness from our antics is something I've treasured for the past 7 years.\""
+    "Madeline" "\"But sometimes, you can't always get what you want, Krag.\""
+    "Madeline" "\"Sometimes, there are situations that are hard to fix.\""
     "Madeline" "\"I'm sorry, but that's just how it works.\""
     kr "..."
-    "Madeline" "\"If I don't have a script or {b}any{/b} kind of direction within an hour, I'm not going to be in this live show, and that's final.\""
+    "Madeline" "\"That said, it's not impossible to fix this.\""
+    "Madeline" "\"We need to do everything we can for this live show to be a success. Our careers depend on it. Understand?\""
     kr "..."
     show sprinkles jeer
-    kr "Very well. I'll get back to you."
+    kr "Of course I do."
+    kr "I'll get to work on rehearsals."
     show madeline smile
     "Madeline" "\"Thank you.\""
     hide madeline with easeoutright
@@ -367,8 +379,8 @@ label backstagedrama:
     show sprinkles:
         ease 1.0 middle_s
     pause 1.5
-    show sprinkles laugh
-    kr "Oh, you'll play a big role in this show, don't you worry..."
+    show sprinkles evilgrin
+    kr "Oh, this show will be successful, don't you worry..."
     window hide dissolve
     pause 1
     scene bg fade
@@ -684,12 +696,12 @@ label meetandgreet:
     $l_exp = "concerned"
     show richard concerned
     "We looked forward and saw a middle-aged REDD turned around and glaring at us."
-    "{color=#d00000}REDD{/color}" "\"We are not 'aliens'! This planet is our home, as well! Not just yours!\""
+    redd "We are not 'aliens'! This planet is our home, as well! Not just yours!"
     $l_exp = "sad"
     "I was taken aback, to say the least."
     l "I-I'm terribly sorry, Ma'am. I didn't mean to be offensive."
     "She sighed before continuing."
-    "{color=#d00000}REDD{/color}" "\"Just watch yourself. If the wrong REDD hears you say that, especially with the upcoming event, you could get yourself in deep trouble.\""
+    redd "Just watch yourself. If the wrong REDD hears you say that, especially with the upcoming event, you could get yourself in deep trouble."
     $l_exp = "surprised"
     l "..."
     "She then faced forward again as the line moved up a bit."
@@ -932,7 +944,6 @@ label showbegins:
     play ambience crowd
     scene bg livestage
     with Dissolve(3)
-    pause 1
     play sound "audio/se/chime.ogg"
     pause 2
     window show dissolve
@@ -1013,5 +1024,384 @@ label showbegins:
     "I looked at my daughters."
     hide richard with dissolve
     show dakota sad at middle with dissolve
+    pause 0.1
     "Dakota looked like she was breathing very heavily while she stared ahead."
     "It almost looked like she was going to cry."
+    hide dakota
+    show kate confused at middle
+    with dissolve
+    pause 0.1
+    "Kate, meanwhile, looked a bit confused as to what just happened and why everyone seemed to be upset."
+    play sound drumroll_buildup loop
+    pause 1
+    $l_exp = "concerned"
+    show kate happy
+    m "Okay, everyone!"
+    m "Put your hands together for the one..."
+    m "...the only..."
+    m "...Mr. Sprinkles!"
+    play sound drumroll_finish
+    pause 1
+    play sound applause
+    "The curtain then started to rise."
+    show kate:
+        ease 0.5 two2
+    show dakota small_smile at two1 with dissolve
+    pause 0.1
+    $l_exp = "smile"
+    "Dakota seemed to suddenly forget about the commencement, as well."
+    "With that, we all got relaxed and watched the stage."
+    scene bg fade
+    hide screen laura
+    with dissolve
+    pause 1.5
+    play sound "audio/se/spotlight.ogg"
+    scene bg stage
+    show sprinkles jeer at middle_s
+    with Dissolve(0.1)
+    pause 1
+    play music sprinkles_theme
+    s laugh "Good evening, my friends~!"
+    s happy "My, oh, my. We certainly have a lot of you in the audience tonight, don't we?"
+    s "Well, with the long night we have ahead of us, that will certainly prove to be in our favor~!"
+    s "So, what do you say? Are you ready to have fun tonight?"
+    "Audience" "\"Yeah!\""
+    s jeer "Oh, come now; you can all do better than that!"
+    s laugh "Are you ready to have fun tonight??"
+    "Audience" "{i}{b}\"YEAH!!\"{/b}{/i}"
+    s happy "Splendid! Then let's start the show!"
+    m "Not without me, you're not!"
+    s huh "Huh? Who said that?"
+    m "I did!"
+    "That's when a door at the back of the theater opened up."
+    $l_exp = "concerned"
+    scene bg livestage
+    show screen laura
+    with dissolve
+    pause 0.1
+    "We turned around and saw a bright-clothed woman enter the room with a wave."
+    play sound applause
+    show madeline smile at middle_m with dissolve
+    pause 0.1
+    $l_exp = "smile"
+    s "Aha! Hello there, Ms. Madeline!"
+    m "Hello there, Mr. Sprinkles!"
+    s "What were you just up to?"
+    m "I was eating popcorn and pretzels!"
+    s "Wow! How delicious!"
+    m "That's my life~!"
+    play sound "audio/se/audience_laugh.ogg"
+    pause 1
+    $l_exp = "smile"
+    hide madeline with dissolve
+    pause 0.1
+    "Ms. Madeline then made her way towards the stage, giving high-fives to people in the aisles along the way."
+    "Finally, she walked onto the stage and stood next to Mr. Sprinkles."
+    scene bg stage
+    show sprinkles happy at two2_s
+    hide screen laura
+    with dissolve
+    pause 0.1
+    show madeline smile at two1_m with easeinleft
+    pause 0.1
+    s "Alright, are you ready to have fun?"
+    m "I sure am!"
+    s laugh "Splendid~!"
+    "{color=#d00000}Mr. Sprinkles{/color}" "\"Then let's {nw}"
+    stop music
+    play sound "audio/se/spotlight.ogg"
+    scene bg fade
+    window hide
+    $renpy.pause(delay=2)
+    play ambience crowd fadein(3)
+    $l_exp = "concerned"
+    window show
+    show screen laura
+    with dissolve
+    "Well, the power turning off certainly seemed unexpected."
+    "Several children in the audience screamed, a few started crying, but for the most part, it was the adults chattering with confusion."
+    $l_exp = "neutral"
+    "Fortunately, my children were well-behaved."
+    s "L-Ladies and gentlemen, please refrain from panicking!"
+    s "We seem to be having some technical difficulties, but I'm sure we'll be able to work them out quickly!"
+    "{color=#d00000}Mr. Sprinkles{/color}" "\"In the meantime, {nw}"
+    play sound "audio/se/Door Open.ogg"
+    stop ambience fadeout(3)
+    "Before he could finish that sentence, the doors at the back of the theater slammed open, but the building was too dark to see anything."
+    play sound "audio/se/spotlight.ogg"
+    scene bg livestage
+    with Dissolve(0.1)
+    pause 1
+    $l_exp = "sad"
+    "As the power came back on, we were all in shock at what we saw:"
+    "A small army of REDD in full body armor storming into the room."
+    show richard glare at middle_r with dissolve
+    pause 0.1
+    r "What the hell is going on??"
+    l "I-I'm not sure...!"
+    m "{b}Gah!!!{/b}"
+    "We turned back to the stage, only to see..."
+    show richard concerned
+    $l_exp = "surprised"
+    "...Ms. Madeline lying on the ground, as if she just fell."
+    "And Mr. Sprinkles had his walking stick in his hand as if it was a baseball bat."
+    $l_exp = "sad"
+    "Surely it can't be what I think it was..."
+    "But my suspicion was met when he swung his stick back and smacked the already-fallen woman right in the face, resulting in a cry of pain!"
+    scene bg stage
+    hide screen laura
+    show madeline shocked at middle_m
+    with dissolve
+    pause 0.1
+    m "Krag, what are you--??"
+    show madeline:
+        linear 0.1 yalign -0.25
+        linear 0.1 yalign -0.2
+    "Another smack in the face."
+    show madeline at two1_m with easeinright
+    pause 0.5
+    show sprinkles evilgrin at two2_s
+    with Dissolve(1)
+    pause 0.5
+    "He then stood right over her."
+    show madeline:
+        ease 0.5 xalign 0.2
+        pause 1
+        ease 0.5 xalign 0.15
+        pause 1
+        ease 0.5 xalign 0.1
+    "While still on the ground, she backed up slowly, staring at him with terror in her eyes."
+    "But he just kept walking towards her, that sinister grin still plastered on his face."
+    show madeline:
+        ease 0.25 xalign 0.1 yalign -0.2
+    show sprinkles:
+        ease 2.0 xalign 0.35
+    pause 3
+    m "K-Krag, what is going on??"
+    "He then gave a quiet, yet terrifying chuckle."
+    s "There's been a slight change to the schedule, Ms. Madeline."
+    s "You see, we don't have any room for you tonight."
+    s "I'm afraid I'm going to have to..."
+    s "...{b}terminate you.{/b}"
+    "Before anything else could be said, he turned the ball on top of his walking stick, revealing something coming out of the bottom."
+    "Something silver and pointed."
+    "Then, in one swift motion, he reached up..."
+    "...and jammed the stick into her chest!"
+    play ambience crowd_screaming
+    play ambience2 children_screaming
+    "As the crowd screamed, Madeline gasped, but it sounded more like an attempt at a gasp."
+    "She grasped at the stick, trying to possibly get it out, but it was to no avail; she couldn't wrap her hands around it."
+    "She sounded like she was both gagging on something and gasping for air, struggling to breathe."
+    $l_exp = "sad"
+    scene bg livestage
+    show kate shocked at middle
+    show screen laura
+    with dissolve
+    k "Mommy, what's going on??"
+    l "I don't know, Kate, but we're getting out of here!"
+    show kate zorder 2:
+        ease 0.5 left
+    with None
+    show richard glare at middle_r
+    show dakota sad at right
+    with dissolve
+    r "Excellent idea! Come on, girls!"
+    "I saw several other people nearby stand up and try to get into the aisle."
+    show richard concerned
+    "But they were quickly stopped when several of the armored REDD pulled out guns and pointed it at them, which only added to the audience panic."
+    redd "Get your asses back in your seats!"
+    "Richard and I looked back at each other with worry, realizing that it's probably smarter to listen to him."
+    "That's when Mr. Sprinkles leaned in towards Ms. Madeline's face."
+    scene bg stage
+    hide screen laura
+    show sprinkles evilgrin zorder 2:
+        xalign 0.35 yalign -0.1
+    show madeline shocked zorder 1:
+        xalign 0.1 yalign -0.2
+    with dissolve
+    pause 0.1
+    "Still sporting that sinister look, he told her:"
+    s "{i}That's your death~!{/i}"
+    s laugh "Ehehe. Hahaha!"
+    show sprinkles:
+        ease 0.5 middle_s
+    s "Ahahaha!!! HAHAHAHAHAHAHA!!!!!"
+    "His maniacal laugher echoed throughout the room as Madeline's arms slowly dropped to her chest and her head slightly tilted to the side."
+    show madeline:
+        ease 0.5 alpha 0.0
+    show sprinkles jeer
+    "He then cleared his throat and faced the rightfully panicked crowd."
+    hide madeline
+    s "May I have your attention, please?"
+    "The audience continued to scream and panic."
+    show sprinkles hm
+    "He then looked towards the back of the room and gave a small nod."
+    play sound machine_gun
+    "Suddenly, a REDD in the back fired his weapon in the air and shouted."
+    redd "{b}HEY! THE REDD'S TALKING!!{/b}"
+    stop ambience fadeout(5)
+    stop ambience2 fadeout(5)
+    "That seemed to do the trick."
+    "Everyone then looked at the stage whether they wanted to or not."
+    s jeer "Thank you."
+    s "Now, I'm sure you've all got some questions going through your mind, so allow me to answer them."
+    play music sprinkles_spooky
+    s laugh "You see, I wasn't lying just now when I said there's been a change to the schedule."
+    s "I had a realization recently: while {i}The Mr. Sprinkles Show{/i} has a large human-based, audience..."
+    s evilgrin "...I figured it was time to expand my demographic."
+    s "So tonight's show is going to be dedicated to all my fellow REDD who are watching this show from their television sets."
+    s laugh "I'm going to give you all a performance that will not disappoint~!"
+    s jeer "But in order to do that, I'm going to ask all the adults in the audience to please follow these fine gentlemen."
+    scene bg livestage
+    show screen laura
+    with dissolve
+    pause 0.1
+    "On cue, the armored REDD all drew out their weapons and spread out across the room."
+    redd "Let's go! Move it! All adults! No exceptions!"
+    $l_exp = "sad"
+    "This can't be happening."
+    "I'm dreaming."
+    "I have to be."
+    "I just fell asleep while waiting for the show to start."
+    "I have to have."
+    "There's no way this is happening."
+    "No way."
+    redd "I said move it!"
+    "Man" "\"Hell no! You're not--\""
+    play sound machine_gun
+    play ambience crowd_screaming fadein(1)
+    $l_exp = "surprised"
+    "Without hesitation, the REDD shot the man dead."
+    "The blood-covered woman and children next to him started screaming and crying as they watched him fall over."
+    redd "Anyone else wanna be uncooperative?!"
+    show richard concerned at middle_r with dissolve
+    pause 0.1
+    r "..."
+    l "..."
+    "Can I please wake up from this nightmare now?"
+    $renpy.music.set_volume(0.5, delay=3, channel='ambience')
+    redd "Let's go!!"
+    show kate shocked at left
+    show dakota sad at right
+    with dissolve
+    pause 0.1
+    k "Mommy, I'm scared!"
+    $l_exp = "shocked"
+    l "I know, Kate. I am, too."
+    "I then gave her a big hug and a kiss on the head."
+    $l_exp = "excited"
+    l "Everything's going to be okay, I promise."
+    "I knew for a fact that was a lie, but what else could I say?"
+    $l_exp = "sad"
+    "That's when Dakota grabbed onto me."
+    d "Please don't leave!"
+    "Richard leaned down and looked her in the eye."
+    r "I don't think we have much of a choice, Dakota."
+    r "We just need to go along with what they're saying for now. We'll be back before you know it, okay?"
+    d "No!!"
+    "The tears were starting to come out."
+    "Not just from Dakota, but from Richard and myself."
+    "He then hugged her tightly for a few seconds before looking her in the eye."
+    r "No matter what happens, just know that I love you, Dakota."
+    r "Please never forget that."
+    r "And that goes for you, too, Kate."
+    r "I love both of you so much!"
+    "That's when the REDD came over to us and grabbed Richard."
+    redd "Save the sentiment. Move it!"
+    d mad "{b}NO!! LET HIM GO!!!{/b}"
+    "With eyes full of tears and rage, Dakota latched on to her father."
+    redd "Get off him, you brat!"
+    r glare "Don't you {b}dare{/b} call my daughter that!"
+    redd "And what are you gonna do about it?"
+    r "..."
+    "I then tried to pry Dakota off him."
+    d "NO!!!"
+    l "Dakota, please..."
+    "I'm trying to keep my cool here, but there's only so much I can do to stop myself from breaking down right now."
+    show dakota:
+        ease 0.5 middle
+    with None
+    hide richard
+    hide kate
+    with dissolve
+    pause 0.1
+    $l_exp = "surprised"
+    l "We'll be okay. Just sit here and keep your sister safe."
+    l "Okay?"
+    "She still looked furious and horrified."
+    show dakota neutral
+    "But she eventually loosened her grip on Richard."
+    l "Please keep your sister safe. We'll be back."
+    "Dakota looked at Richard, then back to me."
+    "Finally, she closed her eyes and let go."
+    "The REDD didn't hesitate in yanking Richard away while another REDD approached me to grab me."
+    show dakota:
+        ease 0.5 two2
+    show kate shocked at two1 with dissolve
+    pause 0.1
+    k "Mommy! Daddy!"
+    $l_exp = "sad"
+    l "I love you girls! So much!!"
+    scene bg livestage with dissolve
+    pause 0.1
+    $renpy.music.set_volume(1.0, delay=3, channel='ambience')
+    hide screen laura
+    with dissolve
+    nvl clear
+    $nvl = True
+    nvl show dissolve
+    narrate """
+    As Richard and myself, as well as all the adults in the audience, human and REDD, were taken out of the room like we were prisoners...
+
+    Well, I guess there's no 'like' about it.
+
+    Regardless, as we were taken out, the room could be heard with the cries and screams of the children, as well as some more gunshots of uncooperative parents.
+
+    Where we were going, we didn't know.
+
+    What we would do when we got there, we didn't know.
+
+    Whether or not we would live, we didn't know.
+
+    I'm still trying to convince myself that this isn't really happening.
+
+    But the longer this goes on, the less reason I have to believe that.
+
+    {clear}
+
+    I still don't understand how this is happening, though. This is a Government Safehouse.
+
+    ...{w}right?
+
+    That's what we were told.
+
+    That's why we're here.
+
+    That's why a lot of people are here!
+
+    ...
+
+    {clear}
+
+    Well, I suppose the 'why' and 'how' isn't the biggest issue we have right now.
+
+    These guys have shown they won't shy away from killing us if we don't listen to them.
+
+    I know for a fact that I wanna see my babies again, so I guess I'll have to do whatever it takes for me to stay alive.
+
+    For their sake.
+    """
+    $nvl = False
+    nvl hide
+    with dissolve
+    window hide dissolve
+    pause 1.0
+    stop music fadeout(3.0)
+    stop ambience fadeout(3.0)
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter2_scene5 = True
+    jump chapter_3
+    

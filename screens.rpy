@@ -424,7 +424,12 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     style_prefix "game_menu"
 
     if main_menu:
-        add gui.main_menu_background
+        if renpy.get_screen('save') or renpy.get_screen('load'):
+            add "gui/save_load_bg.jpg"
+        else:
+            add gui.main_menu_background
+    elif renpy.get_screen('save') or renpy.get_screen('load'):
+        add "gui/save_load_bg.jpg"
     else:
         add gui.game_menu_background
 
@@ -475,16 +480,16 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     use navigation
 
-    # if main_menu:
-    textbutton _("Return"):
-        style "return_button"
+    if main_menu:
+        textbutton _("Return"):
+            style "return_button"
 
-        action Return()
+            action Return()
     
-    # else:
-    #     textbutton ("Return"):
-    #         style "return_button"
-    #         action ShowMenu("save")
+    else:
+        textbutton ("Return"):
+            style "return_button"
+            action ShowMenu("pause")
 
     label title
 
@@ -512,11 +517,11 @@ style game_menu_outer_frame:
     background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
-    xsize 280
+    xsize 250
     yfill True
 
 style game_menu_content_frame:
-    left_margin 40
+    left_margin 0
     right_margin 20
     top_margin 10
 
@@ -612,46 +617,42 @@ screen pause():
 
 screen save():
     tag menu
-
     use file_slots(_("Save"))
 
 screen load():
 
     tag menu
-
     use file_slots(_("Load"))
 
 
 screen file_slots(title):
-
     default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
-
     use game_menu(title):
 
         fixed:
-
             ## This ensures the input will get the enter event before any of the
             ## buttons do.
             order_reverse True
 
             ## The page name, which can be edited by clicking on a button.
+            
             button:
                 style "page_label"
 
                 key_events True
-                xalign 1.0
+                xalign 1.0 yalign -0.1
                 action page_name_value.Toggle()
 
                 input:
                     style "page_label_text"
                     value page_name_value
-
+            
             ## The grid of file slots.
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
 
-                xalign -0.15
-                yalign 0.0
+                xalign 0.13
+                yalign 0.45
 
                 spacing gui.slot_spacing
 
@@ -674,6 +675,7 @@ screen file_slots(title):
 
                         key "save_delete" action FileDelete(slot)
 
+
             ## Buttons to access other pages.
             hbox:
                 style_prefix "page"
@@ -685,17 +687,18 @@ screen file_slots(title):
 
                 textbutton _("<") action FilePagePrevious()
 
-                if config.has_autosave:
-                    textbutton _("{#auto_page}A") action FilePage("auto")
+                # if config.has_autosave:
+                #     textbutton _("{#auto_page}A") action FilePage("auto")
 
-                if config.has_quicksave:
-                    textbutton _("{#quick_page}Q") action FilePage("quick")
+                # if config.has_quicksave:
+                #     textbutton _("{#quick_page}Q") action FilePage("quick")
 
                 ## range(1, 10) gives the numbers from 1 to 9.
                 for page in range(1, 10):
                     textbutton "[page]" action FilePage(page)
 
                 textbutton _(">") action FilePageNext()
+
 
 
 style page_label is gui_label
@@ -740,11 +743,11 @@ style slot_button_text:
 screen preferences():
 
     tag menu
-
-    use game_menu(_("Options"), scroll="viewport"):
+    
+    use game_menu(_("Options"), scroll="viewport", yinitial=0.5):
 
         vbox:
-
+            xalign 0.5
             hbox:
                 box_wrap True
 
@@ -756,12 +759,12 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Rollback Side")
+                #     textbutton _("Disable") action Preference("rollback side", "disable")
+                #     textbutton _("Left") action Preference("rollback side", "left")
+                #     textbutton _("Right") action Preference("rollback side", "right")
 
                 vbox:
                     style_prefix "check"
@@ -772,8 +775,10 @@ screen preferences():
                 vbox:
                     style_prefix "radio"
                     label "Visual Gore"
-                    textbutton "On" action ToggleVariable('persistent.gore', True)
-                    textbutton "Off" action ToggleVariable('persistent.gore', False)
+                    if persistent.gore:
+                        textbutton "On" action ToggleVariable('persistent.gore', False)
+                    else:
+                        textbutton "Off" action ToggleVariable('persistent.gore', True)
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.

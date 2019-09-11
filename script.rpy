@@ -29,11 +29,14 @@ define l = Character("Laura", what_prefix='"', what_suffix='"')
 define m = Character("Ms. Madeline", image="madeline", what_prefix='"', what_suffix='"')
 define r = Character("Richard", image="richard", what_prefix='"', what_suffix='"')
 define re = Character("Reddington", color="#d00000", what_prefix='"', what_suffix='"')
+define redd = Character("REDD", color="#d00000", what_prefix='"', what_suffix='"') # Generic REDD
 define s = Character("Mr. Sprinkles", color="#d00000", image="sprinkles", what_prefix='"', what_suffix='"') # Krag Dovason
+define t = Character("Trosh", color="#d00000", image="trosh", what_prefix='"', what_suffix='"')
 
 
-## Character Sprites ############################################################################################################
+## Images ######################################################################################################################
 
+# Character Images
 image dakota confident = "Characters/Dakota/confident.png"
 image dakota confused = "Characters/Dakota/confused.png"
 image dakota determined = "Characters/Dakota/determined.png"
@@ -97,15 +100,7 @@ image sprinkles jeer = "Characters/Sprinkles/jeer.png"
 image sprinkles laugh = "Characters/Sprinkles/laugh.png"
 image sprinkles wut = "Characters/Sprinkles/wut.png"
 
-
-## Images ####################################################################################################################
-
-# Solid Backgrounds
-image black = "#000000"
-image white = "#ffffff"
-image choice_bg:
-    "#000000"
-    alpha 0.35
+image trosh = Placeholder("boy")
 
 # Main Images
 image splash = "Good Tales Transparent.png"
@@ -175,6 +170,14 @@ image ctc_arrow_nvl:
 
 ## Backgrounds ###################################################################################################################
 
+# Solid Backgrounds
+image black = "#000000"
+image white = "#ffffff"
+image choice_bg:
+    "#000000"
+    alpha 0.35
+
+# Image Backgrounds
 image bg fade = "#000000"
 image bg flash = "#ffffff"
 image bg stage = "BG/stage.jpg"
@@ -187,13 +190,14 @@ image bg arena_ext = "BG/arenaexterior.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
 image bg livestage = "BG/livestage.jpg"
 image bg arena_hall = "BG/arenahall.jpeg"
-image bg commencement = "BG/commencement.png"
+image bg storage = "BG/storage.jpeg"
 
 
 ## Custom Audio Channels #########################################################################################################
 
 init python:
     renpy.music.register_channel('ambience', mixer="sound", loop=True)
+    renpy.music.register_channel('ambience2', mixer="sound", loop=True)
 
 
 ## Audio #########################################################################################################################
@@ -212,6 +216,7 @@ define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
 define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
 define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
 define audio.creaky_country_fair = "audio/music/Creaky-Country-Fair.ogg"
+define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -225,6 +230,9 @@ define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
 define audio.siren = "audio/se/siren.ogg"
 define audio.door_knock = "audio/se/doorknock.ogg"
 define audio.crowd = "audio/se/crowd.ogg"
+define audio.machine_gun = "audio/se/machine gun.ogg"
+define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
+define audio.children_screaming = "<to 14 loop 3>audio/se/children_screaming.ogg"
 
 
 ## Transforms ###################################################################################################################
@@ -325,9 +333,6 @@ transform two2_m:
 transform sideimage:
     size(225, 225)
     xalign 0.0575 yalign 1.0
-
-transform commencement:
-
 
 
 ## Styles ########################################################################################################################
@@ -452,6 +457,7 @@ screen notify(message):
 screen extras():
     tag menu
     add gui.main_menu_background
+    add "gui/overlay/game_menu.png"
     vbox:
         xalign 0.5 yalign 0.5
         spacing 10
@@ -481,7 +487,7 @@ screen chapterselect():
         spacing 10
         text "Chapter 2" xalign 0.5
         if persistent.chapter2_scene1:
-            textbutton "Evening Plans" action Replay("chapter_2", scope={"currenttime": "5:23 AM", "currentdate": "March 31st", "timeleft": "13 hours and 37 minutes", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Evening Plans" action Replay("chapter_2") xalign 0.5
         else:
             textbutton "LOCKED" action NullAction() xalign 0.5
         if persistent.chapter2_scene2:
@@ -516,11 +522,9 @@ screen achievements():
 
 default persistent.gore = True
 default preferences.fullscreen = True
-define config.replay_scope = {"replay": True, "_game_menu_screen": "pause"}
+define config.replay_scope = {"_game_menu_screen": "pause"}
 default _game_menu_screen = "pause"
 default version = 0.0
-default replay = False
-default gameover = False
 default save_subtitle = ""
 default l_exp = ""
 default nvl = False
@@ -553,7 +557,7 @@ label before_main_menu:
     play music title noloop
     if persistent.splash:
         pause 1.0
-        show announcetext "This story contains graphic violence and strong language and is\nintended for mature audiences" at truecenter
+        show announcetext "This story contains graphic violence and strong language and is intended for mature audiences" at truecenter
         with Dissolve(1.0)
         pause 2.0
         hide announcetext
