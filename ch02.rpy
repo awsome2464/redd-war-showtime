@@ -1177,7 +1177,7 @@ label showbegins:
     show sprinkles:
         ease 2.0 xalign 0.35
     pause 3
-    m "K-Krag, what is going on??"
+    m "K-Krag, what are you doing??"
     "He then gave a quiet, yet terrifying chuckle."
     s "There's been a slight change to the schedule, Ms. Madeline."
     s "You see, we don't have any room for you tonight."
@@ -1188,7 +1188,7 @@ label showbegins:
     "Then, in one swift motion, he reached up..."
     "...and jammed the stick into her chest!"
     play ambience crowd_screaming
-    play ambience2 children_screaming
+    play sound children_screaming
     "As the crowd screamed, Madeline gasped, but it sounded more like an attempt at a gasp."
     "She grasped at the stick, trying to possibly get it out, but it was to no avail; she couldn't wrap her hands around it."
     "She sounded like she was both gagging on something and gasping for air, struggling to breathe."
@@ -1197,7 +1197,7 @@ label showbegins:
     show kate shocked at middle
     show screen laura
     with dissolve
-    k "Mommy, what's going on??"
+    k "Mommy, what's happening??"
     l "I don't know, Kate, but we're getting out of here!"
     show kate zorder 2:
         ease 0.5 left
@@ -1240,14 +1240,13 @@ label showbegins:
     "Suddenly, a REDD in the back fired his weapon in the air and shouted."
     redd "{b}HEY! THE REDD'S TALKING!!{/b}"
     stop ambience fadeout(5)
-    stop ambience2 fadeout(5)
     "That seemed to do the trick."
     "Everyone then looked at the stage whether they wanted to or not."
     s jeer "Thank you."
     s "Now, I'm sure you've all got some questions going through your mind, so allow me to answer them."
     play music sprinkles_spooky
     s laugh "You see, I wasn't lying just now when I said there's been a change to the schedule."
-    s "I had a realization recently: while {i}The Mr. Sprinkles Show{/i} has a large human-based, audience..."
+    s "I had a realization recently: while {i}The Mr. Sprinkles Show{/i} has a large, human-based audience..."
     s evilgrin "...I figured it was time to expand my demographic."
     s "So tonight's show is going to be dedicated to all my fellow REDD who are watching this show from their television sets."
     s laugh "I'm going to give you all a performance that will not disappoint~!"
@@ -1267,7 +1266,7 @@ label showbegins:
     "There's no way this is happening."
     "No way."
     redd "I said move it!"
-    "Man" "\"Hell no! You're not--\""
+    man "Hell no! You're not--"
     play sound machine_gun
     play ambience crowd_screaming fadein(1)
     $l_exp = "surprised"
@@ -1391,7 +1390,6 @@ label showbegins:
 
     For their sake.
     """
-    $nvl = False
     nvl hide
     with dissolve
     window hide dissolve

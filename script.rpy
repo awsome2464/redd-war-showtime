@@ -27,11 +27,13 @@ define k = Character("Kate", image="kate", what_prefix='"', what_suffix='"')
 define kr = Character("Krag", color="#d00000", image="krag", what_prefix='"', what_suffix='"') # Mr. Sprinkles
 define l = Character("Laura", what_prefix='"', what_suffix='"')
 define m = Character("Ms. Madeline", image="madeline", what_prefix='"', what_suffix='"')
+define man = Character("Man", what_prefix='"', what_suffix='"')
 define r = Character("Richard", image="richard", what_prefix='"', what_suffix='"')
 define re = Character("Reddington", color="#d00000", what_prefix='"', what_suffix='"')
 define redd = Character("REDD", color="#d00000", what_prefix='"', what_suffix='"') # Generic REDD
 define s = Character("Mr. Sprinkles", color="#d00000", image="sprinkles", what_prefix='"', what_suffix='"') # Krag Dovason
 define t = Character("Trosh", color="#d00000", image="trosh", what_prefix='"', what_suffix='"')
+define woman = Character("Woman", what_prefix='"', what_suffix='"')
 
 
 ## Images ######################################################################################################################
@@ -183,12 +185,12 @@ image bg flash = "#ffffff"
 image bg stage = "BG/stage.jpg"
 image bg curtain = "BG/sprinklescurtain.jpg"
 image bg showstage = "BG/showstage.jpg"
-image bg livingroom = "BG/livingroom.jpg"
-image bg dakotaroom = "BG/dakotaroom.jpg"
+image bg livingroom = "BG/livingroom2.jpg"
+image bg dakotaroom = "BG/dakotaroom2.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg arena_ext = "BG/arenaexterior.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
-image bg livestage = "BG/livestage.jpg"
+image bg livestage = "BG/livestage2.jpg"
 image bg arena_hall = "BG/arenahall.jpeg"
 image bg storage = "BG/storage.jpeg"
 
@@ -232,7 +234,8 @@ define audio.door_knock = "audio/se/doorknock.ogg"
 define audio.crowd = "audio/se/crowd.ogg"
 define audio.machine_gun = "audio/se/machine gun.ogg"
 define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
-define audio.children_screaming = "<to 14 loop 3>audio/se/children_screaming.ogg"
+define audio.children_screaming = "audio/se/children_screaming.ogg"
+define audio.smack = "audio/se/smack.ogg"
 
 
 ## Transforms ###################################################################################################################
@@ -385,6 +388,9 @@ style game:
     text_align 0.5
     outlines [(1.0 ,'#ffffff', 0.0, 0.0)]
     size 50
+style replay_desc:
+    text_align 0.5
+    layout "subtitle"
 
 
 ## Custom Screens ################################################################################################################
@@ -471,41 +477,113 @@ screen chapterselect():
     tag menu
     add gui.main_menu_background
     vbox:
-        xalign 0.25 yalign 0.15
-        spacing 10
+        xalign 0.05 yalign 0.5
         text "Chapter 1" xalign 0.5
         if persistent.chapter1_scene1:
-            textbutton "Meet the Farrs" action Replay("chapter_1") xalign 0.5
+            textbutton "Meet the Farrs" xalign 0.5:
+                hovered SetVariable("replay_num", 1)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("chapter_1")
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
         if persistent.chapter1_scene2:
-            textbutton "Unfortunate News" action Replay("kragonnews") xalign 0.5
+            textbutton "Unfortunate News" xalign 0.5:
+                hovered SetVariable("replay_num", 2)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("kragonnews")
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
-    vbox:
-        xalign 0.75 yalign 0.15
-        spacing 10
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
+        null height 20
         text "Chapter 2" xalign 0.5
         if persistent.chapter2_scene1:
-            textbutton "Evening Plans" action Replay("chapter_2") xalign 0.5
+            textbutton "Evening Plans" xalign 0.5:
+                hovered SetVariable("replay_num", 3)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("chapter_2")
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
         if persistent.chapter2_scene2:
-            textbutton "Backstage Drama" action Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Backstage Drama" xalign 0.5:
+                hovered SetVariable("replay_num", 4)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
         if persistent.chapter2_scene3:
-            textbutton "Packed Parking" action Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Packed Parking" xalign 0.5:
+                hovered SetVariable("replay_num", 5)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"})
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
         if persistent.chapter2_scene4:
-            textbutton "Meet and Greet" action Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Meet and Greet" xalign 0.5:
+                hovered SetVariable("replay_num", 6)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"})
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
         if persistent.chapter2_scene5:
-            textbutton "Showtime!" action Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"}) xalign 0.5
+            textbutton "Showtime!" xalign 0.5:
+                hovered SetVariable("replay_num", 7)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"})
         else:
-            textbutton "LOCKED" action NullAction() xalign 0.5
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
+        null height 20
+        text "Chapter 3" xalign 0.5
+        if persistent.chapter3_scene1:
+            textbutton "Rundown":
+                hovered SetVariable("replay_num", 8)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("chapter_3", scope={"currentdate": "March 31st"}) xalign 0.5
+        else:
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
+    vbox:
+        xalign 0.8 yalign 0.5
+        if replay_num == -1:
+            text "???" style "replay_desc" xalign 0.5
+        elif replay_num == 1:
+            text "The Farr family enjoys a normal day at home before their lives change forever." style "replay_desc" xalign 0.5
+        elif replay_num == 2:
+            text "The TV brings both good and bad news." style "replay_desc" xalign 0.5
+        elif replay_num == 3:
+            text "The Farrs decide whether or not to stay in Atlanta upon hearing new information." style "replay_desc" xalign 0.5
+        elif replay_num == 4:
+            text "Krag and Madeline have a brief conversation before the show starts." style "replay_desc" xalign 0.5
+        elif replay_num == 5:
+            text "The Farrs are on their way to the theater." style "replay_desc" xalign 0.5
+        elif replay_num == 6:
+            text "Kate and Dakota get to meet their television idol." style "replay_desc" xalign 0.5
+        elif replay_num == 7:
+            text "The show begins, but it's not what everyone expected it to be." style "replay_desc" xalign 0.5
+        elif replay_num == 8:
+            text "The adults have the plans for the night explained to them." style "replay_desc" xalign 0.5
+
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
@@ -526,6 +604,7 @@ define config.replay_scope = {"_game_menu_screen": "pause"}
 default _game_menu_screen = "pause"
 default version = 0.0
 default save_subtitle = ""
+default replay_num = 0
 default l_exp = ""
 default nvl = False
 default currenttime = "4:12 PM"
