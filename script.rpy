@@ -1,4 +1,10 @@
-﻿## Keymap Changes ###############################################################################################################
+﻿##################################################################################################################################
+## Welcome to the code of REDD War: Showtime! Please use this information for learning and inspiration rather than just blindly ##
+## copying and pasting. If you have any questions about the specifics of this code, feel free to check out the Ren'Py online    ##
+## documentation at https://renpy.org/doc/html/ or contact Good Tales via Twitter or Discord.                                   ##
+##################################################################################################################################
+
+## Keymap Changes ################################################################################################################
 
 init python:
     config.keymap['game_menu'].remove('mouseup_3')
@@ -8,35 +14,37 @@ init python:
     config.keymap['hide_windows'].remove('h')
 
 
-## Toggling Splash Screen upon Launch ###########################################################################################
+## Toggling Splash Screen upon Launch ############################################################################################
 
 init python:
     persistent.splash = True
 
 
-## Characters ###################################################################################################################
+## Characters ####################################################################################################################
 
 define narrate = nvl_narrator
 define a = Character("Anchor", what_prefix='"', what_suffix='"')
 define an = Character("Announcer", what_prefix='"', what_suffix='"', what_italic=True, who_italic=True)
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
+define dt = Character("Dakota", color="#0061d9", who_italic=True, what_italic=True)
 define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
 define ja = Character("Jangle", color="#d00000", image="jangle", what_prefix='"', what_suffix='"')
 define ji = Character("Jingle", color="#d00000", image="jingle", what_prefix='"', what_suffix='"')
 define k = Character("Kate", image="kate", what_prefix='"', what_suffix='"')
-define kr = Character("Krag", color="#d00000", image="krag", what_prefix='"', what_suffix='"') # Mr. Sprinkles
+define kr = Character("Krag", color="#d00000", image="krag", what_prefix='"', what_suffix='"')
 define l = Character("Laura", what_prefix='"', what_suffix='"')
+define lt = Character("Laura", color="#00d90a", who_italic=True, what_italic=True)
 define m = Character("Ms. Madeline", image="madeline", what_prefix='"', what_suffix='"')
 define man = Character("Man", what_prefix='"', what_suffix='"')
 define r = Character("Richard", image="richard", what_prefix='"', what_suffix='"')
 define re = Character("Reddington", color="#d00000", what_prefix='"', what_suffix='"')
-define redd = Character("REDD", color="#d00000", what_prefix='"', what_suffix='"') # Generic REDD
-define s = Character("Mr. Sprinkles", color="#d00000", image="sprinkles", what_prefix='"', what_suffix='"') # Krag Dovason
-define t = Character("Trosh", color="#d00000", image="trosh", what_prefix='"', what_suffix='"')
+define redd = Character("REDD", color="#d00000", what_prefix='"', what_suffix='"')
+define s = Character("Mr. Sprinkles", color="#d00000", image="sprinkles", what_prefix='"', what_suffix='"')
+define t = Character("[t_name]", color="#d00000", image="trosh", what_prefix='"', what_suffix='"')
 define woman = Character("Woman", what_prefix='"', what_suffix='"')
 
 
-## Images ######################################################################################################################
+## Images #######################################################################################################################
 
 # Character Images
 image dakota confident = "Characters/Dakota/confident.png"
@@ -105,6 +113,8 @@ image sprinkles wut = "Characters/Sprinkles/wut.png"
 image trosh = Placeholder("boy")
 
 # Main Images
+image black = "#000000"
+image white = "#ffffff"
 image splash = "Good Tales Transparent.png"
 image logo = "gui/logo.png"
 image sprinklelogo:
@@ -115,7 +125,9 @@ image textbox_bg:
     "gui/textbox_bg.png"
     yalign 0.99
 image spotlight = "spotlight.png"
-image commencement_overlay = "Commencement_Overlay.png"
+image blood:
+    "blood.png"
+    alpha 0.75
 
 # Text Images
 image announcetext = ParameterizedText(style='announce')
@@ -170,18 +182,16 @@ image ctc_arrow_nvl:
         repeat
 
 
-## Backgrounds ###################################################################################################################
+## Backgrounds ####################################################################################################################
 
 # Solid Backgrounds
-image black = "#000000"
-image white = "#ffffff"
+image bg fade = "#000000"
+image bg flash = "#ffffff"
 image choice_bg:
     "#000000"
     alpha 0.35
 
 # Image Backgrounds
-image bg fade = "#000000"
-image bg flash = "#ffffff"
 image bg stage = "BG/stage.jpg"
 image bg curtain = "BG/sprinklescurtain.jpg"
 image bg showstage = "BG/showstage.jpg"
@@ -195,14 +205,15 @@ image bg arena_hall = "BG/arenahall.jpeg"
 image bg storage = "BG/storage.jpeg"
 
 
-## Custom Audio Channels #########################################################################################################
+## Custom Audio Channels ##########################################################################################################
 
 init python:
     renpy.music.register_channel('ambience', mixer="sound", loop=True)
     renpy.music.register_channel('ambience2', mixer="sound", loop=True)
+    renpy.music.register_channel('sound2', mixer="sound", loop=False)
 
 
-## Audio #########################################################################################################################
+## Audio ##########################################################################################################################
 
 # Music
 define audio.title = "audio/music/title.ogg"
@@ -219,6 +230,7 @@ define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
 define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
 define audio.creaky_country_fair = "audio/music/Creaky-Country-Fair.ogg"
 define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
+define audio.ice_cream_truck = "audio/music/Ice-Cream-Truck_Looping.mp3"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -236,9 +248,12 @@ define audio.machine_gun = "audio/se/machine gun.ogg"
 define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
 define audio.children_screaming = "audio/se/children_screaming.ogg"
 define audio.smack = "audio/se/smack.ogg"
+define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
+define audio.buzzer_full = "audio/se/buzzer.ogg"
+define audio.shotgun = "audio/se/shotgun.ogg"
 
 
-## Transforms ###################################################################################################################
+## Transforms ####################################################################################################################
 
 # Animated Transforms
 transform choice_dissolve:
@@ -338,7 +353,7 @@ transform sideimage:
     xalign 0.0575 yalign 1.0
 
 
-## Styles ########################################################################################################################
+## Styles #########################################################################################################################
 
 style announce:
     font "fonts/circula-medium.otf"
@@ -389,11 +404,13 @@ style game:
     outlines [(1.0 ,'#ffffff', 0.0, 0.0)]
     size 50
 style replay_desc:
+    xalign 0.5
     text_align 0.5
     layout "subtitle"
+    justify True
 
 
-## Custom Screens ################################################################################################################
+## Custom Screens #################################################################################################################
 
 # Overlay Screens
 screen ctc():
@@ -554,7 +571,7 @@ screen chapterselect():
         null height 20
         text "Chapter 3" xalign 0.5
         if persistent.chapter3_scene1:
-            textbutton "Rundown":
+            textbutton "The First Game":
                 hovered SetVariable("replay_num", 8)
                 unhovered SetVariable("replay_num", 0)
                 action Replay("chapter_3", scope={"currentdate": "March 31st"}) xalign 0.5
@@ -582,7 +599,7 @@ screen chapterselect():
         elif replay_num == 7:
             text "The show begins, but it's not what everyone expected it to be." style "replay_desc" xalign 0.5
         elif replay_num == 8:
-            text "The adults have the plans for the night explained to them." style "replay_desc" xalign 0.5
+            text "Two contestants play the first game of the evening." style "replay_desc" xalign 0.5
 
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
@@ -596,7 +613,7 @@ screen achievements():
     textbutton "Return" action ShowMenu("extras") xalign 0.25 yalign 0.9
 
 
-## Variable Defaults #############################################################################################################
+## Variable Defaults ##############################################################################################################
 
 default persistent.gore = True
 default preferences.fullscreen = True
@@ -613,9 +630,10 @@ default timeleft = "2 hours and 48 minutes"
 default event = "War Zones are revealed"
 default clickortap = "Click"
 default badcredits = False
+default t_name = "REDD"
 
 
-## Labels ########################################################################################################################
+## Labels #########################################################################################################################
 
 # Splash Screen/Main Menu Intro
 label before_main_menu:

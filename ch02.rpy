@@ -329,7 +329,8 @@ label backstagedrama:
         timeleft = "4 hours and 18 minutes"
     call chapterstart
     pause 1
-    scene bg dressingroom with dissolve
+    scene bg dressingroom
+    with Dissolve(2.0)
     pause 0.5
     play sound door_knock
     pause 2
@@ -584,7 +585,9 @@ label meetandgreet:
     pause 2
     play ambience crowd
     play music the_calm
-    scene bg livestage with dissolve
+    scene bg livestage
+    with Dissolve(2.0)
+    pause 0.5
     window show dissolve
     show screen laura
     with dissolve
