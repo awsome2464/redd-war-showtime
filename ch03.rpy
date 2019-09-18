@@ -1,13 +1,15 @@
 label chapter_3:
     python:
+        save_name = "Chapter 3"
+        save_subtitle = "The Storm Arrives"
+    call chaptername
+label firstgame:
+    python:
         currenttime = "7:14 PM"
         timeleft = "11 hours and 46 minutes"
         event = "REDD War ends"
-        save_name = "Chapter 3"
-        save_subtitle = "The Storm Arrives"
         l_exp = "excited"
     stop music
-    call chaptername
     call chapterstart
     pause 1
     play music classy_ghouls
@@ -214,7 +216,7 @@ label chapter_3:
     hide screen laura
     with dissolve
     show sprinkles laugh
-    "After a few more swings, Mr. Sprinkles dropped and bat and cackled like a madman."
+    "After a few more swings, Mr. Sprinkles dropped the bat and cackled like a madman."
     "Jessica, on the other hand, had blood all over the bottom of her face and tears pouring out of her eyes."
     play music sprinkles_theme
     s "Don't you worry, dear audience!"
@@ -473,7 +475,7 @@ label chapter_3:
     "My phone was lighting up in my pocket."
     "I took a quick look at all the guards. None of them were looking in our general direction."
     show richard concerned
-    "I took out my phone looked at the screen."
+    "I took out my phone and looked at the screen."
     $l_exp = "sad"
     "It was a text from Dakota!"
     play music vast_places
@@ -518,14 +520,188 @@ label chapter_3:
     $persistent.chapter3_scene1 = True
 
 
-label girlsescape:
+label gottago:
     python:
         currenttime = "7:43 PM"
         timeleft = "11 hours and 17 minutes"
     call chapterstart
     pause 2
-    play music sprinkles_spooky
+    play music classy_ghouls
     scene bg livestage
     with Dissolve(2.0)
     pause 0.5
     window show dissolve
+    show dakota neutral at two1
+    show kate shocked at two2
+    with dissolve
+    pause 0.1
+    d "She said they'll try and get back here."
+    k "When?"
+    d confused "How should I know?"
+    k mad "I want them to come back {b}now{/b}!"
+    d mad "So do I, Kate, but that's not gonna happen!"
+    k alert "I wanna talk to Mommy and make her."
+    d neutral "You can try, but good luck."
+    "Dakota then handed the phone over to Kate."
+    "But just when she tried to use it..."
+    show dakota sad
+    show kate confused
+    "...the phone shut off."
+    d "Oh, great! The battery must have died!"
+    k shocked "We can't talk to Mommy or Daddy?"
+    d "Nope."
+    k mad "But I wanted to talk to them!"
+    d mad "Well, I'm sorry, Kate! There's nothing I can do about it!"
+    play music sprinkles_theme
+    show dakota sad
+    show kate shocked
+    s "Okay, my good friends!"
+    s "It's time to once again spin the Wacky Dartboard for another fun game~!"
+    "Kate then grabbed onto Dakota in fear."
+    k "K-Kota, I'm scared! I don't want him to play another game!"
+    d "Me neither!"
+    "Dakota figured Kate might just assume that all the bad stuff that's happening is fake, although still terrifying."
+    "Unfortunately, Dakota knew the truth."
+    "This wasn't an act."
+    "This wasn't pretend."
+    "This was real."
+    k "Why would Mr. Sprinkles do this? He's supposed to be nice!"
+    d mad "I don't know, Kate! I wish I did, but I don't!"
+    "Dakota then hugged her sister tightly, wondering what to do."
+    "She didn't want to watch the show."
+    "Kate didn't want to watch the show."
+    "But the people with the guns weren't going to let them walk out of here."
+    "...right?"
+    k alert "Kota...?"
+    d confused "Yes?"
+    d "I have to go potty."
+    d neutral "..."
+    "Well, it wouldn't hurt to try."
+    "Dakota looked and saw a guard walking by."
+    show dakota zorder 2:
+        ease 0.5 middle
+    hide kate with dissolve
+    pause 0.1
+    d small_smile "E-Excuse me?"
+    "The guard stopped and looked at her with a look of absolute evil."
+    $t_name = "Guard"
+    t "What?" # Not actually Trosh, but makes more sense than making a new character object.
+    d sad "Uh..."
+    d "M-My sister has to g-go to the bathroom."
+    "The guard then gasped and raised his eyebrows."
+    t "Really? Oh! Well, in that case..."
+    "His glare returned."
+    t "Too bad."
+    t "She'll have to hold it."
+    d mad "You expect her to hold it for 12 hours?"
+    t "There are scheduled times for restroom breaks, the first being at 9 o'clock."
+    d "She can't wait that long!"
+    t "She can, and she will!"
+    "The guard then walked away."
+    show dakota neutral
+    "Dakota then slumped down in her chair in defeat."
+    "Movies make things like that seem so easy."
+    show dakota zorder 2:
+        ease 0.5 two1
+    show kate alert at two2 zorder 1 with dissolve
+    pause 0.1
+    d "Well, I tried."
+    k concerned "But I have to go!"
+    d sad "I'm sorry, Kate. I don't know what to tell you besides just wait."
+    k "..."
+    d "..."
+    "With that, the girls accepted their defeat and tried to wait patiently for 9 o'clock."
+    "However long it is until then."
+    hide kate
+    hide dakota
+    with dissolve
+    window hide dissolve
+    pause 1.0
+    stop music fadeout(3.0)
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter3_scene2 = True
+
+
+label secondbeating:
+    python:
+        currenttime = "8:27 PM"
+        timeleft = "10 hours and 33 minutes"
+        l_exp = "concerned"
+    call chapterstart
+    pause 2
+    play music sprinkles_theme
+    scene bg stage
+    show sprinkles laugh at middle_s
+    with Dissolve(2.0)
+    pause 0.5
+    window show dissolve
+    pause 0.1
+    s "Ahahaha! Great work, Sir!"
+    s happy "You may return to your seat."
+    $renpy.music.set_volume(0.5, delay=0.5, channel="music")
+    scene bg storage
+    show screen laura
+    with dissolve
+    pause 0.1
+    "On one hand, eating a pie without your hands to get a key inside isn't that dangerous."
+    $l_exp = "surprised"
+    "On the other hand, using said key to unlock yourself from a chair set to detonate is a bit more so."
+    $l_exp = "excited"
+    "Thankfully, the guy managed to stomach his way through it."
+    $l_exp = "smug"
+    "Pun fully intended."
+    $l_exp = "surprised"
+    "Still, not everyone before him was so fortunate."
+    "In the hour we've been doing this so far, we've had around 15 or so casualties. I haven't really been keeping track."
+    "Innocent parents who died with so many people, including their children, watching."
+    $l_exp = "sad"
+    "And there's nothing anyone can do to stop this...?"
+    "REDD War or not, there has to be someone willing to try and end this, right?"
+    s "Alright, then~!"
+    $renpy.music.set_volume(1.0, delay=0.5, channel="music")
+    scene bg stage
+    show sprinkles happy at middle_s
+    hide screen laura
+    with dissolve
+    pause 0.1
+    s "I think we could use a quick break from games for the moment."
+    s jeer "After all, we need to make sure our fun lasts all night~"
+    s laugh "So, instead, I think we could all do with some jokes!"
+    s "Everyone loves a good joke, right~?"
+    s hm "Hmm... but I can't tell these jokes by myself."
+    s happy "Oh, I know who can help!"
+    play sound snap
+    "He then snapped his fingers."
+    "On cue, Jangle pushed out something covered up with a curtain and stopped it right next to Mr. Sprinkles."
+    stop music fadeout(3)
+    s laugh "Ladies and gentlemen, boys and girls, please welcome back to the stage..."
+    show sprinkles:
+        ease 0.5 two2_s
+    "He then yanked off the curtain."
+    s "...Ms. Madeline~!"
+    show madeline dead at two1_m
+    with Dissolve(0.25)
+    pause 0.5
+    play sound children_screaming
+    pause 0.5
+    show screen laura
+    with dissolve
+    pause 0.1
+    "Jesus Christ!"
+    "That's a whole new level of fucked up!"
+    hide screen laura
+    with dissolve
+    pause 0.1
+    s "Ahahaha~!"
+    "He then stepped closer to the body."
+    s happy "Say, Ms. Madeline, how many tickles does it take to make an octopus laugh?"
+    "He then cupped his hand around his hear and leaned in close to her, pausing for a few seconds."
+    s jeer "I'm afraid you'll have to speak up a bit, Ms. Madeline; I can't hear you."
+    "This time, when cupping his ear, he spoke in a mocking high-pitched voice."
+    s happy "{i}I don't know, Mr. Sprinkles; how many tickles {b}does{/b} it take to make an octopus laugh?{/i}"
+    s laugh "It takes..."
+    s "...{b}ten tickles!!{/b}"
+    "He then laughed and applauded at his joke."

@@ -91,6 +91,7 @@ image laura surprised = "Characters/Laura/surprised.png"
 image laura wut = "Characters/Laura/wut.png"
 
 image madeline blank = "Characters/Madeline/blank.png"
+image madeline dead = Placeholder("girl")
 image madeline shocked = "Characters/Madeline/shocked.png"
 image madeline smile = "Characters/Madeline/smile.png"
 
@@ -168,17 +169,23 @@ image fade_into_menu:
     ease 1.0 alpha 0.0
 image ctc_arrow_1:
     xalign 0.5 yalign 0.99
+    alpha 0.0
     "gui/ctc_arrow.png"
     block:
-        ease 0.15 xalign 0.45
-        ease 0.15 xalign 0.5
+        ease 0.5 alpha 1.0
+        ease 0.5 alpha 0.0
+        # ease 0.15 xalign 0.45
+        # ease 0.15 xalign 0.5
         repeat
 image ctc_arrow_nvl:
     xalign 0.95 yalign 0.99
+    alpha 0.0
     "gui/ctc_arrow.png"
     block:
-        ease 0.15 xalign 1.0
-        ease 0.15 xalign 0.95
+        ease 0.5 alpha 1.0
+        ease 0.5 alpha 0.0
+        # ease 0.15 xalign 1.0
+        # ease 0.15 xalign 0.95
         repeat
 
 
@@ -203,6 +210,7 @@ image bg dressingroom = "BG/dressingroom.jpg"
 image bg livestage = "BG/livestage2.jpg"
 image bg arena_hall = "BG/arenahall.jpeg"
 image bg storage = "BG/storage.jpeg"
+image bg restroom = "BG/restroom.jpg"
 
 
 ## Custom Audio Channels ##########################################################################################################
@@ -251,6 +259,7 @@ define audio.smack = "audio/se/smack.ogg"
 define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
 define audio.buzzer_full = "audio/se/buzzer.ogg"
 define audio.shotgun = "audio/se/shotgun.ogg"
+define audio.snap = "audio/se/snap.ogg"
 
 
 ## Transforms ####################################################################################################################
@@ -571,10 +580,20 @@ screen chapterselect():
         null height 20
         text "Chapter 3" xalign 0.5
         if persistent.chapter3_scene1:
-            textbutton "The First Game":
+            textbutton "The First Game" xalign 0.5:
                 hovered SetVariable("replay_num", 8)
                 unhovered SetVariable("replay_num", 0)
-                action Replay("chapter_3", scope={"currentdate": "March 31st"}) xalign 0.5
+                action Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True})
+        else:
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
+        if persistent.chapter3_scene2:
+            textbutton "When You Gotta Go..." xalign 0.5:
+                hovered SetVariable("replay_num", 9)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends"})
         else:
             textbutton "LOCKED" xalign 0.5:
                 hovered SetVariable("replay_num", -1)
@@ -600,6 +619,8 @@ screen chapterselect():
             text "The show begins, but it's not what everyone expected it to be." style "replay_desc" xalign 0.5
         elif replay_num == 8:
             text "Two contestants play the first game of the evening." style "replay_desc" xalign 0.5
+        elif replay_num == 9:
+            text "Dakota tries to get her and her sister out of the audience." style "replay_desc" xalign 0.5
 
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
