@@ -39,7 +39,7 @@ define man = Character("Man", what_prefix='"', what_suffix='"')
 define r = Character("Richard", image="richard", what_prefix='"', what_suffix='"')
 define re = Character("Reddington", color="#d00000", what_prefix='"', what_suffix='"')
 define redd = Character("REDD", color="#d00000", what_prefix='"', what_suffix='"')
-define s = Character("Mr. Sprinkles", color="#d00000", image="sprinkles", what_prefix='"', what_suffix='"')
+define s = Character("[s_name]", color="#d00000", image="sprinkles", what_prefix='"', what_suffix='"')
 define t = Character("[t_name]", color="#d00000", image="trosh", what_prefix='"', what_suffix='"')
 define woman = Character("Woman", what_prefix='"', what_suffix='"')
 
@@ -174,8 +174,6 @@ image ctc_arrow_1:
     block:
         ease 0.5 alpha 1.0
         ease 0.5 alpha 0.0
-        # ease 0.15 xalign 0.45
-        # ease 0.15 xalign 0.5
         repeat
 image ctc_arrow_nvl:
     xalign 0.95 yalign 0.99
@@ -184,8 +182,6 @@ image ctc_arrow_nvl:
     block:
         ease 0.5 alpha 1.0
         ease 0.5 alpha 0.0
-        # ease 0.15 xalign 1.0
-        # ease 0.15 xalign 0.95
         repeat
 
 
@@ -211,6 +207,8 @@ image bg livestage = "BG/livestage2.jpg"
 image bg arena_hall = "BG/arenahall.jpeg"
 image bg storage = "BG/storage.jpeg"
 image bg restroom = "BG/restroom.jpg"
+image bg basement = "BG/basement.jpg"
+image bg basement_hall = "BG/basementhall.jpg"
 
 
 ## Custom Audio Channels ##########################################################################################################
@@ -239,6 +237,7 @@ define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
 define audio.creaky_country_fair = "audio/music/Creaky-Country-Fair.ogg"
 define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
 define audio.ice_cream_truck = "audio/music/Ice-Cream-Truck_Looping.mp3"
+define audio.into_the_haunted_forest = "audio/music/Into-the-Haunted-Forest_Looping.mp3"
 
 # Sound Effects
 define audio.flicker = "audio/se/flicker.ogg"
@@ -260,6 +259,8 @@ define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
 define audio.buzzer_full = "audio/se/buzzer.ogg"
 define audio.shotgun = "audio/se/shotgun.ogg"
 define audio.snap = "audio/se/snap.ogg"
+define audio.hammer = "audio/se/hammer.ogg"
+define audio.footsteps = "audio/se/footsteps.ogg"
 
 
 ## Transforms ####################################################################################################################
@@ -599,6 +600,26 @@ screen chapterselect():
                 hovered SetVariable("replay_num", -1)
                 unhovered SetVariable("replay_num", 0)
                 action NullAction()
+        if persistent.chapter3_scene3:
+            textbutton "Laughs and Cracks" xalign 0.5:
+                hovered SetVariable("replay_num", 10)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+        else:
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
+        if persistent.chapter3_scene4:
+            textbutton "Toilet Escape" xalign 0.5:
+                hovered SetVariable("replay_num", 11)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+        else:
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
     vbox:
         xalign 0.8 yalign 0.5
         if replay_num == -1:
@@ -621,6 +642,10 @@ screen chapterselect():
             text "Two contestants play the first game of the evening." style "replay_desc" xalign 0.5
         elif replay_num == 9:
             text "Dakota tries to get her and her sister out of the audience." style "replay_desc" xalign 0.5
+        elif replay_num == 10:
+            text "After telling some jokes, Mr. Sprinkles has more fun with Jessica." style "replay_desc" xalign 0.5
+        elif replay_num == 11:
+            text "In a daring move, Dakota and Kate attempt to escape the REDD guards." style "replay_desc" xalign 0.5
 
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
@@ -651,6 +676,7 @@ default timeleft = "2 hours and 48 minutes"
 default event = "War Zones are revealed"
 default clickortap = "Click"
 default badcredits = False
+default s_name = "Mr. Sprinkles"
 default t_name = "REDD"
 
 
@@ -663,10 +689,10 @@ label before_main_menu:
         "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){nw}"
         menu:
             "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
-            "Yes":
+            "Yes, disable them":
                 $persistent.gore = False
                 "Graphic images disabled."
-            "No":
+            "No, enable them":
                 $persistent.gore = True
                 "Graphic images enabled."
         window hide dissolve
@@ -682,7 +708,6 @@ label before_main_menu:
         with Dissolve(1.0)
         show splash at truecenter
         with Dissolve(1.0)
-        hide circustext
         pause 2.0
         hide splash
         with Dissolve(1.0)

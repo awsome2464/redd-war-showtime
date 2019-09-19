@@ -574,7 +574,7 @@ label gottago:
     "...right?"
     k alert "Kota...?"
     d confused "Yes?"
-    d "I have to go potty."
+    k "I have to go potty."
     d neutral "..."
     "Well, it wouldn't hurt to try."
     "Dakota looked and saw a guard walking by."
@@ -636,7 +636,6 @@ label secondbeating:
     scene bg stage
     show sprinkles laugh at middle_s
     with Dissolve(2.0)
-    pause 0.5
     window show dissolve
     pause 0.1
     s "Ahahaha! Great work, Sir!"
@@ -681,10 +680,9 @@ label secondbeating:
     show sprinkles:
         ease 0.5 two2_s
     "He then yanked off the curtain."
-    s "...Ms. Madeline~!"
     show madeline dead at two1_m
     with Dissolve(0.25)
-    pause 0.5
+    s "...Ms. Madeline~!"
     play sound children_screaming
     pause 0.5
     show screen laura
@@ -697,11 +695,242 @@ label secondbeating:
     pause 0.1
     s "Ahahaha~!"
     "He then stepped closer to the body."
+    stop sound fadeout(3)
+    play music sprinkles_spooky
     s happy "Say, Ms. Madeline, how many tickles does it take to make an octopus laugh?"
-    "He then cupped his hand around his hear and leaned in close to her, pausing for a few seconds."
+    "He then cupped his hand around his ear and leaned in close to her, pausing for a few seconds."
     s jeer "I'm afraid you'll have to speak up a bit, Ms. Madeline; I can't hear you."
     "This time, when cupping his ear, he spoke in a mocking high-pitched voice."
     s happy "{i}I don't know, Mr. Sprinkles; how many tickles {b}does{/b} it take to make an octopus laugh?{/i}"
     s laugh "It takes..."
     s "...{b}ten tickles!!{/b}"
     "He then laughed and applauded at his joke."
+    s happy "Ooo! Here's another one!"
+    s "Where's the best place to learn about making ice cream?"
+    s @ jeer "{i}I don't know, Mr. Sprinkles. I'm too stupid to figure that out!{/i}"
+    s "The best place to learn how about making ice cream is..."
+    s laugh "{b}...{i}sundae{/i} school!!{/b}"
+    $l_exp = "concerned"
+    show screen laura
+    with dissolve
+    pause 0.1
+    "He continued to laugh and tell jokes to the corpse while the children in the audience continued to cry."
+    $l_exp = "surprised"
+    "I wonder how many of those children actually loved Ms. Madeline and considered her their favorite?"
+    "There had to have been at least one..."
+    $l_exp = "sad"
+    "And then to see her not only dead, but being treated like this..."
+    "Has he really been this crazy all these years?"
+    "Has he just been really good at hiding it?"
+    $l_exp = "surprised"
+    "If that's the case, then I guess I'm an idiot for thinking we could trust him."
+    s jeer "Alright, I suppose that's enough for now."
+    s evilgrin "I don't wanna be like you and work myself {b}to death!{/b}"
+    s laugh "You can wait backstage until we need you again, Ms. Madeline~!"
+    show madeline:
+        ease 0.5 offscreenleft
+    show sprinkles:
+        ease 0.5 middle_s
+    "Madeline was then rolled off the the stage while Mr. Sprinkles cleared his throat."
+    s happy "Although I do believe that now it's time to bring back out our special guest of the evening!"
+    s "Please welcome Mrs. Jessica Tate back to the stage!"
+    show sprinkles at two1_s with easeinright
+    pause 0.5
+    show jessica:
+        offscreenright
+        ease 1.5 two2
+    pause 2
+    s jeer "So, Jessica, how are you enjoying the show so far?"
+    "She responded with more cries through her gag."
+    s laugh "Ahaha! Well, at least you're speaking louder than Ms. Madeline was~!"
+    play sound snap
+    "He then snapped his fingers, cuing Jingle to skip onto the stage, only this time, instead of holding a bat, she was holding a sledgehammer."
+    $l_exp = "sad"
+    "This is not gonna be a pretty sight..."
+    s jeer "Thank you, Jingle."
+    "Jessica went into full panic mode, squirming around in her chair, trying to break free."
+    show sprinkles laugh
+    "But Sprinkles just chuckled and seemingly ignored her efforts."
+    s "Oh, don't be so blue, Jessica!"
+    s evilgrin "It'll only make this harder on you than it needs to be."
+    "He then lifted the sledgehammer into a swinging position."
+    s jeer "You know, Jessica, I realized that you're going to be in that chair all night."
+    s "So, really, there's no need for your legs tonight, correct?"
+    $l_exp = "surprised"
+    "Sensing where this was going, Jessica squirmed around even more, but to no avail."
+    s evilgrin "Then allow me to get this burden out of your way!"
+    "He wound up the hammer."
+    $l_exp = "sad"
+    "I looked away in fear."
+    show black zorder 5
+    hide screen laura
+    stop music
+    play sound hammer
+    pause 1.5
+    show screen laura
+    with dissolve
+    "Jessica's high-pitched scream through the gag rang through my ears."
+    "I then got the courage to open my eyes and look at the screen."
+    show sprinkles laugh
+    hide black with dissolve
+    pause 0.1
+    "Her jeans were covering her legs, but a dark red puddle was forming on her right knee."
+    "Jessica herself was still screaming, eyes tightly closed, tears flowing down, and her hands clenched in tight fists."
+    s wut "Hmm. You don't seem very grateful."
+    s jeer "I suppose I'll leave you to consider if you want the other one taken care of the next time we meet."
+    s laugh "Alright! Let us take one more short break before we continue on with our night!"
+    scene bg storage
+    show richard concerned at middle_r
+    with dissolve
+    pause 0.1
+    "I looked over at Richard, who was looking away from the screen, sitting against the wall."
+    r "God... I can't even imagine how much pain she's in right now..."
+    "He whispered quietly."
+    $l_exp = "concerned"
+    "I couldn't help but notice that he was rubbing his own knee."
+    $l_exp = "sad"
+    l "Yeah, I know..."
+    "I replied as I sat next to him."
+    r smile "Heh."
+    $l_exp = "concerned"
+    l "What?"
+    r "I just never thought I'd see you show empathy for Jessica Tate."
+    $l_exp = "neutral"
+    l "..."
+    "I get what he means, but the way he said that makes it seem like I'm a heartless monster."
+    $l_exp = "concerned"
+    "You know, like the REDD who have us held captive here."
+    $l_exp = "neutral"
+    l "Well, she's just as human as the rest of us."
+    l "Not even she deserves this."
+    r concerned "Yeah, no kidding..."
+    $l_exp = "sad"
+    "We then looked back to the TV, which showed Jingle and Jangle performing a skit."
+    "We're only an hour into this nightmare, yet it feels like it should be almost over by now."
+    "Or maybe that's just how I want it to be."
+    "It all begs the question of how much worse could this possibly get for everyone..."
+    hide screen laura
+    with dissolve
+    window hide dissolve
+    pause 1.0
+    stop music fadeout(3.0)
+    scene bg fade
+    with Dissolve(2.0)
+    pause 1
+    scene bg basement
+    with Dissolve(2.0)
+    window show dissolve
+    show jessica at two1 zorder 1 with dissolve
+    pause 0.5
+    play sound footsteps
+    pause 6
+    show sprinkles evilgrin at two2_s zorder 2
+    with Dissolve(1.0)
+    pause 0.5
+    play music into_the_haunted_forest
+    $s_name = "Krag"
+    s "Hello, Mrs. Tate."
+    j "!!!"
+    s laugh "Ahaha! There's no need to be worried, my dear!"
+    s "I'm not gonna torture you in private."
+    s evilgrin "That would be a waste of potentially higher ratings~!"
+    s happy "I just wanted to thank you for being a good sport, despite everything."
+    s jeer "I mean, not that you have much of a choice..."
+    s happy "Still, you're playing along beautifully, and the audience loves it!"
+    s laugh "Well, the REDD ones, anyway~"
+    j "..."
+    s jeer "Heh."
+    s "You look upset."
+    s "Dare I say you look a bit angry."
+    "He then bent down and looked at her eye-to-eye."
+    s "You can't put all the blame on me, my dear."
+    s @ evilgrin "After all, this is technically {b}your{/b} fault."
+    s "I mean, think about it. {b}Really{/b} think about it."
+    s wut "You were so convinced that the REDD were these evil, heartless, unforgiving monsters. You even managed to convince so many others of the same thing."
+    s "And what did you do despite having that belief?"
+    s "You {b}threatened{/b} one!"
+    s "You threatened to take away his show and everything he had ever worked for!"
+    s huh "I mean, I still cannot understand what was going through your mind."
+    s hm "I can only assume that {b}nothing{/b} was."
+    s @ happy "{i}Hur dee durr!! I think this guy has the desire to kill us all! The most logical way to retaliate is to {b}piss him off!!{/b}{/i}"
+    s "What, did you really think I wasn't going to fight back?"
+    s "Did you really think I would just sit idly by while you took away everything from me?"
+    s wut "All because of something you {b}assumed{/b} could happen?"
+    s "..."
+    s jeer "I mean, yes, I suppose there's some irony in the fact that you were right, but..."
+    s hm "It would have never came to this had you just kept your big fat trap shut."
+    s "So just remember:"
+    s "Every person who died here tonight?{w} That's on you."
+    s "Every person who {b}will{/b} die here tonight?{w} That's on you."
+    s "Every child who is traumatized and scarred for life from having their idol degrade to a heartless monster who killed their parent because he had nothing left to lose?"
+    show sprinkles:
+        linear 0.25 xalign 0.65
+    s "That's."
+    show sprinkles:
+        linear 0.25 xalign 0.55
+    s "On."
+    show sprinkles:
+        linear 0.25 xalign 0.45
+    s "{b}You.{/b}"
+    window hide
+    stop music fadeout(5)
+    pause 6
+    show sprinkles laugh:
+        linear 0.25 xalign 0.75
+    s "Ahaha~!"
+    s happy "Well, I better get back on stage!"
+    s jeer "The show must go on, as they say."
+    pause 0.5
+    play sound footsteps
+    hide sprinkles
+    with Dissolve(1.0)
+    pause 1
+    j "..."
+    $s_name = "Mr. Sprinkles"
+    pause 1.0
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter3_scene3 = True
+
+
+label girlsescape:
+    python:
+        currenttime = "9:00 PM"
+        timeleft = "10 hours"
+    call chapterstart
+    pause 2
+    play music sprinkles_theme
+    scene bg stage
+    show sprinkles happy at middle_s
+    with Dissolve(2.0)
+    window show dissolve
+    pause 0.1
+    s "Alright, folks, it's time for a proper 15-minute break!"
+    s "The helpful people by the doors will guide you to the restrooms if you need to go, and you may also use this opportunity to grab some snacks and refreshments."
+    s laugh "We'll see you all back here in 15 minutes~!"
+    s jeer "And for our lovely viewers at home, as well as those in the audience who don't wish to get up, please enjoy the live footage outside of the theater, where I'm sure something exciting is bound to be happening!"
+    $l_exp = "concerned"
+    scene bg storage
+    show screen laura
+    with dissolve
+    pause 0.1
+    "That ought to get the people in the audience to conveniently need to use the restroom."
+    $l_exp = "surprised"
+    "I mean, at least now there were some adults in the audience, so it shouldn't be as chaotic compared to if it were just children."
+    $l_exp = "sad"
+    "Still... the poor kids whose parents are trapped back here..."
+    "The uncertainty they must be feeling..."
+    "Kate... Dakota..."
+    "How in the world are they right now??"
+    "They must be worried sick about Richard and I!"
+    scene bg livestage
+    show dakota neutral at two1
+    show kate shocked at two2
+    hide screen laura
+    with dissolve
+    pause 0.1
+    k "Kota, I still have to gooooooo!!"
+    d "I know, Kate! We'll be there soon. Just hold it for a little longer!"
+    k "I caaaaaan't!!"

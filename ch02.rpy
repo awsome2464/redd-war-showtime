@@ -327,6 +327,7 @@ label backstagedrama:
     python:
         currenttime = "2:42 PM"
         timeleft = "4 hours and 18 minutes"
+        s_name = "Krag"
     call chapterstart
     pause 1
     scene bg dressingroom
@@ -335,44 +336,40 @@ label backstagedrama:
     play sound door_knock
     pause 2
     window show dissolve
-    kr "Come in!"
+    s "Come in!"
     play sound door_open
     pause 1
     show sprinkles happy at two1_s
     show madeline blank at two2_m
     with dissolve
     pause 0.1
-    kr "Ah, Madeline! What can I do for you?"
+    s "Ah, Madeline! What can I do for you?"
     "Madeline" "\"You can start by explaining what's going on.\""
-    show sprinkles jeer
-    kr "Now, Madeline, I would hate to insult your intelligence~"
+    s jeer "Now, Madeline, I would hate to insult your intelligence~"
     "Madeline" "\"Krag, the show is starting in 4 hours and the stage is empty!\""
     "Madeline" "\"I'm not even seeing anyone rehearsing anything!\""
     "Madeline" "\"This live show is what could make or break our future, and it's like you're not taking it seriously! And frankly, it's really starting to piss me off!\""
-    show sprinkles hm
-    kr "..."
+    s hm "..."
     "Madeline" "\"Krag, I'm saying all this because I want {i}Mr. Sprinkles{/i} to succeed. To get through this rough patch.\""
-    show sprinkles wut
-    kr "And yet you told the network to put the show on a hiatus."
+    s wut "And yet you told the network to put the show on a hiatus."
     "Madeline" "\"I could have told them to cancel it altogether, you know.\""
     "Madeline" "\"Believe me, I don't want to be in this situation any more than you do, but we need to think through this logically.\""
     "Madeline" "\"You're still relatively new to how show business works here on Earth. These things happen.\""
-    kr "..."
-    kr "{i}Mr. Sprinkles{/i} is an entire life's worth of ideas and planning put together at last."
-    kr "I'm not going to let anyone take my show away from me."
+    s "..."
+    s "{i}Mr. Sprinkles{/i} is an entire life's worth of ideas and planning put together at last."
+    s "I'm not going to let anyone take my show away from me."
     "Madeline" "\"{b}Our{/b} show, Krag.\""
     "Madeline" "\"You may have created it, and you may be the title character, but you're not the {b}only{/b} character.\""
     "Madeline" "\"You're not the only one who loves to perform on the show. Seeing children's happiness from our antics is something I've treasured for the past 7 years.\""
     "Madeline" "\"But sometimes, you can't always get what you want, Krag.\""
     "Madeline" "\"Sometimes, there are situations that are hard to fix.\""
     "Madeline" "\"I'm sorry, but that's just how it works.\""
-    kr "..."
+    s "..."
     "Madeline" "\"That said, it's not impossible to fix this.\""
     "Madeline" "\"We need to do everything we can for this live show to be a success. Our careers depend on it. Understand?\""
-    kr "..."
-    show sprinkles jeer
-    kr "Of course I do."
-    kr "I'll get to work on rehearsals."
+    s "..."
+    s jeer "Of course I do."
+    s "I'll get to work on rehearsals."
     show madeline smile
     "Madeline" "\"Thank you.\""
     hide madeline with easeoutright
@@ -380,8 +377,7 @@ label backstagedrama:
     show sprinkles:
         ease 1.0 middle_s
     pause 1.5
-    show sprinkles evilgrin
-    kr "Oh, this show will be successful, don't you worry..."
+    s evilgrin "Oh, this show will be successful, don't you worry..."
     window hide dissolve
     pause 1
     scene bg fade
@@ -396,6 +392,7 @@ label arriveatshow:
         currenttime = "3:51 PM"
         timeleft = "3 hours and 9 minutes"
         l_exp = "neutral"
+        s_name = "Mr. Sprinkles"
     call chapterstart
     pause 2
     window show dissolve
