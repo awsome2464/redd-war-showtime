@@ -899,6 +899,7 @@ label girlsescape:
     python:
         currenttime = "9:00 PM"
         timeleft = "10 hours"
+        t_name = "Guard"
     call chapterstart
     pause 2
     play music sprinkles_theme
@@ -911,6 +912,7 @@ label girlsescape:
     s "The helpful people by the doors will guide you to the restrooms if you need to go, and you may also use this opportunity to grab some snacks and refreshments."
     s laugh "We'll see you all back here in 15 minutes~!"
     s jeer "And for our lovely viewers at home, as well as those in the audience who don't wish to get up, please enjoy the live footage outside of the theater, where I'm sure something exciting is bound to be happening!"
+    $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     $l_exp = "concerned"
     scene bg storage
     show screen laura
@@ -925,6 +927,7 @@ label girlsescape:
     "Kate... Dakota..."
     "How in the world are they right now??"
     "They must be worried sick about Richard and I!"
+    $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     scene bg livestage
     show dakota neutral at two1
     show kate shocked at two2
@@ -934,3 +937,305 @@ label girlsescape:
     k "Kota, I still have to gooooooo!!"
     d "I know, Kate! We'll be there soon. Just hold it for a little longer!"
     k "I caaaaaan't!!"
+    d sad "Just try, okay?"
+    t "Alright! If anyone needs to go out, move it!"
+    d small_smile "C'mon, Kate!"
+    stop music fadeout(3)
+    scene bg lobby with dissolve
+    pause 0.1
+    "A large crowd of children and a small amount of adults exited into the lobby in a slow, yet organized fashion, with guards surrounding them at all times."
+    "Fortunately for Kate, the restrooms weren't too far away."
+    "Though, they weren't exactly as close as she would have liked."
+    show kate shocked:
+        two2
+        alpha 0.0
+        parallel:
+            ease 0.5 alpha 1.0
+        parallel:
+            ease 0.125 yalign 0.48
+            block:
+                ease 0.25 yalign 0.52
+                ease 0.25 yalign 0.48
+                repeat
+    show dakota sad at two1 with dissolve
+    pause 0.1
+    k "Nnnnggg...!"
+    d "We're almost there, Kate! Try to think about something else!"
+    k "I can't!"
+    d "You have to!"
+    k "I...!!"
+    "Dakota could tell Kate wasn't going to be able to contain it much longer."
+    "She honestly couldn't tell if the tears going down her sister's face were more from fear or stress."
+    play music autumn_changes
+    d "Kate, listen to me."
+    d "I know you're scared."
+    d "I know you're scared about Mom and Dad, about what Mr. Sprinkles is doing, about whether or not you'll wet yourself. I get it, Kate."
+    show kate:
+        ease 0.5 two2
+    k concerned "..."
+    d mad "Believe me, I'm scared, too, Kate."
+    d "I don't know why this is happening or if Mom and Dad will come back to us."
+    d small_smile "But I do know that Mom and Dad would want us to be brave right now, even though we're scared."
+    d "We're together right now, and as long as that's true, nothing will get in our way."
+    k "..."
+    d smirk "So what do you say we make Mom and Dad proud by being brave?"
+    k "B-But I'm not brave!"
+    d determined "Yes, you are, Kate!"
+    show kate shocked
+    show dakota confused
+    t "Hey! You goin' in or what?"
+    show dakota neutral
+    "Dakota then noticed that they were in front of the line for the restrooms."
+    d small_smile "See, Kate? You were able to get here without wetting yourself!"
+    k concerned "!!"
+    k happy "I did~!"
+    show kate:
+        ease 0.125 yalign 0.48
+        block:
+            ease 0.25 yalign 0.52
+            ease 0.25 yalign 0.48
+            repeat
+    k shocked "B-But I still have to go!"
+    d smirk "Alright, then get in there!"
+    k concerned "Can you come in with me?"
+    d small_smile "I don't need to go, Kate."
+    k "Please?"
+    d @ neutral "..."
+    d "O-Okay, Kate."
+    scene bg restroom with dissolve
+    pause 0.5
+    show dakota sad at middle with dissolve
+    pause 0.1
+    "While Dakota waited for Kate, she looked around at the other girls in the restroom with them."
+    "They looked just as scared and lost as she was, though there were a few mothers in there, as well, so at least they had someone with them."
+    "Girl" "\"Excuse me...\""
+    d confused "Hm?"
+    "She then noticed she was blocking the only empty sink."
+    d sad "Oh. Sorry."
+    "Right as she moved out of the way, the stall Kate was in opened up and she rushed right out."
+    show dakota small_smile at two2
+    show kate excited at two1
+    with easeinleft
+    pause 0.1
+    d "Feel better?"
+    k "Yeah!"
+    d smirk "Good to hear."
+    stop music fadeout(3)
+    t "Come on, hurry it up!"
+    show dakota sad
+    show kate shocked
+    "They heard a nearby girl guard yell at a girl at the sink."
+    woman "Hey! Don't talk to my daughter that way!"
+    "The guard gave a small laugh and looked at the lady with a scary smile."
+    t "And what exactly do you think you're gonna do if I do?"
+    "The other girls in the restroom were either staring uncomfortably or walking away as quickly as they could."
+    d "C-C'mon, Kate. Let's go."
+    k concerned "But I haven't washed my hands."
+    d small_smile "You'll be fine."
+    "Dakota then took Kate's hand and walked her towards the restroom exit."
+    woman "Oh, please! Don't act like you have the guts to shoot me in front of all these kids!"
+    t "You think I give a fuck about that kind of shit??"
+    woman "Watch yourself!"
+    t "In case you haven't noticed, you're not the boss of me, bitch!"
+    woman "Whatever. Come on, Candy."
+    woman "The less we bother this alien, the better."
+    t "I'm sorry, what did you just call me?"
+    show dakota neutral
+    "Dakota tried to pick up the pace, but there was a lengthy line trying to get out."
+    "A few seconds later, she heard a struggle behind her."
+    t "I asked you a damn question!"
+    woman "Hey! Get your hands off me!"
+    t "What? Did you just? Call me??"
+    "The woman replied with a rude voice."
+    woman "Oh, I'm sorry. Are you offended by that word, you {b}alien{/b}?"
+    play sound machine_gun
+    show dakota sad
+    show kate shocked
+    pause 0.25
+    play sound2 children_screaming
+    play ambience crowd_screaming
+    pause 0.5
+    d "{b}{i}KATE, RUN!!!{/i}{/b}"
+    scene bg restroom with dissolve
+    pause 0.1
+    "She wasn't the only one taking that advice; everyone in the restroom seemed to rush right out and got as far from there as they could."
+    t "H-Hey!! Get back here!!"
+    t "...Shit!"
+    scene bg lobby with dissolve
+    pause 0.5
+    show dakota sad at two1
+    show kate shocked at two2
+    with dissolve
+    pause 0.1
+    k "Where are we going??"
+    d "Anywhere but here!!"
+    "All around them, people were bumping into them, scrambling away from the guards and the stage entrance."
+    play sound machine_gun
+    pause 0.5
+    t "Everyone get your asses back here or I {b}will{/b} shoot you!!"
+    k "K-Kota!!"
+    d "Keep running, Kate! We'll be fine!!"
+    play sound machine_gun
+    scene bg lobby with dissolve
+    pause 1.0
+    scene bg arena_hall with dissolve
+    pause 0.1
+    "Kate then got bumped into so hard that she fell down!"
+    show dakota sad at middle with dissolve
+    pause 0.1
+    d "Kate!"
+    "After pulling her sister back up, she held onto her hand and kept running."
+    show dakota zorder 2:
+        ease 0.5 two1
+    show kate shocked at two2 zorder 1 with dissolve
+    pause 0.1
+    k "Kota, my hat!"
+    d "You'll be okay, Kate! Let's move!!"
+    $t_name = "Big REDD"
+    play sound machine_gun
+    scene bg arena_hall with dissolve
+    window hide dissolve
+    pause 1.0
+    stop ambience fadeout(3)
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter3_scene4 = True
+
+
+label showmustgoon:
+    python:
+        currenttime = "9:18 PM"
+        timeleft = "9 hours and 42 minutes"
+        l_exp = "neutral"
+    call chapterstart
+    pause 2
+    play music classy_ghouls
+    scene bg storage
+    with Dissolve(2.0)
+    window show dissolve
+    show screen laura
+    with dissolve
+    pause 0.1
+    "It didn't take long for us to learn what had happened."
+    "We didn't have the specifics, of course, but the basic rundown was 'a REDD shot someone, kids ran in panic, now they're being hunted'."
+    $l_exp = "smile"
+    "A good portion of the audience didn't run and returned to their seats ASAP."
+    $l_exp = "surprised"
+    "But a lot of them ran away to different parts of the theater."
+    $l_exp = "concerned"
+    "Last we knew, Krag was being informed of the situation and being asked what they should do."
+    "His show is already being delayed thanks to this mishap, so it begs the question of how he's going to handle it."
+    show richard concerned at middle_r with dissolve
+    pause 0.1
+    $l_exp = "surprised"
+    r "...do you think..."
+    "I grabbed his hand tightly."
+    $l_exp = "excited"
+    l "Our girls are smart, especially with Dakota in charge."
+    l "They wouldn't get themselves in danger."
+    r glare "They're still kids, Laura. And they must be scared out of their minds."
+    $l_exp = "surprised"
+    l "I know that, Richard."
+    $l_exp = "sad"
+    l "But if I don't assume the best right now, I'm gonna go insane."
+    r concerned "..."
+    "That's when the screen cut to the stage, with the REDD of the hour having a grin on his face."
+    stop music fadeout(0.6)
+    scene bg stage
+    hide screen laura
+    show sprinkles happy at middle_s
+    with dissolve
+    pause 0.1
+    play music sprinkles_theme
+    s "Ahaha~! Sorry for the delay there, folks."
+    s wut "We had a bit of an issue during the break."
+    s jeer "Thankfully, it's being sorted out, and it shouldn't interfere with our show."
+    s laugh "That said, let's select another game to play~!"
+    $l_exp = "surprised"
+    $renpy.music.set_volume(0.5, delay=0.5, channel="music")
+    scene bg storage
+    show screen laura
+    show richard concerned at middle_r
+    with dissolve
+    pause 0.1
+    play sound door_open
+    "On cue, the big REDD came back in."
+    hide richard
+    show trosh at middle
+    with dissolve
+    pause 0.1
+    t "Alright, you're next!"
+    "He exclaimed as he pointed to one of the people near the front."
+    woman "P-Please! I can't!"
+    t "Is that right?"
+    "He then pointed his gun at her in the blink of an eye."
+    t "Then you're of no use to us."
+    woman "WAIT!!"
+    woman "I-I'll go..."
+    t "That's what I thought."
+    redd "Hey!"
+    $l_exp = "concerned"
+    "The big REDD turned to face the doorway, where a fellow REDD could be seen looking in."
+    t "What??"
+    redd "We found this in one of the hallways."
+    "He then held up something."
+    $l_exp = "neutral"
+    "It looked very bright orange, just like--"
+    stop music fadeout(3)
+    $l_exp = "sad"
+    "..."
+    "Oh, my God..."
+    "He was holding Kate's hat."
+    show black zorder 3
+    with Dissolve(1.0)
+    pause 0.5
+    $nvl = True
+    nvl clear
+    hide screen laura
+    nvl show dissolve
+    play music vast_places
+    $renpy.music.set_volume(1.0, channel="music")
+    narrate """
+    No, that can't be right.
+
+    There's no way Kate would have been in a position where her hat would be in a hallway.
+
+    That has to be someone else's hat.
+
+    Someone else with a Mr. Sprinkles top hat.
+
+    Something I even pointed out hours ago that no one else was wearing...
+
+    I must have missed the other person who was wearing one.
+
+    It's the only thing that makes sense.
+
+    Kate has to be safe in her seat.
+
+    Dakota has to be right there beside her.
+
+    They have to be safe.
+
+    They have to be...
+    """
+    $nvl = False
+    nvl hide
+    hide black
+    show screen laura
+    with dissolve
+    pause 0.1
+    "I can't just sit idly by."
+    "I have to say something."
+    "I have to do something to prove that they're okay."
+    "...right?{nw}"
+    $renpy.music.set_volume(0.5, delay=1, channel="music")
+    menu:
+        "...right?{fast}"
+        "Say something.":
+            $renpy.music.set_volume(1.0, delay=1, channel="music")
+            
+        "Stay quiet.":
+            $renpy.music.set_volume(1.0, delay=1, channel="music")
+            jump stayquiet

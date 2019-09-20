@@ -1040,6 +1040,7 @@ label sleeponit:
     $persistent.chapter1_scene2 = True
     jump chapter_2
 
+
 label weshouldleave:
     $l_exp = "sad"
     l "...you're right. We should leave."

@@ -195,20 +195,21 @@ image choice_bg:
     alpha 0.35
 
 # Image Backgrounds
-image bg stage = "BG/stage.jpg"
-image bg curtain = "BG/sprinklescurtain.jpg"
-image bg showstage = "BG/showstage.jpg"
-image bg livingroom = "BG/livingroom2.jpg"
-image bg dakotaroom = "BG/dakotaroom2.jpg"
-image bg newsroom = "BG/newsroom.jpg"
 image bg arena_ext = "BG/arenaexterior.jpg"
-image bg dressingroom = "BG/dressingroom.jpg"
-image bg livestage = "BG/livestage2.jpg"
 image bg arena_hall = "BG/arenahall.jpeg"
-image bg storage = "BG/storage.jpeg"
-image bg restroom = "BG/restroom.jpg"
 image bg basement = "BG/basement.jpg"
 image bg basement_hall = "BG/basementhall.jpg"
+image bg curtain = "BG/sprinklescurtain.jpg"
+image bg dakotaroom = "BG/dakotaroom2.jpg"
+image bg dressingroom = "BG/dressingroom.jpg"
+image bg livestage = "BG/livestage2.jpg"
+image bg livingroom = "BG/livingroom2.jpg"
+image bg lobby = "BG/lobby.jpg"
+image bg newsroom = "BG/newsroom.jpg"
+image bg restroom = "BG/restroom.jpg"
+image bg showstage = "BG/showstage.jpg"
+image bg stage = "BG/stage.jpg"
+image bg storage = "BG/storage.jpeg"
 
 
 ## Custom Audio Channels ##########################################################################################################
@@ -222,45 +223,42 @@ init python:
 ## Audio ##########################################################################################################################
 
 # Music
-define audio.title = "audio/music/title.ogg"
-define audio.arcade_madness = "audio/music/Arcade-Madness.mp3"
 define audio.autumn_changes = "audio/music/Autumn-Changes_Looping.mp3"
-define audio.techno_celebration = "audio/music/Techno-Celebration-Looping.mp3"
-define audio.neon_runner = "audio/music/Neon-Runner_Looping.mp3"
-define audio.after_the_invasion = "audio/music/After-the-Invasion_Looping.mp3"
 define audio.bells_of_weirdness = "audio/music/Bells-of-Weirdness_Looping.mp3"
-define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 define audio.classy_ghouls = "audio/music/Classy-Ghouls-Halloween-Gathering_Looping.mp3"
-define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
-define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
-define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
 define audio.creaky_country_fair = "audio/music/Creaky-Country-Fair.ogg"
-define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
 define audio.ice_cream_truck = "audio/music/Ice-Cream-Truck_Looping.mp3"
 define audio.into_the_haunted_forest = "audio/music/Into-the-Haunted-Forest_Looping.mp3"
+define audio.neon_runner = "audio/music/Neon-Runner_Looping.mp3"
+define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
+define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
+define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
+define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
+define audio.title = "audio/music/title.ogg"
+define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 
 # Sound Effects
-define audio.flicker = "audio/se/flicker.ogg"
+define audio.applause = "audio/se/applause.ogg"
+define audio.buzzer_full = "audio/se/buzzer.ogg"
+define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
+define audio.children_screaming = "audio/se/children_screaming.ogg"
+define audio.crowd = "audio/se/crowd.ogg"
+define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
+define audio.doorbell = "audio/se/doorbell.ogg"
+define audio.door_knock = "audio/se/doorknock.ogg"
+define audio.door_open = "audio/se/door_open.ogg"
 define audio.drumroll_buildup = "<to 4.9 loop 0.5>audio/se/drumroll.ogg"
 define audio.drumroll_finish = "<from 4.9>audio/se/drumroll.ogg"
-define audio.applause = "audio/se/applause.ogg"
-define audio.doorbell = "audio/se/doorbell.ogg"
-define audio.door_open = "audio/se/door_open.ogg"
+define audio.flicker = "audio/se/flicker.ogg"
+define audio.footsteps = "audio/se/footsteps.ogg"
+define audio.hammer = "audio/se/hammer.ogg"
 define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
 define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
-define audio.siren = "audio/se/siren.ogg"
-define audio.door_knock = "audio/se/doorknock.ogg"
-define audio.crowd = "audio/se/crowd.ogg"
 define audio.machine_gun = "audio/se/machine gun.ogg"
-define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
-define audio.children_screaming = "audio/se/children_screaming.ogg"
-define audio.smack = "audio/se/smack.ogg"
-define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
-define audio.buzzer_full = "audio/se/buzzer.ogg"
 define audio.shotgun = "audio/se/shotgun.ogg"
+define audio.siren = "audio/se/siren.ogg"
+define audio.smack = "audio/se/smack.ogg"
 define audio.snap = "audio/se/snap.ogg"
-define audio.hammer = "audio/se/hammer.ogg"
-define audio.footsteps = "audio/se/footsteps.ogg"
 
 
 ## Transforms ####################################################################################################################
@@ -645,7 +643,7 @@ screen chapterselect():
         elif replay_num == 10:
             text "After telling some jokes, Mr. Sprinkles has more fun with Jessica." style "replay_desc" xalign 0.5
         elif replay_num == 11:
-            text "In a daring move, Dakota and Kate attempt to escape the REDD guards." style "replay_desc" xalign 0.5
+            text "A typical restroom break. At least, it {b}was{/b}." style "replay_desc" xalign 0.5
 
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
