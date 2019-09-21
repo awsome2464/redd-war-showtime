@@ -129,6 +129,21 @@ image spotlight = "spotlight.png"
 image blood:
     "blood.png"
     alpha 0.75
+image blood2:
+    "blood.png"
+    xzoom -1.0
+    xpos 1
+    alpha 0.5
+image blood3:
+    "blood.png"
+    yzoom -1.0
+    xpos 500
+    alpha 0.95
+image blood4:
+    "blood.png"
+    xzoom -1.0 yzoom -1.0
+    xpos 1000
+    alpha 0.25
 
 # Text Images
 image announcetext = ParameterizedText(style='announce')
@@ -190,6 +205,7 @@ image ctc_arrow_nvl:
 # Solid Backgrounds
 image bg fade = "#000000"
 image bg flash = "#ffffff"
+image bg blood = "#f00000"
 image choice_bg:
     "#000000"
     alpha 0.35
@@ -239,6 +255,7 @@ define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 
 # Sound Effects
 define audio.applause = "audio/se/applause.ogg"
+define audio.blood = "audio/se/blood.ogg"
 define audio.buzzer_full = "audio/se/buzzer.ogg"
 define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
 define audio.children_screaming = "audio/se/children_screaming.ogg"
@@ -255,6 +272,7 @@ define audio.hammer = "audio/se/hammer.ogg"
 define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
 define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
 define audio.machine_gun = "audio/se/machine gun.ogg"
+define audio.saw = "audio/se/saw.ogg"
 define audio.shotgun = "audio/se/shotgun.ogg"
 define audio.siren = "audio/se/siren.ogg"
 define audio.smack = "audio/se/smack.ogg"
@@ -618,6 +636,16 @@ screen chapterselect():
                 hovered SetVariable("replay_num", -1)
                 unhovered SetVariable("replay_num", 0)
                 action NullAction()
+        if persistent.chapter3_scene5:
+            textbutton "Standing Up" xalign 0.5:
+                hovered SetVariable("replay_num", 12)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+        else:
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
     vbox:
         xalign 0.8 yalign 0.5
         if replay_num == -1:
@@ -644,17 +672,26 @@ screen chapterselect():
             text "After telling some jokes, Mr. Sprinkles has more fun with Jessica." style "replay_desc" xalign 0.5
         elif replay_num == 11:
             text "A typical restroom break. At least, it {b}was{/b}." style "replay_desc" xalign 0.5
+        elif replay_num == 12:
+            text "Laura has choice words for a REDD after learning about her daughters' potential endangerment." style "replay_desc" xalign 0.5
 
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
     add gui.main_menu_background
-    if persistent.achievement_toosafe:
-        text "{i}Playing it TOO Safe{/i}\nEscape Atlanta" xalign 0.5 yalign 0.5
-    else:
-        text "LOCKED" xalign 0.5 yalign 0.5
+    vbox:
+        xalign 0.5 yalign 0.5
+        spacing 10
+        if persistent.achievement_toosafe:
+            text "{i}Playing it TOO Safe{/i}\nEscape Atlanta" xalign 0.5
+        else:
+            text "LOCKED" xalign 0.5
+        if persistent.achievement_futurecorpses:
+            text "{i}Future Corpses{/i}\nFulfill Your Destiny" xalign 0.5
+        else:
+            text "LOCKED" xalign 0.5
     null height 10
-    textbutton "Return" action ShowMenu("extras") xalign 0.25 yalign 0.9
+    textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
 
 
 ## Variable Defaults ##############################################################################################################

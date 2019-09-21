@@ -1166,8 +1166,8 @@ label showmustgoon:
     show trosh at middle
     with dissolve
     pause 0.1
-    t "Alright, you're next!"
-    "He exclaimed as he pointed to one of the people near the front."
+    t "Alright, you two are next!"
+    "He exclaimed as he pointed to two of the people near the front."
     woman "P-Please! I can't!"
     t "Is that right?"
     "He then pointed his gun at her in the blink of an eye."
@@ -1226,16 +1226,293 @@ label showmustgoon:
     show screen laura
     with dissolve
     pause 0.1
-    "I can't just sit idly by."
-    "I have to say something."
-    "I have to do something to prove that they're okay."
-    "...right?{nw}"
-    $renpy.music.set_volume(0.5, delay=1, channel="music")
+    t "Have you searched the hall thoroughly?"
+    redd "We have a team working on it now."
+    redd "What should we do if we find someone?"
+    t "Krag said if you find a child, bring them back to their seat alive."
+    t "But if you 'accidentally' hurt one..."
+    t "...I wouldn't be upset, ehehe."
+    $l_exp = "mad"
+    "I stood up without thinking."
+    "Richard looked at me with confusion and fear."
+    l "Don't you dare hurt those kids!"
+    t "..."
+    "All eyes were on me now."
+    "The big REDD just looked a bit confused."
+    t "I'm sorry, I must be hearing things incorrectly."
+    t "It sounded like you just gave me an order."
+    l "Oh, you heard correctly."
+    t "Is that right?"
+    stop music fadeout(5)
+    "He then walked over to me slowly, everyone in his path quickly trying to move away."
+    "He finally stopped about a foot away from me, looking me in the eye."
+    $l_exp = "neutral"
+    "I was scared shitless, but there's no turning back now."
+    t "What's your name?{nw}"
     menu:
-        "...right?{fast}"
-        "Say something.":
-            $renpy.music.set_volume(1.0, delay=1, channel="music")
-            
-        "Stay quiet.":
-            $renpy.music.set_volume(1.0, delay=1, channel="music")
-            jump stayquiet
+        t "What's your name?{fast}"
+        "\"Laura.\"":
+            jump nameislaura
+        "\"Why do you care?\"":
+            $l_exp = "concerned"
+            l "Why do you care?"
+            l "You see us as nothing but future corpses. Why do you care about names?"
+            t "..."
+            "The room was dead silent."
+            "..."
+            t "Fair point."
+            $l_exp = "neutral"
+            "He then turned around to the REDD in the hall."
+            t "Take the one in the black shirt and one in the red shirt to the stage."
+            "He ordered as he pointed to the women he selected when he came in."
+            t "And close the door behind you."
+            "The guard did just that, with the terrified women shedding tears as they left."
+            "He then looked at me with a grin."
+            t "You're right. Humans are nothing but future corpses."
+            t "And you're about to meet your destiny."
+            $l_exp = "surprised"
+            "The next thing I knew, the barrel of his gun was on my chest."
+            hide screen laura
+            window hide
+            play sound machine_gun
+            show white zorder 3
+            pause 0.1
+            hide white
+            play sound2 crowd_screaming
+            scene bg blood
+            with Dissolve(2.0)
+            stop sound2 fadeout(5)
+            pause 3
+            scene bg fade
+            with Dissolve(2.0)
+            pause 1
+            if not persistent.achievement_futurecorpses:
+                $persistent.achievement_futurecorpses = True
+                $renpy.notify("Achievement Unlocked: {i}Future Corpses{/i}")
+            $renpy.end_replay()
+            jump gameover
+label nameislaura:
+    l "...{w}Laura."
+    t "Well, Laura, I must commend you for your bravery."
+    t "As idiotic as it is."
+    t "But let me tell you something as clear as I can."
+    "He then leaned even closer to me."
+    $l_exp = "concerned"
+    "His breath smelled repulsive, but I kept my cool."
+    $l_exp = "neutral"
+    t "The only person I take orders from is Krag Dovason."
+    t "{b}NOT{/b} puny, pathetic humans such as yourself."
+    $l_exp = "rage"
+    l "Then why would you say it would be okay to harm those children when Krag said not to?"
+    t "Are you deaf, Laura?"
+    t "I said I wouldn't be upset if it happened. I never said it would be okay."
+    "That's when we could hear rapid footsteps approach the doorway."
+    s "Trosh!"
+    play music sprinkles_spooky
+    $l_exp = "surprised"
+    show trosh zorder 2:
+        ease 0.5 two1
+    show sprinkles hm at two2_s zorder 1 with dissolve
+    pause 0.1
+    s "Where are the next contestants?!"
+    "The big REDD turned around and faced Sprinkles."
+    t "Sorry. Had a bit of a conflict."
+    s wut "Well, resolve it!! I can't afford any more delays!!"
+    t "Understood. I'll bring them out now."
+    "After taking a deep breath, Mr. Sprinkles walked away quickly."
+    show trosh:
+        ease 0.5 middle
+    hide sprinkles with dissolve
+    pause 0.1
+    $l_exp = "concerned"
+    l "Trosh?"
+    l "As in Trosh Dovason?"
+    "He glared at me for a second before walking back towards the women he initially chose."
+    $t_name = "Trosh"
+    t "Move it."
+    $l_exp = "neutral"
+    "The women, clearly a bit surprised he hadn't forgotten about them, complied and walked out of the room by gunpoint."
+    stop music fadeout(3)
+    hide trosh with dissolve
+    pause 0.5
+    "I finally sat back down."
+    show richard glare at middle_r with dissolve
+    pause 0.1
+    "My husband didn't exactly look thrilled with me."
+    play music vast_places
+    $l_exp = "mad"
+    l "Don't look at me like that."
+    r rage "I know you're scared about the girls and want them to be safe, but that does not mean you can just go picking a fight with the guys with guns!"
+    $l_exp = "rage"
+    l "So you would have just rather me sit here and do nothing while he talks about potentially hurting your daughters?"
+    r glare "Oh, I'm sorry, I thought you were assuming the best so you could keep your sanity!"
+    $l_exp = "mad"
+    "I lightly growled as I covered my face with my hands."
+    show black zorder 3:
+        alpha 0.0
+        ease 0.5 alpha 1.0
+    $nvl = True
+    nvl clear
+    hide screen laura
+    nvl show dissolve
+    narrate """
+    I felt a whole range of emotions at that moment.
+
+    Anger, sadness, confusion, fear...
+    
+    Richard's right. I'm scared about Dakota and Kate.
+
+    I can only be so optimistic before I accept the reality of the situation.
+    
+    {clear}
+
+    My girls might be running around the theater, scared and lost.
+
+    And there are REDD looking for them.
+
+    And they might hurt them. Or worse.
+
+    {nw}
+
+    How can anyone stay calm knowing that?
+
+    {nw}
+
+    That's when I felt the tears come.
+
+    That's when the sobs came out.
+
+    That's when Richard grabbed my hand.
+    """
+    $nvl = False
+    $l_exp = "sad"
+    show richard concerned
+    hide black
+    show screen laura
+    nvl hide
+    with dissolve
+    pause 0.1
+    r "Look..."
+    r "I'm just as scared as you are, Laura."
+    r "Believe me, I want to go out and find them just as much as you."
+    r "But if we get ourselves killed trying to find them, then what purpose does that serve?"
+    "I wiped my eyes and took a deep breath."
+    "I know he's right, but I don't wanna accept it."
+    "He just continued to hold my hand as we sat there in silence."
+    r smile "Hey."
+    r "What if we texted them, just for kicks?"
+    $l_exp = "surprised"
+    l "!!"
+    $l_exp = "excited"
+    l "Good idea."
+    "I then took out my phone and texted Dakota."
+    lt "Just wanted to check up on you girls to make sure you're okay"
+    $l_exp = "surprised"
+    "I wasn't exactly expecting an instant reply, but at least it's something she can reply to."
+    $l_exp = "sad"
+    "Eventually."
+    r concerned "Everything will be fine, Laura."
+    $l_exp = "surprised"
+    l "You really think that?"
+    r "..."
+    r "Well, it's like you said. We just gotta assume the best, even if we don't believe it."
+    "I guess that's all we really {b}can{/b} do..."
+    stop music fadeout(3)
+    $l_exp = "neutral"
+    s "Come on, ladies, you got this!"
+    play music ice_cream_truck
+    play ambience saw
+    $renpy.music.set_volume(0.25, channel="ambience")
+    scene bg stage
+    show sprinkles happy at middle_s
+    with dissolve
+    pause 0.1
+    s "Keep pulling!"
+    "The two women were playing a game of tug-of-war."
+    $l_exp = "concerned"
+    "It looked relatively safe at first."
+    $l_exp = "surprised"
+    extend " But then I noticed the giant horizontal spinning saw blade in the middle."
+    "It was under the rope, at about thigh-level."
+    "If someone got too close to it, they'd have a really bad leg day."
+    $l_exp = "concerned"
+    "And it appears that in order to prevent them from being detached from the rope, it's tied tightly to each of their wrists."
+    "Currently, the woman with the red shirt was winning, though not by much."
+    "It seems like anyone's game."
+    s jeer "Let's go, ladies~!"
+    $renpy.music.set_volume(0.5, delay=0.5, channel="music")
+    $renpy.music.set_volume(0.125, delay=0.5, channel="ambience")
+    scene bg storage
+    show richard concerned at middle_r
+    with dissolve
+    pause 0.1
+    $l_exp = "surprised"
+    "You know we're in a fucked-up situation when watching a deadly tug-of-war game on TV was the best way to calm ourselves down."
+    "Still, I can't help but keep Dakota and Kate in the back of my mind."
+    "I really hope they're safe..."
+    "Of course, how am I really supposed to know if they are?"
+    $l_exp = "neutral"
+    s "Ohoho, folks! This is getting interesting~!"
+    $renpy.music.set_volume(1.0, delay=0.5, channel="music")
+    $renpy.music.set_volume(0.25, delay=0.5, channel="ambience")
+    scene bg stage
+    show sprinkles laugh at middle_s
+    with dissolve
+    pause 0.1
+    s "Come on, you can win this!"
+    "Now the woman in the black shirt was winning. By a decent amount, even."
+    "Both women looked exhausted, their faces almost resembling that of a REDD's."
+    $l_exp = "surprised"
+    "Their arms were shaking like mad, their feet inching back and forth across the floor."
+    "Tears of stress and pain were rolling down their cheeks."
+    "The woman in red was getting closer and closer to the saw, her red, sweaty face showing every fearful expression imaginable."
+    $l_exp = "sad"
+    "Eventually, she seemed to show an expression of defeat."
+    "Bracing herself, she loosened her grip and was thrust forward by her opponent."
+    hide screen laura
+    window hide
+    $renpy.music.set_volume(1.0, channel="ambience")
+    $l_exp = "surprised"
+    stop music fadeout(5)
+    play sound blood
+    pause 0.1
+    play sound2 children_screaming
+    if persistent.gore:
+        show blood
+        pause 0.25
+        show blood2
+        pause 0.25
+        show blood3
+        pause 0.1
+        show blood4
+        pause 1
+    else:
+        pause 1.6
+    window show dissolve
+    show screen laura
+    with dissolve
+    pause 0.1
+    "The screen was pretty obscured with blood, but it was still not a pretty sight."
+    "The poor woman couldn't fall back or get away because of the knot on her wrist, so her opponent had to step forward a bit in order for her to back up and topple to the ground."
+    $renpy.music.set_volume(0.25, delay=1, channel="ambience")
+    s happy "Oh, what a great game, ladies!"
+    "Jingle and Jangle came out onto the stage, with Jingle untying the winner."
+    "The loser, meanwhile, with tears and a cry, had her face dragged closer to the saw by Jangle."
+    scene bg fade with dissolve
+    pause 0.1
+    $l_exp = "sad"
+    $renpy.music.set_volume(1.0, channel="ambience")
+    play sound blood
+    "I closed my eyes tightly as I heard the woman's cries mixed in with the slicing of her face."
+    "Please let this night end faster."
+    "Please..."
+    "I don't know how much more of this I can take..."
+    hide screen laura
+    with dissolve
+    window hide dissolve
+    pause 1
+    stop ambience fadeout(3)
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter3_scene5 = True
