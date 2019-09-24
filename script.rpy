@@ -218,6 +218,7 @@ image bg basement_hall = "BG/basementhall.jpg"
 image bg curtain = "BG/sprinklescurtain.jpg"
 image bg dakotaroom = "BG/dakotaroom2.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
+image bg janitorcloset = "BG/janitorcloset.jpg"
 image bg livestage = "BG/livestage2.jpg"
 image bg livingroom = "BG/livingroom2.jpg"
 image bg lobby = "BG/lobby.jpg"
@@ -430,9 +431,9 @@ style game:
     outlines [(1.0 ,'#ffffff', 0.0, 0.0)]
     size 50
 style replay_desc:
+    size 25
     xalign 0.5
     text_align 0.5
-    layout "subtitle"
     justify True
 
 
@@ -505,17 +506,20 @@ screen notify(message):
 # Menu Screens
 screen extras():
     tag menu
-    add gui.main_menu_background
+    add "BG/livestage2.jpg"
     add "gui/overlay/game_menu.png"
-    vbox:
+    frame:
+        xpadding 20 ypadding 20
         xalign 0.5 yalign 0.5
-        spacing 10
-        textbutton "Chapter Select" action ShowMenu('chapterselect')
-        textbutton "Achievements" action ShowMenu('achievements')
-        textbutton "Credits" action [ToggleVariable('persistent.credits', True), Jump('credits')]
-        textbutton "Follow Good Tales!" action NullAction()
-        null height 10
-        textbutton "Return" action ShowMenu('main_menu')
+        vbox:
+            xalign 0.5 yalign 0.5
+            spacing 10
+            textbutton "Chapter Select" action ShowMenu('chapterselect') xalign 0.5
+            textbutton "Achievements" action ShowMenu('achievements') xalign 0.5
+            textbutton "Credits" action [ToggleVariable('persistent.credits', True), Jump('credits')] xalign 0.5
+            textbutton "Follow Good Tales!" action NullAction() xalign 0.5
+            null height 10
+            textbutton "Return" action ShowMenu('main_menu')
 screen chapterselect():
     tag menu
     add gui.main_menu_background
@@ -646,34 +650,37 @@ screen chapterselect():
                 hovered SetVariable("replay_num", -1)
                 unhovered SetVariable("replay_num", 0)
                 action NullAction()
-    vbox:
-        xalign 0.8 yalign 0.5
-        if replay_num == -1:
-            text "???" style "replay_desc" xalign 0.5
-        elif replay_num == 1:
-            text "The Farr family enjoys a normal day at home before their lives change forever." style "replay_desc" xalign 0.5
-        elif replay_num == 2:
-            text "The TV brings both good and bad news." style "replay_desc" xalign 0.5
-        elif replay_num == 3:
-            text "The Farrs decide whether or not to stay in Atlanta upon hearing new information." style "replay_desc" xalign 0.5
-        elif replay_num == 4:
-            text "Krag and Madeline have a brief conversation before the show starts." style "replay_desc" xalign 0.5
-        elif replay_num == 5:
-            text "The Farrs are on their way to the theater." style "replay_desc" xalign 0.5
-        elif replay_num == 6:
-            text "Kate and Dakota get to meet their television idol." style "replay_desc" xalign 0.5
-        elif replay_num == 7:
-            text "The show begins, but it's not what everyone expected it to be." style "replay_desc" xalign 0.5
-        elif replay_num == 8:
-            text "Two contestants play the first game of the evening." style "replay_desc" xalign 0.5
-        elif replay_num == 9:
-            text "Dakota tries to get her and her sister out of the audience." style "replay_desc" xalign 0.5
-        elif replay_num == 10:
-            text "After telling some jokes, Mr. Sprinkles has more fun with Jessica." style "replay_desc" xalign 0.5
-        elif replay_num == 11:
-            text "A typical restroom break. At least, it {b}was{/b}." style "replay_desc" xalign 0.5
-        elif replay_num == 12:
-            text "Laura has choice words for a REDD after learning about her daughters' potential endangerment." style "replay_desc" xalign 0.5
+    frame:
+        xalign 0.75 yalign 0.5
+        xysize (700, 250)
+        vbox:
+            xalign 0.5 yalign 0.5
+            if replay_num == -1:
+                text "???" style "replay_desc" xalign 0.5
+            elif replay_num == 1:
+                text "The Farr family enjoys a normal day at home before their lives change forever." style "replay_desc" xalign 0.5
+            elif replay_num == 2:
+                text "The TV brings both good and bad news." style "replay_desc" xalign 0.5
+            elif replay_num == 3:
+                text "The Farrs decide whether or not to stay in Atlanta upon hearing new information." style "replay_desc" xalign 0.5
+            elif replay_num == 4:
+                text "Krag and Madeline have a brief conversation before the show starts." style "replay_desc" xalign 0.5
+            elif replay_num == 5:
+                text "The Farrs are on their way to the theater." style "replay_desc" xalign 0.5
+            elif replay_num == 6:
+                text "Kate and Dakota get to meet their television idol." style "replay_desc" xalign 0.5
+            elif replay_num == 7:
+                text "The show begins, but it's not what everyone expected it to be." style "replay_desc" xalign 0.5
+            elif replay_num == 8:
+                text "Two contestants play the first game of the evening." style "replay_desc" xalign 0.5
+            elif replay_num == 9:
+                text "Dakota tries to get her and her sister out of the audience." style "replay_desc" xalign 0.5
+            elif replay_num == 10:
+                text "After telling some jokes, Mr. Sprinkles has more fun with Jessica." style "replay_desc" xalign 0.5
+            elif replay_num == 11:
+                text "A typical restroom break. At least, it {b}was{/b}." style "replay_desc" xalign 0.5
+            elif replay_num == 12:
+                text "Laura has choice words for a REDD after learning about her daughters' potential endangerment." style "replay_desc" xalign 0.5
 
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
@@ -850,13 +857,14 @@ label start:
     if persistent.credits:
         $persistent.credits = False
         return
+    $quick_menu = False
+    $save_name = "Chapter 1"
+    $save_subtitle = "The Calm Before the Storm"
     play sound "audio/se/gong.ogg"
     stop music fadeout(3.0)
     scene bg fade
     with Dissolve(1.0)
     pause 3
-    $save_name = "Chapter 1"
-    $save_subtitle = "The Calm Before the Storm"
     jump chapter_1
 
 # Credits

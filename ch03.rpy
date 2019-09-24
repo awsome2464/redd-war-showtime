@@ -17,6 +17,7 @@ label firstgame:
     with Dissolve(2.0)
     pause 0.5
     nvl clear
+    $quick_menu = True
     nvl show dissolve
     narrate """
     We were led to a back area behind the stage.
@@ -407,9 +408,11 @@ label firstgame:
     "The amount of dread that came across the man's face as Mr. Sprinkles turned to him was unexplainable."
     s happy "How many people--"
     stop music
+    $quick_menu = False
     window hide
     play sound buzzer_full
     pause 1
+    $quick_menu = True
     window show dissolve
     s @ laugh "Oh, my! A minute certainly does fly by, doesn't it?"
     s "Congratulations, Miss! You won!"
@@ -510,6 +513,7 @@ label firstgame:
     hide screen laura
     hide richard
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -530,6 +534,7 @@ label gottago:
     scene bg livestage
     with Dissolve(2.0)
     pause 0.5
+    $quick_menu = True
     window show dissolve
     show dakota neutral at two1
     show kate shocked at two2
@@ -615,6 +620,7 @@ label gottago:
     hide kate
     hide dakota
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -636,6 +642,7 @@ label secondbeating:
     scene bg stage
     show sprinkles laugh at middle_s
     with Dissolve(2.0)
+    $quick_menu = True
     window show dissolve
     pause 0.1
     s "Ahahaha! Great work, Sir!"
@@ -811,6 +818,7 @@ label secondbeating:
     "It all begs the question of how much worse could this possibly get for everyone..."
     hide screen laura
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -819,6 +827,7 @@ label secondbeating:
     pause 1
     scene bg basement
     with Dissolve(2.0)
+    $quick_menu = True
     window show dissolve
     show jessica at two1 zorder 1 with dissolve
     pause 0.5
@@ -872,9 +881,12 @@ label secondbeating:
     show sprinkles:
         linear 0.25 xalign 0.45
     s "{b}You.{/b}"
+    $quick_menu = False
     window hide
     stop music fadeout(5)
     pause 6
+    $quick_menu = True
+    window show
     show sprinkles laugh:
         linear 0.25 xalign 0.75
     s "Ahaha~!"
@@ -887,6 +899,8 @@ label secondbeating:
     pause 1
     j "..."
     $s_name = "Mr. Sprinkles"
+    $quick_menu = False
+    window hide dissolve
     pause 1.0
     scene bg fade
     with Dissolve(2.0)
@@ -906,6 +920,7 @@ label girlsescape:
     scene bg stage
     show sprinkles happy at middle_s
     with Dissolve(2.0)
+    $quick_menu = True
     window show dissolve
     pause 0.1
     s "Alright, folks, it's time for a proper 15-minute break!"
@@ -1094,6 +1109,7 @@ label girlsescape:
     $t_name = "Big REDD"
     play sound machine_gun
     scene bg arena_hall with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop ambience fadeout(3)
@@ -1114,6 +1130,7 @@ label showmustgoon:
     play music classy_ghouls
     scene bg storage
     with Dissolve(2.0)
+    $quick_menu = True
     window show dissolve
     show screen laura
     with dissolve
@@ -1273,6 +1290,7 @@ label showmustgoon:
             $l_exp = "surprised"
             "The next thing I knew, the barrel of his gun was on my chest."
             hide screen laura
+            $quick_menu = False
             window hide
             play sound machine_gun
             show white zorder 3
@@ -1470,6 +1488,7 @@ label nameislaura:
     "Eventually, she seemed to show an expression of defeat."
     "Bracing herself, she loosened her grip and was thrust forward by her opponent."
     hide screen laura
+    $quick_menu = False
     window hide
     $renpy.music.set_volume(1.0, channel="ambience")
     $l_exp = "surprised"
@@ -1488,6 +1507,7 @@ label nameislaura:
         pause 1
     else:
         pause 1.6
+    $quick_menu = True
     window show dissolve
     show screen laura
     with dissolve
@@ -1509,6 +1529,7 @@ label nameislaura:
     "I don't know how much more of this I can take..."
     hide screen laura
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1
     stop ambience fadeout(3)
@@ -1516,3 +1537,19 @@ label nameislaura:
     pause 4
     $renpy.end_replay()
     $persistent.chapter3_scene5 = True
+
+
+label kidshiding:
+    python:
+        currenttime = "10:27 PM"
+        timeleft = "8 hours and 33 minutes"
+    call chapterstart
+    pause 2
+    play music autumn_changes
+    scene bg janitorcloset
+    with Dissolve(2.0)
+    $quick_menu = True
+    window show dissolve
+    show screen laura
+    with dissolve
+    pause 0.1

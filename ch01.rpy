@@ -10,11 +10,13 @@ label chapter_1:
     pause 0.5
     hide choice_bg
     show spotlight at spotlight_wander
+    $quick_menu = True
     window show dissolve
     "Okay, everyone! Put your hands together for the one...!"
     "...the only...!"
     "{i}Mr. Sprinkles!{/i}"
     show spotlight at spotlight_focus
+    $quick_menu = False
     window hide
     play sound drumroll_finish
     pause 1.0
@@ -27,6 +29,7 @@ label chapter_1:
     pause 1.0
     show sprinkles laugh at middle_s with dissolve
     pause 0.1
+    $quick_menu = True
     window show dissolve
     s "Ahaha! Thank you! Thank you, everyone!"
     s happy "Wow! We've got quite a large audience out here tonight, don't we?"
@@ -36,11 +39,13 @@ label chapter_1:
     s laugh "Are you all excited for the show?!"
     "Audience" "{b}{i}\"YEAH!!!\"{/i}{/b}"
     s "Ahahaha! Alright, then! Let's start the show!"
+    $quick_menu = False
     window hide
     pause 1.0
     scene bg livingroom
     with Dissolve(1.5)
     pause 0.1
+    $quick_menu = True
     window show dissolve
     $l_exp = "neutral"
     show screen laura
@@ -446,6 +451,7 @@ label chapter_1:
     hide screen laura
     with dissolve
     stop music fadeout(5.0)
+    $quick_menu = False
     window hide dissolve
     pause 0.5
     scene bg fade
@@ -465,6 +471,7 @@ label kragonnews:
     scene bg livingroom
     with Dissolve(2.0)
     pause 0.5
+    $quick_menu = True
     window show dissolve
     pause 0.1
     show screen laura
@@ -1034,6 +1041,7 @@ label sleeponit:
     "Well, no matter what happens, tomorrow will be an eventful day."
     "I better get myself mentally prepared for it."
     stop music fadeout(3.0)
+    $quick_menu = False
     window hide dissolve
     pause 4
     $renpy.end_replay()
@@ -1055,6 +1063,7 @@ label weshouldleave:
     hide screen laura
     hide richard
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 0.5
     scene bg fade

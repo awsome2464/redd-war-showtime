@@ -13,6 +13,7 @@ label chapter_2:
     scene bg livingroom
     with Dissolve(2.0)
     pause 0.5
+    $quick_menu = True
     window show dissolve
     pause 0.1
     "I had made my way downstairs, where I found my husband watching the news on TV."
@@ -313,6 +314,7 @@ label dakotaissorry:
     hide richard
     hide screen laura
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -335,6 +337,7 @@ label backstagedrama:
     pause 0.5
     play sound door_knock
     pause 2
+    $quick_menu = True
     window show dissolve
     s "Come in!"
     play sound door_open
@@ -378,6 +381,7 @@ label backstagedrama:
         ease 1.0 middle_s
     pause 1.5
     s evilgrin "Oh, this show will be successful, don't you worry..."
+    $quick_menu = False
     window hide dissolve
     pause 1
     scene bg fade
@@ -395,6 +399,7 @@ label arriveatshow:
         s_name = "Mr. Sprinkles"
     call chapterstart
     pause 2
+    $quick_menu = True
     window show dissolve
     show screen laura
     with dissolve
@@ -563,6 +568,7 @@ label arriveatshow:
     "I'm not going to let some lunatic take that from me."
     hide screen laura
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -585,6 +591,7 @@ label meetandgreet:
     scene bg livestage
     with Dissolve(2.0)
     pause 0.5
+    $quick_menu = True
     window show dissolve
     show screen laura
     with dissolve
@@ -815,6 +822,7 @@ label meetandgreet:
     "I then took out my phone as everyone got into position."
     l "Everyone smile~!"
     hide screen laura
+    $quick_menu = False
     window hide
     pause 0.5
     scene bg flash
@@ -822,6 +830,7 @@ label meetandgreet:
     scene bg fade # Will be replaced by CG of the photo
     with Dissolve(1.0)
     pause 1.0
+    $quick_menu = True
     window show dissolve
     k "How does it look?"
     l "Perfect."
@@ -928,6 +937,7 @@ label meetandgreet:
     scene bg fade
     with dissolve
     "Please, let me be."
+    $quick_menu = False
     window hide dissolve
     pause 4
     $renpy.end_replay()
@@ -946,6 +956,7 @@ label showbegins:
     with Dissolve(3)
     play sound "audio/se/chime.ogg"
     pause 2
+    $quick_menu = True
     window show dissolve
     s "Okay, everyone~! The show will begin in exactly 5 minutes!"
     s "Please use this time to head to your seats so we may start the show with full seats~!"
@@ -1111,10 +1122,12 @@ label showbegins:
     stop music
     play sound "audio/se/spotlight.ogg"
     scene bg fade
+    $quick_menu = False
     window hide
     $renpy.pause(delay=2)
     play ambience crowd fadein(3)
     $l_exp = "concerned"
+    $quick_menu = True
     window show
     show screen laura
     with dissolve
@@ -1392,6 +1405,7 @@ label showbegins:
     """
     nvl hide
     with dissolve
+    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
