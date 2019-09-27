@@ -17,7 +17,6 @@ label firstgame:
     with Dissolve(2.0)
     pause 0.5
     nvl clear
-    $quick_menu = True
     nvl show dissolve
     narrate """
     We were led to a back area behind the stage.
@@ -115,7 +114,7 @@ label firstgame:
     s "..."
     show sprinkles jeer
     "He then turned his head back towards her with a sly grin."
-    s "Because I can."
+    s "Because you were stupid enough to trust a REDD."
     stop music fadeout(3)
     hide sprinkles
     with Dissolve(2)
@@ -408,11 +407,9 @@ label firstgame:
     "The amount of dread that came across the man's face as Mr. Sprinkles turned to him was unexplainable."
     s happy "How many people--"
     stop music
-    $quick_menu = False
     window hide
     play sound buzzer_full
     pause 1
-    $quick_menu = True
     window show dissolve
     s @ laugh "Oh, my! A minute certainly does fly by, doesn't it?"
     s "Congratulations, Miss! You won!"
@@ -513,7 +510,6 @@ label firstgame:
     hide screen laura
     hide richard
     with dissolve
-    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -534,7 +530,6 @@ label gottago:
     scene bg livestage
     with Dissolve(2.0)
     pause 0.5
-    $quick_menu = True
     window show dissolve
     show dakota neutral at two1
     show kate shocked at two2
@@ -620,7 +615,6 @@ label gottago:
     hide kate
     hide dakota
     with dissolve
-    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -642,7 +636,6 @@ label secondbeating:
     scene bg stage
     show sprinkles laugh at middle_s
     with Dissolve(2.0)
-    $quick_menu = True
     window show dissolve
     pause 0.1
     s "Ahahaha! Great work, Sir!"
@@ -818,7 +811,6 @@ label secondbeating:
     "It all begs the question of how much worse could this possibly get for everyone..."
     hide screen laura
     with dissolve
-    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -827,7 +819,6 @@ label secondbeating:
     pause 1
     scene bg basement
     with Dissolve(2.0)
-    $quick_menu = True
     window show dissolve
     show jessica at two1 zorder 1 with dissolve
     pause 0.5
@@ -881,11 +872,9 @@ label secondbeating:
     show sprinkles:
         linear 0.25 xalign 0.45
     s "{b}You.{/b}"
-    $quick_menu = False
     window hide
     stop music fadeout(5)
     pause 6
-    $quick_menu = True
     window show
     show sprinkles laugh:
         linear 0.25 xalign 0.75
@@ -899,7 +888,6 @@ label secondbeating:
     pause 1
     j "..."
     $s_name = "Mr. Sprinkles"
-    $quick_menu = False
     window hide dissolve
     pause 1.0
     scene bg fade
@@ -920,7 +908,6 @@ label girlsescape:
     scene bg stage
     show sprinkles happy at middle_s
     with Dissolve(2.0)
-    $quick_menu = True
     window show dissolve
     pause 0.1
     s "Alright, folks, it's time for a proper 15-minute break!"
@@ -1109,7 +1096,6 @@ label girlsescape:
     $t_name = "Big REDD"
     play sound machine_gun
     scene bg arena_hall with dissolve
-    $quick_menu = False
     window hide dissolve
     pause 1.0
     stop ambience fadeout(3)
@@ -1130,7 +1116,6 @@ label showmustgoon:
     play music classy_ghouls
     scene bg storage
     with Dissolve(2.0)
-    $quick_menu = True
     window show dissolve
     show screen laura
     with dissolve
@@ -1245,7 +1230,8 @@ label showmustgoon:
     pause 0.1
     t "Have you searched the hall thoroughly?"
     redd "We have a team working on it now."
-    redd "What should we do if we find someone?"
+    t "Alright. Once we get these next contestants out, I'll get someone to cover my position so I can search with you."
+    redd "Roger that. What should we do if we find someone?"
     t "Krag said if you find a child, bring them back to their seat alive."
     t "But if you 'accidentally' hurt one..."
     t "...I wouldn't be upset, ehehe."
@@ -1290,7 +1276,6 @@ label showmustgoon:
             $l_exp = "surprised"
             "The next thing I knew, the barrel of his gun was on my chest."
             hide screen laura
-            $quick_menu = False
             window hide
             play sound machine_gun
             show white zorder 3
@@ -1488,7 +1473,6 @@ label nameislaura:
     "Eventually, she seemed to show an expression of defeat."
     "Bracing herself, she loosened her grip and was thrust forward by her opponent."
     hide screen laura
-    $quick_menu = False
     window hide
     $renpy.music.set_volume(1.0, channel="ambience")
     $l_exp = "surprised"
@@ -1507,7 +1491,6 @@ label nameislaura:
         pause 1
     else:
         pause 1.6
-    $quick_menu = True
     window show dissolve
     show screen laura
     with dissolve
@@ -1529,7 +1512,6 @@ label nameislaura:
     "I don't know how much more of this I can take..."
     hide screen laura
     with dissolve
-    $quick_menu = False
     window hide dissolve
     pause 1
     stop ambience fadeout(3)
@@ -1548,8 +1530,298 @@ label kidshiding:
     play music autumn_changes
     scene bg janitorcloset
     with Dissolve(2.0)
-    $quick_menu = True
     window show dissolve
+    pause 0.5
+    show dakota sad at two1
+    show kate shocked at two2
+    with dissolve
+    pause 0.1
+    k "...Kota?"
+    d "Yeah?"
+    k "How much longer are we staying in here?"
+    d "...I don't know, Kate."
+    d "We may have to stay in here all night."
+    k mad "But I don't wanna stay here all night!"
+    d mad "I don't either, but we don't have many choices!"
+    show dakota neutral
+    show kate shocked
+    b "{b}Shhh!!{/b}"
+    b "They're gonna hear you and find us!"
+    d "...Sorry."
+    "The boy who was a few years older than Dakota then turned back to his younger brothers, who seemed to be around Kate's age."
+    "Dakota looked at the other kids hiding in the closet with them."
+    "The only light in the room was coming from a window high up along the wall, where street lights barely let anything in, though some light was better than none."
+    "Some kids had a sibling with them, some had friends, and some were alone."
+    "Tear stains were all over most of their faces, with a lot of them still crying, though very quietly."
+    "All of them were sitting in a spot that couldn't easily be seen by anyone who opened the door."
+    "At least, they hoped they couldn't be seen."
+    "Kate then leaned against Dakota for comfort."
+    k concerned "...I miss Mommy and Daddy."
+    d sad "I do, too."
+    d small_smile "But don't worry. They'll come back for us."
+    d "I know they will."
+    k "No, you don't."
+    d sad "..."
+    d "Yeah, I know."
+    d small_smile "I'm just trying to make you happy, I guess..."
+    k "..."
+    d sad "..."
+    show dakota neutral
+    "That's when Kate gave a yawn and rested her head on Dakota's shoulder."
+    "Dakota then gave a small yawn, as well, as her eyes started to close a bit."
+    "It had to have been really late right now, and all the running certainly did take a lot of energy."
+    "But she didn't feel like she was in a situation where she could fall asleep."
+    "After all, how could she do what her mom asked her to do if she was asleep?"
+    show dakota small_smile
+    "Kate, meanwhile, deserved a bit of a rest."
+    hide kate with dissolve
+    pause 0.1
+    "After a few minutes, Dakota looked and saw Kate's eyes were closed."
+    $b_name = "Older Boy"
+    b "Wow. She actually fell asleep?"
+    d neutral "Huh?"
+    "The older boy was looking at Dakota with a small grin."
+    show dakota at middle with easeinleft
+    pause 0.1
+    b "I just wasn't expecting that. I thought she would've been too scared to sleep."
+    d small_smile "Yeah, I'm shocked, too."
+    d smirk "Not that I'm complaining."
+    "The older boy then gave a light laugh before looking back at his brothers."
+    "They seemed to be awake, yet quiet."
+    show dakota sad
+    "They almost seemed to just be staring blankly ahead of them, showing no emotion at all."
+    d "They're really scared, huh?"
+    b "Aren't you?"
+    d @ mad "Of course I am."
+    d "But they look so much more scared."
+    b "Well, our mom..."
+    b "Sh-She was..."
+    d "One of the people who lost?"
+    b "Yeah..."
+    b "She was one of the ones who lost on {i}Sprinkles Says{/i}."
+    d "I'm so sorry!"
+    b "Thanks..."
+    d "D-Do you have a dad?"
+    b "In Texas, yeah."
+    d small_smile "Hey, that's something, right?"
+    b "We haven't seen him in years, though."
+    d sad "Oh..."
+    "A few seconds of silence passed."
+    b "What about you?"
+    d confused "Huh?"
+    b "Are your parents still alive?"
+    d small_smile "Well, I haven't seen them on the stage, so I guess so."
+    d sad "But we've been back here for a while. Maybe they've been on since and I just haven't realized..."
+    b "Ah..."
+    "More silence."
+    d small_smile "Heh..."
+    d "For all I know, she's all I have left."
+    "She whispered as she looked down at Kate."
+    "It was more of a comment to herself than to the boy."
+    stop music fadeout(5)
+    play sound footsteps
+    show dakota sad
+    "That's when footsteps could be heard approaching the closet."
+    "The older kids in the room got quiet, save for the small shushes they were giving to the younger ones."
+    show dakota:
+        ease 0.5 alpha 0.0
+    window hide dissolve
+    hide dakota
+    pause 1.0
+    play sound door_creak
+    pause 9
+    play sound slow_footsteps
+    pause 5
+    $t_name = "Guard"
+    window show dissolve
+    pause 0.1
+    t "Alright, let's make this easy on all of us, shall we?"
+    t "We've been given orders not to hurt any of you kids, and we plan to follow those orders."
+    t "But if you decide to pull any sneaky tricks, we will not hesitate to take drastic measures."
+    t "So do yourselves a favor and come with us calmly and quietly."
+    show dakota sad at middle with dissolve
+    pause 0.1
+    d "..."
+    play sound slow_footsteps
+    "The silence throughout the room was broken with more footsteps."
+    t "Final warning! Everyone follow us back to the seating area or there will be consequences!"
+    t "Trust me: your odds of survival will be 100\% if you comply with us."
+    d "..."
+    "That's when Dakota noticed several of the children getting up from their positions and following the voice."
+    t "Aha! Thank you for your cooperation."
+    queue sound [snap, "<silence .25>", snap, "<silence .25>", snap]
+    t "Boys, start lining them up outside the room."
+    "Several voices of other guards could be heard as they ordered the children to line up."
+    d "..."
+    play sound slow_footsteps
+    "The footsteps then got closer."
+    pause 2
+    show dakota at two1 with easeinright
+    show trosh at two2
+    with Dissolve(1)
+    pause 1
+    t "Hello."
+    play music classy_ghouls
+    "The guard looked over all the kids in the area."
+    "The older boy just glared at him while his brothers continued to stare blankly ahead."
+    show dakota neutral
+    "Dakota felt scared, but didn't want the guard to know that."
+    "The guard then stopped and stared at Kate, who was still asleep."
+    "Finally, he turned to Dakota."
+    t "By any chance..."
+    t "...is your mother's name Laura?"
+    d sad "!!!"
+    t "Heh heh... I'll take that as a yes."
+    d "H-How do you know that?"
+    "He then squatted down and looked at her in the eye."
+    t "I actually had a little chat with Laura a while ago."
+    t "She's a very brave woman. You're lucky to have her as a mother."
+    "Dakota continued to stare in fear, unsure how to feel about this."
+    t "Say, you what what will make her happy? Seeing her daughters."
+    t "I'm sure you'd love that, as well, right?"
+    d "Uh... I..."
+    "He then extended his hand towards her."
+    t "No tricks. I'll take you back to see her."
+    t "She is alive, after all."
+    d small_smile "She is?"
+    d "My dad, too?"
+    t "Cross my heart."
+    d sad "..."
+    "Every lesson on Stranger Danger came flooding into Dakota's mind."
+    "And for the REDD War, it felt even more appropriate."
+    "But..."
+    "This could be their last chance to see their parents again."
+    "Plus, just knowing that they're alive..."
+    "She then lightly shook Kate."
+    d "Kate?"
+    k "Mmm..."
+    "She lightly moaned while keeping her eyes closed."
+    d small_smile "Kate, we're gonna see Mommy."
+    "That did the trick."
+    show dakota zorder 2:
+        ease 0.5 middle
+    show trosh zorder 2:
+        ease 0.5 right
+    show kate shocked at left with dissolve
+    pause 0.1
+    k "Mommy??"
+    d "Come on..."
+    scene bg arena_hall with dissolve
+    pause 0.1
+    "The girls then got up and followed the guard to the doorway."
+    show trosh at middle with dissolve
+    pause 0.1
+    t "Gather up the rest of the kids."
+    t "I'm gonna take these two to see their mother."
+    "The other guard nodded with a grin before turning back into the closet."
+    hide trosh
+    show dakota confused at middle
+    with dissolve
+    pause 0.1
+    "Something definitely felt wrong, but it felt like it was too late to back out now."
+    show dakota zorder 2:
+        ease 0.5 two2
+    show kate confused at two1 with dissolve
+    pause 0.1
+    k "Kota, why isn't anyone else going to see their mommies and daddies?"
+    d confused "That's a good question, Kate."
+    d "Hey, Mister?"
+    show kate zorder 2:
+        ease 0.5 left
+    show dakota:
+        ease 0.5 middle
+    show trosh at right with dissolve
+    pause 0.1
+    t "What?"
+    d "Why are we the only ones who get to see their parents?"
+    t "Heh. Technically, I'm not even supposed to be taking you two to your parents."
+    t "But something about your mother tells me she'd be {i}really{/i} happy to see you two, so I thought I'd make an exception."
+    d "So? I'm sure all the parents back there want to see their kids right now."
+    t "If you're gonna be ungrateful, I can take you right back to the others."
+    show dakota neutral
+    k shocked "No!"
+    t "That's what I thought."
+    show kate alert:
+        ease 0.5 two1
+    show dakota:
+        ease 0.5 two2
+    hide trosh with dissolve
+    pause 0.1
+    "The girls stayed silent as the guard led them down the hallways."
+    show dakota small_smile
+    "Though the idea of seeing her parents again really made Dakota happy..."
+    "The best she could do is hope he's telling the truth about everything."
+    window hide dissolve
+    pause 1
+    stop music fadeout(3)
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    $persistent.chapter3_scene6 = True
+
+
+label deadlygame:
+    python:
+        currenttime = "11:11 PM"
+        timeleft = "7 hours and 49 minutes"
+        l_exp = "surprised"
+    call chapterstart
+    pause 2
+    play music sprinkles_theme
+    scene bg stage
+    show madeline dead at two1
+    show sprinkles happy at two2_s
+    with Dissolve(2.0)
+    window show dissolve
+    pause 0.1
+    s "Why was the football stadium so hot after the game?"
+    s jeer "{i}I don't know, Mr. Sprinkles. Why {b}was{/b} the football stadium so hot after the game?{/i}"
+    s laugh "Because all the fans had left! Ahahaha!!"
+    s happy "Alright, that's enough jokes for now, Ms. Madeline. We'll see you later~!"
+    show sprinkles:
+        ease 0.5 middle_s
+    hide madeline with easeoutleft
+    pause 0.1
+    s "And now, friends, it's time for yet another game~!"
+    s laugh "The Wacky Dartboard, please!"
+    stop music fadeout(5)
+    scene bg storage
+    show richard concerned at middle_r
     show screen laura
     with dissolve
     pause 0.1
+    "On cue, Trosh came back in and took more contestants."
+    $l_exp = "concerned"
+    "It might have been my imagination, but it feels like as he did, he looked at me and gave me a small smirk."
+    $l_exp = "neutral"
+    "It had to have been my imagination."
+    $l_exp = "surprised"
+    "Still, the fact that he's been back to bringing out contestants has to mean something about their hunt for the children, yet there were still no updates."
+    $l_exp = "concerned"
+    "Not that they would go out of their way to tell us, anyway."
+    $l_exp = "surprised"
+    "Still, I guess not knowing for sure gives you the chance that nothing is wrong."
+    "But that doesn't mean it's not eating you up on the inside."
+    "Richard looked around the room a bit before sighing."
+    play music vast_places
+    r "It feels so much emptier in here..."
+    $l_exp = "sad"
+    "He wasn't wrong. After all the time that's passed, the room has become less and less populated as contestants were selected."
+    $l_exp = "surprised"
+    "There was still a decent amount of people inside, no doubt, but it feels less claustrophobic."
+    $l_exp = "excited"
+    l "Well, at least a good amount of people who left the room made it back to their seats, right?"
+    r "Yeah, but..."
+    r "It's still unnerving knowing a good amount of them didn't..."
+    $l_exp = "sad"
+    l "Yeah, I know."
+    "Sensing the conversation wasn't going anywhere else, I looked back at the TV."
+    $l_exp = "surprised"
+    "It looks like the next game was Memory Mania, the game where a bunch of different things happen on a screen and you had to answer a question about what you saw."
+    $l_exp = "concerned"
+    "Like {i}'How many penguins were holding ice cream cones?'{/i} or {i}'Were there more giraffes or elephants?'{/i}"
+    $l_exp = "surprised"
+    "I've personally never been good at the game, and neither was Kate."
+    $l_exp = "smug"
+    "Though Dakota, being the genius she is, was always pretty good at it."

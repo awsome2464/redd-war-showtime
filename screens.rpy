@@ -96,6 +96,8 @@ style frame:
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
 screen say(who, what):
+    # on "show" action ToggleVariable("quick_menu", True)
+    # on "hide" action ToggleVariable("quick_menu", False)
     style_prefix "say"
 
     window:
@@ -110,7 +112,17 @@ screen say(who, what):
 
         text what id "what"
 
+    hbox:
+        style_prefix "quick"
 
+        xalign 0.73
+        yalign 0.975
+
+        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+        textbutton _("Save") action ShowMenu('save')
+        textbutton _("Load") action ShowMenu('load')
+        textbutton _("Options") action ShowMenu('preferences')
+        textbutton _("Auto") action Preference("auto-forward", "toggle")
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
@@ -246,24 +258,11 @@ style choice_button_text is default:
 screen quick_menu():
     ## Ensure this appears on top of other screens.
     zorder 100
+    pass
 
-    if quick_menu:
+    #if quick_menu:
 
-        hbox:
-            style_prefix "quick"
-
-            xalign 0.73
-            yalign 0.975
-
-            #textbutton _("Back") action Rollback()
-            #textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Load") action ShowMenu('load')
-            #textbutton _("Q.Save") action QuickSave()
-            #textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Options") action ShowMenu('preferences')
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
+        
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -1354,6 +1353,17 @@ screen nvl(dialogue, items=None):
             textbutton i.caption:
                 action i.action
                 style "nvl_button"
+    hbox:
+        style_prefix "quick"
+
+        xalign 0.76
+        yalign 0.975
+
+        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+        textbutton _("Save") action ShowMenu('save')
+        textbutton _("Load") action ShowMenu('load')
+        textbutton _("Options") action ShowMenu('preferences')
+        textbutton _("Auto") action Preference("auto-forward", "toggle")
 
     add SideImage() xalign 0.0 yalign 1.0
 

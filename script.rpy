@@ -13,18 +13,17 @@ init python:
     config.keymap['hide_windows'].remove('mouseup_2')
     config.keymap['hide_windows'].remove('h')
 
-
 ## Toggling Splash Screen upon Launch ############################################################################################
 
 init python:
     persistent.splash = True
-
 
 ## Characters ####################################################################################################################
 
 define narrate = nvl_narrator
 define a = Character("Anchor", what_prefix='"', what_suffix='"')
 define an = Character("Announcer", what_prefix='"', what_suffix='"', what_italic=True, who_italic=True)
+define b = Character("[b_name]", what_prefix='"', what_suffix='"')
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
 define dt = Character("Dakota", color="#0061d9", who_italic=True, what_italic=True)
 define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
@@ -43,10 +42,9 @@ define s = Character("[s_name]", color="#d00000", image="sprinkles", what_prefix
 define t = Character("[t_name]", color="#d00000", image="trosh", what_prefix='"', what_suffix='"')
 define woman = Character("Woman", what_prefix='"', what_suffix='"')
 
-
 ## Images #######################################################################################################################
 
-# Character Images
+# Characters
 image dakota confident = "Characters/Dakota/confident.png"
 image dakota confused = "Characters/Dakota/confused.png"
 image dakota determined = "Characters/Dakota/determined.png"
@@ -199,7 +197,6 @@ image ctc_arrow_nvl:
         ease 0.5 alpha 0.0
         repeat
 
-
 ## Backgrounds ####################################################################################################################
 
 # Solid Backgrounds
@@ -228,14 +225,12 @@ image bg showstage = "BG/showstage.jpg"
 image bg stage = "BG/stage.jpg"
 image bg storage = "BG/storage.jpeg"
 
-
 ## Custom Audio Channels ##########################################################################################################
 
 init python:
     renpy.music.register_channel('ambience', mixer="sound", loop=True)
     renpy.music.register_channel('ambience2', mixer="sound", loop=True)
     renpy.music.register_channel('sound2', mixer="sound", loop=False)
-
 
 ## Audio ##########################################################################################################################
 
@@ -263,6 +258,7 @@ define audio.children_screaming = "audio/se/children_screaming.ogg"
 define audio.crowd = "audio/se/crowd.ogg"
 define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
 define audio.doorbell = "audio/se/doorbell.ogg"
+define audio.door_creak = "audio/se/door creak.ogg"
 define audio.door_knock = "audio/se/doorknock.ogg"
 define audio.door_open = "audio/se/door_open.ogg"
 define audio.drumroll_buildup = "<to 4.9 loop 0.5>audio/se/drumroll.ogg"
@@ -276,9 +272,9 @@ define audio.machine_gun = "audio/se/machine gun.ogg"
 define audio.saw = "audio/se/saw.ogg"
 define audio.shotgun = "audio/se/shotgun.ogg"
 define audio.siren = "audio/se/siren.ogg"
+define audio.slow_footsteps = "audio/se/slow footsteps.ogg"
 define audio.smack = "audio/se/smack.ogg"
 define audio.snap = "audio/se/snap.ogg"
-
 
 ## Transforms ####################################################################################################################
 
@@ -379,7 +375,6 @@ transform sideimage:
     size(225, 225)
     xalign 0.0575 yalign 1.0
 
-
 ## Styles #########################################################################################################################
 
 style announce:
@@ -435,7 +430,6 @@ style replay_desc:
     xalign 0.5
     text_align 0.5
     justify True
-
 
 ## Custom Screens #################################################################################################################
 
@@ -519,7 +513,7 @@ screen extras():
             textbutton "Credits" action [ToggleVariable('persistent.credits', True), Jump('credits')] xalign 0.5
             textbutton "Follow Good Tales!" action NullAction() xalign 0.5
             null height 10
-            textbutton "Return" action ShowMenu('main_menu')
+            textbutton "Return" action ShowMenu('main_menu') xalign 0.5
 screen chapterselect():
     tag menu
     add gui.main_menu_background
@@ -650,6 +644,16 @@ screen chapterselect():
                 hovered SetVariable("replay_num", -1)
                 unhovered SetVariable("replay_num", 0)
                 action NullAction()
+        if persistent.chapter3_scene6:
+            textbutton "Hiding in the Closet" xalign 0.5:
+                hovered SetVariable("replay_num", 13)
+                unhovered SetVariable("replay_num", 0)
+                action Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+        else:
+            textbutton "LOCKED" xalign 0.5:
+                hovered SetVariable("replay_num", -1)
+                unhovered SetVariable("replay_num", 0)
+                action NullAction()
     frame:
         xalign 0.75 yalign 0.5
         xysize (700, 250)
@@ -681,7 +685,8 @@ screen chapterselect():
                 text "A typical restroom break. At least, it {b}was{/b}." style "replay_desc" xalign 0.5
             elif replay_num == 12:
                 text "Laura has choice words for a REDD after learning about her daughters' potential endangerment." style "replay_desc" xalign 0.5
-
+            elif replay_num == 13:
+                text "Kate and Dakota, along with other children, hide from the REDD Guards." style "replay_desc" xalign 0.5
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
@@ -700,7 +705,6 @@ screen achievements():
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
 
-
 ## Variable Defaults ##############################################################################################################
 
 default persistent.gore = True
@@ -718,9 +722,9 @@ default timeleft = "2 hours and 48 minutes"
 default event = "War Zones are revealed"
 default clickortap = "Click"
 default badcredits = False
+default b_name = "???"
 default s_name = "Mr. Sprinkles"
 default t_name = "REDD"
-
 
 ## Labels #########################################################################################################################
 
