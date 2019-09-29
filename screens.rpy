@@ -96,8 +96,6 @@ style frame:
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
 screen say(who, what):
-    # on "show" action ToggleVariable("quick_menu", True)
-    # on "hide" action ToggleVariable("quick_menu", False)
     style_prefix "say"
 
     window:

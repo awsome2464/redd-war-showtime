@@ -479,7 +479,7 @@ label arriveatshow:
     show kate shocked
     $l_exp = "concerned"
     "I honestly hadn't been paying attention our location, but sure enough..."
-    scene bg arena_ext with dissolve
+    scene bg theater_ext with dissolve
     pause 0.1
     $l_exp = "smile"
     "...we were here!"
@@ -524,7 +524,7 @@ label arriveatshow:
     "..."
     $l_exp = "rage"
     l "...oh, you have got to be kidding."
-    scene bg arena_ext
+    scene bg theater_ext
     show jessica at middle
     hide screen laura
     with dissolve

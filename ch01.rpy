@@ -483,7 +483,7 @@ label kragonnews:
     l "Wow."
     l "What bullshit is she spreading now?"
     "Richard then played the video."
-    scene bg arena_ext
+    scene bg theater_ext
     hide screen laura
     show jessica at middle
     with dissolve

@@ -1251,9 +1251,8 @@ label showmustgoon:
     "He finally stopped about a foot away from me, looking me in the eye."
     $l_exp = "neutral"
     "I was scared shitless, but there's no turning back now."
-    t "What's your name?{nw}"
     menu:
-        t "What's your name?{fast}"
+        t "What's your name?"
         "\"Laura.\"":
             jump nameislaura
         "\"Why do you care?\"":
@@ -1677,7 +1676,7 @@ label kidshiding:
     t "I actually had a little chat with Laura a while ago."
     t "She's a very brave woman. You're lucky to have her as a mother."
     "Dakota continued to stare in fear, unsure how to feel about this."
-    t "Say, you what what will make her happy? Seeing her daughters."
+    t "Say, you know what will make her happy? Seeing her daughters."
     t "I'm sure you'd love that, as well, right?"
     d "Uh... I..."
     "He then extended his hand towards her."
@@ -1792,6 +1791,7 @@ label deadlygame:
     with dissolve
     pause 0.1
     "On cue, Trosh came back in and took more contestants."
+    "Four of them to be exact."
     $l_exp = "concerned"
     "It might have been my imagination, but it feels like as he did, he looked at me and gave me a small smirk."
     $l_exp = "neutral"
@@ -1825,3 +1825,299 @@ label deadlygame:
     "I've personally never been good at the game, and neither was Kate."
     $l_exp = "smug"
     "Though Dakota, being the genius she is, was always pretty good at it."
+    $l_exp = "surprised"
+    "Let's just hope that the contestants here are good at it, as well..."
+    stop music fadeout(3.0)
+    hide screen laura
+    window hide
+    pause 0.5
+    scene bg stage
+    show sprinkles jeer at middle_s
+    with Fade(1.0, 0.5, 1.0)
+    pause 0.5
+    window show dissolve
+    pause 0.1
+    play music ice_cream_truck
+    s "Alright, final round!"
+    s evilgrin "Good luck, you two~!"
+    show screen laura
+    with dissolve
+    pause 0.1
+    "More images then moved across the screen."
+    $l_exp = "concerned"
+    "Incredibly fast, as well."
+    s laugh "Alright, your question is:"
+    s "How many elephants were holding bananas?"
+    "...I suppose that wasn't the most unfair of questions."
+    $l_exp = "neutral"
+    "The two remaining contestants wrote their answers on their white board."
+    stop music
+    play sound buzzer_full
+    pause 1
+    s happy "Time's up~!"
+    s jeer "What are your final answers?"
+    $l_exp = "surprised"
+    "The contestants shakily lifted up their boards."
+    s hm "Hmm..."
+    s "One says 2, the other says 4."
+    s laugh "Well, either one of you is right, or none of you are!"
+    s evilgrin "Let's see what the result is."
+    play sound drumroll_buildup loop
+    hide sprinkles with dissolve
+    pause 0.1
+    "The video replayed itself, only this time, the banana-holding elephants were highlighted."
+    "1...{w} 2...{w} ..."
+    $l_exp = "sad"
+    extend " 3...{w} ..."
+    $l_exp = "surprised"
+    "The clip ended."
+    play sound drumroll_finish
+    pause 1
+    show sprinkles laugh at middle_s with dissolve
+    pause 0.1
+    s "And the correct answer is '3'!"
+    s huh "Oh, my! It appears neither of you were correct!"
+    s wut "What a shame."
+    s evilgrin "Well, thank you for playing~!"
+    play sound shotgun
+    if persistent.gore:
+        show blood2
+    pause 0.1
+    play ambience crowd_screaming
+    play sound2 shotgun
+    if persistent.gore:
+        show blood4
+    pause 1
+    s laugh "Ahaha~!"
+    stop ambience fadeout(3.0)
+    scene bg storage
+    show richard concerned at middle_r
+    with dissolve
+    pause 0.1
+    r "It'll never end, will it?"
+    l "I mean, technically, it will at 7, but..."
+    $l_exp = "sad"
+    l "...it certainly doesn't feel like it."
+    play sound door_open
+    $l_exp = "concerned"
+    "That's when Trosh entered the room."
+    $t_name = "Trosh"
+    hide richard with dissolve
+    play music classy_ghouls
+    show trosh at middle with dissolve
+    pause 0.1
+    t "Alright, up next is a really special game that I'm going to need a specific volunteer for."
+    "He then walked towards the back of the room."
+    $l_exp = "surprised"
+    "Closer to me."
+    $l_exp = "sad"
+    "And stopped directly in front of me."
+    t "You.{w} You're coming with me."
+    $l_exp = "surprised"
+    l "W-What??"
+    t "You heard me! Move it!"
+    show trosh zorder 2:
+        ease 0.5 two1
+    show richard rage at two2_r zorder 1 with dissolve
+    pause 0.1
+    r "Hey! You can't just--!"
+    "Trosh then pointed his gun at Richard."
+    t "I can't just what?"
+    show richard glare
+    "My husband then glared at the REDD before looking back at me."
+    t "That's what I thought."
+    "Trosh then looked back at me."
+    t "Let's go."
+    r rage "Wait! Take me, instead!"
+    $l_exp = "sad"
+    l "Richard!!"
+    t "I'm sorry?"
+    r glare "Take me instead of her!"
+    t "..."
+    l "..."
+    r "..."
+    "Trosh then looked at me with a smirk."
+    t "Well, what do you say?"
+    $l_exp = "surprised"
+    l "I..."
+    "He then pointed his gun at me."
+    $renpy.music.set_volume(0.5, delay=1, channel="music")
+    menu:
+        t "Well? Is he taking your place or not?"
+        "Let Richard Take Your Place":
+            $renpy.music.set_volume(1.0, delay=1, channel="music")
+            jump richardtakesplace
+        "Don't Let Richard Take Your Place":
+            $renpy.music.set_volume(1.0, delay=1, channel="music")
+            jump richarddoesnttakeplace
+label richarddoesnttakeplace:
+    $l_exp = "neutral"
+    l "N-No. I'll go."
+    r concerned "Laura, please!"
+    t "Heh. You heard the lady, bub."
+    $l_exp = "sad"
+    "He then grabbed on to my upper arm."
+    t "Let's go!"
+    r "Laura!"
+    $l_exp = "surprised"
+    l "I'll be fine, Richard! I love you!"
+    stop music fadeout(3.0)
+    scene bg fade with dissolve
+    pause 0.1
+    "I was then dragged backstage, right by a door that seemed to lead outside."
+    "Several other REDD guards were there waiting."
+    t "If you try to run or pull any stunts--"
+    $l_exp = "mad"
+    l "You'll shoot me. I get it."
+    "He then growled before opening the door and taking me outside."
+    $renpy.music.set_volume(0.75, channel="ambience")
+    play music into_the_haunted_forest
+    play ambience rapid_gunfire
+    scene bg alley with dissolve
+    pause 0.5
+    $l_exp = "neutral"
+    "We entered a back alley, with a nearby street being pretty close."
+    $l_exp = "concerned"
+    "Nothing here indicated that we were headed to one of Mr. Sprinkles' death traps."
+    l "You're sure you're taking me to a game?"
+    show trosh at middle with dissolve
+    pause 0.1
+    t "This one can't be played on the stage; we needed more space."
+    t "Don't worry; we're not going too far."
+    $l_exp = "neutral"
+    "Silence, save for the gunfire and hollering of joy in the distance."
+    nvl clear
+    $nvl = True
+    hide screen laura
+    hide trosh
+    with dissolve
+    nvl show dissolve
+    narrate """
+    It was then when I realized that this was the first time I had been outside since the REDD War started.
+
+    When we walked out onto the street, I glanced around.
+
+    There weren't any REDD in sight, but we could definitely hear their presence.
+
+    All around me, the city seemed to still be somewhat standing, but fires and the occasional explosion reminded me that we still had plenty of time for that to change.
+
+    It's kinda funny, really.{w} I've been exposed to the horrors the REDD War can bring for the past 4 hours, yet I still can believe that it's happening.
+
+    The fact that the War isn't even halfway done yet brings a shiver down my spine.
+
+    After all, there's still plenty of time for things to get worse...
+    """
+    $nvl = False
+    nvl hide
+    show screen laura
+    with dissolve
+    pause 0.1
+    "We finally made it to a parking garage a block away."
+    scene bg parkinggarage with dissolve
+    pause 0.1
+    "When we approached, I noticed a television camera near the entrance with a REDD giving the guards a thumb's up as we approached."
+    "There was also a large line that said 'START' written by the entrance."
+    $l_exp = "sad"
+    "But then, I noticed something by the starting line."
+    "Something I definitely didn't expect to see."
+    l "Oh, my God!!"
+    show kate shocked at two1
+    show dakota sad at two2
+    with dissolve
+    pause 0.1
+    k "Mommy!!"
+    "My daughters were sitting in chairs with armed guards behind them."
+    "They weren't tied down, it seemed, but it's safe to assume they understood what would happen if they tried to get up."
+    show kate zorder 2:
+        ease 0.5 left
+    show dakota zorder 2:
+        ease 0.5 right
+    show trosh at middle zorder 1 with dissolve
+    pause 0.1
+    t "See, girls? I told you you'd get to see your mommy again!"
+    $l_exp = "rage"
+    l "H-How did you--?!"
+    t "Does it really matter?"
+    t "Besides, you should be grateful."
+    t "No other parent tonight has gotten to see their children like this."
+    t "I figure it'll give you the motivation you need to compete well."
+    t "Or, you know, the added pressure of your children being right here to witness your potential death might fuck you up."
+    t "Either way, it's gonna make for some great footage!"
+    l "I swear, if you lay one finger on them...!"
+    t "If I wanted them dead or hurt, I would've done it by now."
+    redd "Trosh, we're about to go live."
+    t "Excellent."
+    stop music fadeout(3.0)
+    stop ambience fadeout(3.0)
+    scene bg parkinggarage with dissolve
+    pause 0.1
+    "The camera then pointed towards me."
+    $l_exp = "concerned"
+    l "Hang on, I don't even know what I'm doing!"
+    t "Have patience."
+    "He then turned on a radio near the camera, where the voice of Mr. Sprinkles could be heard coming out."
+    play music sprinkles_radio
+    s "Alright, folks! Our brave contestant now has to tackle the {i}Wild, Wild Races{/i} course!"
+    $l_exp = "mad"
+    "Oh, you have got to be kidding."
+    s "On each floor of our makeshift course is a series of obstacles that she must make her way through."
+    s "The higher up she gets, the more challenging, {i}and dangerous{/i}, they will become!"
+    s "Will she make it to the finish line in one piece? Ohoho! There's only one way to find out~!"
+    $l_exp = "mad"
+    l "Let me guess. I'm not gonna be told what the obstacles are."
+    show trosh at middle with dissolve
+    pause 0.1
+    t "Bingo."
+    l "Lovely."
+    hide trosh with dissolve
+    pause 0.1
+    s "Alright, brave contestant! Head to the starting line!"
+    "Realizing I don't have much of a choice, I inched my way over."
+    show kate concerned at two1
+    show dakota sad at two2
+    with dissolve
+    pause 0.1
+    $l_exp = "sad"
+    "I then looked over at my daughters, who looked scared out of their minds."
+    "Don't worry, girls. Mommy will get through this, and then we'll all be safe."
+    scene bg parkinggarage with dissolve
+    pause 0.1
+    stop music fadeout(3.0)
+    s "On your marks...!"
+    $l_exp = "surprised"
+    "I took a deep breath and looked ahead at the ramp."
+    s "Get set...!"
+    $l_exp = "neutral"
+    "All I have to do is get through the course and survive. It can't be that hard."
+    $l_exp = "surprised"
+    "At least, I hope it isn't."
+    s "{b}GO!{/b}"
+    play sound airhorn
+    play music into_battle
+    "A horn went off, and on instinct, I started running."
+    $l_exp = "concerned"
+    "I suppose if I want to have any chance of surviving, I need to not go through it {b}too{/b} fast."
+    $l_exp = "mad"
+    "I run around the first corner."
+    stop music
+    play sound stab
+    $l_exp = "surprised"
+    pause 1
+    "And straight into a sharp pole."
+    show red zorder 2:
+        alpha 0.0
+        ease 3.0 alpha 1.0
+    "Well..."
+    "That's embarrassing."
+    hide screen laura
+    with Dissolve(2.0)
+    window hide dissolve
+    pause 2
+    scene bg fade
+    with Dissolve(2)
+    pause 1
+    if not persistent.achievement_epicfail:
+        $persistent.achievement_epicfail = True
+        $renpy.notify("Achievement Unlocked: {i}Epic Fail{/i}")
+    $renpy.end_replay()
+    jump gameover
