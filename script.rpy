@@ -118,6 +118,7 @@ image red = "#f00000"
 image splash = "Good Tales Transparent.png"
 image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
+image curtain_overlay = "gui/save_curtain.png"
 image sprinklelogo:
     "Ringleader Draft.png"
     size(360, 475)
@@ -507,159 +508,162 @@ screen notify(message):
 screen extras():
     tag menu
     add "BG/livestage2.jpg"
-    add "gui/overlay/game_menu.png"
-    frame:
-        xpadding 20 ypadding 20
-        xalign 0.5 yalign 0.5
-        vbox:
-            xalign 0.5 yalign 0.5
-            spacing 10
-            textbutton "Chapter Select" action ShowMenu('chapterselect') xalign 0.5
-            textbutton "Achievements" action ShowMenu('achievements') xalign 0.5
-            textbutton "Credits" action [ToggleVariable('persistent.credits', True), Jump('credits')] xalign 0.5
-            textbutton "Follow Good Tales!" action NullAction() xalign 0.5
-            null height 10
-            textbutton "Return" action ShowMenu('main_menu') xalign 0.5
+    add "gui/extras_overlay.png"
+    imagebutton auto "gui/chapter_%s.png" action ShowMenu('chapterselect') xalign 0.1 yalign 0.25
+    imagebutton auto "gui/achievements_%s.png" action ShowMenu('achievements') xalign 0.9 yalign 0.25
+    imagebutton auto "gui/follow_%s.png" action NullAction() xalign 0.25 yalign 0.65
+    imagebutton auto "gui/credits_%s.png" action [ToggleVariable('persistent.credits', True), Jump('credits')] xalign 0.75 yalign 0.65
+    imagebutton auto "gui/return_%s.png" action ShowMenu('main_menu') xalign 0.5 yalign 0.99
 screen chapterselect():
     tag menu
     add gui.main_menu_background
-    vbox:
-        xalign 0.05 yalign 0.5
-        text "Chapter 1" xalign 0.5
-        if persistent.chapter1_scene1:
-            textbutton "Meet the Farrs" xalign 0.5:
-                hovered SetVariable("replay_num", 1)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("chapter_1")
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter1_scene2:
-            textbutton "Unfortunate News" xalign 0.5:
-                hovered SetVariable("replay_num", 2)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("kragonnews")
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        null height 20
-        text "Chapter 2" xalign 0.5
-        if persistent.chapter2_scene1:
-            textbutton "Evening Plans" xalign 0.5:
-                hovered SetVariable("replay_num", 3)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("chapter_2")
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter2_scene2:
-            textbutton "Backstage Drama" xalign 0.5:
-                hovered SetVariable("replay_num", 4)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter2_scene3:
-            textbutton "Packed Parking" xalign 0.5:
-                hovered SetVariable("replay_num", 5)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter2_scene4:
-            textbutton "Meet and Greet" xalign 0.5:
-                hovered SetVariable("replay_num", 6)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter2_scene5:
-            textbutton "Showtime!" xalign 0.5:
-                hovered SetVariable("replay_num", 7)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        null height 20
-        text "Chapter 3" xalign 0.5
-        if persistent.chapter3_scene1:
-            textbutton "The First Game" xalign 0.5:
-                hovered SetVariable("replay_num", 8)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter3_scene2:
-            textbutton "When You Gotta Go..." xalign 0.5:
-                hovered SetVariable("replay_num", 9)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter3_scene3:
-            textbutton "Laughs and Cracks" xalign 0.5:
-                hovered SetVariable("replay_num", 10)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter3_scene4:
-            textbutton "Toilet Escape" xalign 0.5:
-                hovered SetVariable("replay_num", 11)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter3_scene5:
-            textbutton "Standing Up" xalign 0.5:
-                hovered SetVariable("replay_num", 12)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
-        if persistent.chapter3_scene6:
-            textbutton "Hiding in the Closet" xalign 0.5:
-                hovered SetVariable("replay_num", 13)
-                unhovered SetVariable("replay_num", 0)
-                action Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends"})
-        else:
-            textbutton "LOCKED" xalign 0.5:
-                hovered SetVariable("replay_num", -1)
-                unhovered SetVariable("replay_num", 0)
-                action NullAction()
+    add "curtain_overlay"
+    frame:
+        xysize(250, 550)
+        xalign 0.1 yalign 0.5
+        xpadding 25 ypadding 15
+        viewport id "vp":
+            child_size(250, 500)
+            mousewheel True
+            draggable True
+            scrollbars None
+            vbox:
+                text "Chapter 1" xalign 0.5
+                if persistent.chapter1_scene1:
+                    textbutton "Meet the Farrs" xalign 0.5:
+                        hovered SetVariable("replay_num", 1)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("chapter_1")
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter1_scene2:
+                    textbutton "Unfortunate News" xalign 0.5:
+                        hovered SetVariable("replay_num", 2)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("kragonnews")
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                null height 20
+                text "Chapter 2" xalign 0.5
+                if persistent.chapter2_scene1:
+                    textbutton "Evening Plans" xalign 0.5:
+                        hovered SetVariable("replay_num", 3)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("chapter_2")
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter2_scene2:
+                    textbutton "Backstage Drama" xalign 0.5:
+                        hovered SetVariable("replay_num", 4)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter2_scene3:
+                    textbutton "Packed Parking" xalign 0.5:
+                        hovered SetVariable("replay_num", 5)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter2_scene4:
+                    textbutton "Meet and Greet" xalign 0.5:
+                        hovered SetVariable("replay_num", 6)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter2_scene5:
+                    textbutton "Showtime!" xalign 0.5:
+                        hovered SetVariable("replay_num", 7)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                null height 20
+                text "Chapter 3" xalign 0.5
+                if persistent.chapter3_scene1:
+                    textbutton "The First Game" xalign 0.5:
+                        hovered SetVariable("replay_num", 8)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter3_scene2:
+                    textbutton "When You Gotta Go..." xalign 0.5:
+                        hovered SetVariable("replay_num", 9)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter3_scene3:
+                    textbutton "Laughs and Cracks" xalign 0.5:
+                        hovered SetVariable("replay_num", 10)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter3_scene4:
+                    textbutton "Toilet Escape" xalign 0.5:
+                        hovered SetVariable("replay_num", 11)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter3_scene5:
+                    textbutton "Standing Up" xalign 0.5:
+                        hovered SetVariable("replay_num", 12)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter3_scene6:
+                    textbutton "Hiding in the Closet" xalign 0.5:
+                        hovered SetVariable("replay_num", 13)
+                        unhovered SetVariable("replay_num", 0)
+                        action Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+
     frame:
         xalign 0.75 yalign 0.5
         xysize (700, 250)
@@ -693,7 +697,7 @@ screen chapterselect():
                 text "Laura has choice words for a REDD after learning about her daughters' potential endangerment." style "replay_desc" xalign 0.5
             elif replay_num == 13:
                 text "Kate and Dakota, along with other children, hide from the REDD Guards." style "replay_desc" xalign 0.5
-    textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.95
+    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag menu
     add gui.main_menu_background
@@ -712,7 +716,7 @@ screen achievements():
             text "LOCKED" xalign 0.5
         null height 25
         if persistent.achievement_epicfail:
-            text "{i}Epic Fail{/i}" xalign 0.5
+            text "{i}Schadenfreude{/i}" xalign 0.5
             text "Embarrass Yourself on Live Television" xalign 0.5
         else:
             text "LOCKED" xalign 0.5
@@ -722,7 +726,7 @@ screen achievements():
 ## Variable Defaults ##############################################################################################################
 
 default persistent.gore = True
-default preferences.fullscreen = True
+default preferences.fullscreen = False
 define config.replay_scope = {"_game_menu_screen": "pause"}
 default _game_menu_screen = "pause"
 default version = 1.0

@@ -2118,6 +2118,6 @@ label richarddoesnttakeplace:
     pause 1
     if not persistent.achievement_epicfail:
         $persistent.achievement_epicfail = True
-        $renpy.notify("Achievement Unlocked: {i}Epic Fail{/i}")
+        $renpy.notify("Achievement Unlocked: {i}Schadenfreude{/i}")
     $renpy.end_replay()
     jump gameover
