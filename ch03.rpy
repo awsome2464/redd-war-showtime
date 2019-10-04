@@ -51,7 +51,7 @@ label firstgame:
     show screen laura
     with dissolve
     pause 0.1
-    show richard concerned at middle_r with dissolve
+    show richard show_down concerned at middle_r with dissolve
     pause 0.1
     "Richard and I were together."
     "Despite everything, at least we had each other."
@@ -379,7 +379,7 @@ label firstgame:
     $l_exp = "sad"
     "I certainly hope that doesn't make me a bad person."
     "I looked over at Richard to see how he was taking it."
-    show richard concerned at middle_r with dissolve
+    show richard show_crossed concerned at middle_r with dissolve
     pause 0.1
     $l_exp = "surprised"
     "He looked just as engaged as I was."
@@ -459,7 +459,7 @@ label firstgame:
     s laugh "Anyway, what do you say we take ourselves a quick break to prepare for the next game?"
     stop music fadeout(5)
     scene bg storage
-    show richard concerned at middle_r
+    show richard show_down concerned at middle_r
     with dissolve
     pause 0.1
     "I leaned in towards Richard and whispered:"
@@ -680,7 +680,7 @@ label secondbeating:
     show sprinkles:
         ease 0.5 two2_s
     "He then yanked off the curtain."
-    show madeline dead at two1_m
+    show madeline dead at two1_r
     with Dissolve(0.25)
     s "...Ms. Madeline~!"
     play sound children_screaming
@@ -728,10 +728,11 @@ label secondbeating:
     s evilgrin "I don't wanna be like you and work myself {b}to death!{/b}"
     s laugh "You can wait backstage until we need you again, Ms. Madeline~!"
     show madeline:
-        ease 0.5 offscreenleft
+        ease 0.5 xalign -0.6
     show sprinkles:
         ease 0.5 middle_s
     "Madeline was then rolled off the the stage while Mr. Sprinkles cleared his throat."
+    hide madeline
     s happy "Although I do believe that now it's time to bring back out our special guest of the evening!"
     s "Please welcome Mrs. Jessica Tate back to the stage!"
     show sprinkles at two1_s with easeinright
@@ -780,7 +781,7 @@ label secondbeating:
     s jeer "I suppose I'll leave you to consider if you want the other one taken care of the next time we meet."
     s laugh "Alright! Let us take one more short break before we continue on with our night!"
     scene bg storage
-    show richard concerned at middle_r
+    show richard show_down concerned at middle_r
     with dissolve
     pause 0.1
     "I looked over at Richard, who was looking away from the screen, sitting against the wall."
@@ -794,7 +795,7 @@ label secondbeating:
     r smile "Heh."
     $l_exp = "concerned"
     l "What?"
-    r "I just never thought I'd see you show empathy for Jessica Tate."
+    r show_crossed "I just never thought I'd see you show empathy for Jessica Tate."
     $l_exp = "neutral"
     l "..."
     "I get what he means, but the way he said that makes it seem like I'm a heartless monster."
@@ -1129,7 +1130,7 @@ label showmustgoon:
     $l_exp = "concerned"
     "Last we knew, Krag was being informed of the situation and being asked what they should do."
     "His show is already being delayed thanks to this mishap, so it begs the question of how he's going to handle it."
-    show richard concerned at middle_r with dissolve
+    show richard show_down concerned at middle_r with dissolve
     pause 0.1
     $l_exp = "surprised"
     r "...do you think..."
@@ -1159,7 +1160,7 @@ label showmustgoon:
     $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     scene bg storage
     show screen laura
-    show richard concerned at middle_r
+    show richard concerned show_down at middle_r
     with dissolve
     pause 0.1
     play sound door_open
@@ -1338,7 +1339,7 @@ label nameislaura:
     hide trosh with dissolve
     pause 0.5
     "I finally sat back down."
-    show richard glare at middle_r with dissolve
+    show richard show_crossed glare at middle_r with dissolve
     pause 0.1
     "My husband didn't exactly look thrilled with me."
     play music vast_places
@@ -1388,7 +1389,7 @@ label nameislaura:
     """
     $nvl = False
     $l_exp = "sad"
-    show richard concerned
+    show richard concerned show_crossed
     hide black
     show screen laura
     nvl hide
@@ -1397,12 +1398,12 @@ label nameislaura:
     r "Look..."
     r "I'm just as scared as you are, Laura."
     r "Believe me, I want to go out and find them just as much as you."
-    r "But if we get ourselves killed trying to find them, then what purpose does that serve?"
+    r show_down "But if we get ourselves killed trying to find them, then what purpose does that serve?"
     "I wiped my eyes and took a deep breath."
     "I know he's right, but I don't wanna accept it."
     "He just continued to hold my hand as we sat there in silence."
     r smile "Hey."
-    r "What if we texted them, just for kicks?"
+    r show_crossed "What if we texted them, just for kicks?"
     $l_exp = "surprised"
     l "!!"
     $l_exp = "excited"
@@ -1413,10 +1414,10 @@ label nameislaura:
     "I wasn't exactly expecting an instant reply, but at least it's something she can reply to."
     $l_exp = "sad"
     "Eventually."
-    r concerned "Everything will be fine, Laura."
+    r "Everything will be fine, Laura."
     $l_exp = "surprised"
     l "You really think that?"
-    r "..."
+    r concerned "..."
     r "Well, it's like you said. We just gotta assume the best, even if we don't believe it."
     "I guess that's all we really {b}can{/b} do..."
     stop music fadeout(3)
@@ -1445,7 +1446,7 @@ label nameislaura:
     $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     $renpy.music.set_volume(0.125, delay=0.5, channel="ambience")
     scene bg storage
-    show richard concerned at middle_r
+    show richard concerned show_down at middle_r
     with dissolve
     pause 0.1
     $l_exp = "surprised"
@@ -1769,7 +1770,7 @@ label deadlygame:
     pause 2
     play music sprinkles_theme
     scene bg stage
-    show madeline dead at two1
+    show madeline dead at two1_r
     show sprinkles happy at two2_s
     with Dissolve(2.0)
     window show dissolve
@@ -1786,7 +1787,7 @@ label deadlygame:
     s laugh "The Wacky Dartboard, please!"
     stop music fadeout(5)
     scene bg storage
-    show richard concerned at middle_r
+    show richard show_down concerned at middle_r
     show screen laura
     with dissolve
     pause 0.1
@@ -1805,7 +1806,7 @@ label deadlygame:
     "But that doesn't mean it's not eating you up on the inside."
     "Richard looked around the room a bit before sighing."
     play music vast_places
-    r "It feels so much emptier in here..."
+    r show_crossed "It feels so much emptier in here..."
     $l_exp = "sad"
     "He wasn't wrong. After all the time that's passed, the room has become less and less populated as contestants were selected."
     $l_exp = "surprised"
@@ -1891,7 +1892,7 @@ label deadlygame:
     s laugh "Ahaha~!"
     stop ambience fadeout(3.0)
     scene bg storage
-    show richard concerned at middle_r
+    show richard show_down concerned at middle_r
     with dissolve
     pause 0.1
     r "It'll never end, will it?"
@@ -1918,7 +1919,7 @@ label deadlygame:
     t "You heard me! Move it!"
     show trosh zorder 2:
         ease 0.5 two1
-    show richard rage at two2_r zorder 1 with dissolve
+    show richard show_down rage at two2_r zorder 1 with dissolve
     pause 0.1
     r "Hey! You can't just--!"
     "Trosh then pointed his gun at Richard."
@@ -1949,11 +1950,10 @@ label deadlygame:
             jump richardtakesplace
         "Don't Let Richard Take Your Place":
             $renpy.music.set_volume(1.0, delay=1, channel="music")
-            jump richarddoesnttakeplace
 label richarddoesnttakeplace:
     $l_exp = "neutral"
     l "N-No. I'll go."
-    r concerned "Laura, please!"
+    r shocked "Laura, please!"
     t "Heh. You heard the lady, bub."
     $l_exp = "sad"
     "He then grabbed on to my upper arm."
@@ -2121,3 +2121,4 @@ label richarddoesnttakeplace:
         $renpy.notify("Achievement Unlocked: {i}Schadenfreude{/i}")
     $renpy.end_replay()
     jump gameover
+label richardtakesplace:

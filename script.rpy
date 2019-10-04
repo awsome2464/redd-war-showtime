@@ -88,17 +88,50 @@ image laura smug = "Characters/Laura/smug.png"
 image laura surprised = "Characters/Laura/surprised.png"
 image laura wut = "Characters/Laura/wut.png"
 
-image madeline blank = "Characters/Madeline/blank.png"
-image madeline dead = Placeholder("girl")
-image madeline shocked = "Characters/Madeline/shocked.png"
-image madeline smile = "Characters/Madeline/smile.png"
+layeredimage madeline:
+    group full:
+        attribute dead:
+            "Characters/Madeline/Dead.png"
+    group body:
+        attribute down:
+            "Characters/Madeline/Down.png"
+        attribute shrug:
+            "Characters/Madeline/Shrug.png"
+    group head:
+        attribute blank:
+            "Characters/Madeline/Blank.png"
+        attribute shocked:
+            "Characters/Madeline/Shocked.png"
+        attribute smile:
+            "Characters/Madeline/Smile.png"
 
-image richard concerned = "Characters/Richard/concerned.png"
-image richard glare = "Characters/Richard/glare.png"
-image richard laughing = "Characters/Richard/laughing.png"
-image richard rage = "Characters/Richard/rage.png"
-image richard shocked = "Characters/Richard/shocked.png"
-image richard smile = "Characters/Richard/smile.png"
+layeredimage richard:
+    group body:
+        attribute main_crossed:
+            "Characters/Richard/main_crossed.png"
+        attribute main_down:
+            "Characters/Richard/main_down.png"
+        attribute pjs_crossed:
+            "Characters/Richard/pjs_crossed.png"
+        attribute pjs_down:
+            "Characters/Richard/pjs_down.png"
+        attribute show_crossed:
+            "Characters/Richard/show_crossed.png"
+        attribute show_down:
+            "Characters/Richard/show_down.png"
+    group head:
+        attribute concerned:
+            "Characters/Richard/concerned.png"
+        attribute glare:
+            "Characters/Richard/glare.png"
+        attribute laughing:
+            "Characters/Richard/laughing.png"
+        attribute rage:
+            "Characters/Richard/rage.png"
+        attribute shocked:
+            "Characters/Richard/shocked.png"
+        attribute smile:
+            "Characters/Richard/smile.png"
 
 image sprinkles evilgrin = "Characters/Sprinkles/evilgrin.png"
 image sprinkles happy = "Characters/Sprinkles/happy.png"
@@ -183,6 +216,13 @@ image fade_into_menu:
         ease 0.05 alpha 1.0
         repeat 3
     ease 1.0 alpha 0.0
+image extras_overlay:
+    size(1280, 720)
+    "gui/extras_overlay.png"
+    pause 1
+    "gui/extras_overlay_2.png"
+    pause 1
+    repeat
 image ctc_arrow_1:
     xalign 0.5 yalign 0.99
     alpha 0.0
@@ -210,6 +250,7 @@ image bg blood = "#f00000"
 # Image Backgrounds
 image bg alley = "BG/alley.jpg"
 image bg arena_hall = "BG/arenahall.jpg"
+image bg bar = "BG/bar.jpg"
 image bg basement = "BG/basement.jpg"
 image bg basement_hall = "BG/basementhall.jpg"
 image bg curtain = "BG/sprinklescurtain.jpg"
@@ -225,6 +266,7 @@ image bg restroom = "BG/restroom.jpg"
 image bg showstage = "BG/showstage.jpg"
 image bg stage = "BG/stage.jpg"
 image bg storage = "BG/storage.jpeg"
+image bg street = "BG/street.jpg"
 image bg theater_ext = "BG/theaterexterior.jpg"
 
 ## Custom Audio Channels ##########################################################################################################
@@ -335,48 +377,54 @@ transform notify_transform:
 # Stationary Transforms
 transform middle:
     xalign 0.5 yalign 0.5
+transform middle_k:
+    xalign 0.5 yalign -0.1
 transform middle_s:
     xalign 0.5 yalign 0.0
 transform middle_r:
-    xalign 0.5 yalign -0.1
+    size(562, 1125)
+    xalign 0.5 yalign 0.0
 transform middle_m:
-    xalign 0.5 yalign -0.2
+    size(562, 1125)
+    xalign 0.5 yalign -0.15
 
 transform left:
     xalign 0.05 yalign 0.5
 transform left_s:
     xalign 0.05 yalign 0.0
 transform left_r:
-    xalign 0.05 yalign -0.1
-transform left_m:
-    xalign 0.05 yalign -0.2
+    size(562, 1125)
+    xalign 0.05 yalign 0.0
 
 transform right:
     xalign 0.95 yalign 0.5
 transform right_s:
     xalign 0.95 yalign 0.0
 transform right_r:
-    xalign 0.95 yalign -0.1
-transform right_m:
-    xalign 0.95 yalign -0.2
+    size(562, 1125)
+    xalign 0.95 yalign 0.0
 
 transform two1:
     xalign 0.25 yalign 0.5
 transform two1_s:
     xalign 0.25 yalign 0.0
 transform two1_r:
-    xalign 0.25 yalign -0.1
+    size(562, 1125)
+    xalign 0.2 yalign 0.0
 transform two1_m:
-    xalign 0.25 yalign -0.2
+    size(562, 1125)
+    xalign 0.2 yalign -0.15
 
 transform two2:
     xalign 0.75 yalign 0.5
 transform two2_s:
     xalign 0.75 yalign 0.0
 transform two2_r:
-    xalign 0.75 yalign -0.1
+    size(562, 1125)
+    xalign 0.75 yalign 0.0
 transform two2_m:
-    xalign 0.75 yalign -0.2
+    size(562, 1125)
+    xalign 0.8 yalign -0.15
 
 transform sideimage:
     size(225, 225)
@@ -437,6 +485,11 @@ style replay_desc:
     xalign 0.5
     text_align 0.5
     justify True
+style creditscreen:
+    font "fonts/circula-medium.otf"
+    color "#ffffff"
+    outlines [(1.0, '#d00000', 0.0, 0.0)]
+    text_align 0.5
 
 ## Custom Screens #################################################################################################################
 
@@ -507,12 +560,12 @@ screen notify(message):
 # Menu Screens
 screen extras():
     tag menu
-    add "BG/livestage2.jpg"
-    add "gui/extras_overlay.png"
-    imagebutton auto "gui/chapter_%s.png" action ShowMenu('chapterselect') xalign 0.1 yalign 0.25
-    imagebutton auto "gui/achievements_%s.png" action ShowMenu('achievements') xalign 0.9 yalign 0.25
-    imagebutton auto "gui/follow_%s.png" action NullAction() xalign 0.25 yalign 0.65
-    imagebutton auto "gui/credits_%s.png" action [ToggleVariable('persistent.credits', True), Jump('credits')] xalign 0.75 yalign 0.65
+    add "black"
+    add "extras_overlay"
+    imagebutton auto "gui/chapter_%s.png" action ShowMenu('chapterselect') xalign 0.13 yalign 0.33
+    imagebutton auto "gui/achievements_%s.png" action ShowMenu('achievements') xalign 0.87 yalign 0.33
+    imagebutton auto "gui/follow_%s.png" action NullAction() xalign 0.25 yalign 0.57
+    imagebutton auto "gui/credits_%s.png" action ShowMenu('credits') xalign 0.75 yalign 0.57
     imagebutton auto "gui/return_%s.png" action ShowMenu('main_menu') xalign 0.5 yalign 0.99
 screen chapterselect():
     tag menu
@@ -526,7 +579,7 @@ screen chapterselect():
             child_size(250, 500)
             mousewheel True
             draggable True
-            scrollbars None
+            scrollbars "vertical"
             vbox:
                 text "Chapter 1" xalign 0.5
                 if persistent.chapter1_scene1:
@@ -722,6 +775,56 @@ screen achievements():
             text "LOCKED" xalign 0.5
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
+screen credits():
+    tag menu
+    add gui.main_menu_background
+    frame:
+        xysize(1240, 670)
+        xalign 0.5 yalign 0.4
+        vbox:
+            xalign 0.15 yalign 0.5
+            text "Writing and Development" style "creditscreen" xalign 0.5
+            text "Cole Goodrich" xalign 0.5
+            null height 20
+            text "Story" style "creditscreen" xalign 0.5
+            text "Cole Goodrich" xalign 0.5
+            text "SlightlySimple" xalign 0.5
+            null height 20
+            text "Character Art" style "creditscreen" xalign 0.5
+            text "HazardSquare" xalign 0.5
+            null height 20
+            text "Background Art" style "creditscreen" xalign 0.5
+            text "Mattyd (MacDaddyMatty.com)" xalign 0.5
+        vbox:
+            xalign 0.5 yalign 0.5
+            text "Music" style "creditscreen" xalign 0.5
+            null height 10
+            text "{i}Autumn Changes{/i}" xalign 0.5
+            text "{i}Bells of Weirdness{/i}" xalign 0.5
+            text "{i}Classy Ghouls Halloween Gathering{i}" xalign 0.5
+            text "{i}Creaky Country Fair{/i}" xalign 0.5
+            text "{i}Ice Cream Truck{/i}" xalign 0.5
+            text "{i}Into Battle v001{/i}" xalign 0.5
+            text "{i}Into the Haunted Forest{/i}" xalign 0.5
+            text "{i}Neon Runner{/i}" xalign 0.5
+            text "{i}Vast Places{/i}" xalign 0.5
+            null height 10
+            text "by Eric Matyas (soundimage.org)" xalign 0.5
+            null height 20
+            text "{i}Rotten Sprinkles{/i}" xalign 0.5
+            text "{i}Showtime!{/i}" xalign 0.5
+            text "{i}The Calm{/i}" xalign 0.5 
+            text "{i}The Mr. Sprinkles Show{/i}" xalign 0.5
+            text "{i}The Twins{/i}" xalign 0.5
+            null height 10
+            text "by Cole Goodrich" xalign 0.5
+        vbox:
+            xalign 0.85 yalign 0.5
+            text "Sound Effects" style "creditscreen" xalign 0.5
+            text "freesound.org" xalign 0.5
+            null height 20
+            text "Made with Ren'Py 7.3.2" style "creditscreen" xalign 0.5
+    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.9 yalign 0.9
 
 ## Variable Defaults ##############################################################################################################
 
@@ -817,6 +920,8 @@ label chapterstart:
     $renpy.block_rollback()
     stop music
     stop sound
+    stop sound2
+    stop ambience
     if renpy.variant('mobile'):
         $clickortap = "Tap"
     play sound flicker

@@ -93,7 +93,7 @@ label chapter_1:
     "Suddenly, an energetic young woman entered the set via the fireplace on the back wall."
     play sound applause
     show sprinkles at two2_s with easeinleft
-    show madeline smile at two1_m with dissolve
+    show madeline down smile at two1_m with dissolve
     pause 0.5
     s laugh "Aha! Hello there, Ms. Madeline!"
     m "Hello there, Mr. Sprinkles!"
@@ -102,11 +102,11 @@ label chapter_1:
     m "I was filling in for Santa Claus while he's on vacation!"
     s laugh "Wow! How merry!"
     "Ms. Madeline gave an exaggerated shrug as she stared at the camera."
-    m "That's my life~!"
+    m shrug "That's my life~!"
     play sound "audio/se/audience_laugh.ogg"
     "The audience gave a laugh in response."
     s happy "Anyway, are you ready to have fun?"
-    m "I sure am!"
+    m down "I sure am!"
     s laugh "Splendid~!"
     s happy "Now, what do you say we spin the Wacky Dartboard to see what we'll play first?"
     m "Why, I'd say that's a great idea, Mr. Sprinkles!"
@@ -335,7 +335,7 @@ label chapter_1:
     k "Hi, Daddy~!!"
     show kate:
         ease 0.5 two2
-    show richard laughing at two1_r with dissolve
+    show richard main_down laughing at two1_r with dissolve
     pause 0.1
     r "Ahaha! Hey there, pumpkin!"
     "He picked up his daughter and gave her a hug."
@@ -376,7 +376,7 @@ label chapter_1:
     pause 0.1
     "After we all got the groceries in the house, the girls went back into the living room to watch TV, leaving Richard and I to put them all away."
     play music autumn_changes
-    show richard concerned at middle_r
+    show richard main_crossed concerned at middle_r
     show screen laura
     with dissolve
     pause 0.1
@@ -387,20 +387,20 @@ label chapter_1:
     l "Besides, we're still going to that show tomorrow, anyway, so what's the harm?"
     r "I just..."
     "He placed the cans in the cupboard before slowly closing it, clearly stalling to find a way to finish that sentence."
-    r "I just don't want her to get hurt."
+    r main_down "I just don't want her to get hurt."
     r "Sooner or later, she's going to realize what he is and what they do."
     $l_exp = "concerned"
     l "Richard, the whole point of his show is to show that--"
     r @ glare "I know not all of them are like that."
     r "But as long as there's a REDD War, the ones that ARE like that will continue to just..."
-    r glare "Well, you know what that producer from the show did last year."
+    r main_crossed glare "Well, you know what that producer from the show did last year."
     $l_exp = "neutral"
     "I took a deep breath and looked down."
     l "Yes, I do."
     r @ concerned "I know it's wrong to judge a group based on one member, but..."
     r "How am I supposed to trust any of those things when they say they're good, only for them to kill an entire household?"
     r "A household that had {b}children{/b} in it?"
-    r "That's just fu--"
+    r rage "That's just fu--"
     r concerned "...{b}messed{/b} up."
     $l_exp = "sad"
     l "I'm not denying that, Richard."
@@ -413,7 +413,7 @@ label chapter_1:
     show richard concerned
     "He sighed before turning towards the living room."
     "Kate's eyes were glued to the TV while Dakota's were on her phone."
-    r "I just want our girls to be safe."
+    r main_down "I just want our girls to be safe."
     r "To have a long, healthy life."
     l "And I do, too, Richard. I want that more than anything."
     l "But the REDD aren't going anywhere, and neither is the REDD War."
@@ -425,7 +425,7 @@ label chapter_1:
     r concerned "..."
     "He finally sighed."
     r "I don't think I'll ever be able to accept it, Laura."
-    r "I'm sorry, but there's just no way I can see those things as anything but monsters."
+    r main_crossed "I'm sorry, but there's just no way I can see those things as anything but monsters."
     $l_exp = "sad"
     l "..."
     $l_exp = "determined"
@@ -439,7 +439,7 @@ label chapter_1:
     l "Tomorrow's about THEM."
     r concerned "..."
     "Finally he gave a small smile."
-    r smile "Alright, you win."
+    r main_down smile "Alright, you win."
     $l_exp = "smug"
     l "As usual."
     "We then gave each other a quick kiss before putting the rest of the groceries away, sans the ones needed for that night's meal."
@@ -472,7 +472,7 @@ label kragonnews:
     "After dinner, the girls were upstairs doing their own thing while Richard and I stayed in the living room."
     "Though we weren't really talking to each other much; we were mostly just scrolling through our phones, only occasionally showing each other funny or relevant posts."
     "But then..."
-    show richard glare at middle_r with dissolve
+    show richard main_down glare at middle_r with dissolve
     pause 0.1
     r "Have you seen what Jessica Tate's doing right now?"
     $l_exp = "mad"
@@ -507,12 +507,12 @@ label kragonnews:
     pause 0.5
     scene bg livingroom
     show screen laura
-    show richard concerned at middle_r
+    show richard main_down concerned at middle_r
     with dissolve
     pause 0.1
     l "Ugh..."
     l "The things some people will do for attention."
-    r "I mean, I'm not a fan of the REDD, but I couldn't imagine protesting them like that."
+    r main_crossed "I mean, I'm not a fan of the REDD, but I couldn't imagine protesting them like that."
     $l_exp = "rage"
     l "It's not even REDD, in general; it's that one in particular!"
     l "I really can't believe that she has the balls to say that Krag Dovason had involvement in Trosh's actions!"
@@ -521,11 +521,11 @@ label kragonnews:
     $l_exp = "mad"
     l "Right, because he can snap his fingers and change the fact that he's a REDD."
     r concerned "That's not what I meant at all, Laura."
-    r "Look, let's just drop it. The last thing we need to do right now is stress."
+    r main_down "Look, let's just drop it. The last thing we need to do right now is stress."
     $l_exp = "neutral"
     l "..."
     l "You're right. I'm sorry."
-    r "Nah, I should've known that little ol' Jessica would rustle your feathers, and for that, {b}I'm{/b} sorry."
+    r smile "Nah, I should've known that little ol' Jessica would rustle your feathers, and for that, {b}I'm{/b} sorry."
     "Before we could get into this more, Dakota came downstairs."
     show richard:
         ease 0.5 two2_r
@@ -549,7 +549,7 @@ label kragonnews:
     with dissolve
     pause 0.5
     a "Thank you for coming, Mr. Dovason!"
-    show krag laughing at middle_r with dissolve
+    show krag laughing at middle_k with dissolve
     pause 0.1
     kr "Oh, thank you for having me, Chuck."
     "Wow. Without that bright outfit and blue hair, he looks like a completely different person."
@@ -574,7 +574,7 @@ label kragonnews:
     $l_exp = "smile"
     "Giving a small smile, I turned back to the TV, myself."
     scene bg newsroom
-    show krag smile at middle_r
+    show krag smile at middle_k
     hide screen laura
     with dissolve
     pause 0.1
@@ -616,12 +616,12 @@ label kragonnews:
     kr laughing "That's the idea~!"
     $l_exp = "smug"
     scene bg livingroom
-    show richard concerned at middle_r
+    show richard main_down concerned at middle_r
     show screen laura
     with dissolve
     pause 0.1
     l "What do you think, honey? Think you can handle some of those games?"
-    r laughing "Ha! Yeah, like my fat self can run an obstacle course!"
+    r laughing main_crossed "Ha! Yeah, like my fat self can run an obstacle course!"
     show richard:
         ease 0.5 two1_r
     show dakota smirk at two2 with dissolve
@@ -778,7 +778,7 @@ label kragonnews:
         ease 0.5 left
     show dakota zorder 2:
         ease 0.5 right
-    show richard concerned at middle_r zorder 1 with dissolve
+    show richard main_down concerned at middle_r zorder 1 with dissolve
     pause 0.1
     r "..."
     k "D-Daddy, are we really gonna die?"
@@ -790,18 +790,18 @@ label kragonnews:
     "He finally glanced down and looked her in the eye."
     r glare "Not if I can help it, baby."
     "He then looked at all of us."
-    r "Everyone, pack some bags; we're getting out of the city."
+    r main_crossed "Everyone, pack some bags; we're getting out of the city."
     $l_exp = "shocked"
     l "And going where?"
     r @ concerned "I don't know."
     r "But anywhere is safer than here."
     r "If we hurry, we can get out of here before the barriers go up."
     r "And even if we don't, we can still be close to the front of the line."
-    r "Now come on, girls. Find a bag, get what you need to last you a couple days, and let's move!"
+    r rage "Now come on, girls. Find a bag, get what you need to last you a couple days, and let's move!"
     k concerned "But, Daddy, what about the Mr. Sprinkles show tomorrow?"
     r concerned "..."
     "Richard sighed and bent down, placing his hand on her shoulder."
-    r "I'm sorry, Kate, but we're not going to the show. It's too dangerous."
+    r main_down "I'm sorry, Kate, but we're not going to the show. It's too dangerous."
     k "But, Daddy, you promised we'd go!!"
     r "I know, but..."
     $l_exp = "concerned"
@@ -815,7 +815,7 @@ label kragonnews:
     scene bg livingroom with dissolve
     pause 0.1
     "We then made our way downstairs."
-    show richard glare at middle_r with dissolve
+    show richard main_down glare at middle_r with dissolve
     pause 0.1
     r "..."
     $l_exp = "neutral"
@@ -823,15 +823,15 @@ label kragonnews:
     r "You're not seriously considering staying, are you?"
     $l_exp = "surprised"
     l "Well..."
-    r "Oh, my God, Laura!"
+    r main_crossed rage "Oh, my God, Laura!"
     l "Richard, hear me out.{w=0.5} Please."
-    r "..."
+    r glare "..."
     $l_exp = "neutral"
     l "I want us all to be out of harm's way. I do. You gotta understand that."
     r concerned "..."
     $l_exp = "sad"
     l "But do you have any idea how much it costs to exit the barrier? They charge per {b}person{/b}, Richard!"
-    r rage "That's why we need to get out before---"
+    r main_down rage "That's why we need to get out before---"
     play sound helicopter_loop loop
     pause 1.0
     $l_exp = "neutral"
@@ -853,12 +853,13 @@ label kragonnews:
     $l_exp = "sad"
     l "Besides, do you know how heartbroken Kate would be if she missed this show that she's been looking forward to for a whole month?"
     r rage "Well, when she's older, she'll understand why her meanie-head father didn't take her to see Mr. Sprinkles!"
-    r glare "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
+    r glare main_crossed "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
     r "If you wanna be stupid enough to stay and get yourself killed, then..."
     $l_exp = "shocked"
     l "..."
     r "..."
     r concerned "..."
+    show richard main_down
     "He sighed and placed his face in his hands."
     r "I'm sorry. I just..."
     r "It's like I told you. I want them to be safe."
@@ -881,7 +882,7 @@ label kragonnews:
     l "We can get up early tomorrow and still have 12 hours to try and get out."
     r "..."
     "He then broke from the hug."
-    show richard concerned at middle_r with dissolve
+    show richard main_crossed concerned at middle_r with dissolve
     pause 0.1
     r "...I don't know, Laura."
     r "I get what you're saying, but..."
@@ -896,11 +897,31 @@ label kragonnews:
         l "Richard..."
         "\"...you're right. We should leave.\"":
             $renpy.music.set_volume(1.0, delay=1, channel='music')
-            jump weshouldleave
+            $l_exp = "sad"
+            l "...you're right. We should leave."
+            r shocked "..."
+            r main_down smile "...I knew you'd make the right choice, honey."
+            r laughing "Now come on. Let's get packing!"
+            $l_exp = "smile"
+            "Richard and I then went upstairs to pack."
+            "It may be a challenge, but we're gonna get out of Atlanta."
+            "Let's just hope it won't be {b}too{/b} chaotic out there."
+            stop music fadeout(5.0)
+            hide screen laura
+            hide richard
+            with dissolve
+            window hide dissolve
+            pause 0.5
+            scene bg fade
+            with Dissolve(3.0)
+            pause 2
+            $badcredits = True
+            if not persistent.achievement_toosafe:
+                $persistent.achievement_toosafe = True
+                $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
+            jump gameover
         "\"...we should really sleep on it.\"":
             $renpy.music.set_volume(1.0, delay=1, channel='music')
-            jump sleeponit
-
 label sleeponit:
     $l_exp = "surprised"
     l "...we should really sleep on it."
@@ -916,7 +937,7 @@ label sleeponit:
     l "And who knows? Maybe you'll change your mind about leaving."
     r glare "..."
     "He finally sighed and grabbed my hand."
-    r "Fine. I'll sleep on it."
+    r main_down "Fine. I'll sleep on it."
     r concerned "...at least, I'll try to."
     $l_exp = "excited"
     "I gave a small, nervous laugh."
@@ -943,9 +964,9 @@ label sleeponit:
     Well, those weren't her exact words, but they may as well have been.
 
     I guess neither girl is at the age to understand the world the way we do, which I guess can be both a blessing and a curse.
-    """
-    nvl clear
-    narrate """
+    
+    {clear}
+
     At any rate, we told them we still needed to get bags packed just in case.
 
     After helping Kate with her bag, as well as trying to get her to understand that she needs to pack more than a box of animal crackers, I checked up on Dakota.
@@ -971,7 +992,7 @@ label sleeponit:
     nvl hide
     scene bg dakotaroom
     show dakota mad at two2
-    show richard concerned at two1_r
+    show richard main_down concerned at two1_r
     show screen laura
     with dissolve
     pause 0.1
@@ -979,7 +1000,7 @@ label sleeponit:
     $l_exp = "sad"
     l "I know it's tough, baby, but sometimes things can't always go the way we want them to."
     d "But we're really gonna stay here and {b}DIE{/b}?!"
-    r "We don't know if we're staying or not, Dakota. We'll talk more about it in the morning."
+    r main_crossed "We don't know if we're staying or not, Dakota. We'll talk more about it in the morning."
     d "And what's gonna happen if we {b}do{/b} stay?"
     $l_exp = "neutral"
     l "That'll be one of the things we talk about."
@@ -987,13 +1008,13 @@ label sleeponit:
     l "It's like I told you, Dakota. We'd never put you girls at risk."
     $l_exp = "smile"
     l "So no matter what ends up happening, we'll make sure you're safe."
-    r "Your mother is right. You just have to trust us."
+    r smile "Your mother is right. You just have to trust us."
     d "..."
     "I bent down and gave her a quick kiss on the head."
     $l_exp = "excited"
     l "Please try and get some sleep, okay?"
     d "...okay..."
-    r "..."
+    r concerned "..."
     scene bg dakotaroom
     hide screen laura
     with dissolve
@@ -1011,9 +1032,9 @@ label sleeponit:
     Will we stay here? Will we try to get out of Atlanta? Would we even be able to get out in time?
 
     So many questions, no way to know the answers ahead of time...
-    """
-    nvl clear
-    narrate """
+    
+    {clear}
+
     When we finally had our bags packed, we went to bed.
 
     I'd say 'went to sleep', but that just wasn't really possible given our situation.
@@ -1039,29 +1060,3 @@ label sleeponit:
     $renpy.end_replay()
     $persistent.chapter1_scene2 = True
     jump chapter_2
-
-
-label weshouldleave:
-    $l_exp = "sad"
-    l "...you're right. We should leave."
-    r shocked "..."
-    r smile "...I knew you'd make the right choice, honey."
-    r laughing "Now come on. Let's get packing!"
-    $l_exp = "smile"
-    "Richard and I then went upstairs to pack."
-    "It may be a challenge, but we're gonna get out of Atlanta."
-    "Let's just hope it won't be {b}too{/b} chaotic out there."
-    stop music fadeout(5.0)
-    hide screen laura
-    hide richard
-    with dissolve
-    window hide dissolve
-    pause 0.5
-    scene bg fade
-    with Dissolve(3.0)
-    pause 2
-    $badcredits = True
-    if not persistent.achievement_toosafe:
-        $persistent.achievement_toosafe = True
-        $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
-    jump gameover
