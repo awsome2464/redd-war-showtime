@@ -5,7 +5,7 @@ label chapter_1:
     pause 2
     play sound drumroll_buildup loop
     scene bg curtain
-    show choice_bg
+    show dark
     with dissolve
     pause 0.5
     hide choice_bg
@@ -19,7 +19,7 @@ label chapter_1:
     play sound drumroll_finish
     pause 1.0
     hide spotlight
-    show choice_bg
+    show dark
     pause 0.5
     play music sprinkles_theme
     play sound applause

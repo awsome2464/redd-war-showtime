@@ -2122,3 +2122,408 @@ label richarddoesnttakeplace:
     $renpy.end_replay()
     jump gameover
 label richardtakesplace:
+    "Of course I don't {b}want{/b} him to go out there."
+    $l_exp = "sad"
+    "But what's the alternative? Getting {b}myself{/b} killed?"
+    $l_exp = "surprised"
+    "Besides, Richard's stronger and more active than me. He might actually have a better chance."
+    l "You're sure, Richard?"
+    r show_crossed "If it keeps you alive, I'm completely sure."
+    t "Sounds like a 'yes' to me."
+    "Trosh then grabbed onto Richard and dragged him out of the room."
+    r show_down shocked "Just stay alive for them, Laura! Please!"
+    r concerned "I love you! Just stay alive!!"
+    stop music fadeout(3.0)
+    scene bg storage
+    with Dissolve(2.0)
+    pause 0.5
+    $l_exp = "sad"
+    "Oh God..."
+    "Maybe this was a mistake."
+    "Maybe it should have been me going out, not him."
+    $l_exp = "surprised"
+    "I guess it's a bit too late for that now..."
+    $l_exp = "neutral"
+    "Several minutes had passed, and there was nothing about what Richard would be playing."
+    $l_exp = "concerned"
+    "Usually, it takes a minute or two, but we're talking closer to 5."
+    $l_exp = "surprised"
+    "Soon, though, I got my explanation for why that was the case."
+    play music sprinkles_theme
+    scene bg stage
+    show sprinkles happy at middle_s
+    hide screen laura
+    with dissolve
+    pause 0.1
+    s "Alright, and the Wacky Dartboard has landed on..."
+    s laugh "{i}Wild, Wild Races!{/i}"
+    show game_name "Wild, Wild Races" at game_name_flash
+    with None
+    show screen laura
+    with dissolve
+    pause 0.1
+    "Oh, no!"
+    "That's the most physically-challenging game on the show!"
+    $l_exp = "concerned"
+    "But it's usually not played on the stage, so where would it be?"
+    hide screen laura
+    with dissolve
+    hide game_name
+    s jeer "And now, it is time to go live to our course and see our brave contestant!"
+    scene bg parkinggarage with dissolve
+    pause 0.1
+    $l_exp = "neutral"
+    show screen laura
+    with dissolve
+    "It looked like a parking garage that had to have been near the theater."
+    $l_exp = "sad"
+    "And right by the starting line..."
+    show richard show_crossed glare at middle_r with dissolve
+    pause 0.1
+    "...was Richard."
+    $l_exp = "surprised"
+    "He looked like he was doing his best to be brave, but I knew him well enough to where I knew he was terrified."
+    s "Alright, folks! Our brave contestant now has to tackle the {i}Wild, Wild Races{/i} course!"
+    s "On each floor of our makeshift course is a series of obstacles that he must make his way through."
+    s "The higher up he gets, the more challenging, {i}and dangerous{/i}, they will become!"
+    s "Will he make it to the finish line in one piece? Ohoho! There's only one way to find out~!"
+    $l_exp = "concerned"
+    "Hold on..."
+    "The camera shifted a little bit to show more of the starting line."
+    "It looked like there was someone sitting in a chair."
+    $l_exp = "sad"
+    "Someone who looked like a child...!"
+    s "Alright, brave contestant! Head to the starting line!"
+    $l_exp = "surprised"
+    show richard show_down
+    "My husband slowly made his way over."
+    show richard concerned
+    "He seemed to show his fear a bit when he got to the starting line and looked to his side."
+    "That's when the camera fully panned to show what he was looking at."
+    $l_exp = "sad"
+    l "Oh, my God!!"
+    "I couldn't hold back the horror I felt by what I saw!"
+    hide richard with dissolve
+    pause 0.1
+    show kate shocked at two1
+    show dakota sad at two2
+    with dissolve
+    pause 0.1
+    "Kate and Dakota were out there, sitting in chairs with guards behind them!"
+    "How?? Why??"
+    $l_exp = "surprised"
+    "I suppose this is confirmation that they're alive, and they don't seem to be injured, but..."
+    $l_exp = "sad"
+    "Why are they out there watching this??"
+    "How did the REDD even find them and know they were his daughters??"
+    $l_exp = "surprised"
+    "...{w}hang on."
+    $l_exp = "concerned"
+    "I was the one supposed to be out there, not Richard."
+    "So {b}I{/b} was supposed to be the one the girls were watching."
+    $l_exp = "sad"
+    "But then, how--?"
+    s "On your marks...!"
+    stop music fadeout(3.0)
+    $l_exp = "surprised"
+    scene bg parkinggarage with dissolve
+    pause 0.1
+    show richard show_down concerned at middle_r with dissolve
+    pause 0.1
+    "The camera then cut back to Richard."
+    s "Get set...!"
+    show richard glare
+    "He looked rightfully determined to complete the obstacle course."
+    $l_exp = "sad"
+    "I hope he can pull it off."
+    "For the family's sake."
+    s "{b}GO!{/b}"
+    play sound airhorn
+    play music into_battle
+    "After the horn went off, Richard bolted forward."
+    $l_exp = "surprised"
+    "He turned the corner, and was about to keep going..."
+    show richard concerned
+    "But a wall of large, sharp poles stood in his way!"
+    if persistent.achievement_epicfail:
+        $l_exp = "concerned"
+        "Wow. I don't think I would've been able to notice those or stop in time."
+    $l_exp = "smile"
+    "Fortunately, there was a fair-sized opening along the wall that he was able to get through."
+    show richard glare
+    "After that hurdle, he kept on going."
+    hide richard
+    hide screen laura
+    with dissolve
+    $nvl = True
+    nvl clear
+    nvl show dissolve
+    narrate """
+    Credit where it's due, a lot of the obstacles in the course were very similar to the ones you'd find in the proper {i}Wild, Wild Races{/i} courses.
+
+    You had your typical swinging pendulums, slippery floor, things hurled at you, all that noise.
+
+    The most glaring difference in this case is that the obstacles will hurt or kill you.
+
+    The pendulums were axe blades.
+
+    The slippery floor was on a ramp that led to a buzzsaw.
+
+    The things being hurled were baseballs from a pitching machine.
+
+    Richard got hit a few times by the latter, which did slow him down a bit, but he was able to recover quickly.
+
+    {nw}
+
+    He's certainly using all this strength and stamina to get through this, though I wonder if knowing that his girls are down there watching is messing with his head a bit.
+
+    Knowing the REDD, I can bet that's exactly why they were placed down there to begin with.
+    """
+    $nvl = False
+    nvl hide
+    with dissolve
+    pause 0.1
+    s "And our contestant is approaching the top floor!"
+    s "Will he be able to overcome the challenge that lies ahead?"
+    $l_exp = "surprised"
+    show richard show_down glare at middle_r
+    show screen laura
+    with dissolve
+    pause 0.1
+    "He was about to approach the final ramp."
+    show richard concerned
+    "And was rightfully confused."
+    $l_exp = "concerned"
+    "The ramp was blocked off with rubble and concrete."
+    "As the camera panned around, it showed that the top of the parking garage was empty."
+    "No obstacles, no REDD, nothing."
+    $l_exp = "surprised"
+    "That is, until he turned around."
+    "There stood a long metal beam that stretched across the entire road, ending at the top of another building."
+    "The top of said building housed a checkered line."
+    s "Let's hope our contestant has a good sense of balance; he's gonna need it if he doesn't want to be a human pancake!"
+    show richard show_crossed
+    "Taking a deep breath, Richard approached the beam."
+    "It looked about a foot in width, so he at least should have some decent walking room."
+    $l_exp = "sad"
+    "But we're talking about 50 feet in length."
+    $l_exp = "surprised"
+    "I guess it's not the longest distance in the world, but when you're around a hundred or so feet in the air..."
+    show richard show_down glare
+    "Nevertheless, Richard took one last deep breath before stepping onto the beam."
+    $l_exp = "sad"
+    "Come on, babe! You can do this!"
+    hide richard
+    hide screen laura
+    with dissolve
+    pause 0.1
+    nvl clear
+    $nvl = True
+    nvl show dissolve
+    narrate """
+    Richard held his hands out to his side and slowly inched across.
+
+    It didn't look fastened down on either end, so any quick and sudden movements might shift it and cause him to fall.
+
+    I shouldn't have expected anything more from the REDD.
+
+    Fortunately, since he doesn't have a time limit, he can take his time getting across.
+
+    Actually, now that I think about it, why is it called {i}Wild, Wild Races{/i} if it's not a race?
+
+    Gah! Stay focused, Laura!
+
+    {clear}
+
+    After what felt like 5 minutes, Richard was about halfway across.
+
+    Sweat was dripping down his face, but his determined look never left.
+
+    What was going through his mind at that moment, I wonder?
+
+    Was he scared of the potential dangers?
+
+    Was he relieved that he was almost done?
+
+    Honestly, it was most likely both.
+
+    Still, he pressed on, and was doing a damn good job, as well.
+    """
+    nvl clear
+    stop music fadeout(5.0)
+    narrate """
+    As he slowly inched towards the end, he looked a little more relieved.
+ 
+    Honestly, so was I.
+ 
+    Still, that didn't prevent me from locking my eyes to the screen, holding my breath as Richard moved closer and closer.
+    """
+    play sound heartbeat loop
+    narrate """
+    I could feel my heart beating hard in my chest.
+
+    Could he actually make it?
+
+    Could he actually finish the game?
+
+    Please, Richard...
+
+    Whatever you do, finish the game!
+    """
+    $nvl = False
+    nvl hide
+    play sound "audio/se/explosion.ogg"
+    scene bg flash
+    with None
+    scene bg parkinggarage
+    with Dissolve(2)
+    show screen laura
+    with dissolve
+    "What the hell??"
+    "The camera then panned to a nearby building, where an explosion of fire could be seen emerging!"
+    r "Ahh!!"
+    show richard show_down shocked:
+        middle_r
+        alpha 0.0
+        parallel:
+            ease 0.5 alpha 1.0
+        parallel:
+            linear 0.2 xalign 0.49
+            linear 0.2 xalign 0.51
+            repeat
+    pause 0.6
+    "Richard was clearly spooked by the sudden noise, with the top half of his body moving from side to side, trying to regain balance!"
+    l "Oh, God! Richard, stay calm!!"
+    "I knew he couldn't hear me, but I didn't care."
+    show richard concerned:
+        linear 0.4 xalign 0.49
+        linear 0.4 xalign 0.51
+        repeat
+    "After a few seconds, he was able to regain more of his balance."
+    show richard:
+        linear 1.0 xalign 0.5
+    pause 1.5
+    $l_exp = "smile"
+    show richard smile
+    "A huge sigh of relief came out of him, as well as myself."
+    "He then continued to walk forward."
+    s "Oh, my! What a beautiful recovery from our contestant!"
+    s "And before anyone asks: no, that explosion was not planned by us; I honestly have no idea why that happened."
+    "{color=d00000}Mr. Sprinkles{/color}" "\"But I must say that it made for quite an unexpected{nw}"
+    play sound smack
+    show richard shocked:
+        ease 0.25 yalign -2.0
+    $l_exp = "sad"
+    r "{b}AAAAHHHHH!!!{/b}"
+    l "{b}{i}RICHARD!!!{/i}{/b}"
+    "Out of nowhere, the beam under him started falling, with him having no choice but to go down with it!!"
+    s "Oh, my goodness!!"
+    scene bg fade with dissolve
+    pause 0.1
+    "Richard's screams could be heard loudly as he plummeted down below, the camera being careful to stay focused on him at all times."
+    "All I could do was stare in shock as he fell for what felt like forever, his screams only stopping when..."
+    hide screen laura
+    window hide
+    show richard show_down shocked:
+        size(562, 1125)
+        rotate 90
+        xalign 0.5 yalign 1.5
+        linear 0.15 yalign -0.25
+    pause 0.15
+    if persistent.gore:
+        show blood3
+    play sound hammer
+    $renpy.pause(delay=3)
+    window show
+    show screen laura
+    l "{b}AAAAAAAAAAHHHHHHHHHHH!!!!!{/b}"
+    "I let out a blood-curling scream as tears poured out of my eyes!"
+    scene bg fade with dissolve
+    pause 0.1
+    "I covered my face and continued to scream, my whole body trembling!"
+    "My screams then quickly turned into sobs as I collapsed to the floor."
+    l "I'm so sorry, Richard!!"
+    l "That should have been me!!"
+    l "{b}WHY COULDN'T IT HAVE BEEN ME?!?!{/b}"
+    "I continued to cry and scream, barely hearing Mr. Sprinkles saying they were about to take a break."
+    l "...I'm sorry..."
+    "I managed to choke out in a whisper."
+    hide screen laura
+    with dissolve
+    $nvl = True
+    nvl clear
+    nvl show dissolve
+    narrate """
+    I continued to lie there with tears coming out, my cries becoming quieter and quieter.
+
+    A few of the other adults tried to comfort me, but there was nothing they could do to bring him back.
+
+    Richard's gone.
+
+    Forever.
+
+    All because of this fucking unending nightmare.
+
+    My husband is dead.
+
+    The father of my children is dead.
+
+    !!!
+
+    {nw}
+
+    My children!!
+
+    {clear}
+
+    Kate and Dakota were down there at the parking garage!!
+
+    How much of that did they see??
+
+    Did they see him fall??
+
+    Did they see him land??
+
+    What's going to happen to them now??
+
+    ...
+    """
+    $nvl = False
+    nvl hide
+    with dissolve
+    pause 0.1
+    r "Just stay alive for them, Laura! Please!"
+    show richard show_down concerned at middle_r
+    with Dissolve(1.0)
+    pause 0.5
+    r concerned "I love you! Just stay alive!!"
+    window hide
+    pause 1.0
+    hide richard
+    with Dissolve(2.0)
+    pause 1.0
+    window show dissolve
+    pause 0.5
+    "I will, Richard."
+    "I will."
+    window hide dissolve
+    hide screen laura
+    with dissolve
+    pause 3
+    $renpy.end_replay()
+    $persistent.chapter3_scene7 = True
+
+
+label jessicaseye:
+    python:
+        currenttime = "12:00 AM"
+        timeleft = "7 hours"
+        currentdate = "April 1st"
+    call chapterstart
+    pause 2
+    play music sprinkles_theme
+    scene bg stage
+    show sprinkles happy at middle_s
+    with Dissolve(2.0)
+    window show dissolve
+    pause 0.1

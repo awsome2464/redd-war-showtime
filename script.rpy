@@ -10,8 +10,6 @@ init python:
     config.keymap['game_menu'].remove('mouseup_3')
     config.keymap['help'].remove('meta_shift_/')
     config.keymap['help'].remove('K_F1')
-    config.keymap['hide_windows'].remove('mouseup_2')
-    config.keymap['hide_windows'].remove('h')
 
 ## Toggling Splash Screen upon Launch ############################################################################################
 
@@ -148,6 +146,9 @@ image trosh = Placeholder("boy")
 image black = "#000000"
 image white = "#ffffff"
 image red = "#f00000"
+image dark:
+    "black"
+    alpha 0.33
 image splash = "Good Tales Transparent.png"
 image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
@@ -313,6 +314,7 @@ define audio.drumroll_finish = "<from 4.9>audio/se/drumroll.ogg"
 define audio.flicker = "audio/se/flicker.ogg"
 define audio.footsteps = "audio/se/footsteps.ogg"
 define audio.hammer = "audio/se/hammer.ogg"
+define audio.heartbeat = "audio/se/heartbeat.ogg"
 define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
 define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
 define audio.machine_gun = "audio/se/machine gun.ogg"
@@ -367,12 +369,6 @@ transform credit_scroll_2:
 transform credit_scroll_3:
     xalign 0.75 yalign 2.0
     linear 13 yalign -1.0
-transform notify_transform:
-    xalign 0.95 yalign -0.1
-    on show:
-        ease 1.0 yalign 0.1
-    on hide:
-        ease 1.0 yalign -0.1
 
 # Stationary Transforms
 transform middle:
@@ -488,7 +484,7 @@ style replay_desc:
 style creditscreen:
     font "fonts/circula-medium.otf"
     color "#ffffff"
-    outlines [(1.0, '#d00000', 0.0, 0.0)]
+    outlines [(1.0, '#a39600', 0.0, 0.0)]
     text_align 0.5
 
 ## Custom Screens #################################################################################################################
@@ -502,30 +498,7 @@ screen ctc():
         add "ctc_arrow_1"
 screen laura():
     zorder 100
-    if l_exp == "concerned":
-        add "laura concerned" at sideimage
-    elif l_exp == "determined":
-        add "laura determined" at sideimage
-    elif l_exp == "excited":
-        add "laura excited" at sideimage
-    elif l_exp == "mad":
-        add "laura mad" at sideimage
-    elif l_exp == "neutral":
-        add "laura neutral" at sideimage
-    elif l_exp == "rage":
-        add "laura rage" at sideimage
-    elif l_exp == "sad":
-        add "laura sad" at sideimage
-    elif l_exp == "shocked":
-        add "laura shocked" at sideimage
-    elif l_exp == "smile":
-        add "laura smile" at sideimage
-    elif l_exp == "smug":
-        add "laura smug" at sideimage
-    elif l_exp == "surprised":
-        add "laura surprised" at sideimage
-    elif l_exp == "wut":
-        add "laura wut" at sideimage
+    add "laura [l_exp]" at sideimage
 screen chaptername():
     vbox:
         xalign 0.5 yalign 0.5
@@ -552,24 +525,20 @@ screen loadorquit():
         textbutton "Load Game" action ShowMenu('load') xalign 0.5
         textbutton "Main Menu" action MainMenu() xalign 0.5
         textbutton "Quit" action Quit() xalign 0.5
-screen notify(message):
-    zorder 100
-    text message at notify_transform
-    timer 5.0 action Hide('notify')
 
 # Menu Screens
 screen extras():
-    tag menu
-    add "black"
+    tag title
+    modal True
     add "extras_overlay"
     imagebutton auto "gui/chapter_%s.png" action ShowMenu('chapterselect') xalign 0.13 yalign 0.33
     imagebutton auto "gui/achievements_%s.png" action ShowMenu('achievements') xalign 0.87 yalign 0.33
-    imagebutton auto "gui/follow_%s.png" action NullAction() xalign 0.25 yalign 0.57
+    imagebutton auto "gui/follow_%s.png" action ShowMenu('socials') xalign 0.25 yalign 0.57
     imagebutton auto "gui/credits_%s.png" action ShowMenu('credits') xalign 0.75 yalign 0.57
-    imagebutton auto "gui/return_%s.png" action ShowMenu('main_menu') xalign 0.5 yalign 0.99
+    imagebutton auto "gui/return_%s.png" action [ToggleVariable("title", True), Hide('extras', transition=dissolve)] xalign 0.5 yalign 0.99
 screen chapterselect():
-    tag menu
-    add gui.main_menu_background
+    tag title
+    add "dark"
     add "curtain_overlay"
     frame:
         xysize(250, 550)
@@ -586,7 +555,7 @@ screen chapterselect():
                     textbutton "Meet the Farrs" xalign 0.5:
                         hovered SetVariable("replay_num", 1)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("chapter_1")
+                        action [SetVariable("replay_num", 0), Replay("chapter_1")]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -596,7 +565,7 @@ screen chapterselect():
                     textbutton "Unfortunate News" xalign 0.5:
                         hovered SetVariable("replay_num", 2)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("kragonnews")
+                        action [SetVariable("replay_num", 0), Replay("kragonnews")]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -608,7 +577,7 @@ screen chapterselect():
                     textbutton "Evening Plans" xalign 0.5:
                         hovered SetVariable("replay_num", 3)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("chapter_2")
+                        action [SetVariable("replay_num", 0), Replay("chapter_2")]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -618,7 +587,7 @@ screen chapterselect():
                     textbutton "Backstage Drama" xalign 0.5:
                         hovered SetVariable("replay_num", 4)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                        action [SetVariable("replay_num", 0), Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -628,7 +597,7 @@ screen chapterselect():
                     textbutton "Packed Parking" xalign 0.5:
                         hovered SetVariable("replay_num", 5)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                        action [SetVariable("replay_num", 0), Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -638,7 +607,7 @@ screen chapterselect():
                     textbutton "Meet and Greet" xalign 0.5:
                         hovered SetVariable("replay_num", 6)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                        action [SetVariable("replay_num", 0), Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -648,7 +617,7 @@ screen chapterselect():
                     textbutton "Showtime!" xalign 0.5:
                         hovered SetVariable("replay_num", 7)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"})
+                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -660,7 +629,7 @@ screen chapterselect():
                     textbutton "The First Game" xalign 0.5:
                         hovered SetVariable("replay_num", 8)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True})
+                        action [SetVariable("replay_num", 0), Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -670,7 +639,7 @@ screen chapterselect():
                     textbutton "When You Gotta Go..." xalign 0.5:
                         hovered SetVariable("replay_num", 9)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                        action [SetVariable("replay_num", 0), Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -680,7 +649,7 @@ screen chapterselect():
                     textbutton "Laughs and Cracks" xalign 0.5:
                         hovered SetVariable("replay_num", 10)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                        action [SetVariable("replay_num", 0), Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -690,7 +659,7 @@ screen chapterselect():
                     textbutton "Toilet Escape" xalign 0.5:
                         hovered SetVariable("replay_num", 11)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -700,7 +669,7 @@ screen chapterselect():
                     textbutton "Standing Up" xalign 0.5:
                         hovered SetVariable("replay_num", 12)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                        action [SetVariable("replay_num", 0), Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -710,13 +679,32 @@ screen chapterselect():
                     textbutton "Hiding in the Closet" xalign 0.5:
                         hovered SetVariable("replay_num", 13)
                         unhovered SetVariable("replay_num", 0)
-                        action Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends"})
+                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-
+                if persistent.chapter3_scene7:
+                    textbutton "A Special Game" xalign 0.5:
+                        hovered SetVariable("replay_num", 14)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("deadlygame", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter3_scene8:
+                    textbutton "Eyesore" xalign 0.5:
+                        hovered SetVariable("replay_num", 15)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("jessicaseye", scope={"event": "REDD War ends"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
     frame:
         xalign 0.75 yalign 0.5
         xysize (700, 250)
@@ -750,34 +738,39 @@ screen chapterselect():
                 text "Laura has choice words for a REDD after learning about her daughters' potential endangerment." style "replay_desc" xalign 0.5
             elif replay_num == 13:
                 text "Kate and Dakota, along with other children, hide from the REDD Guards." style "replay_desc" xalign 0.5
+            elif replay_num == 14:
+                text "Trosh has a special contestant in mind for an upcoming game." style "replay_desc" xalign 0.5
+            elif replay_num == 15:
+                text "Kate and Dakota build tension between them while Jessica has a close encounter with a power tool." style "replay_desc" xalign 0.5
     imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
-    tag menu
-    add gui.main_menu_background
-    vbox:
-        xalign 0.5 yalign 0.5
-        if persistent.achievement_toosafe:
-            text "{i}Playing it TOO Safe{/i}" xalign 0.5
-            text "Escape Atlanta" xalign 0.5
-        else:
-            text "LOCKED" xalign 0.5
-        null height 25
-        if persistent.achievement_futurecorpses:
-            text "{i}Future Corpses{/i}" xalign 0.5
-            text "Fulfill Your Destiny" xalign 0.5
-        else:
-            text "LOCKED" xalign 0.5
-        null height 25
-        if persistent.achievement_epicfail:
-            text "{i}Schadenfreude{/i}" xalign 0.5
-            text "Embarrass Yourself on Live Television" xalign 0.5
-        else:
-            text "LOCKED" xalign 0.5
+    tag title
+    frame:
+        xysize(1240, 670)
+        xalign 0.5 yalign 0.4
+        vbox:
+            xalign 0.25 yalign 0.5
+            if persistent.achievement_toosafe:
+                text "{i}Playing it TOO Safe{/i}" xalign 0.5
+                text "Escape Atlanta" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievement_futurecorpses:
+                text "{i}Future Corpses{/i}" xalign 0.5
+                text "Fulfill Your Destiny" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievement_epicfail:
+                text "{i}Schadenfreude{/i}" xalign 0.5
+                text "Embarrass Yourself on Live Television" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
 screen credits():
-    tag menu
-    add gui.main_menu_background
+    tag title
     frame:
         xysize(1240, 670)
         xalign 0.5 yalign 0.4
@@ -823,16 +816,25 @@ screen credits():
             text "Sound Effects" style "creditscreen" xalign 0.5
             text "freesound.org" xalign 0.5
             null height 20
-            text "Made with Ren'Py 7.3.2" style "creditscreen" xalign 0.5
+            text "Made with Ren'Py 7.3.3" style "creditscreen" xalign 0.5
     imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.9 yalign 0.9
+screen socials():
+    tag title
+    frame:
+        xysize(800, 600)
+        xalign 0.5 yalign 0.5
+        textbutton "Twitter" action OpenURL("https://twitter.com/goodtalesvn") xalign 0.1 yalign 0.1
+        textbutton "Instagram" action OpenURL("https://instagram.com/goodtalesvn") xalign 0.9 yalign 0.1
+        textbutton "Discord Server" action OpenURL("https://discord.gg/zZhPrkC") xalign 0.5 yalign 0.9
+    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.99
 
 ## Variable Defaults ##############################################################################################################
 
 default persistent.gore = True
 default preferences.fullscreen = False
 define config.replay_scope = {"_game_menu_screen": "pause"}
+default title = True
 default _game_menu_screen = "pause"
-default version = 1.0
 default save_subtitle = ""
 default replay_num = 0
 default l_exp = ""
@@ -881,7 +883,7 @@ label before_main_menu:
         pause 0.1
         $ persistent.splash = False
     play sound flicker
-    show logo:
+    show logo zorder 2:
         xalign 0.5 yalign 0.5
         alpha 0.0
         pause 0.1
@@ -922,6 +924,7 @@ label chapterstart:
     stop sound
     stop sound2
     stop ambience
+    stop ambience2
     if renpy.variant('mobile'):
         $clickortap = "Tap"
     play sound flicker
@@ -968,7 +971,7 @@ label gameover:
     show screen gameover
     with Dissolve(2)
     if badcredits:
-        $renpy.pause()
+        $renpy.pause(delay=5)
         hide screen gameover
         with Dissolve(2)
         pause 1

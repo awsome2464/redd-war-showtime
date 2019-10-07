@@ -291,7 +291,7 @@ style quick_button_text:
 
 screen navigation():
 
-    if renpy.get_screen('main_menu'):
+    if renpy.get_screen('main_menu') and title == True:
         hbox:
             style_prefix "navigation"
             xalign 0.5 yalign 0.9
@@ -307,7 +307,7 @@ screen navigation():
                 action ShowMenu("preferences")
             imagebutton auto "gui/extras_%s.png":
                 hover_sound "audio/se/button_extras.ogg"
-                action ShowMenu("extras")
+                action [ToggleVariable("title", False), ShowMenu("extras")]
             if renpy.variant("pc"):
                 imagebutton auto "gui/quit_%s.png":
                     hover_sound "audio/se/button_quit.ogg"
@@ -353,11 +353,13 @@ screen main_menu():
     add 'dust3'
     add 'dust2'
     add 'dust'
-    add 'gui/menu_overlay.png'
+    if title:
+        add 'gui/menu_overlay.png'
     add 'fade_into_menu'
-    text "© 2019 Good Tales" xalign 0.99 yalign 0.99
-    text "v[version]" xalign 0.01 yalign 0.99
-    add 'logo_light' xalign 0.5 yalign 0.1
+    if title:
+        text "© 2019 Good Tales" xalign 0.99 yalign 0.99
+        text "v[config.version]" xalign 0.01 yalign 0.99
+        add 'logo_light' xalign 0.5 yalign 0.1
 
     ## This empty frame darkens the main menu.
     frame:
@@ -1285,22 +1287,17 @@ style skip_triangle:
 ## https://www.renpy.org/doc/html/screen_special.html#notify-screen
 
 screen notify(message):
-
     zorder 100
-    style_prefix "notify"
-
-    frame at notify_appear:
-        text "[message!tq]"
-
-    timer 3.25 action Hide('notify')
+    text message at notify_transform
+    timer 5.0 action Hide('notify')
 
 
-transform notify_appear:
+transform notify_transform:
+    xalign 0.95 yalign -0.1
     on show:
-        alpha 0
-        linear .25 alpha 1.0
+        ease 1.0 yalign 0.1
     on hide:
-        linear .5 alpha 0.0
+        ease 1.0 yalign -0.1
 
 
 style notify_frame is empty
