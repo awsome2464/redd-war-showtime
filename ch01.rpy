@@ -8,7 +8,7 @@ label chapter_1:
     show dark
     with dissolve
     pause 0.5
-    hide choice_bg
+    hide dark
     show spotlight at spotlight_wander
     window show dissolve
     "Okay, everyone! Put your hands together for the one...!"
@@ -25,17 +25,17 @@ label chapter_1:
     play sound applause
     scene bg showstage with slideawayup
     pause 1.0
-    show sprinkles laugh at middle_s with dissolve
+    show sprinkles laugh cane hat at middle_s with dissolve
     pause 0.1
     window show dissolve
     s "Ahaha! Thank you! Thank you, everyone!"
-    s happy "Wow! We've got quite a large audience out here tonight, don't we?"
+    s happy rightdown "Wow! We've got quite a large audience out here tonight, don't we?"
     s laugh "Are you all excited for the show?!"
     "Audience" "\"Yeah!!\""
     s jeer "Oh, come on; you all can do better than that~!"
     s laugh "Are you all excited for the show?!"
     "Audience" "{b}{i}\"YEAH!!!\"{/i}{/b}"
-    s "Ahahaha! Alright, then! Let's start the show!"
+    s hat "Ahahaha! Alright, then! Let's start the show!"
     window hide
     pause 1.0
     scene bg livingroom
@@ -82,7 +82,7 @@ label chapter_1:
     "Besides, Kate didn't seem to care, either way."
     "She just turned back to the TV as Mr. Sprinkles continued his show."
     scene bg showstage
-    show sprinkles happy at middle_s
+    show sprinkles rightdown cane happy at middle_s
     hide screen laura
     with dissolve
     pause 0.1
@@ -95,10 +95,10 @@ label chapter_1:
     show sprinkles at two2_s with easeinleft
     show madeline down smile at two1_m with dissolve
     pause 0.5
-    s laugh "Aha! Hello there, Ms. Madeline!"
+    s laugh hat "Aha! Hello there, Ms. Madeline!"
     m "Hello there, Mr. Sprinkles!"
     "She replied as she adjusted her hat and brushed her shoulders."
-    s happy "What were you just up to?"
+    s happy rightdown "What were you just up to?"
     m "I was filling in for Santa Claus while he's on vacation!"
     s laugh "Wow! How merry!"
     "Ms. Madeline gave an exaggerated shrug as she stared at the camera."
@@ -107,7 +107,7 @@ label chapter_1:
     "The audience gave a laugh in response."
     s happy "Anyway, are you ready to have fun?"
     m down "I sure am!"
-    s laugh "Splendid~!"
+    s laugh hat "Splendid~!"
     s happy "Now, what do you say we spin the Wacky Dartboard to see what we'll play first?"
     m "Why, I'd say that's a great idea, Mr. Sprinkles!"
     scene bg showstage with dissolve
@@ -115,22 +115,22 @@ label chapter_1:
     play sound applause
     "The audience cheered as the large dartboard was pulled onto the stage."
     "It was basically a giant wheel that you'd spin to pick a choice, but modified to look like a dartboard, while also being motorized."
-    show sprinkles laugh at middle_s with dissolve
+    show sprinkles laugh leftdown hat at middle_s with dissolve
     pause 0.1
     s "Alright, let's get started!"
-    s happy "Ms. Madeline, if you please."
+    s happy rightdown "Ms. Madeline, if you please."
     "Ms. Madeline then handed Mr. Sprinkles a large dart with a Velcro tip as the wheel started to turn."
     "The audience cheered and encouraged him as he dramatically spun his arm in a forward motion before finally letting go of the dart."
     "With a small thunk, the dart stuck to the board, which then began to stop spinning."
     "Mr. Sprinkles walked over to the board with a grin."
     s "And our first game of the day is..."
     "He then looked at where the dart had landed."
-    s laugh "{i}Mirror Madness!{/i}"
+    s laugh hat "{i}Mirror Madness!{/i}"
     show game_name "Mirror Madness" at game_name_flash
     play sound applause
     "The audience cheered again as the game's name flashed onto the screen."
     hide game_name
-    s happy "Alright, we will need 4 brave volunteers to play this game with us!"
+    s happy rightdown "Alright, we will need 4 brave volunteers to play this game with us!"
     scene bg livingroom
     show screen laura
     with dissolve
@@ -161,12 +161,12 @@ label chapter_1:
     "..."
     s "Alright, everyone!"
     scene bg showstage
-    show sprinkles laugh at middle_s
+    show sprinkles laugh cane hat at middle_s
     hide screen laura
     with dissolve
     pause 0.1
     s "Now that we have our players, we need to set up the game!"
-    s happy "While we do, enjoy the brief performance from our very own Jingle and Jangle!"
+    s happy rightdown "While we do, enjoy the brief performance from our very own Jingle and Jangle!"
     stop music fadeout(3.0)
     play sound applause
     hide sprinkles with dissolve
@@ -182,22 +182,22 @@ label chapter_1:
     scene bg showstage with dissolve
     pause 0.5
     play music sprinkles_theme
-    show sprinkles laugh at middle_s with dissolve
+    show sprinkles laugh cane rightdown at middle_s with dissolve
     pause 0.1
     s "Ahaha! Absolutely wonderful!"
-    s happy "Alright, then! The {i}Mirror Madness{/i} maze is all set up! Let's get started, shall we?"
+    s happy hat "Alright, then! The {i}Mirror Madness{/i} maze is all set up! Let's get started, shall we?"
     hide sprinkles with dissolve
     pause 0.1
     "The screen then showed a large maze in another part of the room."
     "The maze in question had an entrance in each of its corners, with one child volunteer standing at each corner."
     "After Mr. Sprinkles went around and had each volunteer introduce themselves, he went on to explain the game."
-    show sprinkles jeer at middle_s with dissolve
+    show sprinkles jeer rightdown cane at middle_s with dissolve
     pause 0.1
     s "Alright, here's how the game works:"
     s "Each of our players will start at one of the maze's entrances."
     s @ laugh "When I say 'go', they will all enter the maze and race to the center, the first one there being the winner!"
     s "But as you may have been able to tell, this isn't your normal maze."
-    s laugh "The walls of this maze are covered in mirrors~!"
+    s laugh hat "The walls of this maze are covered in mirrors~!"
     s happy "Oh, this is certainly going to be exciting!"
     s "Alright, is everyone ready?"
     $l_exp = "neutral"

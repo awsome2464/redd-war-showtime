@@ -131,14 +131,36 @@ layeredimage richard:
         attribute smile:
             "Characters/Richard/smile.png"
 
-image sprinkles evilgrin = "Characters/Sprinkles/evilgrin.png"
-image sprinkles happy = "Characters/Sprinkles/happy.png"
-image sprinkles hm = "Characters/Sprinkles/hm.png"
-image sprinkles horror = "Characters/Sprinkles/horror.png"
-image sprinkles huh = "Characters/Sprinkles/huh.png"
-image sprinkles jeer = "Characters/Sprinkles/jeer.png"
-image sprinkles laugh = "Characters/Sprinkles/laugh.png"
-image sprinkles wut = "Characters/Sprinkles/wut.png"
+layeredimage sprinkles:
+    group leftarm:
+        attribute leftdown:
+            "Characters/Sprinkles/left down.png"
+        attribute cane:
+            "Characters/Sprinkles/Hand on cane.png"
+    if cane_blood:
+        "Characters/Sprinkles/Bloody cane.png"
+    group head:
+        attribute evilgrin:
+            "Characters/Sprinkles/evilgrin.png"
+        attribute happy:
+            "Characters/Sprinkles/happy.png"
+        attribute hm:
+            "Characters/Sprinkles/hm.png"
+        attribute horror:
+            "Characters/Sprinkles/horror.png"
+        attribute huh:
+            "Characters/Sprinkles/huh.png"
+        attribute jeer:
+            "Characters/Sprinkles/jeer.png"
+        attribute laugh:
+            "Characters/Sprinkles/laugh.png"
+        attribute wut:
+            "Characters/Sprinkles/wut.png"
+    group rightarm:
+        attribute rightdown:
+            "Characters/Sprinkles/right down.png"
+        attribute hat:
+            "Characters/Sprinkles/Hand on hat.png"
 
 image trosh = Placeholder("boy")
 
@@ -376,7 +398,8 @@ transform middle:
 transform middle_k:
     xalign 0.5 yalign -0.1
 transform middle_s:
-    xalign 0.5 yalign 0.0
+    size(675, 1125)
+    xalign 0.6 yalign 0.0
 transform middle_r:
     size(562, 1125)
     xalign 0.5 yalign 0.0
@@ -387,6 +410,7 @@ transform middle_m:
 transform left:
     xalign 0.05 yalign 0.5
 transform left_s:
+    size(675, 1125)
     xalign 0.05 yalign 0.0
 transform left_r:
     size(562, 1125)
@@ -395,7 +419,8 @@ transform left_r:
 transform right:
     xalign 0.95 yalign 0.5
 transform right_s:
-    xalign 0.95 yalign 0.0
+    size(675, 1125)
+    xalign 1.3 yalign 0.0
 transform right_r:
     size(562, 1125)
     xalign 0.95 yalign 0.0
@@ -403,6 +428,7 @@ transform right_r:
 transform two1:
     xalign 0.25 yalign 0.5
 transform two1_s:
+    size(675, 1125)
     xalign 0.25 yalign 0.0
 transform two1_r:
     size(562, 1125)
@@ -414,7 +440,8 @@ transform two1_m:
 transform two2:
     xalign 0.75 yalign 0.5
 transform two2_s:
-    xalign 0.75 yalign 0.0
+    size(675, 1125)
+    xalign 0.98 yalign 0.0
 transform two2_r:
     size(562, 1125)
     xalign 0.75 yalign 0.0
@@ -425,6 +452,12 @@ transform two2_m:
 transform sideimage:
     size(225, 225)
     xalign 0.0575 yalign 1.0
+
+## Transitions ####################################################################################################################
+
+init -5:
+    define fastslidedown = CropMove(0.6, "slidedown")
+    define fastslideawayup = CropMove(0.6, "slideawayup")
 
 ## Styles #########################################################################################################################
 
@@ -848,6 +881,7 @@ default badcredits = False
 default b_name = "???"
 default s_name = "Mr. Sprinkles"
 default t_name = "REDD"
+default cane_blood = False
 
 ## Labels #########################################################################################################################
 

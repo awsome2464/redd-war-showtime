@@ -127,9 +127,8 @@ label chapter_2:
     l "Hey..."
     "I gave Dakota a hug of comfort and took a deep breath."
     l "You shouldn't have said that, but you seem to know that."
-    d "...are you mad at me...?{nw}"
     menu:
-        d "...are you mad at me...?{fast}"
+        d "...are you mad at me...?"
         "\"Yes, a little.\"":
             $l_exp = "mad"
             l "Yes, a little."
@@ -332,7 +331,7 @@ label backstagedrama:
     s "Come in!"
     play sound door_open
     pause 1
-    show sprinkles happy at two1_s
+    show sprinkles happy rightdown leftdown at two1_s
     show madeline down blank at two2_m
     with dissolve
     pause 0.1
@@ -357,7 +356,7 @@ label backstagedrama:
     "Madeline" "\"But sometimes, you can't always get what you want, Krag.\""
     "Madeline" "\"Sometimes, there are situations that are hard to fix.\""
     "Madeline" "\"I'm sorry, but that's just how it works.\""
-    s "..."
+    s hm "..."
     "Madeline" "\"That said, it's not impossible to fix this.\""
     "Madeline" "\"We need to do everything we can for this live show to be a success. Our careers depend on it. Understand?\""
     s "..."
@@ -370,7 +369,7 @@ label backstagedrama:
     show sprinkles:
         ease 1.0 middle_s
     pause 1.5
-    s evilgrin "Oh, this show will be successful, don't you worry..."
+    s hat evilgrin "Oh, this show will be successful, don't you worry..."
     window hide dissolve
     pause 1
     scene bg fade
@@ -403,7 +402,7 @@ label arriveatshow:
     "It shouldn't be hard to do, since a certain child of mine used this time to watch a certain TV show on her tablet."
     play music sprinkles_theme
     scene bg showstage
-    show sprinkles happy at middle_s
+    show sprinkles happy cane rightdown at middle_s
     hide screen laura
     with dissolve
     pause 0.1
@@ -420,9 +419,9 @@ label arriveatshow:
     pause 1.1
     play sound applause
     pause 0.5
-    s laugh "Aha! Hello there, Ms. Madeline!"
+    s laugh hat "Aha! Hello there, Ms. Madeline!"
     m "Hello there, Mr. Sprinkles!"
-    s happy "What were you just up to?"
+    s happy rightdown "What were you just up to?"
     m "I was helping a family of gophers redecorate their house!"
     s laugh "Wow! How incredible!"
     m shrug "That's my life~!"
@@ -442,10 +441,17 @@ label arriveatshow:
     $l_exp = "neutral"
     "As we drove, I occasionally checked Twitter for any potential updates I should be aware of."
     "Apparently, there are protests breaking loose outside of city hall, the central Government Safehouse, as many people are being denied access inside."
-    "\"{i}Many people are calling it 'unfair' and 'proof that the poor are the ones meant to die'.\"{/i}"
-    "\"{i}The mayor has yet to comment on this.\"{/i}"
+    "{i}\"Many people are calling it 'unfair' and 'proof that the poor are the ones meant to die'.\"{/i}"
+    "{i}\"The mayor has yet to comment on this.\"{/i}"
     $l_exp = "concerned"
     "Sounds about right."
+    $l_exp = "neutral"
+    "{i}\"Meanwhile, smaller Safehouses across town are setting up shop, including Jack's Bar in downtown Atlanta.\"{/i}"
+    "{i}\"According to the owner, Jack Morris, the bar is opened up to anyone who needs help, but space in the building is limited.\"{/i}"
+    $l_exp = "concerned"
+    "Ah, yes. Jack's Bar."
+    $l_exp = "smug"
+    "I can only imagine what it would be like to be so rich, you could afford to turn your business into a Safehouse."
     $l_exp = "neutral"
     s "Our first game of the day is..."
     s "{i}Wild, Wild Races!{/i}"
@@ -609,9 +615,9 @@ label meetandgreet:
     $l_exp = "concerned"
     "I guess feeling out of harm's way is enough to turn her back into her usual self."
     "Though there's something to be said about having a sense of normalcy."
-    show dakota:
+    show dakota zorder 2:
         ease 0.5 two1
-    show richard show_crossed glare at two2_r with dissolve
+    show richard show_crossed glare at two2_r zorder 1 with dissolve
     pause 0.1
     r "Don't go crying to us when your battery dies, Dakota. You were warned."
     d mad "..."
@@ -752,7 +758,7 @@ label meetandgreet:
     pause 0.1
     stop ambience fadeout(3)
     play music sprinkles_theme
-    show sprinkles happy at middle_s with dissolve
+    show sprinkles happy leftdown hat at middle_s with dissolve
     pause 0.1
     "Sure enough, there he was behind the table talking to a young fan."
     $l_exp = "smug"
@@ -773,10 +779,10 @@ label meetandgreet:
     scene bg arena_hall with dissolve
     pause 0.1
     "Finally, it came the big moment."
-    show sprinkles laugh at middle_s with dissolve
+    show sprinkles laugh hat leftdown at middle_s with dissolve
     pause 0.1
     s "It was nice to meet you, Mandy! I hope you enjoy the show!"
-    s happy "Next~!"
+    s happy rightdown "Next~!"
     show sprinkles at right_s with easeinleft
     show kate happy at middle
     show dakota small_smile at left
@@ -790,13 +796,13 @@ label meetandgreet:
     show kate happy
     show dakota smirk
     "Both girls gave out a giggle."
-    s huh "Although it appears to be a bit broken."
+    s huh hat "Although it appears to be a bit broken."
     "He commented as he waved his arm a bit while looking at Kate."
     "Taking the hint, Kate tried to mimic his movements."
     s jeer "Hm. A bit delayed, I see."
     "Finally, Kate giggled more and took off her hat."
     k "I'm not a mirror, Mr. Sprinkles! I'm Kate!"
-    s laugh "Oh! Ahahaha!"
+    s laugh rightdown "Oh! Ahahaha!"
     s happy "Well, you certainly had me fooled, Kate!"
     s "And who's this with you?"
     k excited "This is my sister, Kota!"
@@ -822,7 +828,7 @@ label meetandgreet:
     k "Yay~!"
     scene bg arena_hall
     show screen laura
-    show sprinkles happy at right_s
+    show sprinkles happy rightdown leftdown at right_s
     show kate happy at middle
     show dakota small_smile at left
     with dissolve
@@ -853,10 +859,10 @@ label meetandgreet:
     "He sat there for a second before regaining a smile and answering."
     s jeer "I understand your concern, Sir, but there's nothing to worry about."
     s "We have the best guards on the planet protecting the building, as well as the best window and door shields money can buy."
-    s "Once the event starts, nobody is getting inside this building. You have my word."
+    s hat "Once the event starts, nobody is getting inside this building. You have my word."
     r "..."
     r smile "Thanks."
-    s laugh "No problem at all, Sir."
+    s laugh rightdown "No problem at all, Sir."
     s jeer "Any other questions?"
     r "No, that's it."
     s "Very well."
@@ -968,8 +974,11 @@ label showbegins:
     "And Richard was still, but was clearly showing signs of nervousness."
     hide richard with dissolve
     pause 0.1
-    $l_exp = "neutral"
     stop ambience fadeout(3)
+    show dark:
+        alpha 0.0
+        ease 1.0 alpha 1.0
+    $l_exp = "neutral"
     "Finally, after what seemed like forever, the lights started to dim."
     "I looked at the time."
     "6:59"
@@ -1049,19 +1058,19 @@ label showbegins:
     pause 1.5
     play sound "audio/se/spotlight.ogg"
     scene bg stage
-    show sprinkles jeer at middle_s
+    show sprinkles cane hat jeer at middle_s
     with Dissolve(0.1)
     pause 1
     play music sprinkles_theme
     s laugh "Good evening, my friends~!"
-    s happy "My, oh, my. We certainly have a lot of you in the audience tonight, don't we?"
+    s happy rightdown "My, oh, my. We certainly have a lot of you in the audience tonight, don't we?"
     s "Well, with the long night we have ahead of us, that will certainly prove to be in our favor~!"
     s "So, what do you say? Are you ready to have fun tonight?"
     "Audience" "\"Yeah!\""
     s jeer "Oh, come now; you can all do better than that!"
     s laugh "Are you ready to have fun tonight??"
     "Audience" "{i}{b}\"YEAH!!\"{/b}{/i}"
-    s happy "Splendid! Then let's start the show!"
+    s happy hat "Splendid! Then let's start the show!"
     m "Not without me, you're not!"
     s huh "Huh? Who said that?"
     m "I did!"
@@ -1090,7 +1099,7 @@ label showbegins:
     "Ms. Madeline then made her way towards the stage, giving high-fives to people in the aisles along the way."
     "Finally, she walked onto the stage and stood next to Mr. Sprinkles."
     scene bg stage
-    show sprinkles happy at two2_s
+    show sprinkles happy cane rightdown at two2_s
     hide screen laura
     with dissolve
     pause 0.1
@@ -1146,44 +1155,47 @@ label showbegins:
     with dissolve
     pause 0.1
     m "Krag, what are you--??"
+    play sound smack
     show madeline:
         linear 0.1 yalign -0.2
         linear 0.1 yalign -0.15
     "Another smack in the face."
-    show madeline at two1_m with easeinright
+    show madeline at two2_m with easeinright
     pause 0.5
-    show sprinkles evilgrin at two2_s
+    show sprinkles rightdown cane evilgrin at two1_s
     with Dissolve(1)
     pause 0.5
     "He then stood right over her."
     show madeline:
-        ease 0.5 xalign 0.15
+        ease 0.5 xalign 0.85
         pause 1
-        ease 0.5 xalign 0.1
+        ease 0.5 xalign 0.9
         pause 1
-        ease 0.5 xalign 0.05
+        ease 0.5 xalign 0.95
     "While still on the ground, she backed up slowly, staring at him with terror in her eyes."
     "But he just kept walking towards her, that sinister grin still plastered on his face."
     show madeline:
-        xalign 0.05 yalign -0.15
+        xalign 0.95 yalign -0.15
     show sprinkles:
-        ease 2.0 xalign 0.35
+        ease 2.0 xalign 0.65
     pause 3
     m "K-Krag, what are you doing??"
     "He then gave a quiet, yet terrifying chuckle."
     s "There's been a slight change to the schedule, Ms. Madeline."
     s "You see, we don't have any room for you tonight."
     s "I'm afraid I'm going to have to..."
-    s "...{b}terminate you.{/b}"
-    "Before anything else could be said, he turned the ball on top of his walking stick, revealing something coming out of the bottom."
+    "He then turned the ball on top of his walking stick, revealing something coming out of the bottom."
     "Something silver and pointed."
+    s "...{b}terminate you.{/b}"
     "Then, in one swift motion, he reached up..."
     "...and jammed the stick into her chest!"
     play ambience crowd_screaming
     play sound children_screaming
+    play sound2 "audio/voice/madeline_choke.ogg" loop
     "As the crowd screamed, Madeline gasped, but it sounded more like an attempt at a gasp."
     "She grasped at the stick, trying to possibly get it out, but it was to no avail; she couldn't wrap her hands around it."
     "She sounded like she was both gagging on something and gasping for air, struggling to breathe."
+    stop sound2
     $l_exp = "sad"
     scene bg livestage
     show kate shocked at middle
@@ -1204,25 +1216,27 @@ label showbegins:
     redd "Get your asses back in your seats!"
     "Richard and I looked back at each other with worry, realizing that it's probably smarter to listen to him."
     "That's when Mr. Sprinkles leaned in towards Ms. Madeline's face."
+    $cane_blood = True
     scene bg stage
     hide screen laura
-    show sprinkles evilgrin zorder 2:
-        xalign 0.35 yalign -0.1
+    show sprinkles evilgrin cane rightdown zorder 2:
+        size(675, 1125)
+        xalign 0.65 yalign 0.0
     show madeline down shocked zorder 1:
         size(562, 1125)
-        xalign 0.05 yalign -0.15
+        xalign 0.95 yalign -0.15
     with dissolve
     pause 0.1
     "Still sporting that sinister look, he told her:"
     s "{i}That's your death~!{/i}"
-    s laugh "Ehehe. Hahaha!"
+    s laugh hat "Ehehe. Hahaha!"
     show sprinkles:
         ease 0.5 middle_s
     s "Ahahaha!!! HAHAHAHAHAHAHA!!!!!"
     "His maniacal laugher echoed throughout the room as Madeline's arms slowly dropped to her chest and her head slightly tilted to the side."
     show madeline:
         ease 0.5 alpha 0.0
-    show sprinkles jeer
+    show sprinkles rightdown jeer
     "He then cleared his throat and faced the rightfully panicked crowd."
     hide madeline
     s "May I have your attention, please?"
@@ -1236,14 +1250,14 @@ label showbegins:
     "That seemed to do the trick."
     "Everyone then looked at the stage whether they wanted to or not."
     s jeer "Thank you."
-    s "Now, I'm sure you've all got some questions going through your mind, so allow me to answer them."
+    s hat "Now, I'm sure you've all got some questions going through your mind, so allow me to answer them."
     play music sprinkles_spooky
     s laugh "You see, I wasn't lying just now when I said there's been a change to the schedule."
     s "I had a realization recently: while {i}The Mr. Sprinkles Show{/i} has a large, human-based audience..."
     s evilgrin "...I figured it was time to expand my demographic."
     s "So tonight's show is going to be dedicated to all my fellow REDD who are watching this show from their television sets."
     s laugh "I'm going to give you all a performance that will not disappoint~!"
-    s jeer "But in order to do that, I'm going to ask all the adults in the audience to please follow these fine gentlemen."
+    s jeer rightdown "But in order to do that, I'm going to ask all the adults in the audience to please follow these fine gentlemen."
     scene bg livestage
     show screen laura
     with dissolve

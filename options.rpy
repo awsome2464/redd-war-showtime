@@ -72,8 +72,8 @@ define config.has_voice = True
 
 ## Entering or exiting the game menu.
 
-define config.enter_transition = wipedown
-define config.exit_transition = wipeup
+define config.enter_transition = fastslidedown
+define config.exit_transition = fastslideawayup
 
 
 ## Between screens of the game menu.

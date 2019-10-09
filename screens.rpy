@@ -422,14 +422,14 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     style_prefix "game_menu"
 
     if main_menu:
+        add gui.main_menu_background
         if renpy.get_screen('save') or renpy.get_screen('load'):
-            add "gui/save_load_bg.jpg"
-        else:
-            add gui.main_menu_background
+            add "gui/save_load_bg.png"
     elif renpy.get_screen('save') or renpy.get_screen('load'):
-        add "gui/save_load_bg.jpg"
+        add "bg curtain"
+        add "gui/save_load_bg.png"
     else:
-        add gui.game_menu_background
+        add "bg curtain"
 
     frame:
         style "game_menu_outer_frame"
@@ -601,17 +601,20 @@ style about_label_text:
 screen pause():
 
     tag menu
-    add "gui/save_bg.jpg" at menu_lower
-    vbox:
+    add "bg curtain"
+    frame:
         xalign 0.5 yalign 0.5
-        spacing 10
-        textbutton "Save" action ShowMenu('save')
-        textbutton "Load" action ShowMenu('load')
-        textbutton "Options" action ShowMenu('preferences')
-        textbutton "Main Menu" action MainMenu()
-        textbutton "Quit" action Quit()
-        null height 10
-        textbutton "Return" action Return()
+        xpadding 50 ypadding 25
+        vbox:
+            xalign 0.5 yalign 0.5
+            spacing 10
+            textbutton "Save" action ShowMenu('save') xalign 0.5
+            textbutton "Load" action ShowMenu('load') xalign 0.5
+            textbutton "Options" action ShowMenu('preferences') xalign 0.5
+            textbutton "Main Menu" action MainMenu() xalign 0.5
+            textbutton "Quit" action Quit() xalign 0.5
+            null height 10
+            textbutton "Return" action Return() xalign 0.5
 
 screen save():
     tag menu
@@ -683,7 +686,7 @@ screen file_slots(title):
 
                 spacing gui.page_spacing
 
-                textbutton _("<") action FilePagePrevious()
+                #textbutton _("<") action FilePagePrevious()
 
                 # if config.has_autosave:
                 #     textbutton _("{#auto_page}A") action FilePage("auto")
@@ -695,7 +698,7 @@ screen file_slots(title):
                 for page in range(1, 10):
                     textbutton "[page]" action FilePage(page)
 
-                textbutton _(">") action FilePageNext()
+                #textbutton _(">") action FilePageNext()
 
 
 
