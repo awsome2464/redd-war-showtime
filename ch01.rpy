@@ -41,10 +41,8 @@ label chapter_1:
     scene bg livingroom
     with Dissolve(1.5)
     pause 0.1
-    window show dissolve
-    $l_exp = "neutral"
     show screen laura
-    with dissolve
+    window show dissolve
     pause 0.1
     "Now that the girls were going to be distracted for a half hour, I sat down and looked at my phone."
     "Richard had texted me that he was going to be stopping to get groceries after work."
@@ -81,9 +79,9 @@ label chapter_1:
     show kate happy
     "Besides, Kate didn't seem to care, either way."
     "She just turned back to the TV as Mr. Sprinkles continued his show."
+    hide screen laura
     scene bg showstage
     show sprinkles rightdown cane happy at middle_s
-    hide screen laura
     with dissolve
     pause 0.1
     s "Alright, everyone! Let's start the show!"
@@ -131,8 +129,8 @@ label chapter_1:
     "The audience cheered again as the game's name flashed onto the screen."
     hide game_name
     s happy rightdown "Alright, we will need 4 brave volunteers to play this game with us!"
-    scene bg livingroom
     show screen laura
+    scene bg livingroom
     with dissolve
     pause 0.1
     "Mr. Sprinkles and Ms. Madeline each picked 2 children from the audience to join them on the stage."
@@ -160,9 +158,9 @@ label chapter_1:
     $l_exp = "concerned"
     "..."
     s "Alright, everyone!"
+    hide screen laura
     scene bg showstage
     show sprinkles laugh cane hat at middle_s
-    hide screen laura
     with dissolve
     pause 0.1
     s "Now that we have our players, we need to set up the game!"
@@ -201,8 +199,8 @@ label chapter_1:
     s happy "Oh, this is certainly going to be exciting!"
     s "Alright, is everyone ready?"
     $l_exp = "neutral"
-    scene bg livingroom
     show screen laura
+    scene bg livingroom
     with dissolve
     pause 0.1
     "Suddenly, Dakota stood up and walked out of the room."
@@ -262,7 +260,6 @@ label chapter_1:
     l "I don't know, Dakota."
     $nvl = True
     hide screen laura
-    with dissolve
     nvl show dissolve
     narrate """
     We sat there in silence, not really sure where to go from there.
@@ -297,8 +294,8 @@ label chapter_1:
     """
     $nvl = False
     nvl clear
-    nvl hide
     show screen laura
+    nvl hide
     with dissolve
     pause 0.1
     l "Look..."
@@ -369,16 +366,15 @@ label chapter_1:
     r laughing "Oh, I'm sure it was, sweetie!"
     "He then set her down."
     r smile "Anyway, we've got groceries to get in! Everyone helps!"
+    hide screen laura
     stop music fadeout(3.0)
     scene bg livingroom
-    hide screen laura
     with dissolve
     pause 0.1
     "After we all got the groceries in the house, the girls went back into the living room to watch TV, leaving Richard and I to put them all away."
-    play music autumn_changes
-    show richard main_crossed concerned at middle_r
     show screen laura
-    with dissolve
+    play music autumn_changes
+    show richard main_crossed concerned at middle_r with dissolve
     pause 0.1
     r "Laura, we talked about Mr. Sprinkles."
     $l_exp = "sad"
@@ -443,9 +439,8 @@ label chapter_1:
     $l_exp = "smug"
     l "As usual."
     "We then gave each other a quick kiss before putting the rest of the groceries away, sans the ones needed for that night's meal."
-    hide screen laura
-    with dissolve
     stop music fadeout(5.0)
+    hide screen laura
     window hide dissolve
     pause 0.5
     scene bg fade
@@ -456,19 +451,19 @@ label chapter_1:
 
 
 label kragonnews:
-    $l_exp = "neutral"
-    $currenttime = "6:39 PM"
-    $timeleft = "21 minutes"
+    python:
+        l_exp = "neutral"
+        currenttime = "6:39 PM"
+        timeleft = "21 minutes"
     call chapterstart
     pause 1
     play music the_calm
     scene bg livingroom
     with Dissolve(2.0)
     pause 0.5
+    show screen laura
     window show dissolve
     pause 0.1
-    show screen laura
-    with dissolve
     "After dinner, the girls were upstairs doing their own thing while Richard and I stayed in the living room."
     "Though we weren't really talking to each other much; we were mostly just scrolling through our phones, only occasionally showing each other funny or relevant posts."
     "But then..."
@@ -493,6 +488,7 @@ label kragonnews:
     j "They need to see what happens when you preach about love and peace but then go and kill people! {b}CHILDREN{/b}, no less!"
     "Crowd" "\"Yeah!!\""
     $l_exp = "rage"
+    $quickhide = True
     show screen laura
     l "Oh, for God's sake! Krag didn't even kill anyone, you dumbass!"
     r "You know she can't hear you, right?"
@@ -504,6 +500,7 @@ label kragonnews:
     j "Then let's make our voices heard! Let's show Krag Dovason that Mr. Sprinkles is not welcome in our homes!"
     j "We will not rest until {i}Mr. Sprinkles{/i} is dead and forgotten!!"
     "Crowd" "\"Yeah!!!\""
+    $quickhide = False
     pause 0.5
     scene bg livingroom
     show screen laura
@@ -713,7 +710,7 @@ label kragonnews:
     "I didn't get to hear the rest of what he said because the next thing I knew, I saw Dakota bolt off her chair and run upstairs, her hands over her mouth, sobs coming out."
     $l_exp = "sad"
     show screen laura
-    with dissolve
+    pause 0.6
     l "Dakota!"
     "I ran after her to her room."
     "She tried to slam the door on me, but I was too quick for that."
@@ -726,9 +723,8 @@ label kragonnews:
     "I took a deep breath and sat down on the bed, slowly rubbing her back with comfort."
     $l_exp = "surprised"
     l "Dakota..."
-    hide screen laura
-    with dissolve
     $nvl = True
+    hide screen laura
     nvl clear
     nvl show dissolve
     narrate """
@@ -908,8 +904,6 @@ label kragonnews:
             "Let's just hope it won't be {b}too{/b} chaotic out there."
             stop music fadeout(5.0)
             hide screen laura
-            hide richard
-            with dissolve
             window hide dissolve
             pause 0.5
             scene bg fade

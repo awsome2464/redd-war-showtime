@@ -452,12 +452,21 @@ transform two2_m:
 transform sideimage:
     size(225, 225)
     xalign 0.0575 yalign 1.0
+    alpha 0.0
+    on show:
+        ease 0.5 alpha 1.0
+    on hide:
+        ease 0.5 alpha 0.0
+transform sideimagequick:
+    size(225, 225)
+    xalign 0.0575 yalign 1.0
 
 ## Transitions ####################################################################################################################
 
 init -5:
     define fastslidedown = CropMove(0.6, "slidedown")
     define fastslideawayup = CropMove(0.6, "slideawayup")
+    define explosion = ImageDissolve("gui/explosion.png", 0.15)
 
 ## Styles #########################################################################################################################
 
@@ -531,7 +540,10 @@ screen ctc():
         add "ctc_arrow_1"
 screen laura():
     zorder 100
-    add "laura [l_exp]" at sideimage
+    if not quickhide:
+        add "laura [l_exp]" at sideimage
+    else:
+        add "laura [l_exp]" at sideimagequick
 screen chaptername():
     vbox:
         xalign 0.5 yalign 0.5
@@ -870,7 +882,8 @@ default title = True
 default _game_menu_screen = "pause"
 default save_subtitle = ""
 default replay_num = 0
-default l_exp = ""
+default l_exp = "neutral"
+default quickhide = False
 default nvl = False
 default currenttime = "4:12 PM"
 default currentdate = "March 30th"

@@ -302,9 +302,7 @@ label dakotaissorry:
     "He then reached over to the remote and raised the volume on the still-on TV."
     $l_exp = "smile"
     "We both giggled before he leaned over and kissed my neck."
-    hide richard
     hide screen laura
-    with dissolve
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -387,9 +385,9 @@ label arriveatshow:
         s_name = "Mr. Sprinkles"
     call chapterstart
     pause 2
-    window show dissolve
     show screen laura
-    with dissolve
+    window show dissolve
+    pause 0.1
     "We were finally on our way to the show."
     "We all tried our best to be happy, but in the back of our minds, we still had that fear about what was to come to our city at 7."
     "Having the radio on didn't really help, either; no matter where you went, there was something about the REDD War."
@@ -528,6 +526,7 @@ label arriveatshow:
     show jessica at middle
     hide screen laura
     with dissolve
+    pause 0.1
     j "Turn back now if you value your children's lives!"
     j "{i}Mr. Sprinkles{/i} is a menace that must be destroyed!"
     "Crowd" "\"Yeah!!\""
@@ -562,7 +561,6 @@ label arriveatshow:
     "I'm here for a fun night with my family."
     "I'm not going to let some lunatic take that from me."
     hide screen laura
-    with dissolve
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -585,9 +583,9 @@ label meetandgreet:
     scene bg livestage
     with Dissolve(2.0)
     pause 0.5
-    window show dissolve
     show screen laura
-    with dissolve
+    window show dissolve
+    pause 0.1
     "Thankfully, the wait wasn't as long as we thought it would be."
     $l_exp = "smile"
     "We were still very early, but given the circumstances, that's not necessarily a bad thing."
@@ -663,14 +661,12 @@ label meetandgreet:
     $l_exp = "smile"
     l "Well, we've got about an hour until the session ends; let's get to it!"
     hide screen laura
-    with dissolve
-    pause 0.5
+    pause 1
     scene bg arena_hall with fade
     pause 1
     $l_exp = "neutral"
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "By the time we got settled in the line, there were certainly a lot of people in front of us."
     $l_exp = "concerned"
     "We couldn't even see the front of the line or any indication that the end led to a meet-and-greet."
@@ -740,14 +736,12 @@ label meetandgreet:
     "Oh well. Her loss."
     stop music fadeout(5)
     hide screen laura
-    with dissolve
-    pause 0.5
+    pause 1
     scene bg arena_hall with fade
     pause 1
     $l_exp = "neutral"
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "About a half hour later, as well as Kate rambling on about what she's the most excited about tonight, we finally saw the front of the line ahead of us."
     $l_exp = "smile"
     "And at the front of the line was..."
@@ -814,6 +808,7 @@ label meetandgreet:
     l "Of course!"
     "I then took out my phone as everyone got into position."
     l "Everyone smile~!"
+    $quickhide = True
     hide screen laura
     window hide
     pause 0.5
@@ -826,6 +821,7 @@ label meetandgreet:
     k "How does it look?"
     l "Perfect."
     k "Yay~!"
+    $quickhide = True
     scene bg arena_hall
     show screen laura
     show sprinkles happy rightdown leftdown at right_s
@@ -892,7 +888,6 @@ label meetandgreet:
     $l_exp = "neutral"
     "..."
     hide screen laura
-    with dissolve
     nvl clear
     nvl show dissolve
     $nvl = True
@@ -947,13 +942,13 @@ label showbegins:
     play sound "audio/se/chime.ogg"
     pause 2
     window show dissolve
+    pause 0.1
     s "Okay, everyone~! The show will begin in exactly 5 minutes!"
     s "Please use this time to head to your seats so we may start the show with full seats~!"
     s "This will truly be a good night of fun; I can't wait to share it with you all!"
     pause 1
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "Well, we're almost there."
     show kate happy at middle with dissolve
     show kate:
@@ -985,7 +980,7 @@ label showbegins:
     play ambience "audio/se/warning.ogg"
     "That's when we could hear the alert horn blare outside the building."
     hide screen laura
-    with dissolve
+    pause 0.6
     stop ambience
     play sound "audio/voice/commence01.ogg"
     an "This is not a test. This is the official commencement of the Annual REDD War."
@@ -1007,8 +1002,7 @@ label showbegins:
     pause 5
     $l_exp = "sad"
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "Well, this is it."
     "No turning back now."
     "..."
@@ -1116,9 +1110,9 @@ label showbegins:
     $renpy.pause(delay=2)
     play ambience crowd fadein(3)
     $l_exp = "concerned"
-    window show
     show screen laura
-    with dissolve
+    window show dissolve
+    pause 0.1
     "Well, the power turning off certainly seemed unexpected."
     "Several children in the audience screamed, a few started crying, but for the most part, it was the adults chattering with confusion."
     $l_exp = "neutral"
@@ -1201,6 +1195,7 @@ label showbegins:
     show kate shocked at middle
     show screen laura
     with dissolve
+    pause 0.1
     k "Mommy, what's happening??"
     l "I don't know, Kate, but we're getting out of here!"
     show kate zorder 2:
@@ -1352,7 +1347,6 @@ label showbegins:
     pause 0.1
     $renpy.music.set_volume(1.0, delay=3, channel='ambience')
     hide screen laura
-    with dissolve
     nvl clear
     $nvl = True
     nvl show dissolve

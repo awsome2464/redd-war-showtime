@@ -48,8 +48,8 @@ label firstgame:
     """
     $nvl = False
     window show
-    nvl hide
     show screen laura
+    nvl hide
     with dissolve
     pause 0.1
     show richard show_down concerned at middle_r with dissolve
@@ -148,19 +148,18 @@ label firstgame:
     pause 2
     $l_exp = "sad"
     show screen laura
-    with dissolve
+    pause 0.1
     "Oh, my God!"
     "She looked just as terrified as the rest of us, but given her current situation, I'm sure she's even more so."
     hide screen laura
-    with dissolve
+    pause 0.1
     show jessica zorder 2:
         ease 0.5 two2
     show sprinkles happy rightdown leftdown at two1_s zorder 1 with dissolve
     pause 0.1
     s "I must say it's nice to finally meet you, Mrs. Tate!"
-    show sprinkles jeer
-    "{color=#d00000}Mr. Sprinkles{/color}" "\"I do wish it was under different circumstances,{nw}"
-    s laugh hat "I do wish it was under different circumstances,{fast} but better late than never, I always say~!"
+    s jeer "I do wish it was under different circumstances."
+    s laugh hat "But better late than never, I always say~!"
     "He then wrapped his arm around her shoulder and leaned in towards her as he grinned at the camera."
     s happy rightdown "Now, there's a chance that some of you might not have heard of Jessica Tate, so allow me to explain:"
     s "You see, Jessica here..."
@@ -180,14 +179,12 @@ label firstgame:
     "After he accepted the gift, she gave a small curtsy and skipped back off."
     $l_exp = "concerned"
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "...so, Jingle and presumably Jangle are in on this?"
     $l_exp = "neutral"
     "I mean, they're REDD, as well, so I guess I shouldn't be too surprised, given the circumstances..."
     hide screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     s hm "Now, Jessica, despite everything that's happened tonight, I'm not going to lie to you."
     s "What's about to happen right now..."
     s evilgrin "...is gonna hurt a lot."
@@ -202,8 +199,7 @@ label firstgame:
     "The screaming children certainly didn't help lighten the atmosphere."
     $l_exp = "surprised"
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "Wait a minute... the children!"
     "They're still in the audience!"
     "My God... how scared out of their minds do they have to be right now?"
@@ -215,7 +211,7 @@ label firstgame:
     "What are they thinking right now?"
     "Oh, my poor girls..."
     hide screen laura
-    with dissolve
+    pause 0.6
     show sprinkles hat laugh
     "After a few more swings, Mr. Sprinkles dropped the bat and cackled like a madman."
     "Jessica, on the other hand, had blood all over the bottom of her face and tears pouring out of her eyes."
@@ -250,7 +246,6 @@ label firstgame:
     pause 0.1
     "After the door was closed, the guard REDD got back into position."
     hide screen laura
-    with dissolve
     $nvl = True
     nvl clear
     nvl show dissolve
@@ -276,22 +271,22 @@ label firstgame:
     I mean, surely that's the way to go, right...?
     """
     $nvl = False
-    nvl hide
     $l_exp = "concerned"
     show screen laura
+    nvl hide
     with dissolve
     pause 0.1
     "Mr. Sprinkles then approached the Wacky Dartboard after hitting one of the squares."
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles happy cane hat at middle_s
     with dissolve
     pause 0.1
     s "And our first game of the evening is..."
     s laugh "{i}Hot Quiz!{/i}"
     show game_name "Hot Quiz" at game_name_flash
     s "Ahahaha!"
-    s happy "Now, what do you say we get the ball rolling right away and bring out our contestants?"
+    s happy rightdown "Now, what do you say we get the ball rolling right away and bring out our contestants?"
     hide game_name
     "The two adults taken from the back were then brought onto the stage by guards while Jingle and Jangle placed two large chairs in the center."
     s jeer "If you could please sit in these chairs..."
@@ -302,8 +297,7 @@ label firstgame:
     $l_exp = "surprised"
     "They also had straps across the waist, which Jingle and Jangle then proceeded to attach and lock."
     hide screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     s happy "Splendid~!"
     s "Alright, for those who are unaware of how this game works, here are the rules:"
     s "Our contestants here will have 60 seconds to answer simple trivia questions."
@@ -335,7 +329,7 @@ label firstgame:
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     scene bg stage
     hide screen laura
-    show sprinkles laugh at middle_s
+    show sprinkles laugh leftdown hat at middle_s
     with dissolve
     pause 0.1
     s "Let's start the game!"
@@ -343,14 +337,14 @@ label firstgame:
     stop music fadeout(3)
     "He then stood between the two chairs, albeit a bit of a distance back from them."
     "We were then greeted to two camera angles at once, one for each contestant."
-    s laugh "Alright! Let's decide who will be 'it' first!"
+    s laugh rightdown "Alright! Let's decide who will be 'it' first!"
     "Suddenly a red light bulb on top of each of the chairs alternated rapidly for a few seconds before slowing down."
     "Finally, it stopped right on top of the man."
     s happy "Oh, goody! You get to answer the question first, Sir!"
     s "Put 60 seconds on the clock, please!"
-    s laugh "And let's begin~!"
+    s laugh hat "And let's begin~!"
     play music ice_cream_truck
-    s happy "Who was the 16th president of the United States?"
+    s happy rightdown "Who was the 16th president of the United States?"
     man "L-Lincoln! Abraham Lincoln!"
     s laugh "Correct!"
     "The light then switched from the man to the woman."
@@ -363,7 +357,7 @@ label firstgame:
     "A buzzer went off."
     s jeer "Try again~"
     woman "2014?"
-    s laugh "Correct!"
+    s laugh hat "Correct!"
     $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     scene bg storage
     show screen laura
@@ -391,7 +385,7 @@ label firstgame:
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     scene bg stage
     hide screen laura
-    show sprinkles jeer at middle_s
+    show sprinkles leftdown rightdown jeer at middle_s
     with dissolve
     pause 0.1
     s "What is the capital of Florida?"
@@ -412,8 +406,8 @@ label firstgame:
     play sound buzzer_full
     pause 1
     window show dissolve
-    s @ laugh "Oh, my! A minute certainly does fly by, doesn't it?"
-    s "Congratulations, Miss! You won!"
+    s laugh hat "Oh, my! A minute certainly does fly by, doesn't it?"
+    s happy "Congratulations, Miss! You won!"
     s jeer "As for you, Sir..."
     s evilgrin "Thank you for playing."
     play sound shotgun
@@ -425,8 +419,7 @@ label firstgame:
     play sound2 children_screaming fadein(1)
     pause 1
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "Everyone screamed as the man's head seemed to explode out of nowhere!"
     "The camera then panned to a REDD guard pointing a shotgun in the general direction."
     "Meanwhile, the blood-and-gut covered woman covered her mouth in horror as she started bawling."
@@ -435,12 +428,12 @@ label firstgame:
     "I can't even imagine the amount of guilt going through her head."
     play music sprinkles_theme
     s laugh "Now that's what I call an exciting beginning to an exciting evening~!"
-    s happy "Ma'am, for winning, you earn your freedom!"
+    s happy rightdown "Ma'am, for winning, you earn your freedom!"
     "Jangle then entered the stage and unhooked her from the chair."
     s jeer "You are free to exit the stage and return to where you were seated at the beginning of the night."
     $l_exp = "concerned"
     "The woman was hesitant and looked around to see if there were any indications that this was a trap."
-    s laugh "I'm serious~! You can return to your seat!"
+    s laugh hat "I'm serious~! You can return to your seat!"
     $l_exp = "neutral"
     "She then slowly but surely got out of her seat and made her way to the edge of the stage and dropped down."
     hide sprinkles
@@ -453,11 +446,11 @@ label firstgame:
     $l_exp = "surprised"
     "Sure enough, the woman ran towards the child and hugged him tightly, sobbing loudly as she did."
     show bg stage
-    show sprinkles jeer at middle_s
+    show sprinkles rightdown leftdown jeer at middle_s
     with dissolve
     pause 0.1
     s "Aw, how adorable!"
-    s laugh "Anyway, what do you say we take ourselves a quick break to prepare for the next game?"
+    s laugh hat "Anyway, what do you say we take ourselves a quick break to prepare for the next game?"
     stop music fadeout(5)
     scene bg storage
     show richard show_down concerned at middle_r
@@ -509,8 +502,6 @@ label firstgame:
     $l_exp = "surprised"
     "All I ask is for you to be safe..."
     hide screen laura
-    hide richard
-    with dissolve
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -635,7 +626,7 @@ label secondbeating:
     pause 2
     play music sprinkles_theme
     scene bg stage
-    show sprinkles laugh at middle_s
+    show sprinkles laugh hat cane at middle_s
     with Dissolve(2.0)
     window show dissolve
     pause 0.1
@@ -663,7 +654,7 @@ label secondbeating:
     s "Alright, then~!"
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles rightdown cane happy at middle_s
     hide screen laura
     with dissolve
     pause 0.1
@@ -677,7 +668,7 @@ label secondbeating:
     "He then snapped his fingers."
     "On cue, Jangle pushed out something covered up with a curtain and stopped it right next to Mr. Sprinkles."
     stop music fadeout(3)
-    s laugh "Ladies and gentlemen, boys and girls, please welcome back to the stage..."
+    s laugh hat "Ladies and gentlemen, boys and girls, please welcome back to the stage..."
     show sprinkles:
         ease 0.5 two2_s
     "He then yanked off the curtain."
@@ -687,18 +678,17 @@ label secondbeating:
     play sound children_screaming
     pause 0.5
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "Jesus Christ!"
     "That's a whole new level of fucked up!"
     hide screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     s "Ahahaha~!"
     "He then stepped closer to the body."
     stop sound fadeout(3)
     play music sprinkles_spooky
-    s happy "Say, Ms. Madeline, how many tickles does it take to make an octopus laugh?"
+    s happy rightdown "Say, Ms. Madeline, how many tickles does it take to make an octopus laugh?"
+    show sprinkles hat
     "He then cupped his hand around his ear and leaned in close to her, pausing for a few seconds."
     s jeer "I'm afraid you'll have to speak up a bit, Ms. Madeline; I can't hear you."
     "This time, when cupping his ear, he spoke in a mocking high-pitched voice."
@@ -706,15 +696,14 @@ label secondbeating:
     s laugh "It takes..."
     s "...{b}ten tickles!!{/b}"
     "He then laughed and applauded at his joke."
-    s happy "Ooo! Here's another one!"
+    s happy rightdown "Ooo! Here's another one!"
     s "Where's the best place to learn about making ice cream?"
     s @ jeer "{i}I don't know, Mr. Sprinkles. I'm too stupid to figure that out!{/i}"
     s "The best place to learn how about making ice cream is..."
-    s laugh "{b}...{i}sundae{/i} school!!{/b}"
+    s laugh hat "{b}...{i}sundae{/i} school!!{/b}"
     $l_exp = "concerned"
     show screen laura
-    with dissolve
-    pause 0.1
+    pause 0.6
     "He continued to laugh and tell jokes to the corpse while the children in the audience continued to cry."
     $l_exp = "surprised"
     "I wonder how many of those children actually loved Ms. Madeline and considered her their favorite?"
@@ -725,11 +714,11 @@ label secondbeating:
     "Has he just been really good at hiding it?"
     $l_exp = "surprised"
     "If that's the case, then I guess I'm an idiot for thinking we could trust him."
-    s jeer "Alright, I suppose that's enough for now."
+    s jeer rightdown "Alright, I suppose that's enough for now."
     s evilgrin "I don't wanna be like you and work myself {b}to death!{/b}"
     s laugh "You can wait backstage until we need you again, Ms. Madeline~!"
     show madeline:
-        ease 0.5 xalign -0.6
+        ease 1.5 xalign -0.6
     show sprinkles:
         ease 0.5 middle_s
     "Madeline was then rolled off the the stage while Mr. Sprinkles cleared his throat."
@@ -742,14 +731,14 @@ label secondbeating:
         offscreenright
         ease 1.5 two2
     pause 2
-    s jeer "So, Jessica, how are you enjoying the show so far?"
+    s jeer leftdown "So, Jessica, how are you enjoying the show so far?"
     "She responded with more cries through her gag."
-    s laugh "Ahaha! Well, at least you're speaking louder than Ms. Madeline was~!"
+    s laugh hat "Ahaha! Well, at least you're speaking louder than Ms. Madeline was~!"
     play sound snap
     "He then snapped his fingers, cuing Jingle to skip onto the stage, only this time, instead of holding a bat, she was holding a sledgehammer."
     $l_exp = "sad"
     "This is not gonna be a pretty sight..."
-    s jeer "Thank you, Jingle."
+    s jeer rightdown "Thank you, Jingle."
     "Jessica went into full panic mode, squirming around in her chair, trying to break free."
     show sprinkles laugh
     "But Sprinkles just chuckled and seemingly ignored her efforts."
@@ -764,22 +753,24 @@ label secondbeating:
     "He wound up the hammer."
     $l_exp = "sad"
     "I looked away in fear."
+    $quickhide = True
     show black zorder 5
     hide screen laura
     stop music
     play sound hammer
+    $quickhide = False
     pause 1.5
     show screen laura
-    with dissolve
+    pause 0.6
     "Jessica's high-pitched scream through the gag rang through my ears."
     "I then got the courage to open my eyes and look at the screen."
-    show sprinkles laugh
+    show sprinkles laugh rightdown leftdown
     hide black with dissolve
     pause 0.1
     "Her jeans were covering her legs, but a dark red puddle was forming on her right knee."
     "Jessica herself was still screaming, eyes tightly closed, tears flowing down, and her hands clenched in tight fists."
     s wut "Hmm. You don't seem very grateful."
-    s jeer "I suppose I'll leave you to consider if you want the other one taken care of the next time we meet."
+    s jeer hat "I suppose I'll leave you to consider if you want the other one taken care of the next time we meet."
     s laugh "Alright! Let us take one more short break before we continue on with our night!"
     scene bg storage
     show richard show_down concerned at middle_r
@@ -812,7 +803,6 @@ label secondbeating:
     "Or maybe that's just how I want it to be."
     "It all begs the question of how much worse could this possibly get for everyone..."
     hide screen laura
-    with dissolve
     window hide dissolve
     pause 1.0
     stop music fadeout(3.0)
@@ -826,7 +816,7 @@ label secondbeating:
     pause 0.5
     play sound footsteps
     pause 6
-    show sprinkles evilgrin at two2_s zorder 2
+    show sprinkles evilgrin cane hat at two2_s zorder 2
     with Dissolve(1.0)
     pause 0.5
     play music into_the_haunted_forest
@@ -836,27 +826,27 @@ label secondbeating:
     s laugh "Ahaha! There's no need to be worried, my dear!"
     s "I'm not gonna torture you in private."
     s evilgrin "That would be a waste of potentially higher ratings~!"
-    s happy "I just wanted to thank you for being a good sport, despite everything."
+    s happy rightdown "I just wanted to thank you for being a good sport, despite everything."
     s jeer "I mean, not that you have much of a choice..."
-    s happy "Still, you're playing along beautifully, and the audience loves it!"
+    s happy hat "Still, you're playing along beautifully, and the audience loves it!"
     s laugh "Well, the REDD ones, anyway~"
     j "..."
     s jeer "Heh."
     s "You look upset."
     s "Dare I say you look a bit angry."
     "He then bent down and looked at her eye-to-eye."
-    s "You can't put all the blame on me, my dear."
-    s @ evilgrin "After all, this is technically {b}your{/b} fault."
-    s "I mean, think about it. {b}Really{/b} think about it."
+    s rightdown "You can't put all the blame on me, my dear."
+    s evilgrin "After all, this is technically {b}your{/b} fault."
+    s jeer "I mean, think about it. {b}Really{/b} think about it."
     s wut "You were so convinced that the REDD were these evil, heartless, unforgiving monsters. You even managed to convince so many others of the same thing."
     s "And what did you do despite having that belief?"
     s "You {b}threatened{/b} one!"
     s "You threatened to take away his show and everything he had ever worked for!"
     s huh "I mean, I still cannot understand what was going through your mind."
     s hm "I can only assume that {b}nothing{/b} was."
-    s @ happy "{i}Hur dee durr!! I think this guy has the desire to kill us all! The most logical way to retaliate is to {b}piss him off!!{/b}{/i}"
+    s @ happy hat "{i}Hur dee durr!! I think this guy has the desire to kill us all! The most logical way to retaliate is to {b}piss him off!!{/b}{/i}"
     s "What, did you really think I wasn't going to fight back?"
-    s "Did you really think I would just sit idly by while you took away everything from me?"
+    s "Did you really think I would just sit idly by while you took everything from me?"
     s wut "All because of something you {b}assumed{/b} could happen?"
     s "..."
     s jeer "I mean, yes, I suppose there's some irony in the fact that you were right, but..."
@@ -866,20 +856,20 @@ label secondbeating:
     s "Every person who {b}will{/b} die here tonight?{w} That's on you."
     s "Every child who is traumatized and scarred for life from having their idol degrade to a heartless monster who killed their parent because he had nothing left to lose?"
     show sprinkles:
-        linear 0.25 xalign 0.65
+        linear 0.25 xalign 0.88
     s "That's."
     show sprinkles:
-        linear 0.25 xalign 0.55
+        linear 0.25 xalign 0.78
     s "On."
     show sprinkles:
-        linear 0.25 xalign 0.45
+        linear 0.25 xalign 0.68
     s "{b}You.{/b}"
     window hide
     stop music fadeout(5)
     pause 6
     window show
-    show sprinkles laugh:
-        linear 0.25 xalign 0.75
+    show sprinkles laugh hat:
+        linear 0.25 two2_s
     s "Ahaha~!"
     s happy "Well, I better get back on stage!"
     s jeer "The show must go on, as they say."
@@ -908,13 +898,13 @@ label girlsescape:
     pause 2
     play music sprinkles_theme
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles happy rightdown cane at middle_s
     with Dissolve(2.0)
     window show dissolve
     pause 0.1
     s "Alright, folks, it's time for a proper 15-minute break!"
     s "The helpful people by the doors will guide you to the restrooms if you need to go, and you may also use this opportunity to grab some snacks and refreshments."
-    s laugh "We'll see you all back here in 15 minutes~!"
+    s laugh hat "We'll see you all back here in 15 minutes~!"
     s jeer "And for our lovely viewers at home, as well as those in the audience who don't wish to get up, please enjoy the live footage outside of the theater, where I'm sure something exciting is bound to be happening!"
     $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     $l_exp = "concerned"
@@ -1118,9 +1108,8 @@ label showmustgoon:
     play music classy_ghouls
     scene bg storage
     with Dissolve(2.0)
-    window show dissolve
     show screen laura
-    with dissolve
+    window show dissolve
     pause 0.1
     "It didn't take long for us to learn what had happened."
     "We didn't have the specifics, of course, but the basic rundown was 'a REDD shot someone, kids ran in panic, now they're being hunted'."
@@ -1149,14 +1138,14 @@ label showmustgoon:
     stop music fadeout(0.6)
     scene bg stage
     hide screen laura
-    show sprinkles happy at middle_s
+    show sprinkles happy rightdown cane at middle_s
     with dissolve
     pause 0.1
     play music sprinkles_theme
     s "Ahaha~! Sorry for the delay there, folks."
     s wut "We had a bit of an issue during the break."
-    s jeer "Thankfully, it's being sorted out, and it shouldn't interfere with our show."
-    s laugh "That said, let's select another game to play~!"
+    s jeer hat "Thankfully, it's being sorted out, and it shouldn't interfere with our show."
+    s laugh rightdown "That said, let's select another game to play~!"
     $l_exp = "surprised"
     $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     scene bg storage
@@ -1276,6 +1265,7 @@ label showmustgoon:
             t "And you're about to meet your destiny."
             $l_exp = "surprised"
             "The next thing I knew, the barrel of his gun was on my chest."
+            $quickhide = True
             hide screen laura
             window hide
             play sound machine_gun
@@ -1316,12 +1306,12 @@ label nameislaura:
     $l_exp = "surprised"
     show trosh zorder 2:
         ease 0.5 two1
-    show sprinkles hm at two2_s zorder 1 with dissolve
+    show sprinkles wut rightdown leftdown at two2_s zorder 1 with dissolve
     pause 0.1
     s "Where are the next contestants?!"
     "The big REDD turned around and faced Sprinkles."
     t "Sorry. Had a bit of a conflict."
-    s wut "Well, resolve it!! I can't afford any more delays!!"
+    s hm "Well, resolve it!! I can't afford any more delays!!"
     t "Understood. I'll bring them out now."
     "After taking a deep breath, Mr. Sprinkles walked away quickly."
     show trosh:
@@ -1428,7 +1418,7 @@ label nameislaura:
     play ambience saw
     $renpy.music.set_volume(0.25, channel="ambience")
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles cane hat happy at middle_s
     with dissolve
     pause 0.1
     s "Keep pulling!"
@@ -1443,7 +1433,7 @@ label nameislaura:
     "And it appears that in order to prevent them from being detached from the rope, it's tied tightly to each of their wrists."
     "Currently, the woman with the red shirt was winning, though not by much."
     "It seems like anyone's game."
-    s jeer "Let's go, ladies~!"
+    s jeer rightdown "Let's go, ladies~!"
     $renpy.music.set_volume(0.5, delay=0.5, channel="music")
     $renpy.music.set_volume(0.125, delay=0.5, channel="ambience")
     scene bg storage
@@ -1460,7 +1450,7 @@ label nameislaura:
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     $renpy.music.set_volume(0.25, delay=0.5, channel="ambience")
     scene bg stage
-    show sprinkles laugh at middle_s
+    show sprinkles laugh cane rightdown at middle_s
     with dissolve
     pause 0.1
     s "Come on, you can win this!"
@@ -1473,9 +1463,11 @@ label nameislaura:
     $l_exp = "sad"
     "Eventually, she seemed to show an expression of defeat."
     "Bracing herself, she loosened her grip and was thrust forward by her opponent."
+    $quickhide = True
     hide screen laura
     window hide
     $renpy.music.set_volume(1.0, channel="ambience")
+    $quickhide = False
     $l_exp = "surprised"
     stop music fadeout(5)
     play sound blood
@@ -1492,14 +1484,13 @@ label nameislaura:
         pause 1
     else:
         pause 1.6
-    window show dissolve
     show screen laura
-    with dissolve
+    window show dissolve
     pause 0.1
     "The screen was pretty obscured with blood, but it was still not a pretty sight."
     "The poor woman couldn't fall back or get away because of the knot on her wrist, so her opponent had to step forward a bit in order for her to back up and topple to the ground."
     $renpy.music.set_volume(0.25, delay=1, channel="ambience")
-    s happy "Oh, what a great game, ladies!"
+    s happy hat "Oh, what a great game, ladies!"
     "Jingle and Jangle came out onto the stage, with Jingle untying the winner."
     "The loser, meanwhile, with tears and a cry, had her face dragged closer to the saw by Jangle."
     scene bg fade with dissolve
@@ -1512,7 +1503,6 @@ label nameislaura:
     "Please..."
     "I don't know how much more of this I can take..."
     hide screen laura
-    with dissolve
     window hide dissolve
     pause 1
     stop ambience fadeout(3)
@@ -1772,19 +1762,19 @@ label deadlygame:
     play music sprinkles_theme
     scene bg stage
     show madeline dead at two1_r
-    show sprinkles happy at two2_s
+    show sprinkles happy cane rightdown at two2_s
     with Dissolve(2.0)
     window show dissolve
     pause 0.1
     s "Why was the football stadium so hot after the game?"
     s jeer "{i}I don't know, Mr. Sprinkles. Why {b}was{/b} the football stadium so hot after the game?{/i}"
-    s laugh "Because all the fans had left! Ahahaha!!"
+    s laugh hat "Because all the fans had left! Ahahaha!!"
     s happy "Alright, that's enough jokes for now, Ms. Madeline. We'll see you later~!"
     show sprinkles:
         ease 0.5 middle_s
     hide madeline with easeoutleft
     pause 0.1
-    s "And now, friends, it's time for yet another game~!"
+    s rightdown "And now, friends, it's time for yet another game~!"
     s laugh "The Wacky Dartboard, please!"
     stop music fadeout(5)
     scene bg storage
@@ -1831,19 +1821,15 @@ label deadlygame:
     "Let's just hope that the contestants here are good at it, as well..."
     stop music fadeout(3.0)
     hide screen laura
-    window hide
     pause 0.5
     scene bg stage
-    show sprinkles jeer at middle_s
+    show sprinkles rightdown leftdown jeer at middle_s
     with Fade(1.0, 0.5, 1.0)
-    pause 0.5
-    window show dissolve
     pause 0.1
     play music ice_cream_truck
     s "Alright, final round!"
-    s evilgrin "Good luck, you two~!"
+    s hat evilgrin "Good luck, you two~!"
     show screen laura
-    with dissolve
     pause 0.1
     "More images then moved across the screen."
     $l_exp = "concerned"
@@ -1856,14 +1842,14 @@ label deadlygame:
     stop music
     play sound buzzer_full
     pause 1
-    s happy "Time's up~!"
+    s happy rightdown "Time's up~!"
     s jeer "What are your final answers?"
     $l_exp = "surprised"
     "The contestants shakily lifted up their boards."
     s hm "Hmm..."
     s "One says 2, the other says 4."
     s laugh "Well, either one of you is right, or none of you are!"
-    s evilgrin "Let's see what the result is."
+    s evilgrin hat "Let's see what the result is."
     play sound drumroll_buildup loop
     hide sprinkles with dissolve
     pause 0.1
@@ -1875,12 +1861,12 @@ label deadlygame:
     "The clip ended."
     play sound drumroll_finish
     pause 1
-    show sprinkles laugh at middle_s with dissolve
+    show sprinkles laugh leftdown rightdown at middle_s with dissolve
     pause 0.1
     s "And the correct answer is '3'!"
     s huh "Oh, my! It appears neither of you were correct!"
     s wut "What a shame."
-    s evilgrin "Well, thank you for playing~!"
+    s evilgrin hat "Well, thank you for playing~!"
     play sound shotgun
     if persistent.gore:
         show blood2
@@ -1989,9 +1975,8 @@ label richarddoesnttakeplace:
     "Silence, save for the gunfire and hollering of joy in the distance."
     nvl clear
     $nvl = True
+    hide trosh with dissolve
     hide screen laura
-    hide trosh
-    with dissolve
     nvl show dissolve
     narrate """
     It was then when I realized that this was the first time I had been outside since the REDD War started.
@@ -2111,7 +2096,6 @@ label richarddoesnttakeplace:
     "Well..."
     "That's embarrassing."
     hide screen laura
-    with Dissolve(2.0)
     window hide dissolve
     pause 2
     scene bg fade
@@ -2152,30 +2136,28 @@ label richardtakesplace:
     "Soon, though, I got my explanation for why that was the case."
     play music sprinkles_theme
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles happy leftdown rightdown at middle_s
     hide screen laura
     with dissolve
     pause 0.1
     s "Alright, and the Wacky Dartboard has landed on..."
     s laugh "{i}Wild, Wild Races!{/i}"
     show game_name "Wild, Wild Races" at game_name_flash
-    with None
     show screen laura
-    with dissolve
     pause 0.1
     "Oh, no!"
     "That's the most physically-challenging game on the show!"
     $l_exp = "concerned"
     "But it's usually not played on the stage, so where would it be?"
     hide screen laura
-    with dissolve
+    pause 0.6
     hide game_name
-    s jeer "And now, it is time to go live to our course and see our brave contestant!"
+    s jeer hat "And now, it is time to go live to our course and see our brave contestant!"
     scene bg parkinggarage with dissolve
     pause 0.1
     $l_exp = "neutral"
     show screen laura
-    with dissolve
+    pause 0.6
     "It looked like a parking garage that had to have been near the theater."
     $l_exp = "sad"
     "And right by the starting line..."
@@ -2374,12 +2356,11 @@ label richardtakesplace:
     $nvl = False
     nvl hide
     play sound "audio/se/explosion.ogg"
-    scene bg flash
-    with None
+    scene bg flash with explosion
     scene bg parkinggarage
     with Dissolve(2)
     show screen laura
-    with dissolve
+    pause 0.6
     "What the hell??"
     "The camera then panned to a nearby building, where an explosion of fire could be seen emerging!"
     r "Ahh!!"
@@ -2423,6 +2404,7 @@ label richardtakesplace:
     pause 0.1
     "Richard's screams could be heard loudly as he plummeted down below, the camera being careful to stay focused on him at all times."
     "All I could do was stare in shock as he fell for what felt like forever, his screams only stopping when..."
+    $quickhide = True
     hide screen laura
     window hide
     show richard show_down shocked:
@@ -2450,7 +2432,6 @@ label richardtakesplace:
     l "...I'm sorry..."
     "I managed to choke out in a whisper."
     hide screen laura
-    with dissolve
     $nvl = True
     nvl clear
     nvl show dissolve
@@ -2508,8 +2489,6 @@ label richardtakesplace:
     "I will, Richard."
     "I will."
     window hide dissolve
-    hide screen laura
-    with dissolve
     pause 3
     $renpy.end_replay()
     $persistent.chapter3_scene7 = True
@@ -2520,11 +2499,12 @@ label jessicaseye:
         currenttime = "12:00 AM"
         timeleft = "7 hours"
         currentdate = "April 1st"
+        quickhide = False
     call chapterstart
     pause 2
     play music sprinkles_theme
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles happy hat cane at middle_s
     with Dissolve(2.0)
     window show dissolve
     pause 0.1
@@ -2597,12 +2577,13 @@ label jessicaseye:
     window hide
     pause 1.0
     scene bg stage
-    show sprinkles jeer at middle_s
+    show sprinkles cane rightdown jeer at middle_s
     with Fade(1.0, 0.5, 1.0)
+    pause 0.1
     window show dissolve
     pause 0.1
     s "Welcome back, everyone~"
-    s laugh "Fortunately, everything is proceeding as planned, which is good for everyone!"
+    s laugh hat "Fortunately, everything is proceeding as planned, which is good for everyone!"
     s @ evilgrin "Well, maybe not {b}everyone{/b}...~"
     s "Which segways nicely back to our guest, Mrs. Jessica Tate!"
     show sprinkles at two1_s zorder 2 with easeinright
@@ -2611,7 +2592,7 @@ label jessicaseye:
         ease 1.5 two2
     pause 1.6
     play music sprinkles_spooky
-    s happy "Welcome back to the stage, Jessica!"
+    s happy rightdown "Welcome back to the stage, Jessica!"
     s "How are you enjoying your evening so far?"
     j "..."
     s laugh "Great to hear~!"
@@ -2624,7 +2605,7 @@ label jessicaseye:
     pause 1.0
     hide jingle with easeoutleft
     pause 0.1
-    s happy "Now, Jessica, do you know what this is in my hand?"
+    s happy leftdown "Now, Jessica, do you know what this is in my hand?"
     j "..."
     s laugh "That's right: a power drill!"
     play sound snap
@@ -2648,9 +2629,10 @@ label jessicaseye:
     $renpy.music.set_volume(0.5, delay=1.0, channel="music")
     pause 2.0
     $renpy.music.set_volume(1.0, delay=0.5, channel="ambience")
-    play sound blood
+    play sound blood loop
     play sound2 children_screaming
     if persistent.gore:
+        #Show CG of drill in eye
         show blood3 zorder 3
         pause 2
         show blood4 zorder 3
@@ -2662,9 +2644,10 @@ label jessicaseye:
     else:
         pause 6
     stop ambience
+    stop sound
     $renpy.music.set_volume(0.5, delay=1.0, channel="music")
     pause 0.5
-    show sprinkles laugh at two1_s zorder 2
+    show sprinkles leftdown hat laugh at two1_s zorder 2
     show jessica at two2 zorder 2
     show jangle zorder 1:
         xalign 0.9 yalign 0.5
@@ -2693,7 +2676,7 @@ label mirrormadness:
     pause 2
     play music sprinkles_theme
     scene bg stage
-    show sprinkles happy at middle_s
+    show sprinkles hat cane happy at middle_s
     with Dissolve(2.0)
     window show dissolve
     pause 0.1
