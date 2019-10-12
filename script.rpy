@@ -175,6 +175,7 @@ image splash = "Good Tales Transparent.png"
 image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
 image curtain_overlay = "gui/save_curtain.png"
+image bus_window = "window.png"
 image sprinklelogo:
     "Ringleader Draft.png"
     size(360, 475)
@@ -291,6 +292,7 @@ image bg stage = "BG/stage.jpg"
 image bg storage = "BG/storage.jpeg"
 image bg street = "BG/street.jpg"
 image bg theater_ext = "BG/theaterexterior.jpg"
+image bg warehouse = "BG/warehouse.jpg"
 
 ## Custom Audio Channels ##########################################################################################################
 
@@ -339,6 +341,7 @@ define audio.hammer = "audio/se/hammer.ogg"
 define audio.heartbeat = "audio/se/heartbeat.ogg"
 define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
 define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
+define audio.impact = "audio/se/impact.ogg"
 define audio.machine_gun = "audio/se/machine gun.ogg"
 define audio.rapid_gunfire = "audio/se/rapid gunfire.ogg"
 define audio.saw = "audio/se/saw.ogg"
@@ -525,8 +528,7 @@ style replay_desc:
     justify True
 style creditscreen:
     font "fonts/circula-medium.otf"
-    color "#ffffff"
-    outlines [(1.0, '#a39600', 0.0, 0.0)]
+    color "#a39600"
     text_align 0.5
 
 ## Custom Screens #################################################################################################################
@@ -534,7 +536,7 @@ style creditscreen:
 # Overlay Screens
 screen ctc():
     zorder 100
-    if nvl == True:
+    if nvl:
         add "ctc_arrow_nvl"
     else:
         add "ctc_arrow_1"
@@ -750,6 +752,18 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
+                null height 20
+                text "Chapter 4" xalign 0.5
+                if persistent.chapter4_scene1:
+                    textbutton "Transfer" xalign 0.5:
+                        hovered SetVariable("replay_num", 16)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
     frame:
         xalign 0.75 yalign 0.5
         xysize (700, 250)
@@ -787,6 +801,8 @@ screen chapterselect():
                 text "Trosh has a special contestant in mind for an upcoming game." style "replay_desc" xalign 0.5
             elif replay_num == 15:
                 text "Kate and Dakota build tension between them while Jessica has a close encounter with a power tool." style "replay_desc" xalign 0.5
+            elif replay_num == 16:
+                text "Laura, along with some other parents, are brought out for yet another special game." style "replay_desc" xalign 0.5
     imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.95
 screen achievements():
     tag title
@@ -861,7 +877,7 @@ screen credits():
             text "Sound Effects" style "creditscreen" xalign 0.5
             text "freesound.org" xalign 0.5
             null height 20
-            text "Made with Ren'Py 7.3.3" style "creditscreen" xalign 0.5
+            text "Made with Ren'Py 7.3.4" style "creditscreen" xalign 0.5
     imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.9 yalign 0.9
 screen socials():
     tag title

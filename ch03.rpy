@@ -2548,7 +2548,7 @@ label jessicaseye:
     play sound "audio/se/explosion.ogg"
     "The explosion..."
     "Her dad's screams..."
-    play sound hammer
+    play sound impact
     "The slam that came when he hit the ground..."
     "It felt like a bad dream."
     "It still feels like a bad dream."
@@ -2666,17 +2666,4 @@ label jessicaseye:
     pause 4
     $renpy.end_replay()
     $persistent.chapter3_scene8 = True
-
-
-label mirrormadness:
-    python:
-        currenttime = "12:32 AM"
-        timeleft = "6 hours and 28 minutes"
-    call chapterstart
-    pause 2
-    play music sprinkles_theme
-    scene bg stage
-    show sprinkles hat cane happy at middle_s
-    with Dissolve(2.0)
-    window show dissolve
-    pause 0.1
+    jump chapter_4
