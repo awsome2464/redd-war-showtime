@@ -57,7 +57,7 @@ label mirrormadness:
 
     After all, how was I supposed to know that a REDD would use the REDD War to kill innocent people?
 
-    I'd have to be fucking wizard to figure that shit out.
+    I'd have to be a fucking wizard to figure that shit out.
     """
     $nvl = False
     window show
@@ -106,6 +106,7 @@ label mirrormadness:
     "Instead, we were going towards a door that led outside."
     "Guess we're playing another 'big and exciting' game in a separate location."
     "Should have expected as much from Trosh."
+    $renpy.music.set_volume(0.75, channel="ambience")
     play music into_the_haunted_forest
     play ambience rapid_gunfire
     scene bg alley with dissolve
@@ -205,3 +206,281 @@ label mirrormadness:
     hide trosh with dissolve
     pause 0.1
     $l_exp = "neutral"
+    "He then turned on a radio near the warehouse entrance, where we could hear live audio from back at the theater."
+    play music sprinkles_radio
+    s "Alright, ladies and gentlemen! Our contestants are live and ready at the {i}Mirror Madness{/i} maze~!"
+    s "Who will make it to the middle first?"
+    s "Will any of them be able to avoid our added twist?"
+    $l_exp = "surprised"
+    l "{i}'Added twist?'{/i}"
+    l "What twist?"
+    "The guards just laughed among each other, choosing to ignore my question."
+    s "Let's find out, shall we~?"
+    s "Are you ready, contestants?"
+    $l_exp = "mad"
+    "Of course not."
+    stop music fadeout(3.0)
+    s "On your marks..."
+    $l_exp = "surprised"
+    "I guess I don't have much of a choice here."
+    s "Get set..."
+    "I took a deep breath and looked ahead at the hallway in front of me."
+    "It's just a giant maze of mirrors that I have to navigate while avoiding an 'added twist'."
+    $l_exp = "concerned"
+    "What could go wrong?"
+    s "{b}GO!{/b}"
+    play sound airhorn
+    play music into_battle
+    $l_exp = "sad"
+    "Well, here goes!"
+    $nvl = True
+    nvl clear
+    hide screen laura
+    nvl show dissolve
+    narrate """
+    I bolted into the maze, not really knowing where I was going.
+
+    I had seen the game being played on TV many times, and I always found it a bit trippy and disorienting.
+
+    Being inside the maze itself, though, is a million times worse than I could have imagined.
+
+    The context of this whole night's events might be adding to it, though.
+
+    {nw}
+
+    I soon came to my first fork in the path, one way going to the right and one continuing straight.
+
+    Which way should I go?{nw}
+    """
+    menu(nvl=True):
+        "{font=fonts/GosmickSans.ttf}Straight{/font}":
+            $direction = "straight"
+            nvl clear
+            narrate "I kept going straight."
+        "{font=fonts/GosmickSans.ttf}Right{/font}":
+            $direction = "right"
+            nvl clear
+            narrate "I turned to the right."
+    narrate """
+    As I ran, I couldn't help but see the infinite reflections from the mirrors in my peripheral vision.
+
+    It was truly messing with my head, especially when I could see a dead end coming up ahead.
+    """
+    if direction == "straight":
+        jump wentstraight
+    elif direction == "right":
+        jump wentright
+
+label wentstraight:
+    narrate """
+    I reached the end and saw the only way to go was right.
+
+    I turned that direction...
+    only to be met with a proper dead end.
+
+    Shit...
+
+    With no other option, I turned around and ran back the way I had come.
+
+    After reaching the first path again, I went to the right.
+
+    Or, rather, techincally the left this time.
+    """
+    nvl clear
+
+label wentright:
+    narrate """
+    There were only two ways to go: right or left.
+
+    Which way should I go?{nw}
+    """
+    menu(nvl=True):
+        "{font=fonts/GosmickSans.ttf}Left{/font}":
+            nvl clear
+            narrate "I went to the left."
+            if direction == "straight":
+                narrate "Shit. Another dead end."
+                narrate "With no other choice, I ran back the other way."
+                jump nojingle
+            elif direction == "right":
+                narrate "Shit. A dead end."
+                stop music fadeout (3.0)
+                play sound running loop
+                narrate """
+                That's when I heard something behind me.
+
+                I looked at the reflection in front of me and saw the culprit:
+
+                A REDD mime with long hair running towards me with an axe in her hand!
+
+                Before I could react in any way...!
+                """
+                $nvl = False
+                nvl hide
+                window hide
+                play sound hammer
+                show blood
+                pause 1.5
+                scene bg fade
+                with Dissolve(2.0)
+                pause 1.0
+                if not persistent.achievement_rattrap:
+                    $persistent.achievement_rattrap = True
+                    $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                $renpy.end_replay()
+                jump gameover
+        "{font=fonts/GosmickSans.ttf}Right{/font}":
+            nvl clear
+            narrate "I went to the right."
+            if direction == "straight":
+                jump hijingle
+            elif direction == "right":
+                nvl clear
+                narrate """
+                I then ran ran until I came across another turn, this time to the left.
+
+                Once I turned...
+                """
+                # Slide in Jingle with axe
+                nvl hide
+                window hide
+                play sound hammer
+                show blood
+                pause 1.5
+                scene bg fade
+                with Dissolve(2.0)
+                pause 1.0
+                if not persistent.achievement_rattrap:
+                    $persistent.achievement_rattrap = True
+                    $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                $renpy.end_replay()
+                jump gameover
+
+label hijingle:
+    nvl clear
+    narrate """
+    I kept on running.
+
+    I soon came across another turn, this time to the left.
+
+    Once I turned, I saw one of the other contestants in the distance!
+    """
+    stop music fadeout(3.0)
+    $renpy.music.set_volume(0.5, channel="sound")
+    play sound running loop
+    narrate """
+    Though I also heard quick footsteps coming from his general loction.
+
+    He turned to where the footsteps were coming from and screamed!
+
+    A split second later...
+    """
+    nvl hide
+    window hide
+    $renpy.music.set_volume(1.0, channel="sound")
+    play sound hammer
+    pause 1.5
+    window show
+    nvl show
+    narrate """
+    ...an axe lodged itself into his forehead!
+
+    {clear}
+
+    As I screamed and he dropped to the ground, a figure came from around the corner.
+
+    A short figure with long tied-up hair, a black dress, and pale white face makeup.
+
+    After she yanked the axe out of the man's head, she then turned towards me with a grin.
+
+    Not even a threatening grin that showed any ill intent; just a casual grin you'd expect her to make on the TV show.
+
+    Somehow, that makes this situation even scarier.
+
+    Especially when she then ran towards me with the axe!
+    """
+    play music theyre_closing_in
+    nvl clear
+    narrate """
+    I looked and saw a hallway just a few feet ahead of me that led further into the maze.
+
+    But that would also mean getting closer to Jingle to get there!
+
+    My only other option would be to run back the way I came.
+
+    What should I do??{nw}
+    """
+    menu(nvl=True):
+        "{font=fonts/GosmickSans.ttf}Run further into the maze{/font}":
+            nvl clear
+            jump runfurther
+        "{font=fonts/GosmickSans.ttf}Run away{/font}":
+            nvl clear
+            jump runaway
+
+label runfurther:
+    narrate """
+    I decided to try my luck and run further into the maze.
+
+    Dashing as fast as I could, I went around the corner before Jingle had a chance to catch up with me.
+
+    I had no idea where I was going from here, but anywhere that didn't have a REDD mime with an axe was good enough for me.
+    """
+    play sound hammer
+    narrate"""
+    {nw}
+
+    As I got further down the hall, I heard another scream and impact of the axe.
+
+    Only it wasn't from behind me, but in front...!
+
+    Not necessarily directly around the corner, but very much in that general area.
+
+    Of course, even if I wanted to go back, a quick look in the mirrors showed Jingle was on her way towards me!
+
+    Hoping for the best, I kept moving forward.
+
+    {nw}
+
+    Another fork, left or right.
+
+    Where to?{nw}
+    """
+    menu(nvl=True):
+        "Left":
+            nvl clear
+            jump goleft
+        "Right":
+            nvl clear
+            jump goright
+
+label goleft:
+    narrate """
+    I went left, only to be instantly greeted by another corner going to the right.
+
+    Moving on, there was yet another intersection, this time spliting in 3 directions: straight, right, and left.
+    """
+label threeway: # ;)
+    narrate "Where do I go from here?{nw}"
+    menu(nvl=True):
+        "Go straight":
+            nvl clear
+            $direction = "straight"
+            jump goingstraight
+        "Go right":
+            nvl clear
+        "Go left" if leftdeadend == False:
+            nvl clear
+            narrate """
+            I turned left only to find...
+
+            ...a dead end.
+
+            Groaning, I turned back to the intersection and got myself reoriented to how I was before.
+            """
+            nvl clear
+            $leftdeadend = True
+            jump threeway
+
+label goingstraight:
+

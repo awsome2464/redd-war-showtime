@@ -24,6 +24,7 @@ define an = Character("Announcer", what_prefix='"', what_suffix='"', what_italic
 define b = Character("[b_name]", what_prefix='"', what_suffix='"')
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
 define dt = Character("Dakota", color="#0061d9", who_italic=True, what_italic=True)
+define f = Character("Frank", what_prefix='"', what_suffix='"')
 define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
 define ja = Character("Jangle", color="#d00000", image="jangle", what_prefix='"', what_suffix='"')
 define ji = Character("Jingle", color="#d00000", image="jingle", what_prefix='"', what_suffix='"')
@@ -137,8 +138,6 @@ layeredimage sprinkles:
             "Characters/Sprinkles/left down.png"
         attribute cane:
             "Characters/Sprinkles/Hand on cane.png"
-    if cane_blood:
-        "Characters/Sprinkles/Bloody cane.png"
     group head:
         attribute evilgrin:
             "Characters/Sprinkles/evilgrin.png"
@@ -317,6 +316,7 @@ define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spook
 define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
 define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
 define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
+define audio.theyre_closing_in = "audio/music/Theyre-Closing-In_Looping.mp3"
 define audio.title = "audio/music/title.ogg"
 define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 
@@ -344,6 +344,7 @@ define audio.helicopter_finish = "<from 6>audio/se/helicopter.ogg"
 define audio.impact = "audio/se/impact.ogg"
 define audio.machine_gun = "audio/se/machine gun.ogg"
 define audio.rapid_gunfire = "audio/se/rapid gunfire.ogg"
+define audio.running = "audio/se/running.ogg"
 define audio.saw = "audio/se/saw.ogg"
 define audio.shotgun = "audio/se/shotgun.ogg"
 define audio.siren = "audio/se/siren.ogg"
@@ -530,6 +531,11 @@ style creditscreen:
     font "fonts/circula-medium.otf"
     color "#a39600"
     text_align 0.5
+style creditscreen2:
+    font "fonts/circula-medium.otf"
+    color "#a39600"
+    text_align 0.5
+    size 50
 
 ## Custom Screens #################################################################################################################
 
@@ -828,6 +834,12 @@ screen achievements():
                 text "Embarrass Yourself on Live Television" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievement_rattrap:
+                text "{i}Rat Trap{/i}" xalign 0.5
+                text "Fall Victim to the {i}Mirror Madness{/i} Maze" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
 screen credits():
@@ -861,6 +873,7 @@ screen credits():
             text "{i}Into Battle v001{/i}" xalign 0.5
             text "{i}Into the Haunted Forest{/i}" xalign 0.5
             text "{i}Neon Runner{/i}" xalign 0.5
+            text "{i}They're Closing In{/i}" xalign 0.5
             text "{i}Vast Places{/i}" xalign 0.5
             null height 10
             text "by Eric Matyas (soundimage.org)" xalign 0.5
@@ -878,39 +891,73 @@ screen credits():
             text "freesound.org" xalign 0.5
             null height 20
             text "Made with Ren'Py 7.3.4" style "creditscreen" xalign 0.5
-    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.9 yalign 0.9
+    vbox:
+        xalign 0.9 yalign 0.9
+        textbutton "Next >" action ShowMenu("credits2") xalign 1.0
+        imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5
+screen credits2():
+    tag title
+    frame:
+        xysize(1240, 670)
+        xalign 0.5 yalign 0.4
+        vbox:
+            xalign 0.5 yalign 0.25
+            text "Special Thanks" style "creditscreen2" xalign 0.5
+            null height 20
+            text "God" style "creditscreen" xalign 0.5
+            text "For all the gifts and abilities He has given me" xalign 0.5
+            null height 20
+            text "Tom 'PyTom' Rothamel" style "creditscreen" xalign 0.5
+            text "For creating the Ren'Py visual novel engine" xalign 0.5
+            null height 20
+            text "James DeMonaco" style "creditscreen" xalign 0.5
+            text "For creating the concept that the REDD War was based on" xalign 0.5
+            null height 20
+            text "Jed Elinoff and Scott Thomas" style "creditscreen" xalign 0.5
+            text "For writing the film that inspired this story" xalign 0.5
+            null height 20
+            text "SlightlySimple, Mattyd, Thugzilla, and many other friends on Discord" style "creditscreen" xalign 0.5
+            text "For being so supportive of this project's development" xalign 0.5
+            null height 20
+            text "You" style "creditscreen" xalign 0.5
+            text "For reading this story" xalign 0.5
+    vbox:
+        xalign 0.9 yalign 0.9
+        textbutton "< Previous" action ShowMenu("credits") xalign 0.0
+        imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5
 screen socials():
     tag title
     frame:
-        xysize(800, 600)
+        xysize(400, 300)
         xalign 0.5 yalign 0.5
-        textbutton "Twitter" action OpenURL("https://twitter.com/goodtalesvn") xalign 0.1 yalign 0.1
-        textbutton "Instagram" action OpenURL("https://instagram.com/goodtalesvn") xalign 0.9 yalign 0.1
-        textbutton "Discord Server" action OpenURL("https://discord.gg/zZhPrkC") xalign 0.5 yalign 0.9
+        imagebutton auto "gui/twitter_%s.png" action OpenURL("https://twitter.com/goodtalesvn") xalign 0.15 yalign 0.1
+        imagebutton auto "gui/instagram_%s.png" action OpenURL("https://instagram.com/goodtalesvn") xalign 0.85 yalign 0.1
+        imagebutton auto "gui/discord_%s.png" action OpenURL("https://discord.gg/zZhPrkC") xalign 0.5 yalign 0.9
     imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.99
 
 ## Variable Defaults ##############################################################################################################
 
-default persistent.gore = True
-default preferences.fullscreen = False
 define config.replay_scope = {"_game_menu_screen": "pause"}
-default title = True
+default preferences.fullscreen = False
+default persistent.gore = True
 default _game_menu_screen = "pause"
-default save_subtitle = ""
-default replay_num = 0
-default l_exp = "neutral"
-default quickhide = False
-default nvl = False
-default currenttime = "4:12 PM"
-default currentdate = "March 30th"
-default timeleft = "2 hours and 48 minutes"
-default event = "War Zones are revealed"
-default clickortap = "Click"
-default badcredits = False
 default b_name = "???"
+default badcredits = False
+default clickortap = "Click"
+default currentdate = "March 30th"
+default currenttime = "4:12 PM"
+default direction = ""
+default event = "War Zones are revealed"
+default l_exp = "neutral"
+default leftdeadend = False
+default nvl = False
+default quickhide = False
+default replay_num = 0
 default s_name = "Mr. Sprinkles"
+default save_subtitle = ""
 default t_name = "REDD"
-default cane_blood = False
+default timeleft = "2 hours and 48 minutes"
+default title = True
 
 ## Labels #########################################################################################################################
 

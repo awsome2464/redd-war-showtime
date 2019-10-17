@@ -444,19 +444,24 @@ label arriveatshow:
     $l_exp = "concerned"
     "Sounds about right."
     $l_exp = "neutral"
-    "{i}\"Meanwhile, smaller Safehouses across town are setting up shop, including Jack's Bar in downtown Atlanta.\"{/i}"
-    "{i}\"According to the owner, Jack Morris, the bar is opened up to anyone who needs help, but space in the building is limited.\"{/i}"
+    "{i}\"Meanwhile, smaller Safehouses across town are setting up shop, including Frank's Bar in downtown Atlanta.\"{/i}"
+    "{i}\"According to the owner, Frank Morris, the bar is opened up to anyone who needs help, but space in the building is limited.\"{/i}"
+    "{i}\"He also states that to reduce the risk of random intruders who wish to enter and potentially cause harm, all people who enter must say the password, {color=#d00000}\"Martini\"{\color}.\"{i}"
     $l_exp = "concerned"
-    "Ah, yes. Jack's Bar."
+    "Ah, yes. Frank's Bar."
     $l_exp = "smug"
-    "I can only imagine what it would be like to be so rich, you could afford to turn your business into a Safehouse."
+    "I can only imagine what it would be like to be so rich that you could afford to turn your business into a Safehouse."
     $l_exp = "neutral"
+    "Though I have to say it's a bit sad that he needs a password to prevent random intruders."
+    $l_exp = "sad"
+    "I guess maybe Safehouses aren't as safe as I thought..."
     s "Our first game of the day is..."
     s "{i}Wild, Wild Races!{/i}"
     play sound applause
     pause 1.0
     show kate happy at middle with dissolve
     pause 0.1
+    $l_exp = "smile"
     k "Kota, that's your favorite game!!"
     show kate:
         ease 0.5 two2
