@@ -148,7 +148,7 @@ label firstgame:
     pause 2
     $l_exp = "sad"
     show screen laura
-    pause 0.1
+    pause 0.6
     "Oh, my God!"
     "She looked just as terrified as the rest of us, but given her current situation, I'm sure she's even more so."
     hide screen laura
@@ -509,6 +509,8 @@ label firstgame:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene1:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene1 = True
 
 
@@ -614,6 +616,8 @@ label gottago:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene2:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene2 = True
 
 
@@ -886,6 +890,8 @@ label secondbeating:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene3:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene3 = True
 
 
@@ -1095,6 +1101,8 @@ label girlsescape:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene4:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene4 = True
 
 
@@ -1283,6 +1291,7 @@ label showmustgoon:
             if not persistent.achievement_futurecorpses:
                 $persistent.achievement_futurecorpses = True
                 $renpy.notify("Achievement Unlocked: {i}Future Corpses{/i}")
+                $persistent.achievetotal += 1
             $renpy.end_replay()
             jump gameover
 label nameislaura:
@@ -1509,6 +1518,8 @@ label nameislaura:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene5:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene5 = True
 
 
@@ -1749,6 +1760,8 @@ label kidshiding:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene6:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene6 = True
 
 
@@ -1830,7 +1843,7 @@ label deadlygame:
     s "Alright, final round!"
     s hat evilgrin "Good luck, you two~!"
     show screen laura
-    pause 0.1
+    pause 0.6
     "More images then moved across the screen."
     $l_exp = "concerned"
     "Incredibly fast, as well."
@@ -2104,6 +2117,7 @@ label richarddoesnttakeplace:
     if not persistent.achievement_epicfail:
         $persistent.achievement_epicfail = True
         $renpy.notify("Achievement Unlocked: {i}Schadenfreude{/i}")
+        $persistent.achievetotal += 1
     $renpy.end_replay()
     jump gameover
 label richardtakesplace:
@@ -2491,6 +2505,8 @@ label richardtakesplace:
     window hide dissolve
     pause 3
     $renpy.end_replay()
+    if not persistent.chapter3_scene7:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene7 = True
 
 
@@ -2665,5 +2681,7 @@ label jessicaseye:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter3_scene8:
+        $persistent.scenetotal += 1
     $persistent.chapter3_scene8 = True
     jump chapter_4

@@ -99,10 +99,16 @@ layeredimage madeline:
     group head:
         attribute blank:
             "Characters/Madeline/Blank.png"
+        attribute excited:
+            "Characters/Madeline/Excited.png"
+        attribute glare:
+            "Characters/Madeline/Glare.png"
         attribute shocked:
             "Characters/Madeline/Shocked.png"
         attribute smile:
             "Characters/Madeline/Smile.png"
+        attribute stabbed:
+            "Characters/Madeline/Stabbed.png"
 
 layeredimage richard:
     group body:
@@ -361,13 +367,13 @@ transform choice_dissolve:
     ease 1.0 alpha 1.0
     on hide:
         ease 0.5 alpha 0.0
-transform menu_lower:
-    xanchor 0.5 yanchor 1.0
-    xalign 0.5 yalign 0.0
-    ease 0.5 yalign 1.0
-transform scrollup:
-    xalign 0.5 yalign 1.05
-    ease 15.0 yalign -0.05
+# transform menu_lower:
+#     xanchor 0.5 yanchor 1.0
+#     xalign 0.5 yalign 0.0
+#     ease 0.5 yalign 1.0
+# transform scrollup:
+#     xalign 0.5 yalign 1.05
+#     ease 15.0 yalign -0.05
 transform spotlight_wander:
     xalign 1.0 yalign 1.0
     block:
@@ -380,12 +386,11 @@ transform spotlight_focus:
     linear 0.1 xalign 0.57 yalign 0.35
 transform game_name_flash:
     xalign 0.5 yalign 0.1
-    block:
-        alpha 1.0
-        pause 0.5
-        alpha 0.0
-        pause 0.5
-        repeat
+    alpha 1.0
+    pause 0.5
+    alpha 0.0
+    pause 0.5
+    repeat
 transform credit_scroll_1:
     xalign 0.25 yalign 1.5
     linear 15 yalign -0.5
@@ -580,6 +585,28 @@ screen loadorquit():
         textbutton "Quit" action Quit() xalign 0.5
 
 # Menu Screens
+screen pause():
+    tag menu
+    add "bg curtain"
+    frame:
+        xalign 0.5 yalign 0.5
+        xpadding 50 ypadding 25
+        if not nicetry:
+            vbox:
+                xalign 0.5 yalign 0.5
+                spacing 10
+                textbutton "Save" action ShowMenu('save') xalign 0.5
+                textbutton "Load" action ShowMenu('load') xalign 0.5
+                textbutton "Options" action ShowMenu('preferences') xalign 0.5
+                textbutton "Main Menu" action MainMenu() xalign 0.5
+                textbutton "Quit" action Quit() xalign 0.5
+                null height 10
+                textbutton "Return" action Return() xalign 0.5
+            vbox:
+                xalign 0.5 yalign 0.5
+                text "Nice try, cheater ;)" xalign 0.5
+                null height 10
+                textbutton "Return" action Return() xalign 0.5
 screen extras():
     tag title
     modal True
@@ -761,10 +788,20 @@ screen chapterselect():
                 null height 20
                 text "Chapter 4" xalign 0.5
                 if persistent.chapter4_scene1:
-                    textbutton "Transfer" xalign 0.5:
+                    textbutton "Mirror Madness" xalign 0.5:
                         hovered SetVariable("replay_num", 16)
                         unhovered SetVariable("replay_num", 0)
                         action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.chapter4_scene2:
+                    textbutton "Safe Haven" xalign 0.5:
+                        hovered SetVariable("replay_num", 17)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("citychase", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -809,7 +846,13 @@ screen chapterselect():
                 text "Kate and Dakota build tension between them while Jessica has a close encounter with a power tool." style "replay_desc" xalign 0.5
             elif replay_num == 16:
                 text "Laura, along with some other parents, are brought out for yet another special game." style "replay_desc" xalign 0.5
-    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.95
+            elif replay_num == 17:
+                text "Laura finds herself on the streets of Atlanta." style "replay_desc" xalign 0.5
+    frame:
+        xalign 0.13 yalign 0.95
+        xpadding 20 ypadding 5
+        text "[scene_percent]% Completed" xalign 0.5 yalign 0.5
+    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.65 yalign 0.95
 screen achievements():
     tag title
     frame:
@@ -840,6 +883,7 @@ screen achievements():
                 text "Fall Victim to the {i}Mirror Madness{/i} Maze" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
+        text "[achieve_percent]% Completed" xalign 0.95 yalign 0.95
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
 screen credits():
@@ -890,7 +934,7 @@ screen credits():
             text "Sound Effects" style "creditscreen" xalign 0.5
             text "freesound.org" xalign 0.5
             null height 20
-            text "Made with Ren'Py 7.3.4" style "creditscreen" xalign 0.5
+            text "Made with Ren'Py 7.3.5" style "creditscreen" xalign 0.5
     vbox:
         xalign 0.9 yalign 0.9
         textbutton "Next >" action ShowMenu("credits2") xalign 1.0
@@ -938,9 +982,12 @@ screen socials():
 ## Variable Defaults ##############################################################################################################
 
 define config.replay_scope = {"_game_menu_screen": "pause"}
+default persistent.achievetotal = 0
+default persistent.scenetotal = 0
 default preferences.fullscreen = False
-default persistent.gore = True
 default _game_menu_screen = "pause"
+default achieve_percent = 100 * persistent.achievetotal / 4
+default axehit = ""
 default b_name = "???"
 default badcredits = False
 default clickortap = "Click"
@@ -950,11 +997,14 @@ default direction = ""
 default event = "War Zones are revealed"
 default l_exp = "neutral"
 default leftdeadend = False
+default nicetry = False
 default nvl = False
+default password = ""
 default quickhide = False
 default replay_num = 0
 default s_name = "Mr. Sprinkles"
 default save_subtitle = ""
+default scene_percent = 100 * persistent.scenetotal / 17
 default t_name = "REDD"
 default timeleft = "2 hours and 48 minutes"
 default title = True

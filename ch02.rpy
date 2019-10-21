@@ -310,6 +310,8 @@ label dakotaissorry:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter2_scene1:
+        $persistent.scenetotal += 1
     $persistent.chapter2_scene1 = True
     
 
@@ -336,31 +338,40 @@ label backstagedrama:
     s "Ah, Madeline! What can I do for you?"
     "Madeline" "\"You can start by explaining what's going on.\""
     s jeer "Now, Madeline, I would hate to insult your intelligence~"
+    show madeline glare
     "Madeline" "\"Krag, the show is starting in 4 hours and the stage is empty!\""
+    show madeline shrug
     "Madeline" "\"I'm not even seeing anyone rehearsing anything!\""
     "Madeline" "\"This live show is what could make or break our future, and it's like you're not taking it seriously! And frankly, it's really starting to piss me off!\""
     s hm "..."
+    show madeline blank down
     "Madeline" "\"Krag, I'm saying all this because I want {i}Mr. Sprinkles{/i} to succeed. To get through this rough patch.\""
     s wut "And yet you told the network to put the show on a hiatus."
+    show madeline glare
     "Madeline" "\"I could have told them to cancel it altogether, you know.\""
     "Madeline" "\"Believe me, I don't want to be in this situation any more than you do, but we need to think through this logically.\""
+    show madeline blank
     "Madeline" "\"You're still relatively new to how show business works here on Earth. These things happen.\""
     s "..."
     s "{i}Mr. Sprinkles{/i} is an entire life's worth of ideas and planning put together at last."
     s "I'm not going to let anyone take my show away from me."
+    show madeline glare
     "Madeline" "\"{b}Our{/b} show, Krag.\""
     "Madeline" "\"You may have created it, and you may be the title character, but you're not the {b}only{/b} character.\""
-    "Madeline" "\"You're not the only one who loves to perform on the show. Seeing children's happiness from our antics is something I've treasured for the past 7 years.\""
-    "Madeline" "\"But sometimes, you can't always get what you want, Krag.\""
+    "Madeline" "\"You're not the only one who loves to perform on the show. Seeing children's happiness from our antics is something I've treasured all these years.\""
+    show madeline shrug
+    "Madeline" "\"But you can't always get what you want, Krag.\""
     "Madeline" "\"Sometimes, there are situations that are hard to fix.\""
+    show madeline down
     "Madeline" "\"I'm sorry, but that's just how it works.\""
     s hm "..."
+    show madeline blank
     "Madeline" "\"That said, it's not impossible to fix this.\""
     "Madeline" "\"We need to do everything we can for this live show to be a success. Our careers depend on it. Understand?\""
     s "..."
     s jeer "Of course I do."
     s "I'll get to work on rehearsals."
-    show madeline smile
+    show madeline excited
     "Madeline" "\"Thank you.\""
     hide madeline with easeoutright
     pause 1
@@ -374,6 +385,8 @@ label backstagedrama:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter2_scene2:
+        $persistent.scenetotal += 1
     $persistent.chapter2_scene2 = True
     
 
@@ -409,7 +422,7 @@ label arriveatshow:
     s huh "Huh? Who said that?"
     m "I did!"
     show sprinkles at two2_s with easeinleft
-    show madeline down smile:
+    show madeline down excited:
         size(562, 1125)
         xalign 0.2 yalign -2.0
         ease 0.5 yalign -0.1
@@ -446,7 +459,7 @@ label arriveatshow:
     $l_exp = "neutral"
     "{i}\"Meanwhile, smaller Safehouses across town are setting up shop, including Frank's Bar in downtown Atlanta.\"{/i}"
     "{i}\"According to the owner, Frank Morris, the bar is opened up to anyone who needs help, but space in the building is limited.\"{/i}"
-    "{i}\"He also states that to reduce the risk of random intruders who wish to enter and potentially cause harm, all people who enter must say the password, {color=#d00000}\"Martini\"{\color}.\"{i}"
+    "{i}\"He also states that to reduce the risk of random intruders who wish to enter and potentially cause harm, all people who enter must say the password, {color=#d00000}\"Martini\"{/color}.\"{/i}"
     $l_exp = "concerned"
     "Ah, yes. Frank's Bar."
     $l_exp = "smug"
@@ -573,6 +586,8 @@ label arriveatshow:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter2_scene3:
+        $persistent.scenetotal += 1
     $persistent.chapter2_scene3 = True
 
 
@@ -931,6 +946,8 @@ label meetandgreet:
     window hide dissolve
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter2_scene4:
+        $persistent.scenetotal += 1
     $persistent.chapter2_scene4 = True
     
 
@@ -1081,7 +1098,7 @@ label showbegins:
     pause 0.1
     "We turned around and saw a bright-clothed woman enter the room with a wave."
     play sound applause
-    show madeline down smile at middle_m with dissolve
+    show madeline down excited at middle_m with dissolve
     pause 0.1
     $l_exp = "smile"
     s "Aha! Hello there, Ms. Madeline!"
@@ -1102,10 +1119,10 @@ label showbegins:
     hide screen laura
     with dissolve
     pause 0.1
-    show madeline down smile at two1_m with easeinleft
+    show madeline down excited at two1_m with easeinleft
     pause 0.1
     s "Alright, are you ready to have fun?"
-    m "I sure am!"
+    m smile "I sure am!"
     s laugh "Splendid~!"
     "{color=#d00000}Mr. Sprinkles{/color}" "\"Then let's {nw}"
     stop music
@@ -1187,6 +1204,8 @@ label showbegins:
     "Something silver and pointed."
     s "...{b}terminate you.{/b}"
     "Then, in one swift motion, he reached up..."
+    play sound stab
+    show madeline stabbed
     "...and jammed the stick into her chest!"
     play ambience crowd_screaming
     play sound children_screaming
@@ -1222,7 +1241,7 @@ label showbegins:
     show sprinkles evilgrin cane rightdown zorder 2:
         size(675, 1125)
         xalign 0.65 yalign 0.0
-    show madeline down shocked zorder 1:
+    show madeline down stabbed zorder 1:
         size(562, 1125)
         xalign 0.95 yalign -0.15
     with dissolve
@@ -1406,6 +1425,8 @@ label showbegins:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter2_scene5:
+        $persistent.scenetotal += 1
     $persistent.chapter2_scene5 = True
     jump chapter_3
     

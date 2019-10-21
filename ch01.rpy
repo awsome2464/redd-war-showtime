@@ -91,7 +91,7 @@ label chapter_1:
     "Suddenly, an energetic young woman entered the set via the fireplace on the back wall."
     play sound applause
     show sprinkles at two2_s with easeinleft
-    show madeline down smile at two1_m with dissolve
+    show madeline down excited at two1_m with dissolve
     pause 0.5
     s laugh hat "Aha! Hello there, Ms. Madeline!"
     m "Hello there, Mr. Sprinkles!"
@@ -104,7 +104,7 @@ label chapter_1:
     play sound "audio/se/audience_laugh.ogg"
     "The audience gave a laugh in response."
     s happy "Anyway, are you ready to have fun?"
-    m down "I sure am!"
+    m smile down "I sure am!"
     s laugh hat "Splendid~!"
     s happy "Now, what do you say we spin the Wacky Dartboard to see what we'll play first?"
     m "Why, I'd say that's a great idea, Mr. Sprinkles!"
@@ -447,6 +447,8 @@ label chapter_1:
     with Dissolve(2.0)
     pause 3.0
     $renpy.end_replay()
+    if not persistent.chapter1_scene1:
+        $persistent.scenetotal += 1
     $persistent.chapter1_scene1 = True
 
 
@@ -913,6 +915,7 @@ label kragonnews:
             if not persistent.achievement_toosafe:
                 $persistent.achievement_toosafe = True
                 $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
+                $persistent.achievetotal += 1
             jump gameover
         "\"...we should really sleep on it.\"":
             $renpy.music.set_volume(1.0, delay=1, channel='music')
@@ -1052,5 +1055,7 @@ label sleeponit:
     window hide dissolve
     pause 4
     $renpy.end_replay()
+    if not persistent.chapter1_scene2:
+        $persistent.scenetotal += 1
     $persistent.chapter1_scene2 = True
     jump chapter_2

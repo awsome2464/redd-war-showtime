@@ -75,6 +75,12 @@ label mirrormadness:
     "Hell, for all I know, my husband's body is still lying flat in the street."
     $l_exp = "sad"
     "This is all just insane..."
+    "After a while, I took out my phone."
+    $l_exp = "surprised"
+    "No new messages from Dakota."
+    "That didn't stop me from sending another text."
+    lt "I'm sorry Dakota. I'm sorry I couldn't keep your dad safe"
+    lt "Please be safe okay? That's all I want"
     stop music fadeout(3.0)
     play sound door_open
     pause 1.5
@@ -301,7 +307,7 @@ label wentright:
             if direction == "straight":
                 narrate "Shit. Another dead end."
                 narrate "With no other choice, I ran back the other way."
-                jump nojingle
+                jump hijingle
             elif direction == "right":
                 narrate "Shit. A dead end."
                 stop music fadeout (3.0)
@@ -327,6 +333,7 @@ label wentright:
                 if not persistent.achievement_rattrap:
                     $persistent.achievement_rattrap = True
                     $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                    $persistent.achievetotal += 1
                 $renpy.end_replay()
                 jump gameover
         "{font=fonts/GosmickSans.ttf}Right{/font}":
@@ -337,7 +344,7 @@ label wentright:
             elif direction == "right":
                 nvl clear
                 narrate """
-                I then ran ran until I came across another turn, this time to the left.
+                I then ran until I came across another turn, this time to the left.
 
                 Once I turned...
                 """
@@ -353,6 +360,7 @@ label wentright:
                 if not persistent.achievement_rattrap:
                     $persistent.achievement_rattrap = True
                     $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                    $persistent.achievetotal += 1
                 $renpy.end_replay()
                 jump gameover
 
@@ -369,7 +377,7 @@ label hijingle:
     $renpy.music.set_volume(0.5, channel="sound")
     play sound running loop
     narrate """
-    Though I also heard quick footsteps coming from his general loction.
+    Though I also heard quick footsteps coming from his general location.
 
     He turned to where the footsteps were coming from and screamed!
 
@@ -416,7 +424,15 @@ label hijingle:
             jump runfurther
         "{font=fonts/GosmickSans.ttf}Run away{/font}":
             nvl clear
-            jump runaway
+            narrate """
+            I turned around and ran back the way I came.
+
+            It was risky, but it was safer than running towards a murderer!
+
+            After a quick backtrack, I found myself right back at the entrance where I started.
+            """
+            $axehit = "Jingle"
+            jump stayorgo
 
 label runfurther:
     narrate """
@@ -447,10 +463,10 @@ label runfurther:
     Where to?{nw}
     """
     menu(nvl=True):
-        "Left":
+        "{font=fonts/GosmickSans.ttf}Left{/font}":
             nvl clear
             jump goleft
-        "Right":
+        "{font=fonts/GosmickSans.ttf}Right{/font}":
             nvl clear
             jump goright
 
@@ -460,27 +476,305 @@ label goleft:
 
     Moving on, there was yet another intersection, this time spliting in 3 directions: straight, right, and left.
     """
-label threeway: # ;)
-    narrate "Where do I go from here?{nw}"
-    menu(nvl=True):
-        "Go straight":
-            nvl clear
-            $direction = "straight"
-            jump goingstraight
-        "Go right":
-            nvl clear
-        "Go left" if leftdeadend == False:
-            nvl clear
-            narrate """
-            I turned left only to find...
+    label threeway: # ;)
+        narrate "Where do I go from here?{nw}"
+        menu(nvl=True):
+            "{font=fonts/GosmickSans.ttf}Go straight{/font}":
+                nvl clear
+                jump goingstraight
+            "{font=fonts/GosmickSans.ttf}Go right{/font}":
+                nvl clear
+                narrate """
+                I ran to the right.
 
-            ...a dead end.
+                A few feet later, I came across yet another fork in the path, one going left, and one going{nw}
+                """
+                #Jangle with axe slides in
+                $nvl = False
+                nvl hide
+                window hide
+                stop music
+                play sound hammer
+                show blood
+                pause 1.5
+                scene bg fade
+                with Dissolve(2.0)
+                pause 1.0
+                if not persistent.achievement_rattrap:
+                    $persistent.achievement_rattrap = True
+                    $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                    $persistent.achievetotal += 1
+                $renpy.end_replay()
+                jump gameover
+            "{font=fonts/GosmickSans.ttf}Go left{/font}" if leftdeadend == False:
+                nvl clear
+                narrate """
+                I turned left only to find...
 
-            Groaning, I turned back to the intersection and got myself reoriented to how I was before.
-            """
-            nvl clear
-            $leftdeadend = True
-            jump threeway
+                ...a dead end.
+
+                Groaning, I turned back to the intersection and got myself reoriented to how I was before.
+                """
+                nvl clear
+                $leftdeadend = True
+                jump threeway
 
 label goingstraight:
+    narrate "I ran straight ahead, which seemed to just lead to a long endless hallway."
+    play sound running loop
+    narrate """
+    As I did, I could hear movement a fair distance behind me!
 
+    I definitely don't think it's smart to go back now...
+
+    {nw}
+
+    Another fork, one to the left and one to the right.{nw}
+    """
+    menu(nvl=True):
+        "{font=fonts/GosmickSans.ttf}Go left{/font}":
+            nvl clear
+            stop sound fadeout(3.0)
+            narrate """
+            I ran to the left.
+
+            I eventually came across a turn to the right.
+
+            What I found at the end of the hall was...
+
+            ...one of the entrances...!
+            """
+            $axehit = "Jangle"
+            jump stayorgo
+        "{font=fonts/GosmickSans.ttf}Go right{/font}":
+            nvl clear
+            narrate """
+            I ran to the right.
+
+            ...
+
+            Dead end.
+
+            I heard the footsetps behind me get closer!
+            """
+            $nvl = False
+            nvl hide
+            window hide
+            stop music
+            play sound hammer
+            show blood
+            pause 1.5
+            scene bg fade
+            with Dissolve(2.0)
+            pause 1.0
+            if not persistent.achievement_rattrap:
+                $persistent.achievement_rattrap = True
+                $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                $persistent.achievetotal += 1
+            $renpy.end_replay()
+            jump gameover
+
+label stayorgo:
+    nvl clear
+    narrate """
+    I looked ahead at the outer wall of the building and saw that the hangar doors were wide open.
+
+    There were also two REDD guards off to the side watching the live feed of the event, which was focused on one of the other contestants.
+
+    ...
+
+    Do I want to risk it?
+
+    Do I want to risk running out of both the maze and the hangar without getting shot?
+
+    What should I do...?
+    """
+    menu(nvl=True):
+        "{font=fonts/GosmickSans.ttf}Run back in the maze{/font}":
+            nvl clear
+            narrate """
+            No. It's too risky.
+
+            At least by trying to win the game, I'll have a better chance of having an outcome where I survive.
+
+            With that, I ran back into the maze.
+            """
+            stop music fadeout(3.0)
+            #Showing Jingle or Jangle depending on value of "axehit"
+            pause 3
+            narrate """
+            ...only to be greeted by [axehit].
+
+            Well, shi{nw}
+            """
+            $nvl = False
+            nvl hide
+            window hide
+            stop music
+            play sound hammer
+            show blood
+            pause 1.5
+            scene bg fade
+            with Dissolve(2.0)
+            pause 1.0
+            if not persistent.achievement_rattrap:
+                $persistent.achievement_rattrap = True
+                $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                $persistent.achievetotal += 1
+            $renpy.end_replay()
+            jump gameover
+        "{font=fonts/GosmickSans.ttf}Escape the building{/font}":
+            nvl clear
+            narrate """
+            Fuck it.
+
+            {nw}
+
+            Using whatever energy I had left, I bolted out of the maze and straight for the wide open doors.
+
+            I wasn't really thinking of anything else at that moment.
+
+            All that was important to me was getting the fuck out of this godforsaken nightmare.
+
+            {nw}
+
+            I don't know if the guards had seen me.
+
+            I don't know if the camera's facing me and everyone's seeing me flee.
+
+            If I can get out of here with my life, that's all that matters to me.
+
+            ...
+            """
+            $nvl = False
+            nvl hide
+            window hide
+            stop music fadeout(3.0)
+            pause 2
+            show trosh at middle
+            with Dissolve(1.0)
+            pause 1
+            window show dissolve
+            pause 0.1
+            redd "Shouldn't we try and stop her, Sir?"
+            t "Stop a young woman with no weapons from heading towards a densely-populated area during the REDD War?"
+            t "Nah. Let's let nature take its course."
+            redd "Understood."
+            window hide dissolve
+            pause 1
+            scene bg fade
+            with Dissolve(2.0)
+            pause 4
+            $renpy.end_replay()
+            if not persistent.chapter4_scene1:
+                $persistent.scenetotal += 1
+            $persistent.chapter4_scene1 = True
+
+
+label citychase:
+    python:
+        currenttime = "1:15 AM"
+        timeleft = "5 hours and 45 minutes"
+        l_exp = "concerned"
+    call chapterstart
+    pause 2
+    $renpy.music.set_volume(0.75, channel="ambience")
+    play music into_the_haunted_forest
+    play ambience rapid_gunfire
+    scene bg street
+    with Dissolve(2.0)
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "After hiding in an alley for a few minutes, I poked my head out and looked around."
+    "No visuals of any REDD, but I could hear them nearby."
+    $l_exp = "neutral"
+    "I moved back into the alley and hid behind the trash."
+    $l_exp = "sad"
+    extend ".. and corpses."
+    "At least, what was left of some of them."
+    $l_exp = "surprised"
+    "Thank God none of them appeared to be people I knew or else this would be more traumatizing than this night has already been."
+    nvl clear
+    $nvl = True
+    hide screen laura
+    nvl show dissolve
+    narrate """
+    The fact that the REDD are still not showing signs of slowing down despite the War being halfway over really boggles my mind.
+
+    Do they really show no remorse?
+
+    Homes destroyed, family members' lives lost...
+
+    Do they really not care that they're causing so much damage to innocent people?
+
+    Heh.{w=0.5} What am I saying?
+
+    They're REDD. Of course they don't.
+
+    {clear}
+
+    I don't know why I ever tried to be neutral about them.
+
+    Krag Dovason really seemed like my best proof that maybe, just maybe, a good REDD exists.
+
+    Richard was always quick to point out how the REDD War in London had a moment where pro-REDD humans who were trying to make peace were mowed down like they were nothing.
+
+    He said that it showed that they don't like any humans, period. Even the ones who kiss their asses.
+
+    \"But that was one of the earlier REDD Wars,\" I always replied. \"Things {b}had{/b} to have changed since then!\"
+
+    Well, as I look back at tonight's events, I guess I can see that they didn't.
+    """
+    $nvl = False
+    nvl hide
+    window hide
+    play sound "se/woman scream.ogg"
+    pause 2
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "A woman's scream could be heard around the corner, as well as laughter from multiple people."
+    "A second later, I could see her sprint across the alley entrance, with 3 or 4 REDD coming after her with bat, machetes, and other weapons of the sort."
+    woman "P-Please leave me aloooone!!!"
+    $l_exp = "sad"
+    "I could hear the sobs mixed in with that plea."
+    $l_exp = "surprised"
+    "But the REDD only replied with howls of laughter."
+    $l_exp = "mad"
+    "I just can't believe it..."
+    "I can't believe I let myself believe that these things were able to show any form of empathy towards us."
+    $l_exp = "neutral"
+    "But that also means that I need to be extra careful to not get caught."
+    "Even if that means I have to hide next to dismembered body parts for the next 6 hours."
+    "..."
+    $l_exp = "concerned"
+    "I suppose it's not the most desired outcome, but it's better than being dead."
+    $l_exp = "sad"
+    "...like Richard..."
+    $l_exp = "concerned"
+    woman "{b}AIIIIEEEE!!!{/b}"
+    "More REDD laughter."
+    redd "Nowhere to run now, you little--!"
+    $l_exp = "surprised"
+    stop ambience
+    stop music
+    $renpy.pause() # Car crash SE
+    $t_name = "REDD 1"
+    t "Are you fucking serious?!"
+    $t_name = "REDD 2"
+    t "God {b}DAMN IT!!!{/b}"
+    "..."
+    "It sounded like she got hit by a car."
+    $l_exp = "sad"
+    "That poor girl..."
+    t "{b}FUCK!!{/b}"
+    t "That was supposed to be {b}OUR{/b} kill!!!"
+    $t_name = "REDD 3"
+    t "Who the fuck was driving that?? I say we hunt that shithead down!!"
+    $t_name = "REDD 1"
+    t "Forget it; it's a waste of time. We'll find someone else to kill."
+    $t_name = "REDD 3"
+    t "Where??"
+    $t_name = "REDD 1"
+    t "It's a big city; we'll find someone even if we've gotta break into every building!"

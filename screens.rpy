@@ -598,24 +598,6 @@ style about_label_text:
 ## https://www.renpy.org/doc/html/screen_special.html#save https://
 ## www.renpy.org/doc/html/screen_special.html#load
 
-screen pause():
-
-    tag menu
-    add "bg curtain"
-    frame:
-        xalign 0.5 yalign 0.5
-        xpadding 50 ypadding 25
-        vbox:
-            xalign 0.5 yalign 0.5
-            spacing 10
-            textbutton "Save" action ShowMenu('save') xalign 0.5
-            textbutton "Load" action ShowMenu('load') xalign 0.5
-            textbutton "Options" action ShowMenu('preferences') xalign 0.5
-            textbutton "Main Menu" action MainMenu() xalign 0.5
-            textbutton "Quit" action Quit() xalign 0.5
-            null height 10
-            textbutton "Return" action Return() xalign 0.5
-
 screen save():
     tag menu
     use file_slots(_("Save"))
@@ -1292,7 +1274,7 @@ style skip_triangle:
 screen notify(message):
     zorder 100
     text message at notify_transform
-    timer 5.0 action Hide('notify')
+    timer 4.0 action Hide('notify')
 
 
 transform notify_transform:
