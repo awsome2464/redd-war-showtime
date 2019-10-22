@@ -407,7 +407,7 @@ label hijingle:
 
     Especially when she then ran towards me with the axe!
     """
-    play music theyre_closing_in
+    play music escape
     nvl clear
     narrate """
     I looked and saw a hallway just a few feet ahead of me that led further into the maze.
@@ -729,13 +729,13 @@ label citychase:
     $nvl = False
     nvl hide
     window hide
-    play sound "se/woman scream.ogg"
+    play sound "audio/se/woman scream.ogg"
     pause 2
     show screen laura
     window show dissolve
     pause 0.1
     "A woman's scream could be heard around the corner, as well as laughter from multiple people."
-    "A second later, I could see her sprint across the alley entrance, with 3 or 4 REDD coming after her with bat, machetes, and other weapons of the sort."
+    "A second later, I could see her sprint across the alley entrance, with 3 or 4 REDD coming after her with bats, machetes, and other weapons of the sort."
     woman "P-Please leave me aloooone!!!"
     $l_exp = "sad"
     "I could hear the sobs mixed in with that plea."
@@ -759,7 +759,8 @@ label citychase:
     $l_exp = "surprised"
     stop ambience
     stop music
-    $renpy.pause() # Car crash SE
+    play sound "audio/se/car crash.ogg"
+    pause 3.5
     $t_name = "REDD 1"
     t "Are you fucking serious?!"
     $t_name = "REDD 2"
@@ -778,3 +779,397 @@ label citychase:
     t "Where??"
     $t_name = "REDD 1"
     t "It's a big city; we'll find someone even if we've gotta break into every building!"
+    t "Now c'mon!"
+    $l_exp = "surprised"
+    "I made sure I was as hidden as I could be; maybe they'll just glance right over me."
+    "Maybe they won't even go down the alley."
+    $l_exp = "neutral"
+    play sound footsteps
+    "..."
+    "...or maybe they will."
+    "I took a look around, looking for anything I could use to defend myself."
+    $l_exp = "concerned"
+    "Not sure how much a trash bag or a human head will do, though."
+    "Then again, I suppose anyone, REDD or human, would be confused by a head being thrown at them, right?"
+    $l_exp = "surprised"
+    $t_name = "REDD 2"
+    t "Well, hello there~"
+    "I looked up and saw one of the REDD staring at me with a hideous grin."
+    t "You look a bit bored back here. What do you say I spice up your night a bit?"
+    $l_exp = "mad"
+    l "My night has had too much excitement already, thank you very much."
+    $l_exp = "neutral"
+    "I probably shouldn't have been snippy, but this night is just bringing out the worst in me."
+    t "Is that right?"
+    t "Then allow me to add even more excitement to your night!"
+    "He then turned towards the alley entrance."
+    t "Hey, fellas! I've got someone who wants to play a game of tag with us!"
+    $l_exp = "mad"
+    "...{w}no."
+    $l_exp = "rage"
+    "I am sick and fucking tired of games."
+    "While he was looking away, I quickly kicked straight up at him!"
+    t "Ach!"
+    "When my foot made contact with his crotch and he fell to the ground, I quickly stood up and ran out of the alley!"
+    $l_exp = "mad"
+    "Once out on the street, I looked and saw movement coming from my peripheral vision."
+    $l_exp = "concerned"
+    "The other REDD in the group were chasing after me!"
+    $l_exp = "mad"
+    "With no other option, I bolted in the opposite direction."
+    play music escape
+    "I could hear them behind me, their footsteps and laughter a fair distance away, but still close enough to where one slip-up can fuck me over."
+    "I took a quick turn around the block, showing more empty streets, unless you count burning bodies on the sidewalks."
+    $l_exp = "concerned"
+    "A quick glance behind me showed they were still on my trail."
+    "It's not gonna be easy to get away from them."
+    $l_exp = "mad"
+    "But I didn't come this far just to die now!"
+    "I made another turn on the block, which was still very empty and devoid of life."
+    $l_exp = "concerned"
+    "But I did see one building up ahead that looked untouched."
+    "The lights were even on and there seemed to be a good amount of people inside."
+    $l_exp = "surprised"
+    "As I ran closer, I could make out the sign on the building:"
+    "{i}Frank's Bar{/i}"
+    $l_exp = "excited"
+    "Oh, my God! A Safehouse!!"
+    "I felt myself sprint even faster as I thought about getting into a {b}proper{/b} Government Safehouse!"
+    "I finally reached the front door and tried to open it."
+    $l_exp = "surprised"
+    extend " Only to reveal that it's locked."
+    $l_exp = "concerned"
+    "I guess that would make sense."
+    $l_exp = "sad"
+    play sound "audio/se/door pound.ogg" loop
+    "I then knocked on the door as hard as I could."
+    l "{b}PLEASE LET ME IN!!!{/b}"
+    stop sound
+    $l_exp = "surprised"
+    "I stopped knocking when I could see a section along the top slide away, revealing a pair of eyes looking back at me."
+    man "What's the password?"
+    l "Password...?"
+    man "The password to get in. What is it?"
+    "Oh, God... I read what it was earlier..."
+    "What was it??"
+    python:
+        renpy.block_rollback()
+        nicetry = True
+        password = renpy.input("What's the password to Frank's Bar?", length=10)
+        password = password.strip()
+    if not password:
+        l "I-I don't know!"
+        jump wrongcode
+    else:
+        l "[password]?"
+        $password = password.lower()
+        if password == "martini":
+            jump rightcode
+        else:
+            jump wrongcode
+
+label wrongcode:
+    man "Sorry, Miss."
+    $l_exp = "sad"
+    "He then slid the door hole shut!"
+    play sound "audio/se/door pound.ogg" loop
+    l "Wait!! Please!!"
+    l "Let me--!!"
+    $l_exp = "surprised"
+    show blood4
+    stop music
+    play sound stab
+    pause 2
+    "I looked down and saw a blade sticking out of my gut."
+    $l_exp = "sad"
+    "I then felt my head yanked back as a voice whispered in my ear:"
+    $t_name = "REDD 1"
+    t "You're it~"
+    "The machete was then removed from my gut and placed along my neck."
+    "Where they proceeded to slide it across."
+    $quickhide = True
+    hide screen laura
+    window hide
+    play sound blood
+    show blood3
+    show red:
+        alpha 0.0
+        ease 2.5 alpha 1.0
+    pause 3
+    scene bg fade
+    with Dissolve(2.0)
+    pause 1.0
+    if not persistent.achievement_memoryloss:
+        $persistent.achievement_memoryloss = True
+        $renpy.notify("Achievement Unlocked: {i}Memory Loss{/i}")
+        $persistent.achievetotal += 1
+    $renpy.end_replay()
+    jump gameover
+
+label rightcode:
+    $nicetry = False
+    stop music fadeout(3.0)
+    $l_exp = "excited"
+    "I then heard the door unlock and it opened up!"
+    l "Thank you, thank you, thank you!!!"
+    "I almost knocked the guy over as I ran inside the bar."
+    "As soon as I was in, he shut and locked the door behind me."
+    $renpy.music.set_volume(0.5, channel="ambience")
+    play ambience crowd fadein(0.5)
+    scene bg bar with dissolve
+    pause 0.1
+    play music ten_past_midnight
+    $l_exp = "neutral"
+    "The bar was pretty packed, as to be expected, but it wasn't very claustrophobic."
+    $l_exp = "surprised"
+    "Especially compared to the back room in the theater."
+    $l_exp = "concerned"
+    "But what really surprised me was how calm everyone was, even after a random woman just rushed in here."
+    "If I didn't know any better, I'd say this was just a normal night at a bar."
+    $l_exp = "excited"
+    "Though given my night so far, any sense of normalcy is good enough for me."
+    $l_exp = "smile"
+    "I found my way over to the counter area, where I found an empty stool to sit on."
+    "Once I sat down, I felt so much pressure, physical and mental, release from my body."
+    "I'm safe."
+    "I'm alive."
+    $l_exp = "neutral"
+    "I'm {b}very{/b} tired."
+    "I then rubbed my eyes and let out a giant yawn."
+    $b_name = "Bartender"
+    b "Long night?"
+    $l_exp = "concerned"
+    "I looked behind the counter to see a young bartender looking at me with a sly grin."
+    $l_exp = "smug"
+    l "You have no idea."
+    b "Oh, given tonight's events, I'm sure I've got {b}some{/b} idea."
+    b "What can I get ya?"
+    "I then gave a small chuckle."
+    l "No, thanks."
+    b "You sure? We're having a REDD War special; everything's 75%% off."
+    $l_exp = "surprised"
+    l "Seriously? That sounds a bit excessive, don't you think?"
+    b "Hey, it was Frank's idea, not mine. The way he sees it, if he's opening up his place to protect people from the chaos outside, the least he can do is offer them a fair amount for a drink."
+    $l_exp = "concerned"
+    l "Well, I guess that makes sense..."
+    l "I think."
+    menu:
+        b "So? You want anything?"
+        "\"Sure.\"":
+            $gotdrink = True
+            $l_exp = "smug"
+            l "Eh, what the hell. Sure."
+            "I'm not much of a drinker, but after this night, what have I got to lose?"
+            "After I ordered and received my rum, the bartender walked towards another patron."
+        "\"I'm fine.\"":
+            $l_exp = "excited"
+            l "Thanks, but I'm fine, really."
+            b "Alright, then. But if you change your mind..."
+            $l_exp = "smug"
+            l "I got it."
+            "He gave a friendly nod and walked towards another patron."
+    $l_exp = "neutral"
+    "I gave another yawn and felt my eyes get heavier."
+    "I guess I've had a really long night so far."
+    "A long, tiring, emotional night."
+    "The REDD War is halfway over, and what have I got to show for it?"
+    "A sore body, a dead husband, and two traumatized children."
+    $l_exp = "surprised"
+    stop ambience fadeout(3.0)
+    stop music fadeout(3.0)
+    "!!!"
+    if gotdrink:
+        "I nearly dropped my glass in shock!"
+    l "MY CHILDREN!!!"
+    "Nearly every head in the bar turned towards me."
+    $l_exp = "sad"
+    play sound heartbeat loop
+    l "O-Oh my God!!"
+    l "I-I was so focused on escaping that I--!!"
+    l "I can't believe I just--!!"
+    "My breathing became heavier and heavier."
+    "The bartender rushed over to me with a worried look."
+    stop sound fadeout(3.0)
+    b "Ma'am, are you okay?"
+    l "My kids! I abandoned my kids!!"
+    l "They're still trapped and alone!!"
+    b "O-Okay, okay! Just breathe! Deep breaths!"
+    b "Where are they at?"
+    l "Th-The theater! Downtown!"
+    "The bartender got a look of shock on his face. I even saw and heard a few people nearby talking among themselves."
+    b "You mean the theater Mr. Sprinkles is at?"
+    $l_exp = "surprised"
+    l "!!"
+    l "Y-Yeah! How did--?"
+    b "You kidding? It's all anyone's talking about!"
+    "He then pulled out a TV remote from behind the counter and aimed it at the screen along the wall."
+    "The first thing that appeared when it turned on was a live local news report where a photo of Mr. Sprinkles could be seen above the headline of {i}MR. SPRINKLES' MURDER SHOW SHOWS NO SIGNS OF STOPPING{/i}"
+    play music neon_runner
+    hide screen laura
+    scene bg newsroom with dissolve
+    pause 0.1
+    a "As the 2030 REDD War continues, we're seeing television icon Krag Dovason, more commonly known as Mr. Sprinkles, continuing his live television special."
+    a "A special whose true intentions were kept a secret until it was too late for the audience members inside."
+    a "As the body count rises to over one hundred, leaving many children witnessing many murders, some of which could have been their parents, it seems that Dovason shows no remorse for his actions nor signs that his show will stop before 7 AM."
+    a "Many across the globe are wondering what would prompt the previously saint-like REDD to turn to these actions. Some speculate it was the mass protests and boycotts of his program, while others believe his kindness was all an act."
+    a "Whatever the reason may be, you can view his live broadcast on the channel listed in your TV guide if you so wish."
+    stop music fadeout(0.5)
+    scene bg bar
+    show screen laura
+    with dissolve
+    pause 0.1
+    play music ten_past_midnight
+    l "My God..."
+    b "So you were really at the show the entire time?"
+    l "Y-Yeah..."
+    b "Then how the heck did you wind up here?"
+    l "I-I escaped one of the games we were playing a little out of the way from here. {i}Mirror Madness{/i}."
+    man "Holy shit!"
+    "A man next to me stared at me with wide eyes."
+    man "{b}You{/b} were the contestant who escaped that game?"
+    l "Yeah. I was."
+    "More murmurs from the bar."
+    b "Well, you are one lucky lady, you know that?"
+    $l_exp = "concerned"
+    l "I don't feel lucky."
+    b "You're alive after being caught in the REDD War, aren't ya?"
+    $l_exp = "mad"
+    l "Yeah, but does that really mean anything when you aren't protecting your family?"
+    stop music fadeout(3.0)
+    "I then got up off my stool."
+    b "Where you going?"
+    l "To save my daughters."
+    "I then started walking away."
+    b "Hold on a second!"
+    $l_exp = "neutral"
+    "I turned back to him."
+    play music vast_places
+    b "Look, I'm not gonna tell you what you can and can't do, but I am gonna make sure you're thinking logically about this."
+    b "How old are your daughters? Really young, I take it?"
+    l "...yeah. Both are younger than 10."
+    b "None of the people that died there tonight are children, only adults. Which means for them, it's just as much of a Safehouse as this bar."
+    b "And now you're here in a proper Safehouse, where you won't be hurt."
+    b "Your daughters are safe. You're safe."
+    b "Why would you wanna risk your life to save them from a danger that doesn't exist for them?"
+    $l_exp = "rage"
+    l "Because I don't want them to witness all that murder!"
+    b "And what, you think they're just gonna let you take your girls right out the front door with no problems?"
+    $l_exp = "mad"
+    l "..."
+    b "Believe me, as a parent, myself, I get it."
+    b "You don't want them to be hurt. You don't want them to feel alone. If these were normal circumstances, I'd fully agree that you're making a great decision."
+    b "But these aren't normal circumstances. You really think you can survive a trip back to the theater while the REDD War is going on?"
+    $l_exp = "surprised"
+    l "..."
+    b "And believe me, at this point, any trauma and shock they're experiencing is fully cemented in them; there's nothing you can do about it now."
+    $l_exp = "sad"
+    "I could feel the tears coming up as I covered my mouth."
+    b "I'm sorry, but my advice is to just stay here for the rest of the War."
+    b "I think it's the best way for both you and your kids to survive. Understand?"
+    "I took a deep breath before nodding."
+    l "Yeah... I understand."
+    "I slowly walked back to my barstool and stared at the counter."
+    "He was right."
+    "After watching many innocent people die right in front of them, including their own father, what more can I really protect them from?"
+    if gotdrink:
+        "I took my glass and gulped down the rest of my rum."
+        l "Can I have another, please?"
+    else:
+        l "Can I have a rum, please?"
+    b "Sure."
+    $l_exp = "surprised"
+    "I then closed my eyes and took a deep breath."
+    hide screen laura
+    window hide dissolve
+    pause 1.0
+    scene black
+    with Dissolve(2.0)
+    pause 1
+    nvl clear
+    $nvl = True
+    nvl show dissolve
+    narrate """
+    Kate...
+
+    Dakota...
+
+    Please know that you'll see me again.
+
+    I know you have to wait longer than you want.
+
+    Believe me, I'd love to be right beside you right now.
+
+    But once this is all over, I'll be back for you.
+
+    I promise.
+    """
+    $nvl = False
+    nvl hide dissolve
+    pause 1
+    scene bg livestage
+    show dakota sad at two1 zorder 2
+    show kate mad at two2 zorder 1
+    with Dissolve(2.0)
+    pause 1
+    window show dissolve
+    pause 0.1
+    d "...Kate?"
+    k "..."
+    d "Kate, please don't ignore me."
+    k "..."
+    d mad "What do you want from me, Kate?"
+    d "Do you want me to say that you were right?"
+    d "That Mom is never coming back?"
+    k alert "..."
+    d "Huh? Is that want you want??"
+    k mad "..."
+    d neutral "..."
+    d "Fine. You were right."
+    d "Mom and Dad are both gone and they're never coming back."
+    d "It's just us now."
+    k alert "..."
+    d sad "We only have each other left Kate."
+    k mad "How do you know Mr. Sprinkles won't take you away from me, too?"
+    d "..."
+    d "I guess I don't, but--"
+    "Kate then crossed her arms and turned away from her sister."
+    k "I hate Mr. Sprinkles."
+    k "I hate how he took Mommy and Daddy away."
+    k "I hate how you keep lying about how we'll be okay!"
+    d mad "Kate, listen."
+    d "I'm all you've got right now. I'm the only person who can feel what you're feeling about what happened to Mom and Dad."
+    d "Believe me, I'm mad that Mr. Sprinkles did all of this, too!"
+    d "I want Mom and Dad to come back just as much as you do!"
+    d "But they're not going to, Kate! That much I know for sure!"
+    d "So please don't act this way to me!"
+    d "You can hate Mr. Sprinkles all you want, but please don't hate me!"
+    k "..."
+    d neutral "..."
+    "Kate continued to face away from her sister."
+    d sad "..."
+    show dakota:
+        ease 0.5 middle
+    hide kate with dissolve
+    pause 0.1
+    "Dakota felt even more tears fall down her face."
+    d "Mom..."
+    d "Dad..."
+    d "I'm sorry I was such a jerk to you guys."
+    d "This must be my punishment for acting that way."
+    d "I don't know what I'm gonna do without you!"
+    d "I wish you were here with me!"
+    d "I don't want you to be gone!"
+    d "I really don't..."
+    window hide dissolve
+    stop music fadeout(3.0)
+    pause 1.5
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    if not persistent.chapter4_scene2:
+        $persistent.scenetotal += 1
+    $persistent.chapter4_scene2 = True
+
+
+#label 

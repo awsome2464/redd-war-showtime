@@ -24,7 +24,6 @@ define an = Character("Announcer", what_prefix='"', what_suffix='"', what_italic
 define b = Character("[b_name]", what_prefix='"', what_suffix='"')
 define d = Character("Dakota", image="dakota", what_prefix='"', what_suffix='"')
 define dt = Character("Dakota", color="#0061d9", who_italic=True, what_italic=True)
-define f = Character("Frank", what_prefix='"', what_suffix='"')
 define j = Character("Jessica", image="jessica", what_prefix='"', what_suffix='"')
 define ja = Character("Jangle", color="#d00000", image="jangle", what_prefix='"', what_suffix='"')
 define ji = Character("Jingle", color="#d00000", image="jingle", what_prefix='"', what_suffix='"')
@@ -313,6 +312,7 @@ define audio.autumn_changes = "audio/music/Autumn-Changes_Looping.mp3"
 define audio.bells_of_weirdness = "audio/music/Bells-of-Weirdness_Looping.mp3"
 define audio.classy_ghouls = "audio/music/Classy-Ghouls-Halloween-Gathering_Looping.mp3"
 define audio.creaky_country_fair = "audio/music/Creaky-Country-Fair.ogg"
+define audio.escape = "audio/music/Escape_Looping.mp3"
 define audio.ice_cream_truck = "audio/music/Ice-Cream-Truck_Looping.mp3"
 define audio.into_battle = "audio/music/Into-Battle_v001.mp3"
 define audio.into_the_haunted_forest = "audio/music/Into-the-Haunted-Forest_Looping.mp3"
@@ -320,9 +320,9 @@ define audio.neon_runner = "audio/music/Neon-Runner_Looping.mp3"
 define audio.sprinkles_radio = "<to 64>audio/music/The Mr Sprinkles Show - Radio.mp3"
 define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
 define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
+define audio.ten_past_midnight = "audio/music/10-Past-Midnight_Looping.mp3"
 define audio.the_calm = "<to 111.628 loop 11.163>audio/music/The Calm.mp3"
 define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
-define audio.theyre_closing_in = "audio/music/Theyre-Closing-In_Looping.mp3"
 define audio.title = "audio/music/title.ogg"
 define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 
@@ -461,8 +461,9 @@ transform two2_m:
 transform sideimage:
     size(225, 225)
     xalign 0.0575 yalign 1.0
-    alpha 0.0
+    alpha 1.0
     on show:
+        alpha 0.0
         ease 0.5 alpha 1.0
     on hide:
         ease 0.5 alpha 0.0
@@ -602,6 +603,7 @@ screen pause():
                 textbutton "Quit" action Quit() xalign 0.5
                 null height 10
                 textbutton "Return" action Return() xalign 0.5
+        else:
             vbox:
                 xalign 0.5 yalign 0.5
                 text "Nice try, cheater ;)" xalign 0.5
@@ -883,6 +885,12 @@ screen achievements():
                 text "Fall Victim to the {i}Mirror Madness{/i} Maze" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievement_memoryloss:
+                text "{i}Memory Loss{/i}" xalign 0.5
+                text "Forget the password to Frank's Bar" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
         text "[achieve_percent]% Completed" xalign 0.95 yalign 0.95
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
@@ -909,15 +917,16 @@ screen credits():
             xalign 0.5 yalign 0.5
             text "Music" style "creditscreen" xalign 0.5
             null height 10
+            text "{i}10 Past Midnight{/i}" xalign 0.5
             text "{i}Autumn Changes{/i}" xalign 0.5
             text "{i}Bells of Weirdness{/i}" xalign 0.5
             text "{i}Classy Ghouls Halloween Gathering{i}" xalign 0.5
             text "{i}Creaky Country Fair{/i}" xalign 0.5
+            text "{i}Escape{/i}" xalign 0.5
             text "{i}Ice Cream Truck{/i}" xalign 0.5
             text "{i}Into Battle v001{/i}" xalign 0.5
             text "{i}Into the Haunted Forest{/i}" xalign 0.5
             text "{i}Neon Runner{/i}" xalign 0.5
-            text "{i}They're Closing In{/i}" xalign 0.5
             text "{i}Vast Places{/i}" xalign 0.5
             null height 10
             text "by Eric Matyas (soundimage.org)" xalign 0.5
@@ -986,7 +995,7 @@ default persistent.achievetotal = 0
 default persistent.scenetotal = 0
 default preferences.fullscreen = False
 default _game_menu_screen = "pause"
-default achieve_percent = 100 * persistent.achievetotal / 4
+default achieve_percent = 100 * persistent.achievetotal / 5
 default axehit = ""
 default b_name = "???"
 default badcredits = False
@@ -995,6 +1004,7 @@ default currentdate = "March 30th"
 default currenttime = "4:12 PM"
 default direction = ""
 default event = "War Zones are revealed"
+default gotdrink = False
 default l_exp = "neutral"
 default leftdeadend = False
 default nicetry = False
@@ -1079,7 +1089,6 @@ label chaptername:
 
 # Shows Time, Date, and Time Remaining
 label chapterstart:
-    $renpy.block_rollback()
     stop music
     stop sound
     stop sound2
