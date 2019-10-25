@@ -851,22 +851,19 @@ label citychase:
     l "Password...?"
     man "The password to get in. What is it?"
     "Oh, God... I read what it was earlier..."
-    "What was it??"
+    "What was it??{nw}"
     python:
         renpy.block_rollback()
         nicetry = True
-        password = renpy.input("What's the password to Frank's Bar?", length=10)
-        password = password.strip()
+        password = renpy.input("What was it??", allow=alpha, length=10)
+        nicetry = False
     if not password:
         l "I-I don't know!"
-        jump wrongcode
     else:
+        $password = password[0].upper() + password[1:len(password)].lower()
         l "[password]?"
-        $password = password.lower()
-        if password == "martini":
+        if password == "Martini":
             jump rightcode
-        else:
-            jump wrongcode
 
 label wrongcode:
     man "Sorry, Miss."
@@ -876,7 +873,8 @@ label wrongcode:
     l "Wait!! Please!!"
     l "Let me--!!"
     $l_exp = "surprised"
-    show blood4
+    if persistent.gore:
+        show blood4
     stop music
     play sound stab
     pause 2
@@ -891,11 +889,14 @@ label wrongcode:
     hide screen laura
     window hide
     play sound blood
-    show blood3
-    show red:
-        alpha 0.0
-        ease 2.5 alpha 1.0
-    pause 3
+    if persistent.gore:
+        show blood3
+        with None
+        scene bg blood
+        with Dissolve(2.5)
+        pause 0.5
+    else:
+        pause 3
     scene bg fade
     with Dissolve(2.0)
     pause 1.0
@@ -997,7 +998,7 @@ label rightcode:
     b "Where are they at?"
     l "Th-The theater! Downtown!"
     "The bartender got a look of shock on his face. I even saw and heard a few people nearby talking among themselves."
-    b "You mean the theater Mr. Sprinkles is at?"
+    b "You mean the theater Mr. Sprinkles is killing people at?"
     $l_exp = "surprised"
     l "!!"
     l "Y-Yeah! How did--?"
@@ -1052,7 +1053,7 @@ label rightcode:
     b "Your daughters are safe. You're safe."
     b "Why would you wanna risk your life to save them from a danger that doesn't exist for them?"
     $l_exp = "rage"
-    l "Because I don't want them to witness all that murder!"
+    l "Because I don't want them to be there!"
     b "And what, you think they're just gonna let you take your girls right out the front door with no problems?"
     $l_exp = "mad"
     l "..."
@@ -1078,33 +1079,20 @@ label rightcode:
         l "Can I have a rum, please?"
     b "Sure."
     $l_exp = "surprised"
-    "I then closed my eyes and took a deep breath."
+    "I then took a deep breath and pulled out my phone."
     hide screen laura
     window hide dissolve
-    pause 1.0
+    pause 0.1
     scene black
     with Dissolve(2.0)
     pause 1
-    nvl clear
-    $nvl = True
-    nvl show dissolve
-    narrate """
-    Kate...
-
-    Dakota...
-
-    Please know that you'll see me again.
-
-    I know you have to wait longer than you want.
-
-    Believe me, I'd love to be right beside you right now.
-
-    But once this is all over, I'll be back for you.
-
-    I promise.
-    """
-    $nvl = False
-    nvl hide dissolve
+    window show dissolve
+    lt "Dakota, please know that you and Kate will see me again"
+    lt "I know you have to wait longer than you want"
+    lt "Believe me, I'd love to be right beside you right now"
+    lt "But once this is all over, I'll be back for you"
+    lt "I promise"
+    window hide dissolve
     pause 1
     scene bg livestage
     show dakota sad at two1 zorder 2
@@ -1172,4 +1160,138 @@ label rightcode:
     $persistent.chapter4_scene2 = True
 
 
-#label 
+label goingback:
+    python:
+        currenttime = "2:34 AM"
+        timeleft = "4 hours and 26 minutes"
+        l_exp = "neutral"
+    call chapterstart
+    pause 2
+    play music ten_past_midnight
+    play ambience crowd
+    scene bg bar
+    with Dissolve(2.0)
+    show screen laura
+    window show dissolve
+    pause 0.1
+    l "So that explosion really was just a coincidence?"
+    b "Yep."
+    b "The REDD who caused it even posted their view of the fall."
+    b "Even said a while later that he was happy to add some 'excitement' to the show."
+    b "If you want, I can show--"
+    $l_exp = "mad"
+    l "No. Seeing it once is enough."
+    "I commented before taking another drink."
+    b "Fair enough."
+    $l_exp = "neutral"
+    "I sighed and leaned back a bit."
+    "I could certainly feel myself getting a bit woozy, but I at least had enough mental capability to think rationally."
+    $l_exp = "concerned"
+    "I think."
+    b "You really do sound like you've had a bad night, Laura."
+    $l_exp = "smile"
+    l "Heh. Understatement of the fuckin' year."
+    b "Well, at least your children are still alive, right?"
+    b "And that they still have at least one of their parents around."
+    $l_exp = "mad"
+    l "Buddy, I know you're trying to be helpful, but can you please shut up?"
+    b "...sure. My bad."
+    $l_exp = "concerned"
+    "Okay, so maybe the booze is affecting my behavior more than I thought."
+    $l_exp = "mad"
+    "But the last thing I need to be reminded about right now is my dead husband and abandoned children."
+    $l_exp = "smug"
+    "Which is why I need to do things like drink or talk about politics or dance topless on the karaoke stage."
+    "..."
+    $l_exp = "shocked"
+    "...Geez, if I'm resorting to my college-era activities, then I {b}have{/b} had too much."
+    $l_exp = "neutral"
+    "I gave a soft groan and rested my head on the counter."
+    l "I just want this night to be over."
+    man "Don't we all, Lady."
+    woman "Yeah, especially the people who are still trapped in the theater."
+    woman "I wonder how many parents are left...?"
+    man "Well, if Sprinkles really wants the show to last all night, he'll need enough to last 4 more hours."
+    $l_exp = "concerned"
+    l "You sound like you're rooting for the bastard."
+    man "I ain't. Just pointing out a fact."
+    $l_exp = "mad"
+    l "Hm..."
+    man "Actually, I wonder what the maniac's up to."
+    man "Hey, bartender! Could you turn the TV to Mr. Sprinkles' broadcast?"
+    $l_exp = "neutral"
+    "The bartender paused before taking a quick glance at me, as if asking for my permission."
+    "I just gave a small shrug in response."
+    "With that, he pointed the remote at the TV and turned it on."
+    stop music fadeout(1.0)
+    scene bg fade
+    show tvscreen zorder 3
+    with dissolve
+    pause 0.1
+    play sound "audio/se/tv.ogg"
+    show bg flash with tvwipe
+    $renpy.music.set_volume(0.0, channel="music")
+    $renpy.music.set_volume(1.0, channel="ambience2")
+    stop ambience fadeout(0.75)
+    play ambience2 sprinkles_radio fadein(0.75)
+    play music sprinkles_theme fadein(0.75)
+    show bg stage
+    show sprinkles happy hat cane at two2_s zorder 2
+    show madeline dead at two1_r zorder 1
+    with Dissolve(0.1)
+    pause 0.1
+    s "Where do writing utensils go for vacation?"
+    s jeer "{i}I don't know!{/i}"
+    s laugh "They go to {b}Pencil-vania{/b}!!"
+    $l_exp = "concerned"
+    "So nothing's changed, it seems."
+    $renpy.music.set_volume(0.0, delay=0.5, channel="ambience2")
+    $renpy.music.set_volume(1.0, delay=0.5, channel="music")
+    hide screen laura
+    hide tvscreen with dissolve
+    pause 0.1
+    s jeer "What do you get when you mix a vampire with a snowman?"
+    s "{i}Beats me, Mr. Sprinkles!{/i}"
+    s laugh "You get {b}frostbite{/b}!"
+    s @ jeer "{i}Golly, Mr. Sprinkles! You'd have to be really smart to figure that out, and I'm not smart in any way!{/i}"
+    s "At least you're honest~!"
+    s rightdown happy "Alright, we'll give you another break, Ms. Madeline."
+    s laugh "Maybe you'll get them next time~!"
+    s jeer hat "Though I seriously doubt it."
+    hide madeline
+    show sprinkles at middle_s
+    with easeoutleft
+    pause 0.1
+    s rightdown happy "And if you've got a good memory, you may remember what comes after our jokes with Ms. Madeline!"
+    s hat laugh "Let's give a big round of applause for Jessica~!"
+    show sprinkles at two1_s with easeinright
+    show jessica:
+        offscreenright
+        ease 1.5 two2
+    pause 2
+    $l_exp = "surprised"
+    show screen laura
+    pause 0.6
+    "Jessica's certainly seen better days."
+    $l_exp = "concerned"
+    "I suppose we all have, but..."
+    $l_exp = "sad"
+    "She just looks like a wreck."
+    s rightdown happy "Now, Jessica, I can tell you've had a bit of an eventful evening."
+    s laugh "So I thought I'd give you a bit of a break from the fun and bring out {b}another{/b} guest!"
+    s jeer hat "You can just sit and watch the fun."
+    $l_exp = "concerned"
+    "Another guest...?"
+    $l_exp = "surprised"
+    "My confusion didn't last too long; in a similar fashion to how Ms. Madeline's corpse was revealed hours ago, a large curtain was rolled onto the stage."
+    $l_exp = "concerned"
+    "Though I could see movement going on inside it, so at least it wasn't a dead body."
+    show sprinkles:
+        ease 0.5 left_s
+    $l_exp = "surprised"
+    "Mr. Sprinkles then walked over to the curtain and gave a small chuckle."
+    s laugh "Ladies and gentlemen, let's meet our new special guest!"
+    "He then yanked off the curtain, revealing the person inside."
+    "It was a middle-aged man who was gagged and tied in a fashion similar to Jessica."
+    $l_exp = "concerned"
+    "Only instead of looking terrified, he looked pissed."

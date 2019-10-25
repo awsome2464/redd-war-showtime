@@ -206,6 +206,13 @@ image blood4:
     xzoom -1.0 yzoom -1.0
     xpos 1000
     alpha 0.25
+layeredimage tvscreen:
+    always:
+        "bg bar"
+        xzoom -1.0
+        alpha 0.05
+    always:
+        "tvscreen.png"
 
 # Text Images
 image announcetext = ParameterizedText(style='announce')
@@ -474,9 +481,10 @@ transform sideimagequick:
 ## Transitions ####################################################################################################################
 
 init -5:
-    define fastslidedown = CropMove(0.6, "slidedown")
-    define fastslideawayup = CropMove(0.6, "slideawayup")
     define explosion = ImageDissolve("gui/explosion.png", 0.15)
+    define fastslideawayup = CropMove(0.6, "slideawayup")
+    define fastslidedown = CropMove(0.6, "slidedown")
+    define tvwipe = ImageDissolve("gui/tvwipe.png", 0.35)
 
 ## Styles #########################################################################################################################
 
@@ -809,6 +817,17 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
+                if persistent.chapter4_scene3:
+                    textbutton "Going Back" xalign 0.5:
+                        hovered SetVariable("replay_num", 18)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("goingback", scope={"currentdate": "April 1st", "event": "REDD War ends", "b_name": "Bartender"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+
     frame:
         xalign 0.75 yalign 0.5
         xysize (700, 250)
@@ -850,6 +869,8 @@ screen chapterselect():
                 text "Laura, along with some other parents, are brought out for yet another special game." style "replay_desc" xalign 0.5
             elif replay_num == 17:
                 text "Laura finds herself on the streets of Atlanta." style "replay_desc" xalign 0.5
+            elif replay_num == 18:
+                text "After some thought, Laura decides to return to the theater." style "replay_desc" xalign 0.5
     frame:
         xalign 0.13 yalign 0.95
         xpadding 20 ypadding 5
@@ -988,12 +1009,18 @@ screen socials():
         imagebutton auto "gui/discord_%s.png" action OpenURL("https://discord.gg/zZhPrkC") xalign 0.5 yalign 0.9
     imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.5 yalign 0.99
 
-## Variable Defaults ##############################################################################################################
+## Variables ######################################################################################################################
 
+# Definitions
+define alpha = "ABCDEFGHIJLKMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 define config.replay_scope = {"_game_menu_screen": "pause"}
+
+# Persistents and Preferences
 default persistent.achievetotal = 0
 default persistent.scenetotal = 0
 default preferences.fullscreen = False
+
+# Defaults
 default _game_menu_screen = "pause"
 default achieve_percent = 100 * persistent.achievetotal / 5
 default axehit = ""
@@ -1014,7 +1041,7 @@ default quickhide = False
 default replay_num = 0
 default s_name = "Mr. Sprinkles"
 default save_subtitle = ""
-default scene_percent = 100 * persistent.scenetotal / 17
+default scene_percent = 100 * persistent.scenetotal / 18
 default t_name = "REDD"
 default timeleft = "2 hours and 48 minutes"
 default title = True
