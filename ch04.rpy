@@ -1229,11 +1229,11 @@ label goingback:
     with dissolve
     pause 0.1
     play sound "audio/se/tv.ogg"
-    show bg flash with tvwipe
+    show bg flash with tvon
     $renpy.music.set_volume(0.0, channel="music")
-    $renpy.music.set_volume(1.0, channel="ambience2")
+    $renpy.music.set_volume(1.0, channel="music2")
     stop ambience fadeout(0.75)
-    play ambience2 sprinkles_radio fadein(0.75)
+    play music2 sprinkles_radio fadein(0.75)
     play music sprinkles_theme fadein(0.75)
     show bg stage
     show sprinkles happy hat cane at two2_s zorder 2
@@ -1245,7 +1245,7 @@ label goingback:
     s laugh "They go to {b}Pencil-vania{/b}!!"
     $l_exp = "concerned"
     "So nothing's changed, it seems."
-    $renpy.music.set_volume(0.0, delay=0.5, channel="ambience2")
+    $renpy.music.set_volume(0.0, delay=0.5, channel="music2")
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     hide screen laura
     hide tvscreen with dissolve
@@ -1295,3 +1295,317 @@ label goingback:
     "It was a middle-aged man who was gagged and tied in a fashion similar to Jessica."
     $l_exp = "concerned"
     "Only instead of looking terrified, he looked pissed."
+    $l_exp = "sad"
+    "Though when Jessica looked at him, she looked even more scared than usual."
+    "If that was even possible."
+    $l_exp = "surprised"
+    "Mr. Sprinkles then took the gag off the man."
+    s rightdown happy "Can you please tell the audience your name?"
+    man "Fuck you!"
+    s jeer "Ahaha..."
+    show sprinkles hm
+    play sound snap
+    "He then snapped his fingers and nodded offstage."
+    "Almost instantly, Jingle and Jangle entered the stage with bats in their hands."
+    play sound smack loop
+    $l_exp = "sad"
+    "And proceeded to start beating the shit out of the man!"
+    "Cries of pain and some swears escaped his mouth as the mimes did their duty, with Jessica continuing cry and to look terrified."
+    s jeer hat "Alright, that should do it, fellas."
+    stop sound
+    "Jingle and Jangle stopped attacking the man and backed up a bit, but certainly looked ready to get back into the action if necessary."
+    hide screen laura
+    pause 0.6
+    s rightdown "Let's try this again, Sir:"
+    s "Can you please state your name?"
+    "The man stared at Mr. Sprinkles with pure hatred before replying:"
+    man "...Craig. Craig Tate."
+    s huh "{i}Tate{/i}? As in Jessica Tate?"
+    $b_name = "Craig"
+    b "Yes... I'm her husband."
+    $l_exp = "sad"
+    s jeer hat "Well, well..."
+    s evilgrin "What a small world we live in~!"
+    $l_exp = "surprised"
+    show screen laura
+    $renpy.music.set_volume(1.0, delay=0.5, channel="music2")
+    $renpy.music.set_volume(0.0, delay=0.5, channel="music")
+    show tvscreen zorder 3 with dissolve
+    pause 0.1
+    "Holy shit...!"
+    "I couldn't help but stare at the screen in disbelief."
+    "It's one thing to take out your anger and frustrations on the one who wronged you."
+    $l_exp = "surprised"
+    "But to take it out on someone close to them for the sake of getting even?"
+    $l_exp = "mad"
+    "That's just..."
+    $l_exp = "concerned"
+    "Hypocritical, actually."
+    $l_exp = "neutral"
+    "Unless this is some sort of 'using your methods against you' shtick."
+    $l_exp = "rage"
+    "Still, this is wrong on so many levels."
+    $l_exp = "neutral"
+    "Well, I guess this whole event is, to be fair..."
+    $renpy.music.set_volume(0.0, delay=0.5, channel="music2")
+    $renpy.music.set_volume(1.0, delay=0.5, channel="music")
+    hide tvscreen with dissolve
+    pause 0.1
+    s jeer rightdown "Jessica, do you have any comments to make?"
+    $l_exp = "surprised"
+    "She tried her best to speak through her gag, but it was all mumbled nonsense."
+    "The screams and cries were pretty easy to understand, though."
+    s @ hm "Hm. I guess not."
+    "He then nodded to the twins, who dropped their bats and went offstage."
+    hide screen laura
+    pause 0.6
+    b "You're a goddamn monster, you know that??"
+    b "You're evil! Pure evil!! All you fucking REDD are!!"
+    s wut "Sir, with all due respect, can you please watch your language?"
+    s jeer hat "There are children present, after all~"
+    b "Like you give a fucking shit about children, you cocksucking--!"
+    s wut "Ah-ah-ah! That's the sort of thing I'm talking about!"
+    s hm rightdown "Dear me, and they say {b}children{/b} are the ones who have no respect..."
+    s hat jeer "Oh, well. I suppose this can be a good thing."
+    s evilgrin "It'll make what's to come a lot more enjoyable."
+    s laugh "After all, everyone loves to see the bad guy get their comeuppance~!"
+    b "Comeuppance?? What are you talking about?!"
+    b "I didn't do shit!!"
+    s rightdown hm "I beg to differ, Mr. Tate."
+    s "Your prejudice towards my species was perfectly demonstrated less than a minute ago."
+    s hat jeer "The truth is I've met my fair share of REDD who are kind, loving individuals."
+    s @ laugh "In fact, I used to be such a REDD, myself!"
+    s "But I believe there's a saying you humans have: Anyone can change."
+    s evilgrin "For better {b}or{/b} worse."
+    stop music fadeout(3.0)
+    stop music2 fadeout(3.0)
+    show screen laura
+    pause 0.6
+    "Jingle and Jangle then entered the stage again, only instead of holding bats..."
+    $l_exp = "sad"
+    "...Jingle was holding a gas can and Jangle was holding a book of matches!"
+    play music sprinkles_spooky
+    s rightdown happy "Alright, then; let's have ourselves a grand ol' time, shall we?"
+    s "And what better way to celebrate tonight than a good old-fashioned bonfire?"
+    s huh "Though I seem to have misplaced my firewood..."
+    s hat evilgrin "I suppose I'll just have to improvise a bit~!"
+    "Jingle then began pouring gasoline all over Craig!"
+    "She seemed careful as to not spread it around too much to where the whole stage is coated in it, but Craig's flailing didn't seem to be doing her any favors."
+    $l_exp = "surprised"
+    "As she did, Jessica continued to scream and cry, doing her best to move and jiggle around her chair in an attempt to escape, but it was no use."
+    "Finally, Jingle stopped pouring the gas and backed up far to the other side of the stage."
+    "Jangle handed Mr. Sprinkles the box of matches and went on to join his twin."
+    hide screen laura
+    pause 0.6
+    s jeer leftdown "I should warn you now that the room might just get a little toasty for everyone in the front row."
+    s evilgrin "And especially a certain someone on stage!"
+    b "You really think you're gonna get away with this??"
+    stop music fadeout(3.0)
+    s wut "..."
+    s jeer "My, my, my. I do believe my helpers have beaten you a little {b}too{/b} hard!"
+    s rightdown laugh "For I'm afraid you seem to have forgotten what day it is!"
+    s jeer "If this were any other situation, then no. I would never get away with this."
+    s "But you see, Mr. Tate..."
+    extend hat evilgrin " this is the exact time, day, and location where I {b}will{/b} get away with this!"
+    b "Heh. L-Lucky you, then."
+    $l_exp = "surprised"
+    show screen laura
+    pause 0.6
+    "Craig looked his damned best to not let Sprinkles see how scared he was."
+    s jeer "Yes, I suppose you could say that."
+    b "And what the fuck are you going to get out of this?? Huh?? Nobody is going to love you afterwards! Millions of people hate you right now!!"
+    b "When the REDD War is over, your show will be finished! Your career will be finished! Nobody will ever love you again!"
+    s rightdown hm "You know, I'm not one to throw around insults."
+    s jeer "But if you're really going to insult the REDD who literally has the fate of your life in his hands..."
+    extend evilgrin " then you're the biggest moron on the face of the planet!"
+    $l_exp = "sad"
+    "He then lit a match and threw it at Craig."
+    play sound fire_start
+    queue sound fire loop
+    show fire zorder 3
+    pause 0.2
+    play sound2 children_screaming
+    play ambience crowd_screaming
+    show sprinkles laugh
+    pause 1
+    "Almost instantly, the room went into chaos as the audience, Craig, and Jessica all screamed in horror while Mr. Sprinkles laughed."
+    "Craig flailed around, the camera not being shy from zooming in on his burning body."
+    "It then panned to Jessica, who looked just absolutely hurt in every way possible, screaming as loud as she could through her gag, the tears seeming to flow down her eye, all while seemingly trying to reach out and grab her husband."
+    "As I stared at the poor woman, I could feel my own eyes starting to well up."
+    "At least when I watched Richard die, it was a quick and painless death."
+    "But this... being burned alive..."
+    $l_exp = "surprised"
+    stop ambience
+    stop sound2
+    play sound "audio/se/tv.ogg"
+    scene bg flash
+    with Dissolve(0.1)
+    scene bg fade with tvoff
+    pause 1
+    scene bg bar with dissolve
+    pause 0.1
+    "Everyone seemed to unanimously turn towards the bartender, who was pointing the remote at the now-off TV."
+    $b_name = "Bartender"
+    b "If anyone wants to keep watching the show, do it on your phone."
+    "With that, he put the remote back behind the counter and the general chatter commenced."
+    play music ten_past_midnight fadein(1.0)
+    play ambience crowd fadein(1.0)
+    "I wiped my eyes and slowly shook my head."
+    b "You okay?"
+    "I gave a weak shrug."
+    l "I'm just sick and tired of watching people get hurt."
+    man "Ah, it's not so bad. That bitch Jessica deserves it, after all!"
+    $l_exp = "mad"
+    "My face jolted towards the man next to me."
+    l "How do you figure?"
+    man "That bitch wouldn't shut the fuck up about bad the REDD are. You mess with the bull, you'll eventually get the horns."
+    $l_exp = "rage"
+    l "That doesn't fucking matter! You shouldn't torture someone because you don't like what the fuck they're saying!"
+    stop music fadeout(3.0)
+    $renpy.music.set_volume(0.5, delay=3, channel="ambience")
+    "Even I could notice how loud I was getting, but I couldn't control myself."
+    man "Okay, easy there, Tiger. No need to get snippy."
+    $l_exp = "mad"
+    l "Oh, I'm not snippy! I'm just pointing out how you're a fucking monster!"
+    man "Me? A monster?"
+    man "Okay, I think someone's had a bit too much~"
+    "A few people nearby laughed at his comment."
+    $l_exp = "rage"
+    "I then got off my stool and leaned in closer to his big ugly face."
+    l "I don't care who she is or what she's done! She's just as human as you and me!"
+    l "And {b}nobody{/b}, not even her, deserves to go through what she's going through!"
+    l "We, as a species, are better than that!"
+    l "And if you can't see that, if you really think it's funny that another person is being mutilated and tortured, then you are literally no better than a goddamn REDD!"
+    stop ambience fadeout(1)
+    $l_exp = "mad"
+    "Some collective 'Oooo!'s could be heard."
+    "The man just stared at me with what looked like anger and fear."
+    $l_exp = "neutral"
+    "I then backed up and sat back on my stool."
+    "When I did, the man got off his stool and walked away."
+    play music ten_past_midnight fadein(3.0)
+    $l_exp = "surprised"
+    "I groaned and covered my face with my hands."
+    l "I really have had too much, haven't I...?"
+    "I asked to nobody in particular."
+    b "You weren't wrong, though."
+    $l_exp = "concerned"
+    "I looked and saw the bartender looking at me with a smirk."
+    b "It's why Frank turned the place into a Safehouse: he feels that nobody should have to be hurt in this city tonight."
+    $l_exp = "neutral"
+    l "Well, good on him, I suppose."
+    "I looked down at my empty glass and sighed."
+    $l_exp = "surprised"
+    "The REDD War has done nothing but make the lives of all the humans in Atlanta worse."
+    $l_exp = "concerned"
+    "But in a fucked-up way, it's also brought us closer together as a species."
+    "After all, nothing seems to make humans bond more than pointing out how much something sucks ass."
+    $l_exp = "neutral"
+    "But what can I do about it?"
+    "I'm just one person against hundreds, if not thousands, of REDD."
+    "..."
+    stop music fadeout(3.0)
+    $l_exp = "mad"
+    "You know what?"
+    "If I don't do it, who will?"
+    $l_exp = "concerned"
+    l "Excuse me?"
+    "I asked as I waved at the bartender, who turned to and approached me."
+    b "Yes?"
+    l "I'd like to pay my tab."
+    b "Hey, if you're done for the night because of what you said--"
+    $l_exp = "neutral"
+    l "That's not it. I'm leaving."
+    b "I beg your pardon?"
+    l "I'm leaving the bar and going back out there."
+    "He stared at me for a second before sighing."
+    b "Well, like I said, I'm not gonna tell you what you can and can't do."
+    b "But can I least ask why you wanna leave?"
+    $l_exp = "concerned"
+    l "Because someone needs to stop Mr. Sprinkles."
+    "He gave a small smile, trying to hold back his laughter, but he quickly regained his composure."
+    b "And you, uh, are gonna do that how, exactly? Just walk right up to him and tell him to stop?"
+    $l_exp = "mad"
+    l "If you're going to insult me, I'll happily walk out of here without paying."
+    b "Ah, sorry."
+    $l_exp = "neutral"
+    "He then gave me my total, which I then paid."
+    "With that, I got off my stool."
+    b "Hey, Laura?"
+    $l_exp = "concerned"
+    "I turned towards him."
+    play music autumn_changes
+    b "I'm not fully sure I know why you're doing this or if you'll succeed..."
+    b "But just know that I'm rooting for ya."
+    l "Is that right?"
+    b "Oh, don't get me wrong: I think going back out there with no weapons while intoxicated is the stupidest thing one can do."
+    b "But you've got guts, Laura. I can see that."
+    b "Plus, if you actually put an end to the show, I can be known as the bartender that served the great Laura..."
+    b "Uh..."
+    $l_exp = "smug"
+    l "Farr."
+    b "The great Laura Farr!"
+    "I rolled my eyes and crossed my arms."
+    l "You done?"
+    b "..."
+    b "Not exactly."
+    $l_exp = "concerned"
+    "He then reached into his pocket and pulled out a set of keys."
+    b "Here. There's a pickup parked at the back of the bar. Take it to the theater."
+    $l_exp = "wut"
+    l "...!"
+    l "You're seriously giving me your vehicle?"
+    b "Do you not want it?"
+    $l_exp = "concerned"
+    l "Well, it's just..."
+    l "Why would you do that?"
+    b "It's like I said: I'm rooting for ya."
+    b "I'm just giving you a little help, that's all."
+    $l_exp = "neutral"
+    "..."
+    $l_exp = "smile"
+    "I walked back over to him and took the keys."
+    l "Thank you. I mean it."
+    b "Don't worry about it. I hope you succeed."
+    b "Or at the very least, don't die."
+    $l_exp = "smug"
+    l "I'll do my best."
+    $l_exp = "surprised"
+    l "But aren't you worried about your truck getting destroyed or something?"
+    b "It's insured. To be frank, I've actually been praying that it {b}does{/b} get destroyed so I can be rid of it and get a new one!"
+    $l_exp = "excited"
+    "I couldn't help but let out a snicker."
+    "That must be the alcohol reacting."
+    b "But if it's still working by the time the War ends, it's yours."
+    $l_exp = "smile"
+    l "Oh, you don't need to go that far; I've got no need for it after sunrise."
+    b "Then you can leave it wherever."
+    l "Alright, if you say so..."
+    $l_exp = "excited"
+    l "Well, thanks again; I really appreciate it!"
+    b "Take care of yourself, Laura."
+    $l_exp = "determined"
+    "I nodded and walked towards the back exit of the bar."
+    scene bg street with dissolve
+    pause 0.1
+    "After finding the pickup and getting in, I locked the doors and took a deep breath."
+    $l_exp = "surprised"
+    "Am I really about to do this?"
+    "Am I really about to head back to the theater where I was held prisoner most of the night?"
+    "Just to try and stop a madman and save innocent lives?"
+    "..."
+    $l_exp = "determined"
+    "Of course I am."
+    play sound "audio/se/truck start.ogg"
+    hide screen laura
+    window hide dissolve
+    stop music fadeout(3.0)
+    pause 1.5
+    scene bg fade
+    with Dissolve(2.0)
+    pause 4
+    $renpy.end_replay()
+    if not persistent.chapter4_scene3:
+        $persistent.scenetotal += 1
+    $persistent.chapter4_scene3 = True
+    jump chapter_5

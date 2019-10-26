@@ -788,14 +788,14 @@ screen preferences():
                         label _("Music Volume")
 
                         hbox:
-                            bar value Preference("music volume")
+                            bar value Preference("mixer music volume")
 
                     if config.has_sound:
 
                         label _("Sound Volume")
 
                         hbox:
-                            bar value Preference("sound volume")
+                            bar value Preference("mixer sound volume")
 
                             if config.sample_sound:
                                 textbutton _("Test") action Play("sound", config.sample_sound)

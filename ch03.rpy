@@ -1091,7 +1091,6 @@ label girlsescape:
     pause 0.1
     k "Kota, my hat!"
     d "You'll be okay, Kate! Let's move!!"
-    $t_name = "Big REDD"
     play sound machine_gun
     scene bg arena_hall with dissolve
     window hide dissolve
@@ -1111,6 +1110,7 @@ label showmustgoon:
         currenttime = "9:18 PM"
         timeleft = "9 hours and 42 minutes"
         l_exp = "neutral"
+        t_name = "Big REDD"
     call chapterstart
     pause 2
     play music classy_ghouls
@@ -2661,7 +2661,7 @@ label jessicaseye:
         pause 6
     stop ambience
     stop sound
-    $renpy.music.set_volume(0.5, delay=1.0, channel="music")
+    $renpy.music.set_volume(1.0, delay=1.0, channel="music")
     pause 0.5
     show sprinkles leftdown hat laugh at two1_s zorder 2
     show jessica at two2 zorder 2

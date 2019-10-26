@@ -73,19 +73,6 @@ image krag neutral = "Characters/Krag/neutral.png"
 image krag smile = "Characters/Krag/smile.png"
 image krag worried = "Characters/Krag/worried.png"
 
-image laura concerned = "Characters/Laura/concerned.png"
-image laura determined = "Characters/Laura/determined.png"
-image laura excited = "Characters/Laura/excited.png"
-image laura mad = "Characters/Laura/mad.png"
-image laura neutral = "Characters/Laura/neutral.png"
-image laura rage = "Characters/Laura/rage.png"
-image laura sad = "Characters/Laura/sad.png"
-image laura shocked = "Characters/Laura/shocked.png"
-image laura smile = "Characters/Laura/smile.png"
-image laura smug = "Characters/Laura/smug.png"
-image laura surprised = "Characters/Laura/surprised.png"
-image laura wut = "Characters/Laura/wut.png"
-
 layeredimage madeline:
     group full:
         attribute dead:
@@ -274,6 +261,14 @@ image ctc_arrow_nvl:
         ease 0.5 alpha 1.0
         ease 0.5 alpha 0.0
         repeat
+image fire:
+    "#d57500"
+    alpha 0.0
+    ease 0.25 alpha 0.25
+    block:
+        ease 0.25 alpha 0.125
+        ease 0.25 alpha 0.25
+        repeat
 
 ## Backgrounds ####################################################################################################################
 
@@ -308,9 +303,10 @@ image bg warehouse = "BG/warehouse.jpg"
 ## Custom Audio Channels ##########################################################################################################
 
 init python:
-    renpy.music.register_channel('ambience', mixer="sound", loop=True)
-    renpy.music.register_channel('ambience2', mixer="sound", loop=True)
-    renpy.music.register_channel('sound2', mixer="sound", loop=False)
+    renpy.music.register_channel('ambience', mixer="sound", loop=True, tight=True)
+    renpy.music.register_channel('ambience2', mixer="sound", loop=True, tight=True)
+    renpy.music.register_channel('music2', mixer="music", loop=True, tight=True)
+    renpy.music.register_channel('sound2', mixer="sound", loop=False, tight=True)
 
 ## Audio ##########################################################################################################################
 
@@ -348,6 +344,8 @@ define audio.door_knock = "audio/se/doorknock.ogg"
 define audio.door_open = "audio/se/door_open.ogg"
 define audio.drumroll_buildup = "<to 4.9 loop 0.5>audio/se/drumroll.ogg"
 define audio.drumroll_finish = "<from 4.9>audio/se/drumroll.ogg"
+define audio.fire = "<to 55 loop 5>audio/se/fire.ogg"
+define audio.fire_start = "audio/se/fire start.ogg"
 define audio.flicker = "audio/se/flicker.ogg"
 define audio.footsteps = "audio/se/footsteps.ogg"
 define audio.hammer = "audio/se/hammer.ogg"
@@ -481,10 +479,11 @@ transform sideimagequick:
 ## Transitions ####################################################################################################################
 
 init -5:
-    define explosion = ImageDissolve("gui/explosion.png", 0.15)
+    define explosion = ImageDissolve("explosion.png", 0.15)
     define fastslideawayup = CropMove(0.6, "slideawayup")
     define fastslidedown = CropMove(0.6, "slidedown")
-    define tvwipe = ImageDissolve("gui/tvwipe.png", 0.35)
+    define tvoff = ImageDissolve("tvwipe.png", 0.35, reverse=True)
+    define tvon = ImageDissolve("tvwipe.png", 0.35)
 
 ## Styles #########################################################################################################################
 
@@ -563,9 +562,9 @@ screen ctc():
 screen laura():
     zorder 100
     if not quickhide:
-        add "laura [l_exp]" at sideimage
+        add "Characters/Laura/[l_exp].png" at sideimage
     else:
-        add "laura [l_exp]" at sideimagequick
+        add "Characters/Laura/[l_exp].png" at sideimagequick
 screen chaptername():
     vbox:
         xalign 0.5 yalign 0.5
@@ -640,6 +639,7 @@ screen chapterselect():
             draggable True
             scrollbars "vertical"
             vbox:
+                null height 10
                 text "Chapter 1" xalign 0.5
                 if persistent.chapter1_scene1:
                     textbutton "Meet the Farrs" xalign 0.5:
@@ -827,6 +827,19 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
+                null height 20
+                text "Chapter 5" xalign 0.5
+                if persistent.chapter5_scene1:
+                    textbutton "Sneaking In" xalign 0.5:
+                        hovered SetVariable("replay_num", 19)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                null height 10
 
     frame:
         xalign 0.75 yalign 0.5
@@ -870,7 +883,9 @@ screen chapterselect():
             elif replay_num == 17:
                 text "Laura finds herself on the streets of Atlanta." style "replay_desc" xalign 0.5
             elif replay_num == 18:
-                text "After some thought, Laura decides to return to the theater." style "replay_desc" xalign 0.5
+                text "After watching more of Mr. Sprinkles' show, Laura decides to return to the theater." style "replay_desc" xalign 0.5
+            elif replay_num == 19:
+                text "Laura sneaks her way back into the theater to try and stop Mr. Sprinkles." style "replay_desc" xalign 0.5
     frame:
         xalign 0.13 yalign 0.95
         xpadding 20 ypadding 5
@@ -1041,7 +1056,7 @@ default quickhide = False
 default replay_num = 0
 default s_name = "Mr. Sprinkles"
 default save_subtitle = ""
-default scene_percent = 100 * persistent.scenetotal / 18
+default scene_percent = 100 * persistent.scenetotal / 19
 default t_name = "REDD"
 default timeleft = "2 hours and 48 minutes"
 default title = True
