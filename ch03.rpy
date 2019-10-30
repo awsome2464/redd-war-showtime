@@ -509,9 +509,9 @@ label firstgame:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene1:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene1 = True
+    if not persistent.scenes["ch3_s1"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s1"] = True
 
 
 label gottago:
@@ -616,9 +616,9 @@ label gottago:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene2:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene2 = True
+    if not persistent.scenes["ch3_s2"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s2"] = True
 
 
 label secondbeating:
@@ -867,7 +867,7 @@ label secondbeating:
     s "On."
     show sprinkles:
         linear 0.25 xalign 0.68
-    s "{b}You.{/b}"
+    s evilgrin "{b}You.{/b}"
     window hide
     stop music fadeout(5)
     pause 6
@@ -890,9 +890,9 @@ label secondbeating:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene3:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene3 = True
+    if not persistent.scenes["ch3_s3"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s3"] = True
 
 
 label girlsescape:
@@ -1100,9 +1100,9 @@ label girlsescape:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene4:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene4 = True
+    if not persistent.scenes["ch3_s4"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s4"] = True
 
 
 label showmustgoon:
@@ -1281,17 +1281,20 @@ label showmustgoon:
             pause 0.1
             hide white
             play sound2 crowd_screaming
-            scene bg blood
-            with Dissolve(2.0)
+            if persistent.gore:
+                scene bg blood
+                with Dissolve(2.0)
+            else:
+                pause 2
             stop sound2 fadeout(5)
             pause 3
             scene bg fade
             with Dissolve(2.0)
             pause 1
-            if not persistent.achievement_futurecorpses:
-                $persistent.achievement_futurecorpses = True
+            if not persistent.achievements["futurecorpses"]:
+                $persistent.achievements["futurecorpses"] = True
                 $renpy.notify("Achievement Unlocked: {i}Future Corpses{/i}")
-                $persistent.achievetotal += 1
+                $persistent.achievelist.append(1)
             $renpy.end_replay()
             jump gameover
 label nameislaura:
@@ -1518,9 +1521,9 @@ label nameislaura:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene5:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene5 = True
+    if not persistent.scenes["ch3_s5"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s5"] = True
 
 
 label kidshiding:
@@ -1760,9 +1763,9 @@ label kidshiding:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene6:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene6 = True
+    if not persistent.scenes["ch3_s6"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s6"] = True
 
 
 label deadlygame:
@@ -2099,13 +2102,16 @@ label richarddoesnttakeplace:
     $l_exp = "mad"
     "I run around the first corner."
     stop music
+    if persistent.gore:
+        show blood
     play sound stab
     $l_exp = "surprised"
     pause 1
     "And straight into a sharp pole."
-    show red zorder 2:
-        alpha 0.0
-        ease 3.0 alpha 1.0
+    if persistent.gore:
+        show red zorder 2:
+            alpha 0.0
+            ease 3.0 alpha 1.0
     "Well..."
     "That's embarrassing."
     hide screen laura
@@ -2114,10 +2120,10 @@ label richarddoesnttakeplace:
     scene bg fade
     with Dissolve(2)
     pause 1
-    if not persistent.achievement_epicfail:
-        $persistent.achievement_epicfail = True
+    if not persistent.achievements["epicfail"]:
+        $persistent.achievements["epicfail"] = True
         $renpy.notify("Achievement Unlocked: {i}Schadenfreude{/i}")
-        $persistent.achievetotal += 1
+        $persistent.achievelist.append(1)
     $renpy.end_replay()
     jump gameover
 label richardtakesplace:
@@ -2242,7 +2248,7 @@ label richardtakesplace:
     "He turned the corner, and was about to keep going..."
     show richard concerned
     "But a wall of large, sharp poles stood in his way!"
-    if persistent.achievement_epicfail:
+    if persistent.achievements["epicfail"]:
         $l_exp = "concerned"
         "Wow. I don't think I would've been able to notice those or stop in time."
     $l_exp = "smile"
@@ -2371,10 +2377,12 @@ label richardtakesplace:
     nvl hide
     play sound "audio/se/explosion.ogg"
     scene bg flash with explosion
+    pause 0.5
     scene bg parkinggarage
     with Dissolve(2)
     show screen laura
-    pause 0.6
+    window show dissolve
+    pause 0.1
     "What the hell??"
     "The camera then panned to a nearby building, where an explosion of fire could be seen emerging!"
     r "Ahh!!"
@@ -2429,7 +2437,7 @@ label richardtakesplace:
     pause 0.15
     if persistent.gore:
         show blood3
-    play sound hammer
+    play sound impact
     $renpy.pause(delay=3)
     window show
     show screen laura
@@ -2505,9 +2513,9 @@ label richardtakesplace:
     window hide dissolve
     pause 3
     $renpy.end_replay()
-    if not persistent.chapter3_scene7:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene7 = True
+    if not persistent.scenes["ch3_s7"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s7"] = True
 
 
 label jessicaseye:
@@ -2681,7 +2689,7 @@ label jessicaseye:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter3_scene8:
-        $persistent.scenetotal += 1
-    $persistent.chapter3_scene8 = True
+    if not persistent.scenes["ch3_s8"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch3_s8"] = True
     jump chapter_4

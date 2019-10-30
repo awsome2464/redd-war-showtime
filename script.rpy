@@ -1,7 +1,7 @@
 ﻿##################################################################################################################################
 ## Welcome to the code of REDD War: Showtime! Please use this information for learning and inspiration rather than just blindly ##
 ## copying and pasting. If you have any questions about the specifics of this code, feel free to check out the Ren'Py online    ##
-## documentation at https://renpy.org/doc/html/ or contact Good Tales via Twitter or Discord.                                   ##
+## documentation at https://renpy.org/doc/html/ or contact Good Tales via Twitter or Discord.         © 2019 Good Tales         ##
 ##################################################################################################################################
 
 ## Keymap Changes ################################################################################################################
@@ -15,6 +15,12 @@ init python:
 
 init python:
     persistent.splash = True
+
+## Vibrates Phone When Vibration is Turned On (Android Port Only) ################################################################
+
+init python:
+    def vibrate():
+        renpy.vibrate(0.25)
 
 ## Characters ####################################################################################################################
 
@@ -66,12 +72,25 @@ image kate happy = "Characters/Kate/happy.png"
 image kate mad = "Characters/Kate/mad.png"
 image kate shocked = "Characters/Kate/shocked.png"
 
-image krag concerned = "Characters/Krag/concerned.png"
-image krag horrified = "Characters/Krag/horrified.png"
-image krag laughing = "Characters/Krag/laughing.png"
-image krag neutral = "Characters/Krag/neutral.png"
-image krag smile = "Characters/Krag/smile.png"
-image krag worried = "Characters/Krag/worried.png"
+layeredimage krag:
+    group body:
+        attribute down:
+            "Characters/Krag/down.png"
+        attribute hips:
+            "Characters/Krag/hips.png"
+    group head:
+        attribute concerned:
+            "Characters/Krag/concerned.png"
+        attribute horror:
+            "Characters/Krag/horror.png"
+        attribute laughing:
+            "Characters/Krag/laughing.png"
+        attribute neutral:
+            "Characters/Krag/neutral.png"
+        attribute smile:
+            "Characters/Krag/smile.png"
+        attribute worried:
+            "Characters/Krag/worried.png"
 
 layeredimage madeline:
     group full:
@@ -167,13 +186,13 @@ image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
 image curtain_overlay = "gui/save_curtain.png"
 image bus_window = "window.png"
-image sprinklelogo:
-    "Ringleader Draft.png"
-    size(360, 475)
-image pause_bg = "gui/save_bg.jpg"
-image textbox_bg:
-    "gui/textbox_bg.png"
-    yalign 0.99
+# image sprinklelogo:
+#     "Ringleader Draft.png"
+#     size(360, 475)
+# image pause_bg = "gui/save_bg.jpg"
+# image textbox_bg:
+#     "gui/textbox_bg.png"
+#     yalign 0.99
 image spotlight = "spotlight.png"
 image blood:
     "blood.png"
@@ -410,7 +429,8 @@ transform credit_scroll_3:
 transform middle:
     xalign 0.5 yalign 0.5
 transform middle_k:
-    xalign 0.5 yalign -0.1
+    size(450, 1125)
+    xalign 0.49 yalign -0.09
 transform middle_s:
     size(675, 1125)
     xalign 0.6 yalign 0.0
@@ -479,7 +499,7 @@ transform sideimagequick:
 ## Transitions ####################################################################################################################
 
 init -5:
-    define explosion = ImageDissolve("explosion.png", 0.15)
+    define explosion = ImageDissolve("explosion.png", 0.2)
     define fastslideawayup = CropMove(0.6, "slideawayup")
     define fastslidedown = CropMove(0.6, "slidedown")
     define tvoff = ImageDissolve("tvwipe.png", 0.35, reverse=True)
@@ -641,17 +661,17 @@ screen chapterselect():
             vbox:
                 null height 10
                 text "Chapter 1" xalign 0.5
-                if persistent.chapter1_scene1:
+                if persistent.scenes["ch1_s1"]:
                     textbutton "Meet the Farrs" xalign 0.5:
                         hovered SetVariable("replay_num", 1)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("chapter_1")]
+                        action [SetVariable("replay_num", 0), Replay("meetthefarrs")]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter1_scene2:
+                if persistent.scenes["ch1_s2"]:
                     textbutton "Unfortunate News" xalign 0.5:
                         hovered SetVariable("replay_num", 2)
                         unhovered SetVariable("replay_num", 0)
@@ -663,17 +683,17 @@ screen chapterselect():
                         action NullAction()
                 null height 20
                 text "Chapter 2" xalign 0.5
-                if persistent.chapter2_scene1:
+                if persistent.scenes["ch2_s1"]:
                     textbutton "Evening Plans" xalign 0.5:
                         hovered SetVariable("replay_num", 3)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("chapter_2")]
+                        action [SetVariable("replay_num", 0), Replay("eveningplans")]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter2_scene2:
+                if persistent.scenes["ch2_s2"]:
                     textbutton "Backstage Drama" xalign 0.5:
                         hovered SetVariable("replay_num", 4)
                         unhovered SetVariable("replay_num", 0)
@@ -683,7 +703,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter2_scene3:
+                if persistent.scenes["ch2_s3"]:
                     textbutton "Packed Parking" xalign 0.5:
                         hovered SetVariable("replay_num", 5)
                         unhovered SetVariable("replay_num", 0)
@@ -693,7 +713,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter2_scene4:
+                if persistent.scenes["ch2_s4"]:
                     textbutton "Meet and Greet" xalign 0.5:
                         hovered SetVariable("replay_num", 6)
                         unhovered SetVariable("replay_num", 0)
@@ -703,7 +723,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter2_scene5:
+                if persistent.scenes["ch2_s5"]:
                     textbutton "Showtime!" xalign 0.5:
                         hovered SetVariable("replay_num", 7)
                         unhovered SetVariable("replay_num", 0)
@@ -715,7 +735,7 @@ screen chapterselect():
                         action NullAction()
                 null height 20
                 text "Chapter 3" xalign 0.5
-                if persistent.chapter3_scene1:
+                if persistent.scenes["ch3_s1"]:
                     textbutton "The First Game" xalign 0.5:
                         hovered SetVariable("replay_num", 8)
                         unhovered SetVariable("replay_num", 0)
@@ -725,7 +745,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene2:
+                if persistent.scenes["ch3_s2"]:
                     textbutton "When You Gotta Go..." xalign 0.5:
                         hovered SetVariable("replay_num", 9)
                         unhovered SetVariable("replay_num", 0)
@@ -735,7 +755,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene3:
+                if persistent.scenes["ch3_s3"]:
                     textbutton "Laughs and Cracks" xalign 0.5:
                         hovered SetVariable("replay_num", 10)
                         unhovered SetVariable("replay_num", 0)
@@ -745,7 +765,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene4:
+                if persistent.scenes["ch3_s4"]:
                     textbutton "Toilet Escape" xalign 0.5:
                         hovered SetVariable("replay_num", 11)
                         unhovered SetVariable("replay_num", 0)
@@ -755,7 +775,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene5:
+                if persistent.scenes["ch3_s5"]:
                     textbutton "Standing Up" xalign 0.5:
                         hovered SetVariable("replay_num", 12)
                         unhovered SetVariable("replay_num", 0)
@@ -765,7 +785,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene6:
+                if persistent.scenes["ch3_s6"]:
                     textbutton "Hiding in the Closet" xalign 0.5:
                         hovered SetVariable("replay_num", 13)
                         unhovered SetVariable("replay_num", 0)
@@ -775,7 +795,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene7:
+                if persistent.scenes["ch3_s7"]:
                     textbutton "A Special Game" xalign 0.5:
                         hovered SetVariable("replay_num", 14)
                         unhovered SetVariable("replay_num", 0)
@@ -785,7 +805,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter3_scene8:
+                if persistent.scenes["ch3_s8"]:
                     textbutton "Eyesore" xalign 0.5:
                         hovered SetVariable("replay_num", 15)
                         unhovered SetVariable("replay_num", 0)
@@ -797,7 +817,7 @@ screen chapterselect():
                         action NullAction()
                 null height 20
                 text "Chapter 4" xalign 0.5
-                if persistent.chapter4_scene1:
+                if persistent.scenes["ch4_s1"]:
                     textbutton "Mirror Madness" xalign 0.5:
                         hovered SetVariable("replay_num", 16)
                         unhovered SetVariable("replay_num", 0)
@@ -807,7 +827,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter4_scene2:
+                if persistent.scenes["ch4_s2"]:
                     textbutton "Safe Haven" xalign 0.5:
                         hovered SetVariable("replay_num", 17)
                         unhovered SetVariable("replay_num", 0)
@@ -817,7 +837,7 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
-                if persistent.chapter4_scene3:
+                if persistent.scenes["ch4_s3"]:
                     textbutton "Going Back" xalign 0.5:
                         hovered SetVariable("replay_num", 18)
                         unhovered SetVariable("replay_num", 0)
@@ -829,7 +849,7 @@ screen chapterselect():
                         action NullAction()
                 null height 20
                 text "Chapter 5" xalign 0.5
-                if persistent.chapter5_scene1:
+                if persistent.scenes["ch5_s1"]:
                     textbutton "Sneaking In" xalign 0.5:
                         hovered SetVariable("replay_num", 19)
                         unhovered SetVariable("replay_num", 0)
@@ -898,31 +918,31 @@ screen achievements():
         xalign 0.5 yalign 0.4
         vbox:
             xalign 0.25 yalign 0.5
-            if persistent.achievement_toosafe:
+            if persistent.achievements["toosafe"]:
                 text "{i}Playing it TOO Safe{/i}" xalign 0.5
                 text "Escape Atlanta" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
             null height 25
-            if persistent.achievement_futurecorpses:
+            if persistent.achievements["futurecorpses"]:
                 text "{i}Future Corpses{/i}" xalign 0.5
                 text "Fulfill Your Destiny" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
             null height 25
-            if persistent.achievement_epicfail:
+            if persistent.achievements["epicfail"]:
                 text "{i}Schadenfreude{/i}" xalign 0.5
                 text "Embarrass Yourself on Live Television" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
             null height 25
-            if persistent.achievement_rattrap:
+            if persistent.achievements["rattrap"]:
                 text "{i}Rat Trap{/i}" xalign 0.5
                 text "Fall Victim to the {i}Mirror Madness{/i} Maze" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
             null height 25
-            if persistent.achievement_memoryloss:
+            if persistent.achievements["memoryloss"]:
                 text "{i}Memory Loss{/i}" xalign 0.5
                 text "Forget the password to Frank's Bar" xalign 0.5
             else:
@@ -1005,7 +1025,7 @@ screen credits2():
             text "Jed Elinoff and Scott Thomas" style "creditscreen" xalign 0.5
             text "For writing the film that inspired this story" xalign 0.5
             null height 20
-            text "SlightlySimple, Mattyd, Thugzilla, and many other friends on Discord" style "creditscreen" xalign 0.5
+            text "SlightlySimple, Mattyd, Thugzilla, Xeno, and many other friends on Discord" style "creditscreen" xalign 0.5
             text "For being so supportive of this project's development" xalign 0.5
             null height 20
             text "You" style "creditscreen" xalign 0.5
@@ -1026,40 +1046,59 @@ screen socials():
 
 ## Variables ######################################################################################################################
 
-# Definitions
+## Definitions
+define _game_menu_screen = "pause"
 define alpha = "ABCDEFGHIJLKMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 define config.replay_scope = {"_game_menu_screen": "pause"}
 
-# Persistents and Preferences
-default persistent.achievetotal = 0
-default persistent.scenetotal = 0
+## Persistents and Preferences
+
+# Lists
+default persistent.achievelist = []
+default persistent.scenelist = []
+
+# Dictionaries
+default persistent.achievements = {"toosafe": False, "futurecorpses": False, "epicfail": False, "rattrap": False, "memoryloss": False}
+default persistent.scenes = {
+"ch1_s1": False, "ch1_s2": False,
+ "ch2_s1": False, "ch2_s2": False, "ch2_s3": False, "ch2_s4": False, "ch2_s5": False,
+ "ch3_s1": False, "ch3_s2": False, "ch3_s3": False, "ch3_s4": False, "ch3_s5": False, "ch3_s6": False, "ch3_s7": False, "ch3_s8": False, 
+ "ch4_s1": False, "ch4_s2": False, "ch4_s3": False,
+ "ch5_s1": False}
+
+# Booleans
 default preferences.fullscreen = False
 
-# Defaults
-default _game_menu_screen = "pause"
-default achieve_percent = 100 * persistent.achievetotal / 5
+## Defaults
+
+# Strings
 default axehit = ""
 default b_name = "???"
-default badcredits = False
 default clickortap = "Click"
 default currentdate = "March 30th"
 default currenttime = "4:12 PM"
 default direction = ""
 default event = "War Zones are revealed"
-default gotdrink = False
 default l_exp = "neutral"
+default password = ""
+default s_name = "Mr. Sprinkles"
+default save_subtitle = ""
+default t_name = "REDD"
+default timeleft = "2 hours and 48 minutes"
+
+# Booleans
+default badcredits = False
+default gotdrink = False
 default leftdeadend = False
 default nicetry = False
 default nvl = False
-default password = ""
 default quickhide = False
-default replay_num = 0
-default s_name = "Mr. Sprinkles"
-default save_subtitle = ""
-default scene_percent = 100 * persistent.scenetotal / 19
-default t_name = "REDD"
-default timeleft = "2 hours and 48 minutes"
 default title = True
+
+# Integers
+default achieve_percent = 100 * len(persistent.achievelist) / len(persistent.achievements)
+default replay_num = 0
+default scene_percent = 100 * len(persistent.scenelist) / len(persistent.scenes)
 
 ## Labels #########################################################################################################################
 

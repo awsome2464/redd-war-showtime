@@ -1,13 +1,15 @@
 label chapter_2:
     python:
+        save_name = "Chapter 2"
+        save_subtitle = "The Storm Approaches"
+    call chaptername
+label eveningplans:
+    python:
         currenttime = "5:23 AM"
         currentdate = "March 31st"
         timeleft = "13 hours and 37 minutes"
         event = "REDD War begins"
-        save_name = "Chapter 2"
-        save_subtitle = "The Storm Approaches"
     stop music
-    call chaptername
     call chapterstart
     pause 1
     scene bg livingroom
@@ -310,9 +312,9 @@ label dakotaissorry:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter2_scene1:
-        $persistent.scenetotal += 1
-    $persistent.chapter2_scene1 = True
+    if not persistent.scenes["ch2_s1"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch2_s1"] = True
     
 
 label backstagedrama:
@@ -385,9 +387,9 @@ label backstagedrama:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter2_scene2:
-        $persistent.scenetotal += 1
-    $persistent.chapter2_scene2 = True
+    if not persistent.scenes["ch2_s2"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch2_s2"] = True
     
 
 label arriveatshow:
@@ -586,9 +588,9 @@ label arriveatshow:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter2_scene3:
-        $persistent.scenetotal += 1
-    $persistent.chapter2_scene3 = True
+    if not persistent.scenes["ch2_s3"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch2_s3"] = True
 
 
 label meetandgreet:
@@ -841,7 +843,7 @@ label meetandgreet:
     k "How does it look?"
     l "Perfect."
     k "Yay~!"
-    $quickhide = True
+    $quickhide = False
     scene bg arena_hall
     show screen laura
     show sprinkles happy rightdown leftdown at right_s
@@ -946,9 +948,9 @@ label meetandgreet:
     window hide dissolve
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter2_scene4:
-        $persistent.scenetotal += 1
-    $persistent.chapter2_scene4 = True
+    if not persistent.scenes["ch2_s4"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch2_s4"] = True
     
 
 label showbegins:
@@ -1255,7 +1257,7 @@ label showbegins:
     "His maniacal laugher echoed throughout the room as Madeline's arms slowly dropped to her chest and her head slightly tilted to the side."
     show madeline:
         ease 0.5 alpha 0.0
-    show sprinkles rightdown jeer
+    show sprinkles rightdown leftdown jeer
     "He then cleared his throat and faced the rightfully panicked crowd."
     hide madeline
     s "May I have your attention, please?"
@@ -1425,8 +1427,8 @@ label showbegins:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter2_scene5:
-        $persistent.scenetotal += 1
-    $persistent.chapter2_scene5 = True
+    if not persistent.scenes["ch2_s5"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch2_s5"] = True
     jump chapter_3
     

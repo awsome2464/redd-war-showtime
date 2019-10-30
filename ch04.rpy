@@ -325,15 +325,16 @@ label wentright:
                 nvl hide
                 window hide
                 play sound hammer
-                show blood
+                if persistent.gore:
+                    show blood
                 pause 1.5
                 scene bg fade
                 with Dissolve(2.0)
                 pause 1.0
-                if not persistent.achievement_rattrap:
-                    $persistent.achievement_rattrap = True
+                if not persistent.achievements["rattrap"]:
+                    $persistent.achievements["rattrap"] = True
                     $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
-                    $persistent.achievetotal += 1
+                    $persistent.achievelist.append(1)
                 $renpy.end_replay()
                 jump gameover
         "{font=fonts/GosmickSans.ttf}Right{/font}":
@@ -352,15 +353,16 @@ label wentright:
                 nvl hide
                 window hide
                 play sound hammer
-                show blood
+                if persistent.gore:
+                    show blood
                 pause 1.5
                 scene bg fade
                 with Dissolve(2.0)
                 pause 1.0
-                if not persistent.achievement_rattrap:
-                    $persistent.achievement_rattrap = True
+                if not persistent.achievements["rattrap"]:
+                    $persistent.achievements["rattrap"] = True
                     $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
-                    $persistent.achievetotal += 1
+                    $persistent.achievelist.append(1)
                 $renpy.end_replay()
                 jump gameover
 
@@ -470,6 +472,67 @@ label runfurther:
             nvl clear
             jump goright
 
+label goright:
+    narrate """
+    I turned to the right, which I believe would bring me further into the maze.
+
+    It would also bring me closer to the middle, which is where I needed to go to win, and by extension survive, anyway.
+
+    {nw}
+
+    Another fork.
+
+    Left or right?{nw}
+    """
+    menu(nvl=True):
+        "{font=fonts/GosmickSans.ttf}Left{/font}":
+            nvl clear
+            narrate """
+            I ran to the left.
+
+            And came across a dead end.
+
+            Shit...
+
+            Before I could turn around, though...
+            """
+            # show Jangle in reflection
+            stop music
+            play sound hammer
+            if persistent.gore:
+                show blood
+            pause 1.5
+            scene bg fade
+            with Dissolve(2.0)
+            pause 1.0
+            if not persistent.achievements["rattrap"]:
+                $persistent.achievements["rattrap"] = True
+                $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                $persistent.achievelist.append(1)
+            $renpy.end_replay()
+            jump gameover
+        "{font=fonts/GosmickSans.ttf}Right{/font}":
+            nvl clear
+            narrate """
+            I ran to the right.
+
+            Greeting me as I did was Jangle facing me with an axe!
+            """
+            stop music
+            play sound hammer
+            if persistent.gore:
+                show blood
+            pause 1.5
+            scene bg fade
+            with Dissolve(2.0)
+            pause 1.0
+            if not persistent.achievements["rattrap"]:
+                $persistent.achievements["rattrap"] = True
+                $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
+                $persistent.achievelist.append(1)
+            $renpy.end_replay()
+            jump gameover
+
 label goleft:
     narrate """
     I went left, only to be instantly greeted by another corner going to the right.
@@ -495,15 +558,16 @@ label goleft:
                 window hide
                 stop music
                 play sound hammer
-                show blood
+                if persistent.gore:
+                    show blood
                 pause 1.5
                 scene bg fade
                 with Dissolve(2.0)
                 pause 1.0
-                if not persistent.achievement_rattrap:
-                    $persistent.achievement_rattrap = True
+                if not persistent.achievements["rattrap"]:
+                    $persistent.achievements["rattrap"] = True
                     $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
-                    $persistent.achievetotal += 1
+                    $persistent.achievelist.append(1)
                 $renpy.end_replay()
                 jump gameover
             "{font=fonts/GosmickSans.ttf}Go left{/font}" if leftdeadend == False:
@@ -562,15 +626,16 @@ label goingstraight:
             window hide
             stop music
             play sound hammer
-            show blood
+            if persistent.gore:
+                show blood
             pause 1.5
             scene bg fade
             with Dissolve(2.0)
             pause 1.0
-            if not persistent.achievement_rattrap:
-                $persistent.achievement_rattrap = True
+            if not persistent.achievements["rattrap"]:
+                $persistent.achievements["rattrap"] = True
                 $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
-                $persistent.achievetotal += 1
+                $persistent.achievelist.append(1)
             $renpy.end_replay()
             jump gameover
 
@@ -601,6 +666,10 @@ label stayorgo:
             """
             stop music fadeout(3.0)
             #Showing Jingle or Jangle depending on value of "axehit"
+            if axehit == "Jingle":
+                pass
+            elif axehit == "Jangle":
+                pass
             pause 3
             narrate """
             ...only to be greeted by [axehit].
@@ -612,15 +681,16 @@ label stayorgo:
             window hide
             stop music
             play sound hammer
-            show blood
+            if persistent.gore:
+                show blood
             pause 1.5
             scene bg fade
             with Dissolve(2.0)
             pause 1.0
-            if not persistent.achievement_rattrap:
-                $persistent.achievement_rattrap = True
+            if not persistent.achievements["rattrap"]:
+                $persistent.achievements["rattrap"] = True
                 $renpy.notify("Achievement Unlocked: {i}Rat Trap{/i}")
-                $persistent.achievetotal += 1
+                $persistent.achievelist.append(1)
             $renpy.end_replay()
             jump gameover
         "{font=fonts/GosmickSans.ttf}Escape the building{/font}":
@@ -666,9 +736,9 @@ label stayorgo:
             with Dissolve(2.0)
             pause 4
             $renpy.end_replay()
-            if not persistent.chapter4_scene1:
-                $persistent.scenetotal += 1
-            $persistent.chapter4_scene1 = True
+            if not persistent.scenes["ch4_s1"]:
+                $persistent.scenelist.append(1)
+                $persistent.scenes["ch4_s1"] = True
 
 
 label citychase:
@@ -864,6 +934,9 @@ label citychase:
         l "[password]?"
         if password == "Martini":
             jump rightcode
+        elif password == "Martinis":
+            man "Eh. Close enough."
+            jump rightcode
 
 label wrongcode:
     man "Sorry, Miss."
@@ -900,10 +973,10 @@ label wrongcode:
     scene bg fade
     with Dissolve(2.0)
     pause 1.0
-    if not persistent.achievement_memoryloss:
-        $persistent.achievement_memoryloss = True
+    if not persistent.achievements["memoryloss"]:
+        $persistent.achievements["memoryloss"] = True
         $renpy.notify("Achievement Unlocked: {i}Memory Loss{/i}")
-        $persistent.achievetotal += 1
+        $persistent.achievelist.append(1)
     $renpy.end_replay()
     jump gameover
 
@@ -1004,11 +1077,20 @@ label rightcode:
     l "Y-Yeah! How did--?"
     b "You kidding? It's all anyone's talking about!"
     "He then pulled out a TV remote from behind the counter and aimed it at the screen along the wall."
-    "The first thing that appeared when it turned on was a live local news report where a photo of Mr. Sprinkles could be seen above the headline of {i}MR. SPRINKLES' MURDER SHOW SHOWS NO SIGNS OF STOPPING{/i}"
-    play music neon_runner
-    hide screen laura
-    scene bg newsroom with dissolve
+    scene bg fade
+    show tvscreen
+    with dissolve
     pause 0.1
+    play sound "audio/se/tv.ogg"
+    show bg flash with tvon
+    show bg newsroom
+    with Dissolve(0.1)
+    pause 0.5
+    "The first thing that appeared when it turned on was a live local news report where a photo of Mr. Sprinkles could be seen above the headline of {i}MR. SPRINKLES' MURDER SHOW SHOWS NO SIGNS OF STOPPING{/i}"
+    hide screen laura
+    hide tvscreen with dissolve
+    pause 0.1
+    play music neon_runner
     a "As the 2030 REDD War continues, we're seeing television icon Krag Dovason, more commonly known as Mr. Sprinkles, continuing his live television special."
     a "A special whose true intentions were kept a secret until it was too late for the audience members inside."
     a "As the body count rises to over one hundred, leaving many children witnessing many murders, some of which could have been their parents, it seems that Dovason shows no remorse for his actions nor signs that his show will stop before 7 AM."
@@ -1155,9 +1237,9 @@ label rightcode:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter4_scene2:
-        $persistent.scenetotal += 1
-    $persistent.chapter4_scene2 = True
+    if not persistent.scenes["ch4_s2"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch4_s2"] = True
 
 
 label goingback:
@@ -1265,7 +1347,7 @@ label goingback:
     s rightdown happy "And if you've got a good memory, you may remember what comes after our jokes with Ms. Madeline!"
     s hat laugh "Let's give a big round of applause for Jessica~!"
     show sprinkles at two1_s with easeinright
-    show jessica:
+    show jessica zorder 2:
         offscreenright
         ease 1.5 two2
     pause 2
@@ -1307,10 +1389,20 @@ label goingback:
     play sound snap
     "He then snapped his fingers and nodded offstage."
     "Almost instantly, Jingle and Jangle entered the stage with bats in their hands."
+    show jingle zorder 1:
+        offscreenright
+        yalign 0.5
+        linear 1.0 offscreenleft
+    pause 0.1
+    show jangle zorder 1:
+        offscreenright
+        yalign 0.5
+        linear 1.0 offscreenleft
+    pause 1
     play sound smack loop
     $l_exp = "sad"
     "And proceeded to start beating the shit out of the man!"
-    "Cries of pain and some swears escaped his mouth as the mimes did their duty, with Jessica continuing cry and to look terrified."
+    "Cries of pain and some swears escaped his mouth as the mimes did their duty, with Jessica continuing to cry and to look terrified."
     s jeer hat "Alright, that should do it, fellas."
     stop sound
     "Jingle and Jangle stopped attacking the man and backed up a bit, but certainly looked ready to get back into the action if necessary."
@@ -1357,6 +1449,12 @@ label goingback:
     "The screams and cries were pretty easy to understand, though."
     s @ hm "Hm. I guess not."
     "He then nodded to the twins, who dropped their bats and went offstage."
+    show jangle:
+        linear 1.0 offscreenright
+    pause 0.1
+    show jingle zorder 1:
+        linear 1.0 offscreenright
+    pause 1
     hide screen laura
     pause 0.6
     b "You're a goddamn monster, you know that??"
@@ -1458,7 +1556,7 @@ label goingback:
     $l_exp = "mad"
     "My face jolted towards the man next to me."
     l "How do you figure?"
-    man "That bitch wouldn't shut the fuck up about bad the REDD are. You mess with the bull, you'll eventually get the horns."
+    man "That bitch wouldn't shut the fuck up about how bad the REDD are. You mess with the bull, you'll eventually get the horns."
     $l_exp = "rage"
     l "That doesn't fucking matter! You shouldn't torture someone because you don't like what the fuck they're saying!"
     stop music fadeout(3.0)
@@ -1526,7 +1624,7 @@ label goingback:
     "He gave a small smile, trying to hold back his laughter, but he quickly regained his composure."
     b "And you, uh, are gonna do that how, exactly? Just walk right up to him and tell him to stop?"
     $l_exp = "mad"
-    l "If you're going to insult me, I'll happily walk out of here without paying."
+    l "If you're going to mock me, I'll happily walk out of here without paying."
     b "Ah, sorry."
     $l_exp = "neutral"
     "He then gave me my total, which I then paid."
@@ -1605,7 +1703,7 @@ label goingback:
     with Dissolve(2.0)
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter4_scene3:
-        $persistent.scenetotal += 1
-    $persistent.chapter4_scene3 = True
+    if not persistent.scenes["ch4_s3"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch4_s3"] = True
     jump chapter_5

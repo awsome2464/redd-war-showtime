@@ -1,6 +1,7 @@
 label chapter_1:
     stop music
     call chaptername
+label meetthefarrs:
     call chapterstart
     pause 2
     play sound drumroll_buildup loop
@@ -447,9 +448,9 @@ label chapter_1:
     with Dissolve(2.0)
     pause 3.0
     $renpy.end_replay()
-    if not persistent.chapter1_scene1:
-        $persistent.scenetotal += 1
-    $persistent.chapter1_scene1 = True
+    if not persistent.scenes["ch1_s1"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch1_s1"] = True
 
 
 label kragonnews:
@@ -548,7 +549,7 @@ label kragonnews:
     with dissolve
     pause 0.5
     a "Thank you for coming, Mr. Dovason!"
-    show krag laughing at middle_k with dissolve
+    show krag laughing down at middle_k with dissolve
     pause 0.1
     kr "Oh, thank you for having me, Chuck."
     "Wow. Without that bright outfit and blue hair, he looks like a completely different person."
@@ -558,9 +559,9 @@ label kragonnews:
     kr smile "Hahaha! Oh, I would take no offense to that at all."
     a "That's a relief. But speaking of Mr. Sprinkles, I suppose we should bring up why you're here."
     a "Your recent decision to host a live show here in Atlanta during the REDD War, what is undoubtedly the most dangerous event in the world, has sparked some controversy."
-    kr concerned "Yes, it certainly has received more backlash than I had anticipated."
+    kr concerned down "Yes, it certainly has received more backlash than I had anticipated."
     kr "But as you said, the REDD War is the most dangerous thing that modern society has done, leading to many people of all ages dreading it."
-    kr smile "So I decided to try and do something to take people's minds off the event and give them something more fun to do."
+    kr smile hips "So I decided to try and do something to take people's minds off the event and give them something more fun to do."
     kr laughing "Instead of watching TV and seeing murder, you can see non-lethal activities performed by people in a safe environment!"
     a "You certainly seem to have everyone's best interest in mind."
     kr smile "I'm an entertainer, Chuck. If I'm not being entertaining, my life has no purpose."
@@ -573,27 +574,27 @@ label kragonnews:
     $l_exp = "smile"
     "Giving a small smile, I turned back to the TV, myself."
     scene bg newsroom
-    show krag smile at middle_k
+    show krag smile hips at middle_k
     hide screen laura
     with dissolve
     pause 0.1
     a "Although I suppose the big question on everyone's minds is 'Why now?'."
     a "Why wait 7 years into the REDD War's life to host an event like this for this purpose?"
-    kr concerned "Well..."
+    kr concerned down "Well..."
     kr "Not to throw anyone under the bus, but this is an event I've wanted to host since the very beginning."
     kr neutral "But the people at the studio would never back it, claiming it to be too controversial, expensive, and a waste of time."
     kr smile "Looking back, I suppose I shouldn't have been too surprised at the backlash I received, ahaha."
-    kr concerned "But with recently-revealed events, I decided it was time now, more than ever, to host this show to earn people's trust back."
+    kr concerned hips "But with recently-revealed events, I decided it was time now, more than ever, to host this show to earn people's trust back."
     kr "However, the studio still wouldn't fund the show, so I had no choice but to use my own money and resources to pull this event off."
     a "By 'recently-revealed events', I assume you're referring to the news surrounding your brother Trosh?"
     kr neutral "I am."
     a "That truly is a horrible situation."
     a "For him, you, and your show."
-    kr worried "I very much agree, Chuck."
+    kr horror down "I very much agree, Chuck."
     kr concerned "I know people are understandably upset that I wasn't as harsh to him as I should have been, but..."
     kr "...he's still my brother, and he was very much in his legal and biological right to do what he did, even though I highly disagree with it."
-    kr @ smile "I guess it's only fitting; he was never a fan of my life decisions, either, but he was still there for me to help me achieve my dream by providing funding for the program."
-    kr "But REDD War or not, I couldn't imagine just..."
+    kr smile "I guess it's only fitting; he was never a fan of my life decisions, either, but he was still there for me to help me achieve my dream by providing funding for the program."
+    kr worried "But REDD War or not, I couldn't imagine just..."
     kr "..."
     "Clearly sensing the darker direction the interview was turning, Chuck cleared his throat and changed the subject."
     a "Well, for this live show being a big and grand event, you really haven't gone into much detail on it."
@@ -603,7 +604,7 @@ label kragonnews:
     kr @ concerned "In fact, she's even one of the people within the studio who suggested the show be put on hiatus until this whole controversy blows over."
     kr "But I still respect her as both a person and a colleague, despite our differences. I certainly don't wish to turn this into a blame game."
     a "But not even telling her about the live show's events? Doesn't that seem a bit of an issue to you?"
-    kr smile "Rest assured, there's a method to my madness."
+    kr smile hips "Rest assured, there's a method to my madness."
     kr "But back to your initial question about the live show tomorrow and what it entails."
     kr "My goal for tomorrow's show is to pull off feats you would never see on any episode of {i}Mr. Sprinkles{/i}."
     kr laughing "New games and variations of existing ones designed specifically for the event~!"
@@ -912,10 +913,11 @@ label kragonnews:
             with Dissolve(3.0)
             pause 2
             $badcredits = True
-            if not persistent.achievement_toosafe:
-                $persistent.achievement_toosafe = True
+            if not persistent.achievements["toosafe"]:
+                $persistent.achievements["toosafe"] = True
                 $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
-                $persistent.achievetotal += 1
+                $persistent.achievelist.append(1)
+            $renpy.end_replay()
             jump gameover
         "\"...we should really sleep on it.\"":
             $renpy.music.set_volume(1.0, delay=1, channel='music')
@@ -1055,7 +1057,7 @@ label sleeponit:
     window hide dissolve
     pause 4
     $renpy.end_replay()
-    if not persistent.chapter1_scene2:
-        $persistent.scenetotal += 1
-    $persistent.chapter1_scene2 = True
+    if not persistent.scenes["ch1_s2"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch1_s2"] = True
     jump chapter_2
