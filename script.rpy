@@ -601,7 +601,7 @@ screen gameover():
     vbox:
         xalign 0.5 yalign 0.5
         if badcredits:
-            text "THE END...?" style "dateandtime"
+            text "THE END" style "dateandtime"
         else:
             text "YOU DIED" style "dateandtime"
 screen loadorquit():
