@@ -1213,7 +1213,10 @@ label chapterstart:
 
 # Game Over Screen
 label gameover:
-    $renpy.block_rollback()
+    python:
+        renpy.block_rollback()
+        config.skipping = False
+        config.allow_skipping = False
     if not badcredits:
         play music creaky_country_fair
     show screen gameover
