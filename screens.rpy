@@ -220,7 +220,7 @@ screen choice(items):
     vbox at choice_dissolve:
         for i in items:
             if i.chosen:
-                textbutton "{color=b0b0b0}[i.caption]{/color}" action i.action
+                textbutton "{color=c0c0c0}[i.caption]{/color}" action i.action
             else:
                 textbutton i.caption action i.action
 

@@ -319,14 +319,6 @@ image bg street = "BG/street.jpg"
 image bg theater_ext = "BG/theaterexterior.jpg"
 image bg warehouse = "BG/warehouse.jpg"
 
-## Custom Audio Channels ##########################################################################################################
-
-init python:
-    renpy.music.register_channel('ambience', mixer="sound", loop=True, tight=True)
-    renpy.music.register_channel('ambience2', mixer="sound", loop=True, tight=True)
-    renpy.music.register_channel('music2', mixer="music", loop=True, tight=True)
-    renpy.music.register_channel('sound2', mixer="sound", loop=False, tight=True)
-
 ## Audio ##########################################################################################################################
 
 # Music
@@ -339,6 +331,8 @@ define audio.ice_cream_truck = "audio/music/Ice-Cream-Truck_Looping.mp3"
 define audio.into_battle = "audio/music/Into-Battle_v001.mp3"
 define audio.into_the_haunted_forest = "audio/music/Into-the-Haunted-Forest_Looping.mp3"
 define audio.neon_runner = "audio/music/Neon-Runner_Looping.mp3"
+define audio.packing = "audio/music/Packing_Looping.mp3"
+define audio.shattered_mind = "<to 34>audio/music/Shattered-Mind.ogg"
 define audio.sprinkles_radio = "<to 64>audio/music/The Mr Sprinkles Show - Radio.mp3"
 define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
 define audio.sprinkles_theme = "<to 64>audio/music/The Mr Sprinkles Show.mp3"
@@ -383,6 +377,13 @@ define audio.smack = "audio/se/smack.ogg"
 define audio.snap = "audio/se/snap.ogg"
 define audio.stab = "audio/se/stab.ogg"
 
+# Custom Audio Channels
+init python:
+    renpy.music.register_channel('ambience', mixer="sound", loop=True, tight=True)
+    renpy.music.register_channel('ambience2', mixer="sound", loop=True, tight=True)
+    renpy.music.register_channel('music2', mixer="music", loop=True, tight=True)
+    renpy.music.register_channel('sound2', mixer="sound", loop=False, tight=True)
+
 ## Transforms ####################################################################################################################
 
 # Animated Transforms
@@ -391,13 +392,6 @@ transform choice_dissolve:
     ease 1.0 alpha 1.0
     on hide:
         ease 0.5 alpha 0.0
-# transform menu_lower:
-#     xanchor 0.5 yanchor 1.0
-#     xalign 0.5 yalign 0.0
-#     ease 0.5 yalign 1.0
-# transform scrollup:
-#     xalign 0.5 yalign 1.05
-#     ease 15.0 yalign -0.05
 transform spotlight_wander:
     xalign 1.0 yalign 1.0
     block:
@@ -983,6 +977,8 @@ screen credits():
             text "{i}Into Battle v001{/i}" xalign 0.5
             text "{i}Into the Haunted Forest{/i}" xalign 0.5
             text "{i}Neon Runner{/i}" xalign 0.5
+            text "{i}Packing{/i}" xalign 0.5
+            text "{i}Shattered Mind{/i}" xalign 0.5
             text "{i}Vast Places{/i}" xalign 0.5
             null height 10
             text "by Eric Matyas (soundimage.org)" xalign 0.5
@@ -1049,6 +1045,11 @@ screen socials():
 ## Definitions
 define _game_menu_screen = "pause"
 define alpha = "ABCDEFGHIJLKMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+init python:
+    if not renpy.variant('mobile'):
+        clickortap = "Click"
+    else:
+        clickortap = "Tap"
 define config.replay_scope = {"_game_menu_screen": "pause"}
 
 ## Persistents and Preferences
@@ -1064,7 +1065,7 @@ default persistent.scenes = {
  "ch2_s1": False, "ch2_s2": False, "ch2_s3": False, "ch2_s4": False, "ch2_s5": False,
  "ch3_s1": False, "ch3_s2": False, "ch3_s3": False, "ch3_s4": False, "ch3_s5": False, "ch3_s6": False, "ch3_s7": False, "ch3_s8": False, 
  "ch4_s1": False, "ch4_s2": False, "ch4_s3": False,
- "ch5_s1": False}
+ "ch5_s1": False, "ch5_s2": False}
 
 # Booleans
 default preferences.fullscreen = False
@@ -1074,7 +1075,6 @@ default preferences.fullscreen = False
 # Strings
 default axehit = ""
 default b_name = "???"
-default clickortap = "Click"
 default currentdate = "March 30th"
 default currenttime = "4:12 PM"
 default direction = ""
@@ -1082,7 +1082,8 @@ default event = "War Zones are revealed"
 default l_exp = "neutral"
 default password = ""
 default s_name = "Mr. Sprinkles"
-default save_subtitle = ""
+default save_name = "Chapter 1"
+default save_subtitle = "The Calm Before the Storm"
 default t_name = "REDD"
 default timeleft = "2 hours and 48 minutes"
 
@@ -1175,8 +1176,6 @@ label chapterstart:
     stop sound2
     stop ambience
     stop ambience2
-    if renpy.variant('mobile'):
-        $clickortap = "Tap"
     play sound flicker
     show screen dateandtime
     with Dissolve(0.05)
@@ -1204,8 +1203,7 @@ label chapterstart:
         alpha 0.0
         xalign 0.5 yalign 0.9
         pause 3
-        block:
-            ease 1.0 alpha 1.0
+        ease 1.0 alpha 1.0
     $renpy.pause()
     hide screen dateandtime
     hide screen timeremaining
@@ -1238,8 +1236,6 @@ label start:
         $persistent.credits = False
         return
     $quick_menu = False
-    $save_name = "Chapter 1"
-    $save_subtitle = "The Calm Before the Storm"
     play sound "audio/se/gong.ogg"
     stop music fadeout(3.0)
     scene bg fade

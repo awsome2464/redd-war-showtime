@@ -40,7 +40,7 @@ label eveningplans:
     a "A few hours later, Dovason made these Tweets:"
     a "{i}If you wish to not attend the live show tomorrow, I completely understand. Simply request a refund on the official site and it will be provided to you.{/i}"
     a "{i}However, for those who still wish to attend, first of all, thank you! {image=reddsmile.png} And secondly, I have been talking with Reddington, and he has agreed to recognize the theater as an official Government Safehouse.{/i}"
-    a "{i}No matter which choice you make, I wish you, as well as everyone else, good luck. The next few days are going to be crazy. {color=#00aced}#REDDWar2030{/color}"
+    a "{i}No matter which choice you make, I wish you, as well as everyone else, good luck. The next few days are going to be crazy. {color=#00aced}#REDDWar2030{/color}{/i}"
     $l_exp = "excited"
     scene bg livingroom
     show richard pjs_crossed glare at middle_r

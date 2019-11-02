@@ -2677,7 +2677,7 @@ label jessicaseye:
         xalign 0.9 yalign 0.5
     with dissolve
     pause 0.1
-    s "There! Now you'll only see {b}half{/i} the rough things!!"
+    s "There! Now you'll only see {i}{b}half{/b}{/i} the rough things!!"
     s "Ahahahaha!!!"
     s happy "Alright, folks. After we get cleaned up, we'll get ready for another game~!"
     s jeer "And I assure you, it's only going to get better from here."

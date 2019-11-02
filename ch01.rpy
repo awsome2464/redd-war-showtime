@@ -1,7 +1,7 @@
 label chapter_1:
-    stop music
     call chaptername
 label meetthefarrs:
+    stop music
     call chapterstart
     pause 2
     play sound drumroll_buildup loop
