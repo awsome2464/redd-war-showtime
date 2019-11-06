@@ -176,7 +176,7 @@ label backattheater:
     pause 0.6
     "I wasn't even aware I was that close to the stage."
     $l_exp = "neutral"
-    show sprinkles jeer rightdown cane at middle_s with dissolve
+    show sprinkles jeer rightdown cane at middle_sprinkles with dissolve
     pause 0.1
     "Mr. Sprinkles then appeared in view and walked by me."
     "Didn't even bat an eye."
@@ -203,7 +203,7 @@ label backattheater:
     $s_name = "Krag"
     hide screen laura
     scene bg dressingroom
-    show sprinkles jeer rightdown leftdown at middle_s
+    show sprinkles jeer rightdown leftdown at middle_sprinkles
     with dissolve
     pause 0.1
     play music sprinkles_spooky
@@ -247,7 +247,7 @@ label backattheater:
     pause 0.1
     "He then walked towards the door."
     "I moved out of the way as to not seem like I was doing what I was doing."
-    show sprinkles happy rightdown leftdown at middle_s with dissolve
+    show sprinkles happy rightdown leftdown at middle_sprinkles with dissolve
     pause 0.1
     "As he opened the door, he started walking back towards the stage."
     show sprinkles wut

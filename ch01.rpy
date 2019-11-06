@@ -26,7 +26,7 @@ label meetthefarrs:
     play sound applause
     scene bg showstage with slideawayup
     pause 1.0
-    show sprinkles laugh cane hat at middle_s with dissolve
+    show sprinkles laugh cane hat at middle_sprinkles with dissolve
     pause 0.1
     window show dissolve
     s "Ahaha! Thank you! Thank you, everyone!"
@@ -51,7 +51,7 @@ label meetthefarrs:
     k "Mommy?"
     $l_exp = "concerned"
     "That didn't take long."
-    show kate happy at middle with dissolve
+    show kate happy down at middle with dissolve
     pause 0.1
     $l_exp = "smile"
     l "Yes, sweetie?"
@@ -82,7 +82,7 @@ label meetthefarrs:
     "She just turned back to the TV as Mr. Sprinkles continued his show."
     hide screen laura
     scene bg showstage
-    show sprinkles rightdown cane happy at middle_s
+    show sprinkles rightdown cane happy at middle_sprinkles
     with dissolve
     pause 0.1
     s "Alright, everyone! Let's start the show!"
@@ -91,8 +91,8 @@ label meetthefarrs:
     m "I did!"
     "Suddenly, an energetic young woman entered the set via the fireplace on the back wall."
     play sound applause
-    show sprinkles at two2_s with easeinleft
-    show madeline down excited at two1_m with dissolve
+    show sprinkles at two2_sprinkles with easeinleft
+    show madeline down excited at two1 with dissolve
     pause 0.5
     s laugh hat "Aha! Hello there, Ms. Madeline!"
     m "Hello there, Mr. Sprinkles!"
@@ -114,7 +114,7 @@ label meetthefarrs:
     play sound applause
     "The audience cheered as the large dartboard was pulled onto the stage."
     "It was basically a giant wheel that you'd spin to pick a choice, but modified to look like a dartboard, while also being motorized."
-    show sprinkles laugh leftdown hat at middle_s with dissolve
+    show sprinkles laugh leftdown hat at middle_sprinkles with dissolve
     pause 0.1
     s "Alright, let's get started!"
     s happy rightdown "Ms. Madeline, if you please."
@@ -136,32 +136,33 @@ label meetthefarrs:
     pause 0.1
     "Mr. Sprinkles and Ms. Madeline each picked 2 children from the audience to join them on the stage."
     "As they did, Kate turned to me with a large smile."
-    show kate happy at middle with dissolve
+    show kate happy down at middle with dissolve
     pause 0.1
     k "Mommy, will I get to be on stage with Mr. Sprinkles tomorrow?"
     $l_exp = "sad"
     l "Well, uh..."
     l "...I don't know, honey."
-    show kate shocked
+    show kate shocked fidget
     "Her smile went away in the blink of an eye."
     $l_exp = "smile"
     l "But I think you'll have a good shot at it!"
     show kate happy
     "That seemed to do the trick."
     k "Really?"
-    k "Yay!!"
+    k up "Yay!!"
     "She then began clapping ecstatically, much to Dakota's dismay."
     show kate:
         ease 0.5 two1
     show dakota neutral at two2 with dissolve
     pause 0.1
     d "Just don't cry when you don't actually end up on stage."
+    show kate concerned fidget
     $l_exp = "concerned"
     "..."
     s "Alright, everyone!"
     hide screen laura
     scene bg showstage
-    show sprinkles laugh cane hat at middle_s
+    show sprinkles laugh cane hat at middle_sprinkles
     with dissolve
     pause 0.1
     s "Now that we have our players, we need to set up the game!"
@@ -181,7 +182,7 @@ label meetthefarrs:
     scene bg showstage with dissolve
     pause 0.5
     play music sprinkles_theme
-    show sprinkles laugh cane rightdown at middle_s with dissolve
+    show sprinkles laugh cane rightdown at middle_sprinkles with dissolve
     pause 0.1
     s "Ahaha! Absolutely wonderful!"
     s happy hat "Alright, then! The {i}Mirror Madness{/i} maze is all set up! Let's get started, shall we?"
@@ -190,7 +191,7 @@ label meetthefarrs:
     "The screen then showed a large maze in another part of the room."
     "The maze in question had an entrance in each of its corners, with one child volunteer standing at each corner."
     "After Mr. Sprinkles went around and had each volunteer introduce themselves, he went on to explain the game."
-    show sprinkles jeer rightdown cane at middle_s with dissolve
+    show sprinkles jeer rightdown cane at middle_sprinkles with dissolve
     pause 0.1
     s "Alright, here's how the game works:"
     s "Each of our players will start at one of the maze's entrances."
@@ -206,7 +207,7 @@ label meetthefarrs:
     pause 0.1
     "Suddenly, Dakota stood up and walked out of the room."
     $l_exp = "concerned"
-    show kate concerned at middle with dissolve
+    show kate confused down at middle with dissolve
     pause 0.1
     k "Kota, where are you going?"
     d "I've seen this episode before. The girl in the red shirt wins."
@@ -326,35 +327,37 @@ label meetthefarrs:
     "With that, I went downstairs."
     stop music fadeout(0.6)
     scene bg livingroom
-    show kate happy at middle
+    show kate excited up at middle_short zorder 1
     with dissolve
     pause 0.1
     play music the_calm
     k "Hi, Daddy~!!"
     show kate:
-        ease 0.5 two2
-    show richard main_down laughing at two1_r with dissolve
+        ease 0.5 two2_short
+    show richard down laughing at two1 zorder 2 with dissolve
     pause 0.1
     r "Ahaha! Hey there, pumpkin!"
+    show kate:
+        ease 0.5 two2
     "He picked up his daughter and gave her a hug."
     r smile "How was your day?"
-    k excited "Amazing!"
+    k happy down "Amazing!"
     r "Oh? Why is that?"
-    k "I got to eat a burger as big as my head!"
+    k up "I got to eat a burger as big as my head!"
     r laughing "Oh, is that right?"
     "He then glanced over at me for confirmation."
     $l_exp = "determined"
     l "She WISHES it was that big."
     "I ratted as I walked over and rubbed Kate's back with a chuckle."
-    show richard at left_r
+    show richard at left
     show kate at middle
     show dakota determined at right
     with easeinright
     pause 0.1
     d "Yeah, and I'M the one who had to end up finishing it for her!"
-    k shocked "Nuh-uh!"
+    k shocked fidget "Nuh-uh!"
     d smirk "I'm literally the only person who knows for a fact that I did!"
-    show kate mad
+    show kate mad down
     "Clearly caught in her lie, Kate buried her head in her father's shoulder in defeat."
     r smile "Hahaha! Alright, did anything else exciting happen today?"
     $l_exp = "smile"
@@ -363,8 +366,10 @@ label meetthefarrs:
     $l_exp = "neutral"
     l "..."
     d neutral "..."
-    k happy "Yeah, and it was awesome!!"
+    k happy up "Yeah, and it was awesome!!"
     r laughing "Oh, I'm sure it was, sweetie!"
+    show kate:
+        ease 0.5 middle_short
     "He then set her down."
     r smile "Anyway, we've got groceries to get in! Everyone helps!"
     hide screen laura
@@ -375,7 +380,7 @@ label meetthefarrs:
     "After we all got the groceries in the house, the girls went back into the living room to watch TV, leaving Richard and I to put them all away."
     show screen laura
     play music autumn_changes
-    show richard main_crossed concerned at middle_r with dissolve
+    show richard crossed concerned at middle with dissolve
     pause 0.1
     r "Laura, we talked about Mr. Sprinkles."
     $l_exp = "sad"
@@ -384,13 +389,13 @@ label meetthefarrs:
     l "Besides, we're still going to that show tomorrow, anyway, so what's the harm?"
     r "I just..."
     "He placed the cans in the cupboard before slowly closing it, clearly stalling to find a way to finish that sentence."
-    r main_down "I just don't want her to get hurt."
+    r down "I just don't want her to get hurt."
     r "Sooner or later, she's going to realize what he is and what they do."
     $l_exp = "concerned"
     l "Richard, the whole point of his show is to show that--"
     r @ glare "I know not all of them are like that."
     r "But as long as there's a REDD War, the ones that ARE like that will continue to just..."
-    r main_crossed glare "Well, you know what that producer from the show did last year."
+    r crossed glare "Well, you know what that producer from the show did last year."
     $l_exp = "neutral"
     "I took a deep breath and looked down."
     l "Yes, I do."
@@ -410,7 +415,7 @@ label meetthefarrs:
     show richard concerned
     "He sighed before turning towards the living room."
     "Kate's eyes were glued to the TV while Dakota's were on her phone."
-    r main_down "I just want our girls to be safe."
+    r down "I just want our girls to be safe."
     r "To have a long, healthy life."
     l "And I do, too, Richard. I want that more than anything."
     l "But the REDD aren't going anywhere, and neither is the REDD War."
@@ -422,7 +427,7 @@ label meetthefarrs:
     r concerned "..."
     "He finally sighed."
     r "I don't think I'll ever be able to accept it, Laura."
-    r main_crossed "I'm sorry, but there's just no way I can see those things as anything but monsters."
+    r crossed "I'm sorry, but there's just no way I can see those things as anything but monsters."
     $l_exp = "sad"
     l "..."
     $l_exp = "determined"
@@ -436,7 +441,7 @@ label meetthefarrs:
     l "Tomorrow's about THEM."
     r concerned "..."
     "Finally he gave a small smile."
-    r main_down smile "Alright, you win."
+    r down smile "Alright, you win."
     $l_exp = "smug"
     l "As usual."
     "We then gave each other a quick kiss before putting the rest of the groceries away, sans the ones needed for that night's meal."
@@ -470,7 +475,7 @@ label kragonnews:
     "After dinner, the girls were upstairs doing their own thing while Richard and I stayed in the living room."
     "Though we weren't really talking to each other much; we were mostly just scrolling through our phones, only occasionally showing each other funny or relevant posts."
     "But then..."
-    show richard main_down glare at middle_r with dissolve
+    show richard down glare at middle with dissolve
     pause 0.1
     r "Have you seen what Jessica Tate's doing right now?"
     $l_exp = "mad"
@@ -507,12 +512,12 @@ label kragonnews:
     pause 0.5
     scene bg livingroom
     show screen laura
-    show richard main_down concerned at middle_r
+    show richard down concerned at middle
     with dissolve
     pause 0.1
     l "Ugh..."
     l "The things some people will do for attention."
-    r main_crossed "I mean, I'm not a fan of the REDD, but I couldn't imagine protesting them like that."
+    r crossed "I mean, I'm not a fan of the REDD, but I couldn't imagine protesting them like that."
     $l_exp = "rage"
     l "It's not even REDD, in general; it's that one in particular!"
     l "I really can't believe that she has the balls to say that Krag Dovason had involvement in Trosh's actions!"
@@ -521,14 +526,14 @@ label kragonnews:
     $l_exp = "mad"
     l "Right, because he can snap his fingers and change the fact that he's a REDD."
     r concerned "That's not what I meant at all, Laura."
-    r main_down "Look, let's just drop it. The last thing we need to do right now is stress."
+    r down "Look, let's just drop it. The last thing we need to do right now is stress."
     $l_exp = "neutral"
     l "..."
     l "You're right. I'm sorry."
     r smile "Nah, I should've known that little ol' Jessica would rustle your feathers, and for that, {b}I'm{/b} sorry."
     "Before we could get into this more, Dakota came downstairs."
     show richard:
-        ease 0.5 two2_r
+        ease 0.5 two2
     show dakota neutral at two1 with easeinleft
     pause 0.1
     d "Can I watch TV?"
@@ -549,7 +554,7 @@ label kragonnews:
     with dissolve
     pause 0.5
     a "Thank you for coming, Mr. Dovason!"
-    show krag laughing down at middle_k with dissolve
+    show krag laughing down at middle with dissolve
     pause 0.1
     kr "Oh, thank you for having me, Chuck."
     "Wow. Without that bright outfit and blue hair, he looks like a completely different person."
@@ -574,7 +579,7 @@ label kragonnews:
     $l_exp = "smile"
     "Giving a small smile, I turned back to the TV, myself."
     scene bg newsroom
-    show krag smile hips at middle_k
+    show krag smile hips at middle
     hide screen laura
     with dissolve
     pause 0.1
@@ -616,14 +621,14 @@ label kragonnews:
     kr laughing "That's the idea~!"
     $l_exp = "smug"
     scene bg livingroom
-    show richard main_down concerned at middle_r
+    show richard down concerned at middle
     show screen laura
     with dissolve
     pause 0.1
     l "What do you think, honey? Think you can handle some of those games?"
-    r laughing main_crossed "Ha! Yeah, like my fat self can run an obstacle course!"
+    r laughing crossed "Ha! Yeah, like my fat self can run an obstacle course!"
     show richard:
-        ease 0.5 two1_r
+        ease 0.5 two1
     show dakota smirk at two2 with dissolve
     pause 0.1
     d "Oh, I would {b}love{/b} to see that!"
@@ -753,7 +758,7 @@ label kragonnews:
     with dissolve
     "I heard the door creak open a bit."
     "My other daughter's head poked through the crack."
-    show kate concerned at middle with dissolve
+    show kate concerned fidget at middle with dissolve
     pause 0.1
     k "...Kota? Are you okay?"
     "Dakota's head whipped from out of the pillow and towards her little sister."
@@ -767,17 +772,17 @@ label kragonnews:
     $l_exp = "sad"
     l "Kate, sweetie, what she means is--"
     d "I mean that the REDD are gonna find us and kill us tomorrow!!"
-    k "!!!"
+    k crying "!!!"
     $l_exp = "mad"
     l "Dakota! You're scaring her!"
     d "{b}GOOD!!!{/b} She {b}should{/b} be scared!!!"
     "By then, I heard the footsteps in the hallway."
-    "A second later, the door completely opened, revealing Richard looking in at his crying little girl."
+    "A second later, the door completely opened, revealing Richard looking in at his crying little girls."
     show kate zorder 2:
-        ease 0.5 left
+        ease 0.5 left_short
     show dakota zorder 2:
         ease 0.5 right
-    show richard main_down concerned at middle_r zorder 1 with dissolve
+    show richard down concerned at middle zorder 1 with dissolve
     pause 0.1
     r "..."
     k "D-Daddy, are we really gonna die?"
@@ -789,7 +794,7 @@ label kragonnews:
     "He finally glanced down and looked her in the eye."
     r glare "Not if I can help it, baby."
     "He then looked at all of us."
-    r main_crossed "Everyone, pack some bags; we're getting out of the city."
+    r crossed "Everyone, pack some bags; we're getting out of the city."
     $l_exp = "shocked"
     l "And going where?"
     r @ concerned "I don't know."
@@ -797,16 +802,20 @@ label kragonnews:
     r "If we hurry, we can get out of here before the barriers go up."
     r "And even if we don't, we can still be close to the front of the line."
     r rage "Now come on, girls. Find a bag, get what you need to last you a couple days, and let's move!"
-    k concerned "But, Daddy, what about the Mr. Sprinkles show tomorrow?"
+    k concerned "But Daddy, what about the Mr. Sprinkles show tomorrow?"
     r concerned "..."
+    show richard:
+        ease 0.5 ypos 100
     "Richard sighed and bent down, placing his hand on her shoulder."
-    r main_down "I'm sorry, Kate, but we're not going to the show. It's too dangerous."
-    k "But, Daddy, you promised we'd go!!"
+    r down "I'm sorry, Kate, but we're not going to the show. It's too dangerous."
+    k down "But, Daddy, you promised we'd go!!"
     r "I know, but..."
     $l_exp = "concerned"
     l "Richard, can I talk to you?"
     show richard glare
     "He looked up at me with a bit of a confused look."
+    show richard:
+        ease 0.5 ypos 0
     "Regardless, he stood back up and looked at our daughters."
     r "Start packing. Please."
     scene bg dakotaroom with dissolve
@@ -814,7 +823,7 @@ label kragonnews:
     scene bg livingroom with dissolve
     pause 0.1
     "We then made our way downstairs."
-    show richard main_down glare at middle_r with dissolve
+    show richard down glare at middle with dissolve
     pause 0.1
     r "..."
     $l_exp = "neutral"
@@ -822,7 +831,7 @@ label kragonnews:
     r "You're not seriously considering staying, are you?"
     $l_exp = "surprised"
     l "Well..."
-    r main_crossed rage "Oh, my God, Laura!"
+    r crossed rage "Oh, my God, Laura!"
     l "Richard, hear me out.{w=0.5} Please."
     r glare "..."
     $l_exp = "neutral"
@@ -830,7 +839,7 @@ label kragonnews:
     r concerned "..."
     $l_exp = "sad"
     l "But do you have any idea how much it costs to exit the barrier? They charge per {b}person{/b}, Richard!"
-    r main_down rage "That's why we need to get out before---"
+    r down rage "That's why we need to get out before---"
     play sound helicopter_loop loop
     pause 1.0
     $l_exp = "neutral"
@@ -852,13 +861,13 @@ label kragonnews:
     $l_exp = "sad"
     l "Besides, do you know how heartbroken Kate would be if she missed this show that she's been looking forward to for a whole month?"
     r rage "Well, when she's older, she'll understand why her meanie-head father didn't take her to see Mr. Sprinkles!"
-    r glare main_crossed "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
+    r glare crossed "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
     r "If you wanna be stupid enough to stay and get yourself killed, then..."
     $l_exp = "shocked"
     l "..."
     r "..."
     r concerned "..."
-    show richard main_down
+    show richard down
     "He sighed and placed his face in his hands."
     r "I'm sorry. I just..."
     r "It's like I told you. I want them to be safe."
@@ -881,7 +890,7 @@ label kragonnews:
     l "We can get up early tomorrow and still have 12 hours to try and get out."
     r "..."
     "He then broke from the hug."
-    show richard main_crossed concerned at middle_r with dissolve
+    show richard crossed concerned at middle with dissolve
     pause 0.1
     r "...I don't know, Laura."
     r "I get what you're saying, but..."
@@ -899,7 +908,7 @@ label kragonnews:
             $l_exp = "sad"
             l "...you're right. We should leave."
             r shocked "..."
-            r main_down smile "...I knew you'd make the right choice, honey."
+            r down smile "...I knew you'd make the right choice, honey."
             r laughing "Now come on. Let's get packing!"
             $l_exp = "smile"
             "Richard and I then went upstairs to pack."
@@ -936,7 +945,7 @@ label sleeponit:
     l "And who knows? Maybe you'll change your mind about leaving."
     r glare "..."
     "He finally sighed and grabbed my hand."
-    r main_down "Fine. I'll sleep on it."
+    r down "Fine. I'll sleep on it."
     r concerned "...at least, I'll try to."
     $l_exp = "excited"
     "I gave a small, nervous laugh."
@@ -991,7 +1000,7 @@ label sleeponit:
     nvl hide
     scene bg dakotaroom
     show dakota mad at two2
-    show richard main_down concerned at two1_r
+    show richard down concerned at two1
     show screen laura
     with dissolve
     pause 0.1
@@ -999,7 +1008,7 @@ label sleeponit:
     $l_exp = "sad"
     l "I know it's tough, baby, but sometimes things can't always go the way we want them to."
     d "But we're really gonna stay here and {b}DIE{/b}?!"
-    r main_crossed "We don't know if we're staying or not, Dakota. We'll talk more about it in the morning."
+    r crossed "We don't know if we're staying or not, Dakota. We'll talk more about it in the morning."
     d "And what's gonna happen if we {b}do{/b} stay?"
     $l_exp = "neutral"
     l "That'll be one of the things we talk about."

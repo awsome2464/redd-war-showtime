@@ -156,7 +156,7 @@ label mirrormadness:
     window hide dissolve
     pause 1.5
     scene bg street
-    show bus_window at middle
+    show bus_window at truecenter
     with Fade(1.0, 0.5, 1.0)
     pause 1.0
     $l_exp = "neutral"
@@ -1178,7 +1178,7 @@ label rightcode:
     pause 1
     scene bg livestage
     show dakota sad at two1 zorder 2
-    show kate mad at two2 zorder 1
+    show kate mad fidget at two2 zorder 1
     with Dissolve(2.0)
     pause 1
     window show dissolve
@@ -1206,16 +1206,18 @@ label rightcode:
     k "I hate Mr. Sprinkles."
     k "I hate how he took Mommy and Daddy away."
     k "I hate how you keep lying about how we'll be okay!"
-    d mad "Kate, listen."
-    d "I'm all you've got right now. I'm the only person who can feel what you're feeling about what happened to Mom and Dad."
+    show dakota mad
+    "Dakota then grabbed her sister's shoulder and faced her towards her."
+    d "Kate, listen."
+    d "I'm the only person who can feel what you're feeling about what happened to Mom and Dad."
     d "Believe me, I'm mad that Mr. Sprinkles did all of this, too!"
     d "I want Mom and Dad to come back just as much as you do!"
     d "But they're not going to, Kate! That much I know for sure!"
-    d "So please don't act this way to me!"
+    d "I'm all you've got right now! So please don't act this way to me!"
     d "You can hate Mr. Sprinkles all you want, but please don't hate me!"
     k "..."
     d neutral "..."
-    "Kate continued to face away from her sister."
+    "Kate broke from Dakota's grip and turned back away from her."
     d sad "..."
     show dakota:
         ease 0.5 middle
@@ -1318,8 +1320,8 @@ label goingback:
     play music2 sprinkles_radio fadein(0.75)
     play music sprinkles_theme fadein(0.75)
     show bg stage
-    show sprinkles happy hat cane at two2_s zorder 2
-    show madeline dead at two1_r zorder 1
+    show sprinkles happy hat cane at two2_sprinkles zorder 2
+    show madeline dead at two1 zorder 1
     with Dissolve(0.1)
     pause 0.1
     s "Where do writing utensils go for vacation?"
@@ -1341,12 +1343,12 @@ label goingback:
     s laugh "Maybe you'll get them next time~!"
     s jeer hat "Though I seriously doubt it."
     hide madeline
-    show sprinkles at middle_s
+    show sprinkles at middle_sprinkles
     with easeoutleft
     pause 0.1
     s rightdown happy "And if you've got a good memory, you may remember what comes after our jokes with Ms. Madeline!"
     s hat laugh "Let's give a big round of applause for Jessica~!"
-    show sprinkles at two1_s with easeinright
+    show sprinkles at two1 with easeinright
     show jessica zorder 2:
         offscreenright
         ease 1.5 two2
@@ -1369,7 +1371,7 @@ label goingback:
     $l_exp = "concerned"
     "Though I could see movement going on inside it, so at least it wasn't a dead body."
     show sprinkles:
-        ease 0.5 left_s
+        ease 0.5 left_sprinkles
     $l_exp = "surprised"
     "Mr. Sprinkles then walked over to the curtain and gave a small chuckle."
     s laugh "Ladies and gentlemen, let's meet our new special guest!"

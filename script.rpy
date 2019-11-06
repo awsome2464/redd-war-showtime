@@ -49,36 +49,74 @@ define woman = Character("Woman", what_prefix='"', what_suffix='"')
 ## Images #######################################################################################################################
 
 # Characters
-image dakota confident = "Characters/Dakota/confident.png"
-image dakota confused = "Characters/Dakota/confused.png"
-image dakota determined = "Characters/Dakota/determined.png"
-image dakota mad = "Characters/Dakota/mad.png"
-image dakota neutral = "Characters/Dakota/neutral.png"
-image dakota sad = "Characters/Dakota/sad.png"
-image dakota small_smile = "Characters/Dakota/small_smile.png"
-image dakota smirk = "Characters/Dakota/smirk.png"
+layeredimage dakota:
+    group head:
+        yalign 0.5
+        attribute confident:
+            "Characters/Dakota/confident.png"
+        attribute confused:
+            "Characters/Dakota/confused.png"
+        attribute determined:
+            "Characters/Dakota/determined.png"
+        attribute mad:
+            "Characters/Dakota/mad.png"
+        attribute neutral:
+            "Characters/Dakota/neutral.png"
+        attribute sad:
+            "Characters/Dakota/sad.png"
+        attribute small_smile:
+            "Characters/Dakota/small_smile.png"
+        attribute smirk:
+            "Characters/Dakota/smirk.png"
 
 image jangle = Placeholder("boy")
 
-image jessica = Placeholder("girl")
+image jessica:
+    ypos 500
+    Placeholder("girl")
 
 image jingle = Placeholder("girl")
 
-image kate alert = "Characters/Kate/alert.png"
-image kate concerned = "Characters/Kate/concerned.png"
-image kate confused = "Characters/Kate/confused.png"
-image kate excited = "Characters/Kate/excited.png"
-image kate happy = "Characters/Kate/happy.png"
-image kate mad = "Characters/Kate/mad.png"
-image kate shocked = "Characters/Kate/shocked.png"
+layeredimage kate:
+    group body:
+        ypos 180
+        attribute down:
+            "Characters/Kate/[clothing]_down.png"
+        attribute fidget:
+            "Characters/Kate/[clothing]_fidget.png"
+        attribute up:
+            "Characters/Kate/[clothing]_up.png"
+    group head:
+        ypos 180
+        attribute alert:
+            "Characters/Kate/alert.png"
+        attribute concerned:
+            "Characters/Kate/concerned.png"
+        attribute confused:
+            "Characters/Kate/confused.png"
+        attribute crying:
+            "Characters/Kate/crying.png"
+        attribute excited:
+            "Characters/Kate/excited.png"
+        attribute happy:
+            "Characters/Kate/happy.png"
+        attribute mad:
+            "Characters/Kate/mad.png"
+        attribute shocked:
+            "Characters/Kate/shocked.png"
+    if k_hat:
+        ypos 200
+        "Characters/Kate/hat.png"
 
 layeredimage krag:
     group body:
+        yalign -0.09
         attribute down:
             "Characters/Krag/down.png"
         attribute hips:
             "Characters/Krag/hips.png"
     group head:
+        yalign -0.09
         attribute concerned:
             "Characters/Krag/concerned.png"
         attribute horror:
@@ -94,14 +132,17 @@ layeredimage krag:
 
 layeredimage madeline:
     group full:
+        yalign 0.0
         attribute dead:
             "Characters/Madeline/Dead.png"
     group body:
+        yalign -0.1
         attribute down:
             "Characters/Madeline/Down.png"
         attribute shrug:
             "Characters/Madeline/Shrug.png"
     group head:
+        yalign -0.1
         attribute blank:
             "Characters/Madeline/Blank.png"
         attribute excited:
@@ -117,19 +158,13 @@ layeredimage madeline:
 
 layeredimage richard:
     group body:
-        attribute main_crossed:
-            "Characters/Richard/main_crossed.png"
-        attribute main_down:
-            "Characters/Richard/main_down.png"
-        attribute pjs_crossed:
-            "Characters/Richard/pjs_crossed.png"
-        attribute pjs_down:
-            "Characters/Richard/pjs_down.png"
-        attribute show_crossed:
-            "Characters/Richard/show_crossed.png"
-        attribute show_down:
-            "Characters/Richard/show_down.png"
+        yalign 0.0
+        attribute crossed:
+            "Characters/Richard/[clothing]_crossed.png"
+        attribute down:
+            "Characters/Richard/[clothing]_down.png"
     group head:
+        yalign 0.0
         attribute concerned:
             "Characters/Richard/concerned.png"
         attribute glare:
@@ -145,11 +180,13 @@ layeredimage richard:
 
 layeredimage sprinkles:
     group leftarm:
+        yalign 0.0
         attribute leftdown:
             "Characters/Sprinkles/left down.png"
         attribute cane:
             "Characters/Sprinkles/Hand on cane.png"
     group head:
+        yalign 0.0
         attribute evilgrin:
             "Characters/Sprinkles/evilgrin.png"
         attribute happy:
@@ -167,6 +204,7 @@ layeredimage sprinkles:
         attribute wut:
             "Characters/Sprinkles/wut.png"
     group rightarm:
+        yalign 0.0
         attribute rightdown:
             "Characters/Sprinkles/right down.png"
         attribute hat:
@@ -307,7 +345,7 @@ image bg dakotaroom = "BG/dakotaroom2.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
 image bg janitorcloset = "BG/janitorcloset.jpg"
 image bg livestage = "BG/livestage2.jpg"
-image bg livingroom = "BG/livingroom2.jpg"
+image bg livingroom = "BG/livingroom.jpg"
 image bg lobby = "BG/lobby.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg parkinggarage = "BG/parkinggarage.jpg"
@@ -401,7 +439,7 @@ transform spotlight_wander:
         linear 0.5 yalign 1.0
         repeat
 transform spotlight_focus:
-    linear 0.1 xalign 0.57 yalign 0.35
+    linear 0.1 xalign 0.5 yalign 0.5
 transform game_name_flash:
     xalign 0.5 yalign 0.1
     alpha 1.0
@@ -421,61 +459,51 @@ transform credit_scroll_3:
 
 # Stationary Transforms
 transform middle:
-    xalign 0.5 yalign 0.5
-transform middle_k:
-    size(450, 1125)
-    xalign 0.49 yalign -0.09
-transform middle_s:
-    size(675, 1125)
-    xalign 0.6 yalign 0.0
-transform middle_r:
-    size(562, 1125)
-    xalign 0.5 yalign 0.0
-transform middle_m:
-    size(562, 1125)
-    xalign 0.5 yalign -0.15
+    zoom 0.75
+    xalign 0.5 ypos 0
+transform middle_short:
+    zoom 0.75
+    xalign 0.5 ypos 100
+transform middle_sprinkles:
+    zoom 0.75
+    xalign 0.6
 
 transform left:
-    xalign 0.05 yalign 0.5
-transform left_s:
-    size(675, 1125)
-    xalign 0.05 yalign 0.0
-transform left_r:
-    size(562, 1125)
-    xalign 0.05 yalign 0.0
+    zoom 0.75
+    xalign 0.1 ypos 0
+transform left_short:
+    zoom 0.75
+    xalign 0.1 ypos 100
+transform left_sprinkles:
+    zoom 0.75
+    xalign 0.05
 
 transform right:
-    xalign 0.95 yalign 0.5
-transform right_s:
-    size(675, 1125)
-    xalign 1.3 yalign 0.0
-transform right_r:
-    size(562, 1125)
-    xalign 0.95 yalign 0.0
+    zoom 0.75
+    xalign 0.9 ypos 0
+transform right_short:
+    zoom 0.75
+    xalign 0.9 ypos 100
+transform right_sprinkles:
+    zoom 0.75
+    xalign 1.3
 
 transform two1:
-    xalign 0.25 yalign 0.5
-transform two1_s:
-    size(675, 1125)
-    xalign 0.25 yalign 0.0
-transform two1_r:
-    size(562, 1125)
-    xalign 0.2 yalign 0.0
-transform two1_m:
-    size(562, 1125)
-    xalign 0.2 yalign -0.15
+    zoom 0.75
+    xalign 0.25 ypos 0
+transform two1_short:
+    zoom 0.75
+    xalign 0.25 ypos 100
 
 transform two2:
-    xalign 0.75 yalign 0.5
-transform two2_s:
-    size(675, 1125)
-    xalign 0.98 yalign 0.0
-transform two2_r:
-    size(562, 1125)
-    xalign 0.75 yalign 0.0
-transform two2_m:
-    size(562, 1125)
-    xalign 0.8 yalign -0.15
+    zoom 0.75
+    xalign 0.8 ypos 0
+transform two2_short:
+    zoom 0.75
+    xalign 0.8 ypos 100
+transform two2_sprinkles:
+    zoom 0.75
+    xalign 0.98
 
 transform sideimage:
     size(225, 225)
@@ -701,7 +729,7 @@ screen chapterselect():
                     textbutton "Packed Parking" xalign 0.5:
                         hovered SetVariable("replay_num", 5)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
+                        action [SetVariable("replay_num", 0), Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins", "k_hat": True})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -711,7 +739,7 @@ screen chapterselect():
                     textbutton "Meet and Greet" xalign 0.5:
                         hovered SetVariable("replay_num", 6)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
+                        action [SetVariable("replay_num", 0), Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -721,7 +749,7 @@ screen chapterselect():
                     textbutton "Showtime!" xalign 0.5:
                         hovered SetVariable("replay_num", 7)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
+                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -733,7 +761,7 @@ screen chapterselect():
                     textbutton "The First Game" xalign 0.5:
                         hovered SetVariable("replay_num", 8)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True})]
+                        action [SetVariable("replay_num", 0), Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True, "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -743,7 +771,7 @@ screen chapterselect():
                     textbutton "When You Gotta Go..." xalign 0.5:
                         hovered SetVariable("replay_num", 9)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -753,7 +781,7 @@ screen chapterselect():
                     textbutton "Laughs and Cracks" xalign 0.5:
                         hovered SetVariable("replay_num", 10)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -763,7 +791,7 @@ screen chapterselect():
                     textbutton "Toilet Escape" xalign 0.5:
                         hovered SetVariable("replay_num", 11)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -773,7 +801,7 @@ screen chapterselect():
                     textbutton "Standing Up" xalign 0.5:
                         hovered SetVariable("replay_num", 12)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -783,7 +811,7 @@ screen chapterselect():
                     textbutton "Hiding in the Closet" xalign 0.5:
                         hovered SetVariable("replay_num", 13)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -793,7 +821,7 @@ screen chapterselect():
                     textbutton "A Special Game" xalign 0.5:
                         hovered SetVariable("replay_num", 14)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("deadlygame", scope={"currentdate": "March 31st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("deadlygame", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -803,7 +831,7 @@ screen chapterselect():
                     textbutton "Eyesore" xalign 0.5:
                         hovered SetVariable("replay_num", 15)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("jessicaseye", scope={"event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("jessicaseye", scope={"event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -815,7 +843,7 @@ screen chapterselect():
                     textbutton "Mirror Madness" xalign 0.5:
                         hovered SetVariable("replay_num", 16)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -825,7 +853,7 @@ screen chapterselect():
                     textbutton "Safe Haven" xalign 0.5:
                         hovered SetVariable("replay_num", 17)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("citychase", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("citychase", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -835,7 +863,7 @@ screen chapterselect():
                     textbutton "Going Back" xalign 0.5:
                         hovered SetVariable("replay_num", 18)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("goingback", scope={"currentdate": "April 1st", "event": "REDD War ends", "b_name": "Bartender"})]
+                        action [SetVariable("replay_num", 0), Replay("goingback", scope={"currentdate": "April 1st", "event": "REDD War ends", "b_name": "Bartender", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -847,7 +875,7 @@ screen chapterselect():
                     textbutton "Sneaking In" xalign 0.5:
                         hovered SetVariable("replay_num", 19)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends"})]
+                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1075,6 +1103,7 @@ default preferences.fullscreen = False
 # Strings
 default axehit = ""
 default b_name = "???"
+default clothing = "main"
 default currentdate = "March 30th"
 default currenttime = "4:12 PM"
 default direction = ""
@@ -1090,6 +1119,7 @@ default timeleft = "2 hours and 48 minutes"
 # Booleans
 default badcredits = False
 default gotdrink = False
+default k_hat = False
 default leftdeadend = False
 default nicetry = False
 default nvl = False
@@ -1232,6 +1262,10 @@ label gameover:
         show screen loadorquit
         with Dissolve(1)
         $renpy.pause(hard=True)
+
+label after_load:
+    $config.allow_skipping = True
+    return
 
 # Start of Story
 label start:

@@ -9,6 +9,7 @@ label eveningplans:
         currentdate = "March 31st"
         timeleft = "13 hours and 37 minutes"
         event = "REDD War begins"
+        clothing = "pjs"
     stop music
     call chapterstart
     pause 1
@@ -20,11 +21,11 @@ label eveningplans:
     "I had made my way downstairs, where I found my husband watching the news on TV."
     $l_exp = "neutral"
     show screen laura
-    show richard pjs_down concerned at middle_r
+    show richard down concerned at middle
     with dissolve
     pause 0.1
     l "Has anything happened?"
-    r pjs_crossed glare "Yes. A lot, actually."
+    r crossed glare "Yes. A lot, actually."
     "He pointed to the screen."
     "The main headline along the bottom was {i}'MR. SPRINKLES' STAR KRAG DOVASON SPEAKS OUT AGAINST ATLANTA WAR ZONE ANNOUNCEMENT{/i}."
     $l_exp = "concerned"
@@ -43,7 +44,7 @@ label eveningplans:
     a "{i}No matter which choice you make, I wish you, as well as everyone else, good luck. The next few days are going to be crazy. {color=#00aced}#REDDWar2030{/color}{/i}"
     $l_exp = "excited"
     scene bg livingroom
-    show richard pjs_crossed glare at middle_r
+    show richard crossed glare at middle
     show screen laura
     with dissolve
     pause 0.1
@@ -59,14 +60,14 @@ label eveningplans:
     l "You're debating whether or not to stay, aren't you?"
     r @ rage "..."
     r "..."
-    r pjs_down smile "Alright. You've got me."
+    r down smile "Alright. You've got me."
     $l_exp = "smile"
     l "See?"
     "I asked as I playfully pushed him away with a grin."
     l "I told you you just needed to wait and see what happens."
     r laughing "Yeah, yeah. You were right, as usual."
     "We could then hear footsteps coming down the stairs."
-    show richard at two1_r with easeinright
+    show richard at two1 with easeinright
     pause 0.5
     show dakota neutral at two2 with dissolve
     pause 0.1
@@ -80,7 +81,7 @@ label eveningplans:
     d confused "Really?"
     l "That's what the news says, at least."
     d "..."
-    r pjs_crossed concerned "But like your mother said, we haven't decided yet."
+    r crossed concerned "But like your mother said, we haven't decided yet."
     r "We still need to talk this over as a family."
     d "..."
     d "We'd really be safe?"
@@ -93,7 +94,7 @@ label eveningplans:
     d sad "But Mom said it's at one of the safe places!"
     r "I know, but..."
     d mad "You just don't wanna go because you hate Mr. Sprinkles!"
-    r pjs_down "That has nothing to do with this, Dakota!"
+    r down "That has nothing to do with this, Dakota!"
     stop music fadeout(3.0)
     d "You know what? You're right!"
     d "It's not because of Mr. Sprinkles!{w} It's because of me!"
@@ -189,7 +190,7 @@ label dakotaissorry:
     "I then heard Richard walking back down the stairs."
     show dakota zorder 2:
         ease 0.5 two2
-    show richard pjs_crossed concerned at two1_r zorder 1 with dissolve
+    show richard crossed concerned at two1 zorder 1 with dissolve
     pause 0.1
     $l_exp = "neutral"
     l "How is she?"
@@ -211,9 +212,9 @@ label dakotaissorry:
     show dakota:
         ease 0.5 right
     show richard zorder 2:
-        ease 0.5 middle_r
+        ease 0.5 middle
     pause 1
-    show kate concerned at left zorder 1
+    show kate crying fidget at left_short zorder 1
     with Dissolve(1.5)
     pause 1
     k "Mommy?"
@@ -225,10 +226,14 @@ label dakotaissorry:
     d "No! I don't hate you, Kate! Don't ever think something like that!"
     k "But you said--"
     d "I know, and I'm so sorry! I didn't mean it!"
+    show kate:
+        ease 0.5 xalign 0.25
     "Despite Dakota's claim, Kate latched on to her father for comfort."
     r "..."
-    r pjs_down smile "Hey, you know what I think would cheer us all up?"
-    k alert "What?"
+    r down smile "Hey, you know what I think would cheer us all up?"
+    k confused "What?"
+    show richard:
+        ease 0.5 ypos 100
     "He then bent down to the same level as his daughters."
     r "Going to see Mr. Sprinkles tonight!"
     show kate shocked
@@ -236,27 +241,31 @@ label dakotaissorry:
     $l_exp = "shocked"
     l "Richard...?"
     r laughing "What do you say, girls?"
-    show kate happy:
-        ease 0.25 yalign 0.45
-        ease 0.25 yalign 0.5
+    show kate happy up:
+        ease 0.25 ypos 80
+        ease 0.25 ypos 100
         repeat
     k "Yeah! Mr. Sprinkles! Mr. Sprinkles!!"
     "Kate jumped in excitement while still holding on to Richard."
     r laughing "Alright, Kate. I can certainly see that you're happy."
     show kate:
-        ease 0.25 yalign 0.5
+        ease 0.5 ypos 0
+    show richard:
+        ease 0.5 ypos 0
     "Richard then picked her up with a chuckle and held her against him."
     r smile "Dakota? What do you say?"
     d small_smile "...{w}yeah! Let's go!"
     r laughing "Alright, then! It's decided!"
     r "The Farrs are going to see Mr. Sprinkles tonight!"
     k "YAAAAAAY!!"
+    show kate:
+        ease 0.5 left_short
     "Kate clapped with joy as Richard put her back down."
     $l_exp = "smile"
     l "Alright, but don't forget that it'll be a long night, so be sure to get plenty of rest!"
-    k "I will!"
+    k down "I will!"
     "Richard then gave a small yawn."
-    r pjs_crossed smile "I suppose we could all use some more shut-eye."
+    r crossed smile "I suppose we could all use some more shut-eye."
     r "Everyone back to bed; that's an order."
     k "Okay~!"
     d determined "Alright."
@@ -268,19 +277,19 @@ label dakotaissorry:
     "Honestly, I won't blame them if they don't actually fall back asleep."
     "I then looked at my husband with a cheeky grin."
     $l_exp = "smug"
-    show richard pjs_down smile at middle_r
+    show richard down smile at middle
     show screen laura
     with dissolve
     pause 0.1
     l "Look at you being the world's greatest father."
-    r pjs_crossed "Hey, it's like you said: tonight's about them."
+    r crossed "Hey, it's like you said: tonight's about them."
     hide richard
     hide screen laura
     with dissolve
     "We looked at each other for a second or so before giving a slow, meaningful kiss."
     "After breaking apart, Richard sighed and rubbed his eyes."
     $l_exp = "neutral"
-    show richard pjs_crossed smile at middle_r
+    show richard crossed smile at middle
     show screen laura
     with dissolve
     pause 0.1
@@ -292,7 +301,7 @@ label dakotaissorry:
     l "...I'm sure you've got SOME energy."
     r concerned "..."
     "He then took a peek towards the staircase."
-    r pjs_down "You realize they might hear us, right?"
+    r down "You realize they might hear us, right?"
     $l_exp = "neutral"
     l "..."
     "I slowly took my hand off and nodded."
@@ -333,8 +342,8 @@ label backstagedrama:
     s "Come in!"
     play sound door_open
     pause 1
-    show sprinkles happy rightdown leftdown at two1_s
-    show madeline down blank at two2_m
+    show sprinkles happy rightdown leftdown at two1
+    show madeline down blank at two2
     with dissolve
     pause 0.1
     s "Ah, Madeline! What can I do for you?"
@@ -378,7 +387,7 @@ label backstagedrama:
     hide madeline with easeoutright
     pause 1
     show sprinkles:
-        ease 1.0 middle_s
+        ease 1.0 middle_sprinkles
     pause 1.5
     s hat evilgrin "Oh, this show will be successful, don't you worry..."
     window hide dissolve
@@ -398,6 +407,8 @@ label arriveatshow:
         timeleft = "3 hours and 9 minutes"
         l_exp = "neutral"
         s_name = "Mr. Sprinkles"
+        clothing = "show"
+        k_hat = True
     call chapterstart
     pause 2
     show screen laura
@@ -415,7 +426,7 @@ label arriveatshow:
     "It shouldn't be hard to do, since a certain child of mine used this time to watch a certain TV show on her tablet."
     play music sprinkles_theme
     scene bg showstage
-    show sprinkles happy cane rightdown at middle_s
+    show sprinkles happy cane rightdown at middle_sprinkles
     hide screen laura
     with dissolve
     pause 0.1
@@ -423,12 +434,13 @@ label arriveatshow:
     m "Not without me, you're not!"
     s huh "Huh? Who said that?"
     m "I did!"
-    show sprinkles at two2_s with easeinleft
+    show sprinkles at two2_sprinkles with easeinleft
     show madeline down excited:
-        size(562, 1125)
-        xalign 0.2 yalign -2.0
-        ease 0.5 yalign -0.1
-        ease 0.25 two1_m
+        zoom 0.75
+        xalign 0.25 ypos 1000
+        ease 0.5 ypos -100
+        ease 0.25 ypos 10
+        ease 0.25 two1
     pause 1.1
     play sound applause
     pause 0.5
@@ -443,10 +455,9 @@ label arriveatshow:
     $l_exp = "smile"
     scene bg fade
     show screen laura
-    show kate happy at middle
+    show kate happy down at middle
     with dissolve
     pause 0.1
-    # Kate is wearing a Mr. Sprinkles top hat and tuxedo
     k "Ehehehe!"
     "That outfit of hers certainly wasn't cheap, but the smile she gave when she first put it on was enough to make it worth it."
     hide kate with dissolve
@@ -461,7 +472,7 @@ label arriveatshow:
     $l_exp = "neutral"
     "{i}\"Meanwhile, smaller Safehouses across town are setting up shop, including Frank's Bar in downtown Atlanta.\"{/i}"
     "{i}\"According to the owner, Frank Morris, the bar is opened up to anyone who needs help, but space in the building is limited.\"{/i}"
-    "{i}\"He also states that to reduce the risk of random intruders who wish to enter and potentially cause harm, all people who enter must say the password, {color=#d00000}\"Martini\"{/color}.\"{/i}"
+    "{i}\"He also states that to reduce the risk of random intruders who wish to enter and potentially cause harm, all people who enter must say the password, \"{color=#d00000}Martini{/color}\".\"{/i}"
     $l_exp = "concerned"
     "Ah, yes. Frank's Bar."
     $l_exp = "smug"
@@ -474,7 +485,7 @@ label arriveatshow:
     s "{i}Wild, Wild Races!{/i}"
     play sound applause
     pause 1.0
-    show kate happy at middle with dissolve
+    show kate happy down at middle with dissolve
     pause 0.1
     $l_exp = "smile"
     k "Kota, that's your favorite game!!"
@@ -485,7 +496,7 @@ label arriveatshow:
     d "I know, Kate."
     k "Ooo! Ooo! Do you think they'll play it on stage tonight?"
     d "It's a 12-hour show, Kate. I'm sure they'll find time."
-    k "That would be AWESOME!!!"
+    k excited "That would be AWESOME!!!"
     d "Heh. Yes, it would."
     $l_exp = "concerned"
     "Dakota certainly has been acting a bit weird the entire way here."
@@ -494,7 +505,7 @@ label arriveatshow:
     r "Alright, here we are!"
     stop music fadeout(3)
     show dakota neutral
-    show kate shocked
+    show kate confused
     $l_exp = "concerned"
     "I honestly hadn't been paying attention our location, but sure enough..."
     scene bg theater_ext with dissolve
@@ -502,12 +513,12 @@ label arriveatshow:
     $l_exp = "smile"
     "...we were here!"
     play music classy_ghouls
-    show kate happy at middle with dissolve
+    show kate happy up at middle with dissolve
     pause 0.1
-    k"YAAAAAAY!!"
+    k "YAAAAAAY!!"
     "Kate clapped with joy as we pulled into the massive parking lot."
     hide kate
-    show richard show_crossed glare at middle_r
+    show richard crossed glare at middle
     with dissolve
     pause 0.1
     r "Well, we may be here, but it's still gonna be a while before we park and get inside..."
@@ -517,17 +528,17 @@ label arriveatshow:
     l "We should be able to get inside before 7 o'clock, right?"
     r concerned "Hopefully."
     show richard:
-        ease 0.5 two1_r
-    show kate shocked at two2 with dissolve
+        ease 0.5 two1
+    show kate mad fidget at two2_short with dissolve
     pause 0.1
     k "I hope we do!"
-    k excited "I don't wanna miss a second of the show!"
+    k excited up "I don't wanna miss a second of the show!"
     $l_exp = "smug"
     "Oh, you innocent child..."
-    r laughing show_down "I know you don't, Kate."
+    r laughing down "I know you don't, Kate."
     r smile "We should be fine."
     r glare "Maybe."
-    r show_crossed"If this guy would just pick up the pace..."
+    r crossed "If this guy would just pick up the pace..."
     hide kate
     show dakota confused at two2
     with dissolve
@@ -557,7 +568,7 @@ label arriveatshow:
     l "I swear, that bi--"
     $l_exp = "mad"
     l "{b}woman{/b} doesn't know when to stop."
-    show kate excited at middle with dissolve
+    show kate happy down at middle with dissolve
     pause 0.1
     k "Ooooooo~! Mommy almost said a bad word~!"
     $l_exp = "smug"
@@ -637,7 +648,7 @@ label meetandgreet:
     "Though there's something to be said about having a sense of normalcy."
     show dakota zorder 2:
         ease 0.5 two1
-    show richard show_crossed glare at two2_r zorder 1 with dissolve
+    show richard crossed glare at two2 zorder 1 with dissolve
     pause 0.1
     r "Don't go crying to us when your battery dies, Dakota. You were warned."
     d mad "..."
@@ -659,8 +670,8 @@ label meetandgreet:
     show dakota:
         ease 0.5 left
     show richard:
-        ease 0.5 right_r
-    show kate happy at middle with dissolve
+        ease 0.5 right
+    show kate excited up at middle_short with dissolve
     pause 0.1
     $l_exp = "surprised"
     k "Come on!! Let's go!!"
@@ -668,7 +679,7 @@ label meetandgreet:
     k "I wanna see Mr. Sprinkles!!"
     $l_exp = "sad"
     l "Kate, not so loud, please."
-    k @ shocked "Sorry."
+    k @ fidget shocked "Sorry."
     k "I just wanna see him!"
     $l_exp = "smug"
     l "I know you do."
@@ -697,7 +708,7 @@ label meetandgreet:
     "I'm sure the people in front are only getting less than a minute to meet him and get autographs, but for kids, that should be enough."
     $l_exp = "concerned"
     "Hopefully."
-    show richard glare show_crossed at middle_r with dissolve
+    show richard glare crossed at middle with dissolve
     pause 0.1
     r "It's kinda weird, don't you think?"
     $l_exp = "surprised"
@@ -728,7 +739,7 @@ label meetandgreet:
     $l_exp = "concerned"
     "I guess with the REDD, you really do need to watch what you do. Even the smallest, seemingly insignificant thing can set them off."
     hide richard
-    show kate excited at middle
+    show kate excited down at middle
     with dissolve
     pause 0.1
     k "Mommy?"
@@ -738,12 +749,12 @@ label meetandgreet:
     $l_exp = "smug"
     l "Are you kidding? He's going to love it!"
     l "I don't see anyone else here wearing such an authentic-looking Mr. Sprinkles outfit, do you?"
-    k "Nope~!"
+    k happy "Nope~!"
     k "Ooo! I wonder if he'll remember me and let me go on stage during the show!"
     $l_exp = "excited"
     l "Well, let's not get ahead of ourselves, Kate."
     l "There are a lot of people here; any one of them has a chance of being picked."
-    k mad"Yeah, but none of them are wearing outfits as good as mine!"
+    k mad "Yeah, but none of them are wearing costumes as good as mine!"
     $l_exp = "smile"
     l "Still. I don't want you to get your hopes up too much, honey. Okay?"
     k alert "Okay, Mommy..."
@@ -767,14 +778,14 @@ label meetandgreet:
     "About a half hour later, as well as Kate rambling on about what she's the most excited about tonight, we finally saw the front of the line ahead of us."
     $l_exp = "smile"
     "And at the front of the line was..."
-    show kate shocked at middle with dissolve
+    show kate shocked fidget at middle with dissolve
     pause 0.1
     k "Mr. Sprinkles!"
     hide kate with dissolve
     pause 0.1
     stop ambience fadeout(3)
     play music sprinkles_theme
-    show sprinkles happy leftdown hat at middle_s with dissolve
+    show sprinkles happy leftdown hat at middle_sprinkles with dissolve
     pause 0.1
     "Sure enough, there he was behind the table talking to a young fan."
     $l_exp = "smug"
@@ -783,30 +794,30 @@ label meetandgreet:
     "I mean, I've been to my fair share of concerts and the like before, but the feeling never goes away."
     "But for people like Kate and Dakota who have never felt the feeling before..."
     hide sprinkles
-    show kate happy at two1
+    show kate happy up at two1
     show dakota small_smile at two2
     with dissolve
     pause 0.1
     k "I can't believe it! He's right there!"
     d "Yeah! And he actually looks happy to be here, too!"
-    k excited "Of course he does! He's awesome like that!"
+    k excited down "Of course he does! He's awesome like that!"
     $l_exp = "excited"
     "...it's just sweet and innocent."
     scene bg arena_hall with dissolve
     pause 0.1
     "Finally, it came the big moment."
-    show sprinkles laugh hat leftdown at middle_s with dissolve
+    show sprinkles laugh hat leftdown at middle_sprinkles with dissolve
     pause 0.1
     s "It was nice to meet you, Mandy! I hope you enjoy the show!"
     s happy rightdown "Next~!"
-    show sprinkles at right_s with easeinleft
-    show kate happy at middle
+    show sprinkles at right_sprinkles with easeinleft
+    show kate happy down at middle_short
     show dakota small_smile at left
     with easeinleft
     pause 0.5
     "He then looked at Kate with awe."
     s huh "My word!"
-    k shocked "..."
+    k concerned fidget "..."
     "Mr. Sprinkles then turned to Dakota."
     s happy "I must say that this is one fine mirror you have here!"
     show kate happy
@@ -817,15 +828,17 @@ label meetandgreet:
     "Taking the hint, Kate tried to mimic his movements."
     s jeer "Hm. A bit delayed, I see."
     "Finally, Kate giggled more and took off her hat."
-    k "I'm not a mirror, Mr. Sprinkles! I'm Kate!"
+    $k_hat = False
+    k up "I'm not a mirror, Mr. Sprinkles! I'm Kate!"
     s laugh rightdown "Oh! Ahahaha!"
     s happy "Well, you certainly had me fooled, Kate!"
     s "And who's this with you?"
-    k excited "This is my sister, Kota!"
+    $k_hat = True
+    k excited fidget "This is my sister, Kota!"
     d small_smile "I-It's {b}Da{/b}kota, actually."
     s jeer "I see. Well, it's still a very nice name."
     d "Th-Thank you."
-    k happy "Mommy, can you take a picture of us with Mr. Sprinkles??"
+    k happy down "Mommy, can you take a picture of us with Mr. Sprinkles??"
     $l_exp = "determined"
     l "Of course!"
     "I then took out my phone as everyone got into position."
@@ -846,8 +859,8 @@ label meetandgreet:
     $quickhide = False
     scene bg arena_hall
     show screen laura
-    show sprinkles happy rightdown leftdown at right_s
-    show kate happy at middle
+    show sprinkles happy rightdown leftdown at right_sprinkles
+    show kate happy down at middle_short
     show dakota small_smile at left
     with dissolve
     pause 0.1
@@ -860,8 +873,8 @@ label meetandgreet:
     show dakota:
         ease 0.5 alpha 0.0
     show sprinkles:
-        ease 0.5 two2_s
-    show richard show_down glare at two1_r with easeinleft
+        ease 0.5 two2_sprinkles
+    show richard down glare at two1 with easeinleft
     pause 0.1
     stop music fadeout(3)
     r "Hold on. Can I ask you something, first?"
@@ -871,7 +884,7 @@ label meetandgreet:
     s laugh "Oh.{fast} Why, certainly, Sir."
     r concerned "I just..."
     "He then lowered his voice a bit as he leaned forward."
-    r show_crossed "...wanna make sure we're gonna be safe."
+    r crossed "...wanna make sure we're gonna be safe."
     r "You know, concerning the {b}other{/b} event going on tonight."
     s hm "..."
     "He sat there for a second before regaining a smile and answering."
@@ -889,7 +902,7 @@ label meetandgreet:
     pause 0.1
     $l_exp = "neutral"
     "After the four of us got out of the line and started heading back towards the main stage, I leaned a bit closer to Richard."
-    show richard show_down concerned at middle_r with dissolve
+    show richard down concerned at middle with dissolve
     pause 0.1
     $l_exp = "mad"
     l "Was that necessary?"
@@ -901,7 +914,7 @@ label meetandgreet:
     l "..."
     hide richard with dissolve
     pause 0.1
-    "Well, the show's about to begin soon."
+    "Well, the show will begin soon."
     $l_exp = "concerned"
     "I suppose we have enough time to look around at the vendors and get some merchandise."
     $l_exp = "smug"
@@ -974,11 +987,15 @@ label showbegins:
     show screen laura
     pause 0.6
     "Well, we're almost there."
-    show kate happy at middle with dissolve
-    show kate:
-        ease 0.5 yalign 0.45
-        ease 0.5 yalign 0.5
-        repeat
+    show kate excited down:
+        middle
+        alpha 0.0
+        parallel:
+            ease 0.5 alpha 1.0
+        parallel:
+            ease 0.25 ypos -20
+            ease 0.25 ypos 0
+            repeat
     pause 0.1
     "Kate was jumping in her seat."
     hide kate
@@ -987,7 +1004,7 @@ label showbegins:
     pause 0.1
     "Dakota was tapping her foot quickly as her hands sat in her lap."
     hide dakota
-    show richard show_down concerned at middle_r
+    show richard down concerned at middle
     with dissolve
     pause 0.1
     "And Richard was still, but was clearly showing signs of nervousness."
@@ -1037,7 +1054,7 @@ label showbegins:
     "...I don't feel as scared as I thought I would've."
     $l_exp = "surprised"
     "That's when I felt Richard grab my hand."
-    show richard show_down concerned at middle_r with dissolve
+    show richard down concerned at middle with dissolve
     pause 0.1
     "He looked at me with a face of worry, and I can't blame him."
     "I looked at my daughters."
@@ -1047,7 +1064,7 @@ label showbegins:
     "Dakota looked like she was breathing very heavily while she stared ahead."
     "It almost looked like she was going to cry."
     hide dakota
-    show kate confused at middle
+    show kate fidget confused at middle
     with dissolve
     pause 0.1
     "Kate, meanwhile, looked a bit confused as to what just happened and why everyone seemed to be upset."
@@ -1076,7 +1093,7 @@ label showbegins:
     pause 1.5
     play sound "audio/se/spotlight.ogg"
     scene bg stage
-    show sprinkles cane hat jeer at middle_s
+    show sprinkles cane hat jeer at middle_sprinkles
     with Dissolve(0.1)
     pause 1
     play music sprinkles_theme
@@ -1100,7 +1117,7 @@ label showbegins:
     pause 0.1
     "We turned around and saw a bright-clothed woman enter the room with a wave."
     play sound applause
-    show madeline down excited at middle_m with dissolve
+    show madeline down excited at middle with dissolve
     pause 0.1
     $l_exp = "smile"
     s "Aha! Hello there, Ms. Madeline!"
@@ -1117,11 +1134,11 @@ label showbegins:
     "Ms. Madeline then made her way towards the stage, giving high-fives to people in the aisles along the way."
     "Finally, she walked onto the stage and stood next to Mr. Sprinkles."
     scene bg stage
-    show sprinkles happy cane rightdown at two2_s
+    show sprinkles happy cane rightdown at two2_sprinkles
     hide screen laura
     with dissolve
     pause 0.1
-    show madeline down excited at two1_m with easeinleft
+    show madeline down excited at two1 with easeinleft
     pause 0.1
     s "Alright, are you ready to have fun?"
     m smile "I sure am!"
@@ -1154,7 +1171,7 @@ label showbegins:
     $l_exp = "sad"
     "As the power came back on, we were all in shock at what we saw:"
     "A small army of REDD in full body armor storming into the room."
-    show richard show_down glare at middle_r with dissolve
+    show richard down glare at middle with dissolve
     pause 0.1
     r "What the hell is going on??"
     l "I-I'm not sure...!"
@@ -1169,18 +1186,18 @@ label showbegins:
     "But my suspicion was met when he swung his stick back and smacked the already-fallen woman right in the face, resulting in a cry of pain!"
     scene bg stage
     hide screen laura
-    show madeline down shocked at middle_m
+    show madeline down shocked at middle
     with dissolve
     pause 0.1
     m "Krag, what are you--??"
     play sound smack
     show madeline:
-        linear 0.1 yalign -0.2
-        linear 0.1 yalign -0.15
+        linear 0.1 ypos 20
+        linear 0.1 ypos 0
     "Another smack in the face."
-    show madeline at two2_m with easeinright
+    show madeline at two2 with easeinright
     pause 0.5
-    show sprinkles rightdown cane evilgrin at two1_s
+    show sprinkles rightdown cane evilgrin at two1
     with Dissolve(1)
     pause 0.5
     "He then stood right over her."
@@ -1191,12 +1208,13 @@ label showbegins:
         pause 1
         ease 0.5 xalign 0.95
     "While still on the ground, she backed up slowly, staring at him with terror in her eyes."
-    "But he just kept walking towards her, that sinister grin still plastered on his face."
-    show madeline:
-        xalign 0.95 yalign -0.15
     show sprinkles:
         ease 2.0 xalign 0.65
-    pause 3
+    "But he just kept walking towards her, that sinister grin still plastered on his face."
+    show madeline:
+        xalign 0.95 ypos 0
+    show sprinkles:
+        xalign 0.65 ypos 0
     m "K-Krag, what are you doing??"
     "He then gave a quiet, yet terrifying chuckle."
     s "There's been a slight change to the schedule, Ms. Madeline."
@@ -1207,7 +1225,9 @@ label showbegins:
     s "...{b}terminate you.{/b}"
     "Then, in one swift motion, he reached up..."
     play sound stab
-    show madeline stabbed
+    show madeline stabbed:
+        linear 0.1 ypos 20
+        linear 0.1 ypos 0
     "...and jammed the stick into her chest!"
     play ambience crowd_screaming
     play sound children_screaming
@@ -1218,16 +1238,16 @@ label showbegins:
     stop sound2
     $l_exp = "sad"
     scene bg livestage
-    show kate shocked at middle
+    show kate shocked fidget at middle
     show screen laura
     with dissolve
     pause 0.1
     k "Mommy, what's happening??"
     l "I don't know, Kate, but we're getting out of here!"
     show kate zorder 2:
-        ease 0.5 left
+        ease 0.5 left_short
     with None
-    show richard show_down rage at middle_r
+    show richard down rage at middle
     show dakota sad at right
     with dissolve
     r "Excellent idea! Come on, girls!"
@@ -1241,18 +1261,18 @@ label showbegins:
     scene bg stage
     hide screen laura
     show sprinkles evilgrin cane rightdown zorder 2:
-        size(675, 1125)
-        xalign 0.65 yalign 0.0
+        zoom 0.75
+        xalign 0.65 ypos 0
     show madeline down stabbed zorder 1:
-        size(562, 1125)
-        xalign 0.95 yalign -0.15
+        zoom 0.75
+        xalign 0.95 ypos 0
     with dissolve
     pause 0.1
     "Still sporting that sinister look, he told her:"
     s "{i}That's your death~!{/i}"
     s laugh hat "Ehehe. Hahaha!"
     show sprinkles:
-        ease 0.5 middle_s
+        ease 0.5 middle_sprinkles
     s "Ahahaha!!! HAHAHAHAHAHAHA!!!!!"
     "His maniacal laugher echoed throughout the room as Madeline's arms slowly dropped to her chest and her head slightly tilted to the side."
     show madeline:
@@ -1301,14 +1321,14 @@ label showbegins:
     "Without hesitation, the REDD shot the man dead."
     "The blood-covered woman and children next to him started screaming and crying as they watched him fall over."
     redd "Anyone else wanna be uncooperative?!"
-    show richard show_crossed concerned at middle_r with dissolve
+    show richard crossed concerned at middle with dissolve
     pause 0.1
     r "..."
     l "..."
     "Can I please wake up from this nightmare now?"
     $renpy.music.set_volume(0.5, delay=3, channel='ambience')
     redd "Let's go!!"
-    show kate shocked at left
+    show kate crying fidget at left_short
     show dakota sad at right
     with dissolve
     pause 0.1
@@ -1322,18 +1342,22 @@ label showbegins:
     $l_exp = "sad"
     "That's when Dakota grabbed onto me."
     d "Please don't leave!"
+    show richard:
+        ease 0.5 ypos 100
     "Richard leaned down and looked her in the eye."
-    r show_down "I don't think we have much of a choice, Dakota."
+    r down "I don't think we have much of a choice, Dakota."
     r "We just need to go along with what they're saying for now. We'll be back before you know it, okay?"
     d "No!!"
     "The tears were starting to come out."
     "Not just from Dakota, but from Richard and myself."
     "He then hugged her tightly for a few seconds before looking her in the eye."
-    r show_crossed "No matter what happens, just know that I love you, Dakota."
+    r crossed "No matter what happens, just know that I love you, Dakota."
     r "Please never forget that."
     r "And that goes for you, too, Kate."
-    r show_down "I love both of you so much!"
+    r down "I love both of you so much!"
     "That's when the REDD came over to us and grabbed Richard."
+    show richard:
+        ease 0.25 ypos 0
     redd "Save the sentiment. Move it!"
     d mad "{b}NO!! LET HIM GO!!!{/b}"
     "With eyes full of tears and rage, Dakota latched on to her father."
@@ -1364,7 +1388,7 @@ label showbegins:
     "The REDD didn't hesitate in yanking Richard away while another REDD approached me to grab me."
     show dakota:
         ease 0.5 two2
-    show kate shocked at two1 with dissolve
+    show kate crying fidget at two1 with dissolve
     pause 0.1
     k "Mommy! Daddy!"
     $l_exp = "sad"
