@@ -106,6 +106,8 @@ label mirrormadness:
     "I suppose he could have just shot me himself by now."
     $l_exp = "mad"
     "But I'm sure he'd be more entertained by watching me fail miserably at the games."
+    scene bg basement_hall with dissolve
+    pause 0.1
     "With no other choice, I, along with the other contestants, made our way out of the room."
     "I was expecting us to be going towards the stage."
     $l_exp = "concerned"
@@ -1177,7 +1179,7 @@ label rightcode:
     window hide dissolve
     pause 1
     scene bg livestage
-    show dakota sad at two1 zorder 2
+    show dakota sad hips at two1 zorder 2
     show kate mad fidget at two2 zorder 1
     with Dissolve(2.0)
     pause 1
@@ -1187,29 +1189,28 @@ label rightcode:
     k "..."
     d "Kate, please don't ignore me."
     k "..."
-    d mad "What do you want from me, Kate?"
+    d mad crossed "What do you want from me, Kate?"
     d "Do you want me to say that you were right?"
     d "That Mom is never coming back?"
     k alert "..."
     d "Huh? Is that want you want??"
     k mad "..."
-    d neutral "..."
-    d "Fine. You were right."
+    d "Fine, then. You were right."
     d "Mom and Dad are both gone and they're never coming back."
     d "It's just us now."
     k alert "..."
-    d sad "We only have each other left Kate."
+    d sad hips "We only have each other left Kate."
     k mad "How do you know Mr. Sprinkles won't take you away from me, too?"
     d "..."
-    d "I guess I don't, but--"
+    d crossed "I guess I don't, but--"
     "Kate then crossed her arms and turned away from her sister."
     k "I hate Mr. Sprinkles."
     k "I hate how he took Mommy and Daddy away."
     k "I hate how you keep lying about how we'll be okay!"
-    show dakota mad
+    show dakota mad side
     "Dakota then grabbed her sister's shoulder and faced her towards her."
-    d "Kate, listen."
-    d "I'm the only person who can feel what you're feeling about what happened to Mom and Dad."
+    d crying "Kate, listen."
+    d "I'm the only person here who can feel what you're feeling about what happened to Mom and Dad."
     d "Believe me, I'm mad that Mr. Sprinkles did all of this, too!"
     d "I want Mom and Dad to come back just as much as you do!"
     d "But they're not going to, Kate! That much I know for sure!"
@@ -1218,7 +1219,7 @@ label rightcode:
     k "..."
     d neutral "..."
     "Kate broke from Dakota's grip and turned back away from her."
-    d sad "..."
+    d bawl "..."
     show dakota:
         ease 0.5 middle
     hide kate with dissolve
@@ -1288,7 +1289,7 @@ label goingback:
     "Which is why I need to do things like drink or talk about politics or dance topless on the karaoke stage."
     "..."
     $l_exp = "shocked"
-    "...Geez, if I'm resorting to my college-era activities, then I {b}have{/b} had too much."
+    "...Geez, I {b}have{/b} had too much."
     $l_exp = "neutral"
     "I gave a soft groan and rested my head on the counter."
     l "I just want this night to be over."

@@ -58,7 +58,7 @@ label meetthefarrs:
     k "When's Daddy gonna be home?"
     show kate:
         ease 0.5 two1
-    show dakota mad at two2 with dissolve
+    show dakota mad side at two2 with dissolve
     pause 0.1
     d "The same time he gets home every night, idiot!"
     show kate mad
@@ -66,15 +66,14 @@ label meetthefarrs:
     l "Dakota!"
     d confused "What?"
     l "You know better!"
-    show dakota mad
+    show dakota mad crossed
     "She simply turned back to the TV with a huff of anger."
     l "Apologize, young lady!"
-    show dakota neutral
     "Dakota turned back to me with an exaggerated angry pout on her face."
     $l_exp = "rage"
     l "{b}Now.{/b}"
     "She groaned and turned to her sister."
-    d mad "I'm {b}{i}sorry{/i}{/b}."
+    d side "I'm {b}{i}sorry{/i}{/b}."
     $l_exp = "neutral"
     "As tempted as I was to get her to say it like she meant it, I didn't have the energy."
     show kate happy
@@ -153,7 +152,7 @@ label meetthefarrs:
     "She then began clapping ecstatically, much to Dakota's dismay."
     show kate:
         ease 0.5 two1
-    show dakota neutral at two2 with dissolve
+    show dakota neutral hips at two2 with dissolve
     pause 0.1
     d "Just don't cry when you don't actually end up on stage."
     show kate concerned fidget
@@ -223,7 +222,7 @@ label meetthefarrs:
     with dissolve
     pause 0.5
     "I found my daughter lying on her bed, phone in hand."
-    show dakota neutral at middle
+    show dakota neutral crossed at middle
     with dissolve
     pause 0.1
     l "Everything okay?"
@@ -306,10 +305,10 @@ label meetthefarrs:
     l "And as long as that's true, nothing will stand in our way."
     show dakota small_smile
     "She gave a small laugh."
-    d "Do you have any idea how lame that sounded?"
+    d side "Do you have any idea how lame that sounded?"
     $l_exp = "determined"
     l "Of course I do. I just wanted to see if you were listening to me."
-    d smirk "Either you're telling the truth, or that was the fastest recovery ever made."
+    d smirk hips "Either you're telling the truth, or that was the fastest recovery ever made."
     l "My lips are sealed."
     d small_smile "Haha..."
     "I gave her a quick kiss on the top of her head before I heard a noise from downstairs."
@@ -351,7 +350,7 @@ label meetthefarrs:
     "I ratted as I walked over and rubbed Kate's back with a chuckle."
     show richard at left
     show kate at middle
-    show dakota determined at right
+    show dakota determined hips at right_short
     with easeinright
     pause 0.1
     d "Yeah, and I'M the one who had to end up finishing it for her!"
@@ -534,7 +533,7 @@ label kragonnews:
     "Before we could get into this more, Dakota came downstairs."
     show richard:
         ease 0.5 two2
-    show dakota neutral at two1 with easeinleft
+    show dakota neutral crossed at two1_short with easeinleft
     pause 0.1
     d "Can I watch TV?"
     $l_exp = "smile"
@@ -629,7 +628,7 @@ label kragonnews:
     r laughing crossed "Ha! Yeah, like my fat self can run an obstacle course!"
     show richard:
         ease 0.5 two1
-    show dakota smirk at two2 with dissolve
+    show dakota smirk crossed at two2_short with dissolve
     pause 0.1
     d "Oh, I would {b}love{/b} to see that!"
     r smile "Over my dead body."
@@ -765,7 +764,7 @@ label kragonnews:
     "Her face was very red and wet."
     show kate:
         ease 0.5 two1
-    show dakota mad at two2 with dissolve
+    show dakota crying side at two2 with dissolve
     pause 0.1
     d "No, I'm not, Kate!! We're all gonna die!!"
     k shocked "We are??"
@@ -781,7 +780,7 @@ label kragonnews:
     show kate zorder 2:
         ease 0.5 left_short
     show dakota zorder 2:
-        ease 0.5 right
+        ease 0.5 right_short
     show richard down concerned at middle zorder 1 with dissolve
     pause 0.1
     r "..."
@@ -999,7 +998,7 @@ label sleeponit:
     $l_exp = "neutral"
     nvl hide
     scene bg dakotaroom
-    show dakota mad at two2
+    show dakota mad side at two2_short
     show richard down concerned at two1
     show screen laura
     with dissolve
@@ -1007,7 +1006,7 @@ label sleeponit:
     d "So there's really a chance we might stay here {b}on purpose{/b}?!"
     $l_exp = "sad"
     l "I know it's tough, baby, but sometimes things can't always go the way we want them to."
-    d "But we're really gonna stay here and {b}DIE{/b}?!"
+    d crossed "But we're really gonna stay here and {b}DIE{/b}?!"
     r crossed "We don't know if we're staying or not, Dakota. We'll talk more about it in the morning."
     d "And what's gonna happen if we {b}do{/b} stay?"
     $l_exp = "neutral"

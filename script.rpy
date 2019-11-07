@@ -50,12 +50,24 @@ define woman = Character("Woman", what_prefix='"', what_suffix='"')
 
 # Characters
 layeredimage dakota:
+    group body:
+        pos (-50,100)
+        attribute crossed:
+            "Characters/Dakota/[clothing]_crossed.png"
+        attribute hips:
+            "Characters/Dakota/[clothing]_hips.png"
+        attribute side:
+            "Characters/Dakota/[clothing]_side.png"
     group head:
-        yalign 0.5
+        pos (-50,100)
+        attribute bawl:
+            "Characters/Dakota/bawl.png"
         attribute confident:
             "Characters/Dakota/confident.png"
         attribute confused:
             "Characters/Dakota/confused.png"
+        attribute crying:
+            "Characters/Dakota/crying.png"
         attribute determined:
             "Characters/Dakota/determined.png"
         attribute mad:
@@ -105,7 +117,7 @@ layeredimage kate:
         attribute shocked:
             "Characters/Kate/shocked.png"
     if k_hat:
-        ypos 200
+        ypos 180
         "Characters/Kate/hat.png"
 
 layeredimage krag:
@@ -224,13 +236,6 @@ image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
 image curtain_overlay = "gui/save_curtain.png"
 image bus_window = "window.png"
-# image sprinklelogo:
-#     "Ringleader Draft.png"
-#     size(360, 475)
-# image pause_bg = "gui/save_bg.jpg"
-# image textbox_bg:
-#     "gui/textbox_bg.png"
-#     yalign 0.99
 image spotlight = "spotlight.png"
 image blood:
     "blood.png"
@@ -881,6 +886,16 @@ screen chapterselect():
                         hovered SetVariable("replay_num", -1)
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
+                if persistent.scenes["ch5_s2"]:
+                    textbutton "Unexpected Events" xalign 0.5:
+                        hovered SetVariable("replay_num", 20)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("deadchild", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
                 null height 10
 
     frame:
@@ -925,9 +940,11 @@ screen chapterselect():
             elif replay_num == 17:
                 text "Laura finds herself on the streets of Atlanta." style "replay_desc" xalign 0.5
             elif replay_num == 18:
-                text "After watching more of Mr. Sprinkles' show, Laura decides to return to the theater." style "replay_desc" xalign 0.5
+                text "After watching more of Mr. Sprinkles's show, Laura decides to return to the theater." style "replay_desc" xalign 0.5
             elif replay_num == 19:
                 text "Laura sneaks her way back into the theater to try and stop Mr. Sprinkles." style "replay_desc" xalign 0.5
+            elif replay_num == 20:
+                text "Things don't go according to Mr. Sprinkles's plan when an unexpected casualty occurs." style "replay_desc" xalign 0.5
     frame:
         xalign 0.13 yalign 0.95
         xpadding 20 ypadding 5
@@ -1262,7 +1279,7 @@ label gameover:
         show screen loadorquit
         with Dissolve(1)
         $renpy.pause(hard=True)
-
+        return
 label after_load:
     $config.allow_skipping = True
     return

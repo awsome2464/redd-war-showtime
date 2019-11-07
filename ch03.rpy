@@ -525,17 +525,17 @@ label gottago:
     with Dissolve(2.0)
     pause 0.5
     window show dissolve
-    show dakota neutral at two1
-    show kate concerned fidget at two2
+    show dakota neutral crossed at two1 zorder 2
+    show kate concerned fidget at two2 zorder 1
     with dissolve
     pause 0.1
     d "She said they'll try and get back here."
     k "When?"
     d confused "How should I know?"
     k mad "I want them to come back {b}now{/b}!"
-    d mad "So do I, Kate, but that's not gonna happen!"
+    d mad side "So do I, Kate, but that's not gonna happen!"
     k alert down "I wanna talk to Mommy and make her."
-    d neutral "You can try, but good luck."
+    d neutral hips "You can try, but good luck."
     "Dakota then handed the phone over to Kate."
     "But just when she tried to use it..."
     show dakota sad
@@ -545,22 +545,24 @@ label gottago:
     k shocked "We can't talk to Mommy or Daddy?"
     d "Nope."
     k mad "But I wanted to talk to them!"
-    d mad "Well, I'm sorry, Kate! There's nothing I can do about it!"
+    d mad crossed "Well, I'm sorry, Kate! There's nothing I can do about it!"
     play music sprinkles_theme
     show dakota sad
     show kate shocked
     s "Okay, my good friends!"
     s "It's time to once again spin the Wacky Dartboard for another fun game~!"
+    show kate:
+        ease 0.5 xalign 0.4
     "Kate then grabbed onto Dakota in fear."
     k crying "K-Kota, I'm scared! I don't want him to play another game!"
-    d "Me neither!"
+    d side "Me neither!"
     "Dakota figured Kate might just assume that all the bad stuff that's happening is fake, although still terrifying."
     "Unfortunately, Dakota knew the truth."
     "This wasn't an act."
     "This wasn't pretend."
     "This was real."
     k concerned fidget "Why would Mr. Sprinkles do this? He's supposed to be nice!"
-    d mad "I don't know, Kate! I wish I did, but I don't!"
+    d crossed "I don't know, Kate! I wish I did, but I don't!"
     "Dakota then hugged her sister tightly, wondering what to do."
     "She didn't want to watch the show."
     "Kate didn't want to watch the show."
@@ -576,7 +578,7 @@ label gottago:
         ease 0.5 middle
     hide kate with dissolve
     pause 0.1
-    d small_smile "E-Excuse me?"
+    d small_smile side "E-Excuse me?"
     "The guard stopped and looked at her with a look of absolute evil."
     $t_name = "Guard"
     t "What?" # Not actually Trosh, but makes more sense than making a new character object.
@@ -587,7 +589,7 @@ label gottago:
     "His glare returned."
     t "Too bad."
     t "She'll have to hold it."
-    d mad "You expect her to hold it for 12 hours?"
+    d mad hips "You expect her to hold it for 12 hours?"
     t "There are scheduled times for restroom breaks, the first being at 9 o'clock."
     d "She can't wait that long!"
     t "She can, and she will!"
@@ -601,7 +603,7 @@ label gottago:
     pause 0.1
     d "Well, I tried."
     k "But I have to go!"
-    d sad "I'm sorry, Kate. I don't know what to tell you besides just wait."
+    d sad crossed "I'm sorry, Kate. I don't know what to tell you besides just wait."
     k "..."
     d "..."
     "With that, the girls accepted their defeat and tried to wait patiently for 9 o'clock."
@@ -929,7 +931,7 @@ label girlsescape:
     "They must be worried sick about Richard and I!"
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
     scene bg livestage
-    show dakota neutral at two1
+    show dakota sad crossed at two1
     show kate shocked down at two2
     hide screen laura
     with dissolve
@@ -937,9 +939,9 @@ label girlsescape:
     k "Kota, I still have to gooooooo!!"
     d "I know, Kate! We'll be there soon. Just hold it for a little longer!"
     k crying "I caaaaaan't!!"
-    d sad "Just try, okay?"
+    d "Just try, okay?"
     t "Alright! If anyone needs to go out, move it!"
-    d small_smile "C'mon, Kate!"
+    d small_smile side "C'mon, Kate!"
     stop music fadeout(3)
     scene bg lobby with dissolve
     pause 0.1
@@ -955,7 +957,7 @@ label girlsescape:
             ease 0.25 ypos -20
             ease 0.25 ypos 0
             repeat
-    show dakota sad at two1 with dissolve
+    show dakota sad hips at two1 with dissolve
     pause 0.1
     k "Nnnnggg...!"
     d "We're almost there, Kate! Try to think about something else!"
@@ -965,7 +967,7 @@ label girlsescape:
     "Dakota could tell Kate wasn't going to be able to contain it much longer."
     "She honestly couldn't tell if the tears going down her sister's face were more from fear or stress."
     play music autumn_changes
-    d "Kate, listen to me."
+    d crossed "Kate, listen to me."
     d "I know you're scared."
     d "I know you're scared about Mom and Dad, about what Mr. Sprinkles is doing, about whether or not you'll wet yourself. I get it, Kate."
     show kate:
@@ -973,10 +975,10 @@ label girlsescape:
     k concerned "..."
     d mad "Believe me, I'm scared, too, Kate."
     d "I don't know why this is happening or if Mom and Dad will come back to us."
-    d small_smile "But I do know that Mom and Dad would want us to be brave right now, even though we're scared."
+    d hips small_smile "But I do know that Mom and Dad would want us to be brave right now, even though we're scared."
     d "We're together right now, and as long as that's true, nothing will get in our way."
     k "..."
-    d smirk "So what do you say we make Mom and Dad proud by being brave?"
+    d crossed smirk "So what do you say we make Mom and Dad proud by being brave?"
     k crying "B-But I'm not brave!"
     d determined "Yes, you are, Kate!"
     show kate shocked
@@ -984,7 +986,7 @@ label girlsescape:
     t "Hey! You goin' in or what?"
     show dakota neutral
     "Dakota then noticed that they were in front of the line for the restrooms."
-    d small_smile "See, Kate? You were able to get here without wetting yourself!"
+    d small_smile side "See, Kate? You were able to get here without wetting yourself!"
     k concerned "!!"
     k happy "I did~!"
     show kate:
@@ -992,7 +994,7 @@ label girlsescape:
         ease 0.25 ypos 0
         repeat
     k shocked "B-But I still have to go!"
-    d smirk "Alright, then get in there!"
+    d smirk hips "Alright, then get in there!"
     k concerned "Can you come in with me?"
     d small_smile "I don't need to go, Kate."
     k "Please?"
@@ -1000,20 +1002,20 @@ label girlsescape:
     d "O-Okay, Kate."
     scene bg restroom with dissolve
     pause 0.5
-    show dakota sad at middle with dissolve
+    show dakota sad side at middle with dissolve
     pause 0.1
     "While Dakota waited for Kate, she looked around at the other girls in the restroom with them."
     "They looked just as scared and lost as she was, though there were a few mothers in there, as well, so at least they had someone with them."
     "Girl" "\"Excuse me...\""
     d confused "Hm?"
     "She then noticed she was blocking the only empty sink."
-    d sad "Oh. Sorry."
+    d sad crossed "Oh. Sorry."
     "Right as she moved out of the way, the stall Kate was in opened up and she rushed right out."
-    show dakota small_smile at two2
+    show dakota at two2
     show kate excited down at two1
     with easeinleft
     pause 0.1
-    d "Feel better?"
+    d small_smile "Feel better?"
     k "Yeah!"
     d smirk "Good to hear."
     stop music fadeout(3)
@@ -1025,7 +1027,7 @@ label girlsescape:
     "The guard gave a small laugh and looked at the lady with a scary smile."
     t "And what exactly do you think you're gonna do if I do?"
     "The other girls in the restroom were either staring uncomfortably or walking away as quickly as they could."
-    d "C-C'mon, Kate. Let's go."
+    d side "C-C'mon, Kate. Let's go."
     k concerned "But I haven't washed my hands."
     d small_smile "You'll be fine."
     "Dakota then took Kate's hand and walked her towards the restroom exit."
@@ -1052,14 +1054,16 @@ label girlsescape:
     play ambience crowd_screaming
     pause 0.5
     d "{b}{i}KATE, RUN!!!{/i}{/b}"
-    scene bg restroom with dissolve
+    hide dakota
+    hide kate
+    with easeoutright
     pause 0.1
     "She wasn't the only one taking that advice; everyone in the restroom seemed to rush right out and got as far from there as they could."
     t "H-Hey!! Get back here!!"
     t "...Shit!"
     scene bg lobby with dissolve
     pause 0.5
-    show dakota sad at two1
+    show dakota sad side at two1
     show kate shocked down at two2
     with dissolve
     pause 0.1
@@ -1077,7 +1081,7 @@ label girlsescape:
     scene bg arena_hall with dissolve
     pause 0.1
     "Kate then got bumped into so hard that she fell down!"
-    show dakota sad at middle with dissolve
+    show dakota sad side at middle with dissolve
     pause 0.1
     d "Kate!"
     "After pulling her sister back up, she held onto her hand and kept running."
@@ -1514,6 +1518,7 @@ label nameislaura:
     hide screen laura
     window hide dissolve
     pause 1
+    stop sound2 fadeout(3)
     stop ambience fadeout(3)
     with Dissolve(2.0)
     pause 4
@@ -1534,7 +1539,7 @@ label kidshiding:
     with Dissolve(2.0)
     window show dissolve
     pause 0.5
-    show dakota sad at two1
+    show dakota sad crossed at two1
     show kate concerned down at two2
     with dissolve
     pause 0.1
@@ -1549,7 +1554,7 @@ label kidshiding:
     show kate shocked fidget
     b "{b}Shhh!!{/b}"
     b "They're gonna hear you and find us!"
-    d "...Sorry."
+    d side "...Sorry."
     "The boy who was a few years older than Dakota then turned back to his younger brothers, who seemed to be around Kate's age."
     "Dakota looked at the other kids hiding in the closet with them."
     "The only light in the room was coming from a window high up along the wall, where street lights barely let anything in, though some light was better than none."
@@ -1560,12 +1565,12 @@ label kidshiding:
     "Kate then leaned against Dakota for comfort."
     k concerned "...I miss Mommy and Daddy."
     d sad "I do, too."
-    d small_smile "But don't worry. They'll come back for us."
+    d small_smile hips "But don't worry. They'll come back for us."
     d "I know they will."
     k alert "No, you don't."
     d sad "..."
     d "Yeah, I know."
-    d small_smile "I'm just trying to make you happy, I guess..."
+    d small_smile side "I'm just trying to make you happy, I guess..."
     k "..."
     d sad "..."
     show dakota neutral
@@ -1582,12 +1587,12 @@ label kidshiding:
     "After a few minutes, Dakota looked and saw Kate's eyes were closed."
     $b_name = "Older Boy"
     b "Wow. She actually fell asleep?"
-    d neutral "Huh?"
+    d confused "Huh?"
     "The older boy was looking at Dakota with a small grin."
     show dakota at middle with easeinleft
     pause 0.1
     b "I just wasn't expecting that. I thought she would've been too scared to sleep."
-    d small_smile "Yeah, I'm shocked, too."
+    d small_smile crossed "Yeah, I'm shocked, too."
     d smirk "Not that I'm complaining."
     "The older boy then gave a light laugh before looking back at his brothers."
     "They seemed to be awake, yet quiet."
@@ -1596,13 +1601,13 @@ label kidshiding:
     d "They're really scared, huh?"
     b "Aren't you?"
     d @ mad "Of course I am."
-    d "But they look so much more scared."
+    d side "But they look so much more scared."
     b "Well, our mom..."
     b "Sh-She was..."
     d "One of the people who lost?"
     b "Yeah..."
     b "She was one of the ones who lost on {i}Sprinkles Says{/i}."
-    d "I'm so sorry!"
+    d crossed "I'm so sorry!"
     b "Thanks..."
     d "D-Do you have a dad?"
     b "In Texas, yeah."
@@ -1613,11 +1618,11 @@ label kidshiding:
     b "What about you?"
     d confused "Huh?"
     b "Are your parents still alive?"
-    d small_smile "Well, I haven't seen them on the stage, so I guess so."
+    d small_smile hips "Well, I haven't seen them on the stage, so I guess so."
     d sad "But we've been back here for a while. Maybe they've been on since and I just haven't realized..."
     b "Ah..."
     "More silence."
-    d small_smile "Heh..."
+    d small_smile crossed "Heh..."
     d "For all I know, she's all I have left."
     "She whispered as she looked down at Kate."
     "It was more of a comment to herself than to the boy."
@@ -1642,7 +1647,7 @@ label kidshiding:
     t "We've been given orders not to hurt any of you kids, and we plan to follow those orders."
     t "But if you decide to pull any sneaky tricks, we will not hesitate to take drastic measures."
     t "So do yourselves a favor and come with us calmly and quietly."
-    show dakota sad at middle with dissolve
+    show dakota sad side at middle with dissolve
     pause 0.1
     d "..."
     play sound slow_footsteps
@@ -1659,7 +1664,7 @@ label kidshiding:
     play sound slow_footsteps
     "The footsteps then got closer."
     pause 2
-    show dakota at two1 with easeinright
+    show dakota at two1_short with easeinright
     show trosh at two2
     with Dissolve(1)
     pause 1
@@ -1682,7 +1687,7 @@ label kidshiding:
     "Dakota continued to stare in fear, unsure how to feel about this."
     t "Say, you know what will make her happy? Seeing her daughters."
     t "I'm sure you'd love that, as well, right?"
-    d "Uh... I..."
+    d crossed "Uh... I..."
     "He then extended his hand towards her."
     t "No tricks. I'll take you back to see her."
     t "She is alive, after all."
@@ -1699,13 +1704,13 @@ label kidshiding:
     d "Kate?"
     k "Mmm..."
     "She lightly moaned while keeping her eyes closed."
-    d small_smile "Kate, we're gonna see Mommy."
+    d small_smile hips "Kate, we're gonna see Mommy."
     "That did the trick."
     show dakota zorder 2:
-        ease 0.5 middle
+        ease 0.5 middle_short
     show trosh zorder 2:
         ease 0.5 right
-    show kate shocked fidget at left with dissolve
+    show kate shocked fidget at left_short with dissolve
     pause 0.1
     k "Mommy??"
     d "Come on..."
@@ -1718,7 +1723,7 @@ label kidshiding:
     t "I'm gonna take these two to see their mother."
     "The other guard nodded with a grin before turning back into the closet."
     hide trosh
-    show dakota confused at middle
+    show dakota confused side at middle
     with dissolve
     pause 0.1
     "Something definitely felt wrong, but it felt like it was too late to back out now."
@@ -1727,26 +1732,26 @@ label kidshiding:
     show kate confused fidget at two1 with dissolve
     pause 0.1
     k "Kota, why isn't anyone else going to see their mommies and daddies?"
-    d confused "That's a good question, Kate."
+    d "That's a good question, Kate."
     d "Hey, Mister?"
     show kate zorder 2:
-        ease 0.5 left
+        ease 0.5 left_short
     show dakota:
-        ease 0.5 middle
+        ease 0.5 middle_short
     show trosh at right with dissolve
     pause 0.1
     t "What?"
-    d "Why are we the only ones who get to see their parents?"
+    d crossed "Why are we the only ones who get to see their parents?"
     t "Heh. Technically, I'm not even supposed to be taking you two to your parents."
     t "But something about your mother tells me she'd be {i}really{/i} happy to see you two, so I thought I'd make an exception."
     d "So? I'm sure all the parents back there want to see their kids right now."
     t "If you're gonna be ungrateful, I can take you right back to the others."
-    show dakota neutral
+    show dakota sad
     k shocked "No!"
     t "That's what I thought."
     show kate concerned:
         ease 0.5 two1
-    show dakota:
+    show dakota side:
         ease 0.5 two2
     hide trosh with dissolve
     pause 0.1
@@ -1963,7 +1968,7 @@ label richarddoesnttakeplace:
     $l_exp = "surprised"
     l "I'll be fine, Richard! I love you!"
     stop music fadeout(3.0)
-    scene bg fade with dissolve
+    scene bg basement_hall with dissolve
     pause 0.1
     "I was then dragged backstage, right by a door that seemed to lead outside."
     "Several other REDD guards were there waiting."
@@ -2022,7 +2027,7 @@ label richarddoesnttakeplace:
     "Something I definitely didn't expect to see."
     l "Oh, my God!!"
     show kate crying fidget at two1
-    show dakota sad at two2
+    show dakota sad side at two2
     with dissolve
     pause 0.1
     k "Mommy!!"
@@ -2074,7 +2079,7 @@ label richarddoesnttakeplace:
     s "Alright, brave contestant! Head to the starting line!"
     "Realizing I don't have much of a choice, I inched my way over."
     show kate concerned concerned fidget at two1
-    show dakota sad at two2
+    show dakota sad side at two2
     with dissolve
     pause 0.1
     $l_exp = "sad"
@@ -2207,7 +2212,7 @@ label richardtakesplace:
     hide richard with dissolve
     pause 0.1
     show kate crying fidget at two1
-    show dakota sad at two2
+    show dakota sad side at two2
     with dissolve
     pause 0.1
     "Kate and Dakota were out there, sitting in chairs with guards behind them!"
@@ -2539,7 +2544,7 @@ label jessicaseye:
     scene bg livestage
     with Dissolve(1.0)
     pause 1.0
-    show dakota sad at two1
+    show dakota sad hips at two1
     show kate alert fidget at two2
     with Dissolve(1.0)
     pause 0.1
@@ -2549,20 +2554,20 @@ label jessicaseye:
     k "I don't have to go."
     d sad "I don't know when the next time we'll be able to go will be, Kate. Come on."
     k mad "I don't have to go."
-    d mad "Kate, come on!"
+    d mad side "Kate, come on!"
     "Dakota then grabbed her sister's arm and tried pulling her out of her seat, a task Kate wasn't making easy to do."
     d "Kate, I'm not gonna tell you again!"
     k down "You're not Mommy! I don't have to listen to you!"
-    d "Mom told me to take care of you while she and Dad were gone, so yes, you do!"
+    d hips "Mom told me to take care of you while she and Dad were gone, so yes, you do!"
     k "But she's not gonna come back, just like Daddy!"
     d sad "That's not true, Kate!"
     k "I'm never gonna see Mommy again! She's gonna go away because of the games, just like Daddy did!!"
-    d "You don't know that, Kate!"
+    d side "You don't know that, Kate!"
     k alert fidget "Yes, I do!"
     "She then curled up in her seat and hid her face."
     d "Kate, look..."
     k mad "Shut up! You hate me, anyway!"
-    d mad "No, I don't!!"
+    d mad crossed "No, I don't!!"
     k "You wished I wasn't born! That means you hate me!!"
     d sad "..."
     "Dakota then sat back down in her own seat, trying to stop herself from crying again."
@@ -2579,10 +2584,10 @@ label jessicaseye:
     stop sound
     $renpy.music.set_volume(1.0, channel="sound")
     play music vast_places
-    d "You're right, Kate. I'm not Mom."
+    d bawl side "You're right, Kate. I'm not Mom."
     d "I can't protect us from what's happening."
     d "It's because of me that we were out there and saw what happened to Dad."
-    d "I'm sorry I can't do what Mom asked me to do."
+    d crossed "I'm sorry I can't do what Mom asked me to do."
     d "I'm sorry that I'm a terrible sister."
     d "And I'm really sorry that I wished you weren't born."
     k alert "..."
@@ -2591,7 +2596,7 @@ label jessicaseye:
     "Part of Dakota believes that Kate will forgive her after a while, but..."
     "...after all the crazy things that happened, who knows how she'll behave once this is all over?"
     "Dakota then just sighed and wiped her eyes."
-    d "I just want to see Mom again..."
+    d side "I just want to see Mom again..."
     d "I wanna hug her and tell her that I love her..."
     "She didn't really know who she was saying it to. She just wanted to get it out there."
     "Maybe if she said it out loud, it would come true. Like a backwards birthday wish."
