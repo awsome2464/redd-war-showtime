@@ -1329,7 +1329,7 @@ label showbegins:
     $renpy.music.set_volume(0.5, delay=3, channel='ambience')
     redd "Let's go!!"
     show kate crying fidget at left_short zorder 1
-    show dakota sad side at right_short zorder 1
+    show dakota bawl side at right_short zorder 1
     with dissolve
     pause 0.1
     k "Mommy, I'm scared!"
@@ -1347,7 +1347,7 @@ label showbegins:
     "Richard leaned down and looked her in the eye."
     r down "I don't think we have much of a choice, Dakota."
     r "We just need to go along with what they're saying for now. We'll be back before you know it, okay?"
-    d bawl "No!!"
+    d "No!!"
     "The tears were starting to come out."
     "Not just from Dakota, but from Richard and myself."
     "He then hugged her tightly for a few seconds before looking her in the eye."

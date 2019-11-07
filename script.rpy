@@ -142,6 +142,12 @@ layeredimage krag:
         attribute worried:
             "Characters/Krag/worried.png"
 
+layeredimage laura:
+    always:
+        "Characters/Laura/[clothing].png"
+    always:
+        "Characters/Laura/[l_exp].png"
+
 layeredimage madeline:
     group full:
         yalign 0.0
@@ -511,8 +517,8 @@ transform two2_sprinkles:
     xalign 0.98
 
 transform sideimage:
-    size(225, 225)
-    xalign 0.0575 yalign 1.0
+    size(250, 250)
+    xalign 0.05 yalign 1.026
     alpha 1.0
     on show:
         alpha 0.0
@@ -520,8 +526,8 @@ transform sideimage:
     on hide:
         ease 0.5 alpha 0.0
 transform sideimagequick:
-    size(225, 225)
-    xalign 0.0575 yalign 1.0
+    size(250, 250)
+    xalign 0.05 yalign 1.026
 
 ## Transitions ####################################################################################################################
 
@@ -609,9 +615,9 @@ screen ctc():
 screen laura():
     zorder 100
     if not quickhide:
-        add "Characters/Laura/[l_exp].png" at sideimage
+        add "laura" at sideimage
     else:
-        add "Characters/Laura/[l_exp].png" at sideimagequick
+        add "laura" at sideimagequick
 screen chaptername():
     vbox:
         xalign 0.5 yalign 0.5

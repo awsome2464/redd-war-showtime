@@ -862,7 +862,7 @@ label kragonnews:
     r rage "Well, when she's older, she'll understand why her meanie-head father didn't take her to see Mr. Sprinkles!"
     r glare crossed "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
     r "If you wanna be stupid enough to stay and get yourself killed, then..."
-    $l_exp = "shocked"
+    $l_exp = "wut"
     l "..."
     r "..."
     r concerned "..."
@@ -875,13 +875,13 @@ label kragonnews:
     l "..."
     hide richard with dissolve
     pause 0.1
+    $l_exp = "crying"
     "I quickly made my way over to him and hugged him tightly, tears flowing from my eyes."
     "He hugged me back. I couldn't see his face, but I could tell by the shaky breathing that he was crying, as well."
-    $l_exp = "sad"
     l "Richard, you are a {b}great{/b} father! And an {b}amazing{/b} husband!"
     l "I can't be mad at you for wanting your family to be safe!"
     "He took another deep breath."
-    $l_exp = "surprised"
+    $l_exp = "sad"
     l "But if we leave and survive the War, only to come back with no money, then how on Earth are we gonna survive after that?"
     l "We need to look at the bigger picture, Richard."
     r "..."
@@ -946,7 +946,7 @@ label sleeponit:
     "He finally sighed and grabbed my hand."
     r down "Fine. I'll sleep on it."
     r concerned "...at least, I'll try to."
-    $l_exp = "excited"
+    $l_exp = "smile"
     "I gave a small, nervous laugh."
     l "I don't think anyone in Atlanta is going to get sleep tonight."
     show richard smile
@@ -1003,7 +1003,7 @@ label sleeponit:
     show screen laura
     with dissolve
     pause 0.1
-    d "So there's really a chance we might stay here {b}on purpose{/b}?!"
+    d "So we really might stay here {b}on purpose{/b}?!"
     $l_exp = "sad"
     l "I know it's tough, baby, but sometimes things can't always go the way we want them to."
     d crossed "But we're really gonna stay here and {b}DIE{/b}?!"
