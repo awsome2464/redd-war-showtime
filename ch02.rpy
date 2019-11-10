@@ -13,7 +13,7 @@ label eveningplans:
     stop music
     call chapterstart
     pause 1
-    scene bg livingroom
+    scene bg livingroom_night
     with Dissolve(2.0)
     pause 0.5
     window show dissolve
@@ -28,7 +28,7 @@ label eveningplans:
     r crossed glare "Yes. A lot, actually."
     "He pointed to the screen."
     "The main headline along the bottom was {i}'MR. SPRINKLES' STAR KRAG DOVASON SPEAKS OUT AGAINST ATLANTA WAR ZONE ANNOUNCEMENT{/i}."
-    $l_exp = "concerned"
+    $l_exp = "surprised"
     "This ought to be good."
     "I sat down and tuned in."
     play music autumn_changes
@@ -43,7 +43,7 @@ label eveningplans:
     a "{i}However, for those who still wish to attend, first of all, thank you! {image=reddsmile.png} And secondly, I have been talking with Reddington, and he has agreed to recognize the theater as an official Government Safehouse.{/i}"
     a "{i}No matter which choice you make, I wish you, as well as everyone else, good luck. The next few days are going to be crazy. {color=#00aced}#REDDWar2030{/color}{/i}"
     $l_exp = "excited"
-    scene bg livingroom
+    scene bg livingroom_night
     show richard crossed glare at middle
     show screen laura
     with dissolve
@@ -55,8 +55,8 @@ label eveningplans:
     l "What's wrong?"
     r concerned "..."
     r "Nothing's 'wrong'..."
-    "I stared at him for a second before giving a smirk and crossing my arms."
     $l_exp = "smug"
+    "I stared at him for a second before giving a smirk and crossing my arms."
     l "You're debating whether or not to stay, aren't you?"
     r @ rage "..."
     r "..."
@@ -98,7 +98,7 @@ label eveningplans:
     stop music fadeout(3.0)
     d hips "You know what? You're right!"
     d "It's not because of Mr. Sprinkles!{w} It's because of me!"
-    $l_exp = "shocked"
+    $l_exp = "concerned"
     r concerned "What are you talking about?"
     d "If Kate told you she wanted to stay, you'd say we could stay!"
     d side "But because {b}I{/b} want to stay, it's wrong!"
@@ -106,7 +106,7 @@ label eveningplans:
     d crying "Yes, it is!!"
     d "I never get what I want! It's always about Kate!"
     d "I wish she was never born so you would actually care about me!!"
-    $l_exp = "sad"
+    $l_exp = "shocked"
     r concerned "..."
     "The atmosphere was bone-chilling."
     "I wanted to scream at her for saying that, but..."
@@ -205,7 +205,7 @@ label dakotaissorry:
     $l_exp = "mad"
     l "You can spare the lecture. She knows what she did wrong."
     l "Isn't that right, Dakota?"
-    d hips "Y-Yes... I'm really sorry, Dad."
+    d crossed "Y-Yes... I'm really sorry, Dad."
     r "Well, I'm not the one you should be apologizing to."
     d "..."
     "More slow footsteps could be heard coming down the stairs."
@@ -269,7 +269,7 @@ label dakotaissorry:
     r "Everyone back to bed; that's an order."
     k "Okay~!"
     d determined hips "Alright."
-    scene bg livingroom
+    scene bg livingroom_night
     hide screen laura
     with dissolve
     pause 0.1
@@ -580,7 +580,7 @@ label arriveatshow:
     "I still couldn't believe that Jessica Tate was here protesting."
     "The arena is a Government Safehouse because of Krag Dovason's willingness to help."
     $l_exp = "mad"
-    "Of course, that would imply that Krag is a nice guy, thus destroying her message."
+    "Of course, that would imply that Krag is a nice guy, thus destroying her narrative."
     $l_exp = "concerned"
     "What exactly is she planning on doing once it's time for the REDD War, anyway?"
     "Does she actually have the courage to go inside the arena for protection?"
@@ -681,21 +681,22 @@ label meetandgreet:
     l "Kate, not so loud, please."
     k @ fidget shocked "Sorry."
     k "I just wanna see him!"
-    $l_exp = "smug"
+    $l_exp = "smile"
     l "I know you do."
     "I then looked over to my other daughter."
+    $l_exp = "smug"
     l "What do you say? Wanna take time away from your phone to see Mr. Sprinkles?"
     d small_smile "..."
-    $l_exp = "excited"
+    $l_exp = "smile"
     "I suppose that answers that."
     r laughing "I guess we better hurry; that line is gonna get long pretty quickly."
     $l_exp = "neutral"
     "Sure enough, the exits to the room were nearly blocked by families trying to get out."
-    $l_exp = "smile"
+    $l_exp = "excited"
     l "Well, we've got about an hour until the session ends; let's get to it!"
     hide screen laura
     pause 1
-    scene bg arena_hall with fade
+    scene bg arena_hall_day with fade
     pause 1
     $l_exp = "neutral"
     show screen laura
@@ -722,7 +723,7 @@ label meetandgreet:
     l "Richard, we're going to watch an alien perform a show for 12 hours while other aliens outside the building cause chaos. Everything about this night is going to be weird."
     r smile "Heh. Fair enough."
     "{color=#d00000}???{/color}" "\"Excuse you!\""
-    $l_exp = "concerned"
+    $l_exp = "surprised"
     show richard concerned
     "We looked forward and saw a middle-aged REDD turned around and glaring at us."
     redd "We are not 'aliens'! This planet is our home, as well! Not just yours!"
@@ -750,7 +751,7 @@ label meetandgreet:
     l "Are you kidding? He's going to love it!"
     l "I don't see anyone else here wearing such an authentic-looking Mr. Sprinkles outfit, do you?"
     k happy "Nope~!"
-    k "Ooo! I wonder if he'll remember me and let me go on stage during the show!"
+    k "Ooo! I bet he'll remember me and let me go on stage during the show!"
     $l_exp = "excited"
     l "Well, let's not get ahead of ourselves, Kate."
     l "There are a lot of people here; any one of them has a chance of being picked."
@@ -770,7 +771,7 @@ label meetandgreet:
     stop music fadeout(5)
     hide screen laura
     pause 1
-    scene bg arena_hall with fade
+    scene bg arena_hall_day with fade
     pause 1
     $l_exp = "neutral"
     show screen laura
@@ -803,7 +804,7 @@ label meetandgreet:
     k excited down "Of course he does! He's awesome like that!"
     $l_exp = "excited"
     "...it's just sweet and innocent."
-    scene bg arena_hall with dissolve
+    scene bg arena_hall_day with dissolve
     pause 0.1
     "Finally, it came the big moment."
     show sprinkles laugh hat leftdown at middle_sprinkles with dissolve
@@ -857,7 +858,7 @@ label meetandgreet:
     l "Perfect."
     k "Yay~!"
     $quickhide = False
-    scene bg arena_hall
+    scene bg arena_hall_day
     show screen laura
     show sprinkles happy rightdown leftdown at right_sprinkles
     show kate happy down at middle_short
@@ -878,7 +879,7 @@ label meetandgreet:
     pause 0.1
     stop music fadeout(3)
     r "Hold on. Can I ask you something, first?"
-    $l_exp = "sad"
+    $l_exp = "surprised"
     "Richard, what the hell are you doing...?"
     s huh "Oh.{w=0.5}{nw}"
     s laugh "Oh.{fast} Why, certainly, Sir."
@@ -898,7 +899,7 @@ label meetandgreet:
     r "No, that's it."
     s "Very well."
     s laugh "Next~!"
-    scene bg arena_hall with dissolve
+    scene bg arena_hall_day with dissolve
     pause 0.1
     $l_exp = "neutral"
     "After the four of us got out of the line and started heading back towards the main stage, I leaned a bit closer to Richard."
@@ -981,7 +982,7 @@ label showbegins:
     window show dissolve
     pause 0.1
     s "Okay, everyone~! The show will begin in exactly 5 minutes!"
-    s "Please use this time to head to your seats so we may start the show with full seats~!"
+    s "Please use this time to head to your seats so we may start the show with a full house~!"
     s "This will truly be a good night of fun; I can't wait to share it with you all!"
     pause 1
     show screen laura
@@ -1110,7 +1111,7 @@ label showbegins:
     s huh "Huh? Who said that?"
     m "I did!"
     "That's when a door at the back of the theater opened up."
-    $l_exp = "concerned"
+    $l_exp = "neutral"
     scene bg livestage
     show screen laura
     with dissolve
@@ -1161,6 +1162,7 @@ label showbegins:
     s "L-Ladies and gentlemen, please refrain from panicking!"
     s "We seem to be having some technical difficulties, but I'm sure we'll be able to work them out quickly!"
     "{color=#d00000}Mr. Sprinkles{/color}" "\"In the meantime, {nw}"
+    $l_exp = "surprised"
     play sound "audio/se/Door Open.ogg"
     stop ambience fadeout(3)
     "Before he could finish that sentence, the doors at the back of the theater slammed open, but the building was too dark to see anything."
@@ -1175,6 +1177,7 @@ label showbegins:
     pause 0.1
     r "What the hell is going on??"
     l "I-I'm not sure...!"
+    play sound smack
     m "{b}Gah!!!{/b}"
     "We turned back to the stage, only to see..."
     show richard concerned
@@ -1183,6 +1186,7 @@ label showbegins:
     "And Mr. Sprinkles had his walking stick in his hand as if it was a baseball bat."
     $l_exp = "sad"
     "Surely it can't be what I think it was..."
+    play sound smack
     "But my suspicion was met when he swung his stick back and smacked the already-fallen woman right in the face, resulting in a cry of pain!"
     scene bg stage
     hide screen laura
@@ -1224,6 +1228,10 @@ label showbegins:
     "Something silver and pointed."
     s "...{b}terminate you.{/b}"
     "Then, in one swift motion, he reached up..."
+    show sprinkles:
+        linear 0.1 ypos -50
+        linear 0.1 ypos 0
+    pause 0.2
     play sound stab
     show madeline stabbed:
         linear 0.1 ypos 20
@@ -1236,7 +1244,7 @@ label showbegins:
     "She grasped at the stick, trying to possibly get it out, but it was to no avail; she couldn't wrap her hands around it."
     "She sounded like she was both gagging on something and gasping for air, struggling to breathe."
     stop sound2
-    $l_exp = "sad"
+    $l_exp = "shocked"
     scene bg livestage
     show kate shocked fidget at middle
     show screen laura
@@ -1285,6 +1293,7 @@ label showbegins:
     show sprinkles hm
     "He then looked towards the back of the room and gave a small nod."
     play sound machine_gun
+    call gunflash
     "Suddenly, a REDD in the back fired his weapon in the air and shouted."
     redd "{b}HEY! THE REDD'S TALKING!!{/b}"
     stop ambience fadeout(5)
@@ -1316,8 +1325,9 @@ label showbegins:
     redd "I said move it!"
     man "Hell no! You're not--"
     play sound machine_gun
+    call gunflash
     play ambience crowd_screaming fadein(1)
-    $l_exp = "surprised"
+    $l_exp = "shocked"
     "Without hesitation, the REDD shot the man dead."
     "The blood-covered woman and children next to him started screaming and crying as they watched him fall over."
     redd "Anyone else wanna be uncooperative?!"
@@ -1333,7 +1343,7 @@ label showbegins:
     with dissolve
     pause 0.1
     k "Mommy, I'm scared!"
-    $l_exp = "shocked"
+    $l_exp = "sad"
     l "I know, Kate. I am, too."
     "I then gave her a big hug and a kiss on the head."
     $l_exp = "excited"
@@ -1369,6 +1379,7 @@ label showbegins:
     r glare "..."
     "I then tried to pry Dakota off him."
     d "NO!!!"
+    $l_exp = "crying"
     l "Dakota, please..."
     "I'm trying to keep my cool here, but there's only so much I can do to stop myself from breaking down right now."
     show dakota:
@@ -1378,7 +1389,6 @@ label showbegins:
     hide kate
     with dissolve
     pause 0.1
-    $l_exp = "surprised"
     l "We'll be okay. Just sit here and keep your sister safe."
     l "Okay?"
     "She still looked furious and horrified."
@@ -1393,8 +1403,7 @@ label showbegins:
     show kate crying fidget at two1 with dissolve
     pause 0.1
     k "Mommy! Daddy!"
-    $l_exp = "sad"
-    l "I love you girls! So much!!"
+    l "I love you girls so much!!"
     scene bg livestage with dissolve
     pause 0.1
     $renpy.music.set_volume(1.0, delay=3, channel='ambience')

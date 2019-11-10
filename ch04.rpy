@@ -8,7 +8,7 @@ label mirrormadness:
         currenttime = "12:32 AM"
         timeleft = "6 hours and 28 minutes"
         nvl = True
-        l_exp = "surprised"
+        l_exp = "crying"
     call chapterstart
     pause 2
     nvl clear
@@ -71,14 +71,14 @@ label mirrormadness:
     pause 0.6
     "In the hour since Richard's death, there have been more."
     "The room is slowly but surely getting emptier as hostages are either going back to their seats or having their bodies tossed who-knows-where."
-    $l_exp = "concerned"
-    "Hell, for all I know, my husband's body is still lying flat in the street."
     $l_exp = "sad"
+    "Hell, for all I know, my husband's body is still lying flat in the street."
     "This is all just insane..."
     "After a while, I took out my phone."
     $l_exp = "surprised"
     "No new messages from Dakota."
     "That didn't stop me from sending another text."
+    $l_exp = "crying"
     lt "I'm sorry Dakota. I'm sorry I couldn't keep your dad safe"
     lt "Please be safe okay? That's all I want"
     stop music fadeout(3.0)
@@ -172,7 +172,6 @@ label mirrormadness:
     "As I looked out the window, I could see REDD out there, smashing store windows, chasing after panicked humans with weapons, and so much more."
     $l_exp = "sad"
     "You'd think they would've ran out of stuff to kill and destroy by now."
-    $l_exp = "surprised"
     "I quickly decided to stop looking out the window and instead look around the vehicle we were in."
     "It was very clean and professional, like it wasn't just a makeshift vehicle made during the War."
     $l_exp = "concerned"
@@ -499,6 +498,8 @@ label goright:
             Before I could turn around, though...
             """
             # show Jangle in reflection
+            nvl hide
+            window hide
             stop music
             play sound hammer
             if persistent.gore:
@@ -520,6 +521,8 @@ label goright:
 
             Greeting me as I did was Jangle facing me with an axe!
             """
+            nvl hide
+            window hide
             stop music
             play sound hammer
             if persistent.gore:
@@ -922,6 +925,7 @@ label citychase:
     man "What's the password?"
     l "Password...?"
     man "The password to get in. What is it?"
+    $l_exp = "shocked"
     "Oh, God... I read what it was earlier..."
     "What was it??{nw}"
     python:
@@ -954,7 +958,7 @@ label wrongcode:
     play sound stab
     pause 2
     "I looked down and saw a blade sticking out of my gut."
-    $l_exp = "sad"
+    $l_exp = "shocked"
     "I then felt my head yanked back as a voice whispered in my ear:"
     $t_name = "REDD 1"
     t "You're it~"
@@ -1002,9 +1006,8 @@ label rightcode:
     $l_exp = "concerned"
     "But what really surprised me was how calm everyone was, even after a random woman just rushed in here."
     "If I didn't know any better, I'd say this was just a normal night at a bar."
-    $l_exp = "excited"
-    "Though given my night so far, any sense of normalcy is good enough for me."
     $l_exp = "smile"
+    "Though given my night so far, any sense of normalcy is good enough for me."
     "I found my way over to the counter area, where I found an empty stool to sit on."
     "Once I sat down, I felt so much pressure, physical and mental, release from my body."
     "I'm safe."
@@ -1038,10 +1041,9 @@ label rightcode:
             "I'm not much of a drinker, but after this night, what have I got to lose?"
             "After I ordered and received my rum, the bartender walked towards another patron."
         "\"I'm fine.\"":
-            $l_exp = "excited"
+            $l_exp = "smug"
             l "Thanks, but I'm fine, really."
             b "Alright, then. But if you change your mind..."
-            $l_exp = "smug"
             l "I got it."
             "He gave a friendly nod and walked towards another patron."
     $l_exp = "neutral"
@@ -1056,9 +1058,10 @@ label rightcode:
     "!!!"
     if gotdrink:
         "I nearly dropped my glass in shock!"
+    $l_exp = "shocked"
     l "MY CHILDREN!!!"
     "Nearly every head in the bar turned towards me."
-    $l_exp = "sad"
+    $l_exp = "crying"
     play sound heartbeat loop
     l "O-Oh my God!!"
     l "I-I was so focused on escaping that I--!!"
@@ -1074,7 +1077,7 @@ label rightcode:
     l "Th-The theater! Downtown!"
     "The bartender got a look of shock on his face. I even saw and heard a few people nearby talking among themselves."
     b "You mean the theater Mr. Sprinkles is killing people at?"
-    $l_exp = "surprised"
+    $l_exp = "shocked"
     l "!!"
     l "Y-Yeah! How did--?"
     b "You kidding? It's all anyone's talking about!"
@@ -1108,6 +1111,7 @@ label rightcode:
     b "So you were really at the show the entire time?"
     l "Y-Yeah..."
     b "Then how the heck did you wind up here?"
+    $l_exp = "sad"
     l "I-I escaped one of the games we were playing a little out of the way from here. {i}Mirror Madness{/i}."
     man "Holy shit!"
     "A man next to me stared at me with wide eyes."
@@ -1162,11 +1166,9 @@ label rightcode:
     else:
         l "Can I have a rum, please?"
     b "Sure."
-    $l_exp = "surprised"
-    "I then took a deep breath and pulled out my phone."
     hide screen laura
     window hide dissolve
-    pause 0.1
+    pause 1
     scene black
     with Dissolve(2.0)
     pause 1
@@ -1297,10 +1299,10 @@ label goingback:
     woman "Yeah, especially the people who are still trapped in the theater."
     woman "I wonder how many parents are left...?"
     man "Well, if Sprinkles really wants the show to last all night, he'll need enough to last 4 more hours."
-    $l_exp = "concerned"
+    $l_exp = "mad"
     l "You sound like you're rooting for the bastard."
     man "I ain't. Just pointing out a fact."
-    $l_exp = "mad"
+    $l_exp = "concerned"
     l "Hm..."
     man "Actually, I wonder what the maniac's up to."
     man "Hey, bartender! Could you turn the TV to Mr. Sprinkles' broadcast?"
@@ -1421,7 +1423,7 @@ label goingback:
     $l_exp = "sad"
     s jeer hat "Well, well..."
     s evilgrin "What a small world we live in~!"
-    $l_exp = "surprised"
+    $l_exp = "shocked"
     show screen laura
     $renpy.music.set_volume(1.0, delay=0.5, channel="music2")
     $renpy.music.set_volume(0.0, delay=0.5, channel="music")
@@ -1438,7 +1440,7 @@ label goingback:
     "Hypocritical, actually."
     $l_exp = "neutral"
     "Unless this is some sort of 'using your methods against you' shtick."
-    $l_exp = "rage"
+    $l_exp = "mad"
     "Still, this is wrong on so many levels."
     $l_exp = "neutral"
     "Well, I guess this whole event is, to be fair..."
@@ -1521,6 +1523,7 @@ label goingback:
     extend evilgrin " then you're the biggest moron on the face of the planet!"
     $l_exp = "sad"
     "He then lit a match and threw it at Craig."
+    $l_exp = "shocked"
     play sound fire_start
     queue sound fire loop
     show fire zorder 3
@@ -1532,6 +1535,7 @@ label goingback:
     "Almost instantly, the room went into chaos as the audience, Craig, and Jessica all screamed in horror while Mr. Sprinkles laughed."
     "Craig flailed around, the camera not being shy from zooming in on his burning body."
     "It then panned to Jessica, who looked just absolutely hurt in every way possible, screaming as loud as she could through her gag, the tears seeming to flow down her eye, all while seemingly trying to reach out and grab her husband."
+    $l_exp = "crying"
     "As I stared at the poor woman, I could feel my own eyes starting to well up."
     "At least when I watched Richard die, it was a quick and painless death."
     "But this... being burned alive..."
@@ -1549,6 +1553,7 @@ label goingback:
     $b_name = "Bartender"
     b "If anyone wants to keep watching the show, do it on your phone."
     "With that, he put the remote back behind the counter and the general chatter commenced."
+    $l_exp = "sad"
     play music ten_past_midnight fadein(1.0)
     play ambience crowd fadein(1.0)
     "I wiped my eyes and slowly shook my head."
@@ -1574,14 +1579,14 @@ label goingback:
     $l_exp = "rage"
     "I then got off my stool and leaned in closer to his big ugly face."
     l "I don't care who she is or what she's done! She's just as human as you and me!"
+    $l_exp = "angry"
     l "And {b}nobody{/b}, not even her, deserves to go through what she's going through!"
     l "We, as a species, are better than that!"
     l "And if you can't see that, if you really think it's funny that another person is being mutilated and tortured, then you are literally no better than a goddamn REDD!"
     stop ambience fadeout(1)
-    $l_exp = "mad"
     "Some collective 'Oooo!'s could be heard."
     "The man just stared at me with what looked like anger and fear."
-    $l_exp = "neutral"
+    $l_exp = "mad"
     "I then backed up and sat back on my stool."
     "When I did, the man got off his stool and walked away."
     play music ten_past_midnight fadein(3.0)

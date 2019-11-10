@@ -32,17 +32,7 @@ label firstgame:
 
     I guess the REDD War truly is unpredictable.
 
-    {clear}
-
-    There were several hundred of us total, so we were divided up into different rooms.
-    
-    They weren't really basing it on anything specific; it was just filling up a room until it got full, then going to the next one.
-
-    Or maybe there are specifics and we just can't see them.
-
-    Then again, the REDD aren't really known for having specific biases.
-
-    If you're a human, you may as well be an ant under their magnifying glass.
+    There were several hundred of us total, yet they didn't hesitate to cram us all in the same room.
 
     Though despite all this, I'm grateful for one thing:
     """
@@ -258,7 +248,7 @@ label firstgame:
 
     And even if we get picked for the game, there's a chance we could still win and survive.
 
-    I mean, really, how lethal could these games really be?
+    I mean, really, how lethal could these games actually be?
 
     And assuming he's telling the truth, we'll stay alive after we win, and that's that.
 
@@ -411,19 +401,18 @@ label firstgame:
     s jeer "As for you, Sir..."
     s evilgrin "Thank you for playing."
     play sound shotgun
-    show white zorder 4
     if persistent.gore:
         show blood zorder 3
-    pause 0.1
-    hide white
+    call gunflash
     play sound2 children_screaming fadein(1)
     pause 1
+    $l_exp = "shocked"
     show screen laura
     pause 0.6
     "Everyone screamed as the man's head seemed to explode out of nowhere!"
     "The camera then panned to a REDD guard pointing a shotgun in the general direction."
     "Meanwhile, the blood-and-gut covered woman covered her mouth in horror as she started bawling."
-    $l_exp = "surprised"
+    $l_exp = "sad"
     "I know she has to be believing that this is her fault."
     "I can't even imagine the amount of guilt going through her head."
     play music sprinkles_theme
@@ -474,7 +463,7 @@ label firstgame:
     "It was a text from Dakota!"
     play music vast_places
     dt "Mom r u ok"
-    $l_exp = "excited"
+    $l_exp = "smile"
     "The fact that I have some sort of contact with my daughter is very relieving."
     "Trying to hold the tears in, I replied while looking around to make sure I was still in the clear."
     lt "I'm okay honey. How are you and Kate?"
@@ -681,6 +670,7 @@ label secondbeating:
     show madeline dead at two1
     with Dissolve(0.25)
     s "...Ms. Madeline~!"
+    $l_exp = "shocked"
     play sound children_screaming
     pause 0.5
     show screen laura
@@ -1047,6 +1037,7 @@ label girlsescape:
     "The woman replied with a rude voice."
     woman "Oh, I'm sorry. Are you offended by that word, you {b}alien{/b}?"
     play sound machine_gun
+    call gunflash
     show dakota sad
     show kate shocked
     pause 0.25
@@ -1071,14 +1062,16 @@ label girlsescape:
     d "Anywhere but here!!"
     "All around them, people were bumping into them, scrambling away from the guards and the stage entrance."
     play sound machine_gun
+    call gunflash
     pause 0.5
     t "Everyone get your asses back here or I {b}will{/b} shoot you!!"
     k crying "K-Kota!!"
     d "Keep running, Kate! We'll be fine!!"
     play sound machine_gun
+    call gunflash
     scene bg lobby with dissolve
     pause 1.0
-    scene bg arena_hall with dissolve
+    scene bg arena_hall_night with dissolve
     pause 0.1
     "Kate then got bumped into so hard that she fell down!"
     show dakota sad side at middle with dissolve
@@ -1093,7 +1086,8 @@ label girlsescape:
     k "Kota, my hat!"
     d "You'll be okay, Kate! Let's move!!"
     play sound machine_gun
-    scene bg arena_hall with dissolve
+    call gunflash
+    scene bg arena_hall_night with dissolve
     window hide dissolve
     pause 1.0
     stop ambience fadeout(3)
@@ -1134,7 +1128,7 @@ label showmustgoon:
     $l_exp = "surprised"
     r "...do you think..."
     "I grabbed his hand tightly."
-    $l_exp = "excited"
+    $l_exp = "smile"
     l "Our girls are smart, especially with Dakota in charge."
     l "They wouldn't get themselves in danger."
     r glare "They're still kids, Laura. And they must be scared out of their minds."
@@ -1186,7 +1180,7 @@ label showmustgoon:
     $l_exp = "neutral"
     "It looked very bright yellow, just like--"
     stop music fadeout(3)
-    $l_exp = "sad"
+    $l_exp = "shocked"
     "..."
     "Oh, my God..."
     "He was holding Kate's hat."
@@ -1278,9 +1272,7 @@ label showmustgoon:
             hide screen laura
             window hide
             play sound machine_gun
-            show white zorder 3
-            pause 0.1
-            hide white
+            call gunflash
             play sound2 crowd_screaming
             if persistent.gore:
                 scene bg blood
@@ -1348,7 +1340,7 @@ label nameislaura:
     "My husband didn't exactly look thrilled with me."
     play music vast_places
     $l_exp = "mad"
-    l "Don't look at me like that."
+    l "Don't give me that look."
     r rage "I know you're scared about the girls and want them to be safe, but that does not mean you can just go picking a fight with the guys with guns!"
     $l_exp = "rage"
     l "So you would have just rather me sit here and do nothing while he talks about potentially hurting your daughters?"
@@ -1392,7 +1384,7 @@ label nameislaura:
     That's when Richard grabbed my hand.
     """
     $nvl = False
-    $l_exp = "sad"
+    $l_exp = "crying"
     show richard concerned crossed
     hide black
     show screen laura
@@ -1403,6 +1395,7 @@ label nameislaura:
     r "I'm just as scared as you are, Laura."
     r "Believe me, I want to go out and find them just as much as you."
     r down "But if we get ourselves killed trying to find them, then what purpose does that serve?"
+    $l_exp = "sad"
     "I wiped my eyes and took a deep breath."
     "I know he's right, but I don't wanna accept it."
     "He just continued to hold my hand as we sat there in silence."
@@ -1714,7 +1707,7 @@ label kidshiding:
     pause 0.1
     k "Mommy??"
     d "Come on..."
-    scene bg arena_hall with dissolve
+    scene bg arena_hall_night with dissolve
     pause 0.1
     "The girls then got up and followed the guard to the doorway."
     show trosh at middle with dissolve
@@ -1802,7 +1795,7 @@ label deadlygame:
     with dissolve
     pause 0.1
     "On cue, Trosh came back in and took more contestants."
-    "Four of them to be exact."
+    "Four of them, to be exact."
     $l_exp = "concerned"
     "It might have been my imagination, but it feels like as he did, he looked at me and gave me a small smirk."
     $l_exp = "neutral"
@@ -1889,11 +1882,13 @@ label deadlygame:
     play sound shotgun
     if persistent.gore:
         show blood2
+    call gunflash
     pause 0.1
     play ambience crowd_screaming
     play sound2 shotgun
     if persistent.gore:
         show blood4
+    call gunflash
     pause 1
     s laugh "Ahaha~!"
     stop ambience fadeout(3.0)
@@ -1920,7 +1915,7 @@ label deadlygame:
     $l_exp = "sad"
     "And stopped directly in front of me."
     t "You.{w} You're coming with me."
-    $l_exp = "surprised"
+    $l_exp = "shocked"
     l "W-What??"
     t "You heard me! Move it!"
     show trosh zorder 2:
@@ -2022,9 +2017,10 @@ label richarddoesnttakeplace:
     pause 0.1
     "When we approached, I noticed a television camera near the entrance with a REDD giving the guards a thumb's up as we approached."
     "There was also a large line that said 'START' written by the entrance."
-    $l_exp = "sad"
+    $l_exp = "surprised"
     "But then, I noticed something by the starting line."
     "Something I definitely didn't expect to see."
+    $l_exp = "shocked"
     l "Oh, my God!!"
     show kate crying fidget at two1
     show dakota sad side at two2
@@ -2048,7 +2044,7 @@ label richarddoesnttakeplace:
     t "I figure it'll give you the motivation you need to compete well."
     t "Or, you know, the added pressure of your children being right here to witness your potential death might fuck you up."
     t "Either way, it's gonna make for some great footage!"
-    l "I swear, if you lay one finger on them...!"
+    l "I swear, if you lay one finger on them--!!"
     t "If I wanted them dead or hurt, I would've done it by now."
     redd "Trosh, we're about to go live."
     t "Excellent."
@@ -2206,7 +2202,7 @@ label richardtakesplace:
     show richard concerned
     "He seemed to show his fear a bit when he got to the starting line and looked to his side."
     "That's when the camera fully panned to show what he was looking at."
-    $l_exp = "sad"
+    $l_exp = "shocked"
     l "Oh, my God!!"
     "I couldn't hold back the horror I felt by what I saw!"
     hide richard with dissolve
@@ -2227,7 +2223,7 @@ label richardtakesplace:
     $l_exp = "concerned"
     "I was the one supposed to be out there, not Richard."
     "So {b}I{/b} was supposed to be the one the girls were watching."
-    $l_exp = "sad"
+    $l_exp = "shocked"
     "But then, how--?"
     s "On your marks...!"
     stop music fadeout(3.0)
@@ -2279,11 +2275,7 @@ label richardtakesplace:
 
     Richard got hit a few times by the latter, which did slow him down a bit, but he was able to recover quickly.
 
-    {nw}
-
     He's certainly using all his strength and stamina to get through this, though I wonder if knowing that his girls are down there watching is messing with his head a bit.
-
-    Knowing the REDD, I can bet that's exactly why they were placed down there to begin with.
     """
     $nvl = False
     nvl hide
@@ -2331,7 +2323,7 @@ label richardtakesplace:
 
     It didn't look fastened down on either end, so any quick and sudden movements might shift it and cause him to fall.
 
-    I shouldn't have expected anything more from the REDD.
+    I shouldn't have expected anything else from the REDD.
 
     Fortunately, since he doesn't have a time limit, he can take his time getting across.
 
@@ -2377,6 +2369,7 @@ label richardtakesplace:
     Whatever you do, finish the game!
     """
     $nvl = False
+    $l_exp = "shocked"
     nvl hide
     window hide
     play sound "audio/se/explosion.ogg"
@@ -2421,7 +2414,7 @@ label richardtakesplace:
     play sound smack
     show richard shocked:
         ease 0.25 yalign -2.0
-    $l_exp = "sad"
+    $l_exp = "shocked"
     r "{b}AAAAHHHHH!!!{/b}"
     l "{b}{i}RICHARD!!!{/i}{/b}"
     "Out of nowhere, the beam under him started falling, with him having no choice but to go down with it!!"
@@ -2430,6 +2423,7 @@ label richardtakesplace:
     pause 0.1
     "Richard's screams could be heard loudly as he plummeted down below, the camera being careful to stay focused on him at all times."
     "All I could do was stare in shock as he fell for what felt like forever, his screams only stopping when..."
+    $l_exp = "crying"
     $quickhide = True
     hide screen laura
     window hide

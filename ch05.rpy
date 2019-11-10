@@ -7,7 +7,7 @@ label backattheater:
     python:
         currenttime = "3:12 AM"
         timeleft = "3 hours and 48 minutes"
-        l_exp = "mad"
+        l_exp = "determined"
     call chapterstart
     pause 2
     play music into_the_haunted_forest
@@ -45,9 +45,10 @@ label backattheater:
     "I sat there and waited for a minute before the vehicle pulled away."
     $l_exp = "surprised"
     "There certainly seemed to be a good amount of people in there..."
+    $l_exp = "sad"
     "I have really got to find a way inside."
     "..."
-    $l_exp = "concerned"
+    $l_exp = "surprised"
     "Wait a minute...! The back door!"
     $l_exp = "determined"
     "I took a deep breath before exiting the pickup and making my way to the back of the theater."
@@ -70,6 +71,7 @@ label backattheater:
     play sound footsteps
     $l_exp = "surprised"
     "That's when I heard footsteps approach the door from the inside!"
+    $l_exp = "sad"
     "Shit! They must've heard me try to open it!"
     "I ducked a bit to the side so I was right against the back corner of the alley."
     play sound door_open
@@ -107,16 +109,17 @@ label backattheater:
     "This might be the oldest and stupidest trick in the book, but I'm low on options."
     $l_exp = "surprised"
     "I looked past his shoulder towards the alley entrance for a quick moment before widening my eyes."
+    $l_exp = "shocked"
     l "{b}OH MY GOD!!{/b}"
     "The guard quickly turned around and pointed his gun at the alley entrance."
-    $l_exp = "determined"
+    $l_exp = "mad"
     "I quickly grabbed a wooden plank and swung it at his head!"
     play sound impact
     "He let out a grunt before collapsing onto the ground."
     $l_exp = "neutral"
     extend " And didn't move."
     "..."
-    $l_exp = "excited"
+    $l_exp = "smug"
     "Well, I guess that's one problem solved."
     $l_exp = "concerned"
     play music into_the_haunted_forest
@@ -125,7 +128,7 @@ label backattheater:
     $l_exp = "surprised"
     "Although, he had to have had a way to get back in, himself, right...?"
     "I approached the REDD and searched around for anything that might be of use."
-    $l_exp = "smug"
+    $l_exp = "excited"
     "After feeling inside his pockets, I found a key!"
     "I approached the back door and was about to unlock it."
     $l_exp = "surprised"
@@ -141,6 +144,7 @@ label backattheater:
     window hide dissolve
     pause 0.5
     scene bg basement_hall
+    show helmet zorder 3
     with Fade(1.0, 1.0, 1.0)
     pause 0.5
     $nvl = True
@@ -243,7 +247,10 @@ label backattheater:
     stop music fadeout(3.0)
     pause 1
     show screen laura
-    scene bg basement_hall with dissolve
+    show helmet zorder 3
+    scene bg basement_hall
+    show helmet zorder 3
+    with dissolve
     pause 0.1
     "He then walked towards the door."
     "I moved out of the way as to not seem like I was doing what I was doing."
@@ -272,7 +279,7 @@ label backattheater:
     $l_exp = "concerned"
     "After flipping on a light switch nearby, I could make a better sense of when the stairs ended."
     "I then walked down."
-    scene bg basement with dissolve
+    show bg basement with dissolve
     pause 0.1
     "It was still dark down here, but I could make a better sense of where I was going."
     $l_exp = "surprised"
@@ -283,7 +290,10 @@ label backattheater:
     "She didn't seem to pay mind to my presence."
     "Her blank stare ahead really made me question if she was actually still alive."
     "Though a quick blink proved otherwise."
+    show helmet:
+        ease 0.5 alpha 0.0
     "I took my helmet off and set in on the ground."
+    hide helmet
     l "Jessica?"
     "Nothing."
     "I slowly approached her and bent down to her level."
@@ -304,11 +314,11 @@ label backattheater:
     l "And I'm really sorry that your husband was dragged into it."
     $l_exp = "surprised"
     "I was actually taken aback a bit when her eye slowly turned towards me."
-    $l_exp = "excited"
+    $l_exp = "smile"
     "But I regained myself and continued."
     l "I watched my husband die tonight, too."
     l "I get it. It sucks."
-    $l_exp = "surprised"
+    $l_exp = "sad"
     l "It makes you feel powerless knowing there's nothing you can do to stop the man you love from going through that."
     "Even though she was looking at me now, she still had that blank look in her face."
     "I couldn't tell how she was feeling or if I was even completely getting through to her at all."
@@ -334,7 +344,7 @@ label backattheater:
     "I'm actually a bit relieved; that shit was heavy."
     $l_exp = "neutral"
     "I then turned the flashlight of my phone on and pointed it towards the other side of the basement."
-    $l_exp = "sad"
+    $l_exp = "shocked"
     "When I did, I almost dropped the phone in fear."
     play music shattered_mind
     scene bg fade with dissolve # CG of body pile
@@ -348,15 +358,13 @@ label backattheater:
     "Was it a way to go {i}\"You did this!\"{/i}?"
     $l_exp = "sad"
     "Either way, just looking along the back wall and seeing the corpses just thrown aside like they were literal garbage is just..."
-    $l_exp = "surprised"
     "..."
     "I guess when you actually see all the casualties thrown together like this, you get a sense of just how crazy this night has been."
-    $l_exp = "sad"
     "All of these people..."
     "They were just innocent parents who wanted to protect their children from the REDD War."
     "They didn't deserve this."
     "Especially not--"
-    $l_exp = "surprised"
+    $l_exp = "shocked"
     stop music fadeout(3.0)
     "!!!"
     "As I looked at the far end of the pile, I saw something."
@@ -374,6 +382,7 @@ label backattheater:
     "The shaky breathing commenced as I tried to hold back the tears."
     "I then got next to him and grabbed onto his hand."
     "It was cold."
+    $l_exp = "crying"
     l "Richard..."
     l "I..."
     "I couldn't hold it back."
@@ -428,7 +437,7 @@ label backattheater:
     The thought of how he would react to that brought a smile across my face.
     """
     $nvl = False
-    $l_exp = "excited"
+    $l_exp = "smile"
     show screen laura
     nvl hide
     with dissolve
@@ -460,14 +469,15 @@ label backattheater:
 
 label deadchild:
     python:
-        currenttime = "3:51 AM"
-        timeleft = "3 hours and 9 minutes"
+        currenttime = "3:43 AM"
+        timeleft = "3 hours and 17 minutes"
         l_exp = "neutral"
     call chapterstart
     pause 2
     play music classy_ghouls
     scene bg basement_hall
-    show jessica at middle
+    show jessica at middle zorder 1
+    show helmet zorder 3
     with Dissolve(2.0)
     show screen laura
     window show dissolve
@@ -483,7 +493,6 @@ label deadchild:
     "Well, at the very least, she was showing some kind of emotion."
     $l_exp = "neutral"
     "The nature of the chair she was in certainly made it a bit easier, though, as she was less likely to fall out as she went up."
-    $l_exp = "concerned"
     "Fortunately, when we got up, we were able to find a small closet that housed a wheelchair."
     "I guess it's for emergencies and/or theater guests who are unable to walk."
     $l_exp = "smug"
@@ -507,7 +516,7 @@ label deadchild:
     "Okay. On to the next step of my improvised plan."
     $l_exp = "surprised"
     "So, how exactly am I gonna stop this show without getting myself killed?"
-    "I can't just go onto the stage. The guards would shoot me down for sure."
+    "I can't just go onto the stage. The guards would stop me for sure."
     $l_exp = "concerned"
     "I guess if I'm gonna do this proper, I'll need to sabotage the show from behind the scenes."
     $l_exp = "smug"
@@ -607,9 +616,10 @@ label deadchild:
     play sound machine_gun
     if persistent.gore:
         show blood2 zorder 3
-    pause 0.1
-    $l_exp = "sad"
+    call gunflash
+    $l_exp = "shocked"
     show sprinkles horror
+    pause 0.1
     play sound2 children_screaming
     play ambience crowd_screaming
     pause 1
@@ -622,8 +632,11 @@ label deadchild:
     s hat "H-Hang tight while we clean it up, ahaha..."
     show sprinkles rightdown hm
     "He then waved his hand in front of his throat, signaling the camera operators to cut the broadcast."
+    stop sound2 fadeout(3)
     stop ambience fadeout(3)
-    scene bg basement_hall with dissolve
+    scene bg basement_hall
+    show helmet zorder 3
+    with dissolve
     pause 0.1
     "I still can't believe that just happened."
     "A lot of adults died here tonight, but never a child."
@@ -660,3 +673,14 @@ label deadchild:
     redd "Whatever, man."
     stop music fadeout(3)
     "The guard then walked back into view and towards the stage while it sounded like Sprinkles was headed further down the hall, possibly towards the dressing room he was in earlier."
+    $l_exp = "surprised"
+    "Wow. Krag really is upset by this."
+    "..."
+    $l_exp = "wut"
+    "A REDD is upset by a child being murdered."
+    "..."
+    $l_exp = "concerned"
+    "Huh."
+    "After all he's done tonight, after all the people he's killed and had killed, {b}this{/b} is what's too far?"
+    "If this were a human, that would be more understandable to an extent, but this is a REDD we're talking about here."
+    "..."

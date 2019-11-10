@@ -241,6 +241,7 @@ image splash = "Good Tales Transparent.png"
 image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
 image curtain_overlay = "gui/save_curtain.png"
+image helmet = "helmet.png"
 image bus_window = "window.png"
 image spotlight = "spotlight.png"
 image blood:
@@ -347,16 +348,19 @@ image bg blood = "#f00000"
 
 # Image Backgrounds
 image bg alley = "BG/alley.jpg"
-image bg arena_hall = "BG/arenahall.jpg"
+image bg arena_hall_day = "BG/arenahall_day.jpg"
+image bg arena_hall_night = "BG/arenahall_night.jpg"
 image bg bar = "BG/bar.jpg"
 image bg basement = "BG/basement.jpg"
 image bg basement_hall = "BG/basementhall.jpg"
 image bg curtain = "BG/sprinklescurtain.jpg"
-image bg dakotaroom = "BG/dakotaroom2.jpg"
+image bg dakotaroom_day = "BG/dakotaroom_day.jpg"
+image bg dakotaroom_night = "BG/dakotaroom_night.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
 image bg janitorcloset = "BG/janitorcloset.jpg"
 image bg livestage = "BG/livestage2.jpg"
-image bg livingroom = "BG/livingroom.jpg"
+image bg livingroom_day = "BG/livingroom_day.jpg"
+image bg livingroom_night = "BG/livingroom_night.jpg"
 image bg lobby = "BG/lobby.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg parkinggarage = "BG/parkinggarage.jpg"
@@ -1272,6 +1276,7 @@ label gameover:
         config.allow_skipping = False
     if not badcredits:
         play music creaky_country_fair
+    pause 0.75
     show screen gameover
     with Dissolve(2)
     if badcredits:
@@ -1288,6 +1293,14 @@ label gameover:
         return
 label after_load:
     $config.allow_skipping = True
+    return
+
+# Shows Flash of Gun/Vibrates Phone
+label gunflash:
+    $renpy.vibrate(0.25)
+    show white zorder 5
+    pause 0.05
+    hide white
     return
 
 # Start of Story
