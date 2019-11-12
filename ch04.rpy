@@ -735,12 +735,7 @@ label stayorgo:
             t "Stop a young woman with no weapons from heading towards a densely-populated area during the REDD War?"
             t "Nah. Let's let nature take its course."
             redd "Understood."
-            window hide dissolve
-            pause 1
-            scene bg fade
-            with Dissolve(2.0)
-            pause 4
-            $renpy.end_replay()
+            call sceneend
             if not persistent.scenes["ch4_s1"]:
                 $persistent.scenelist.append(1)
                 $persistent.scenes["ch4_s1"] = True
@@ -1235,13 +1230,7 @@ label rightcode:
     d "I wish you were here with me!"
     d "I don't want you to be gone!"
     d "I really don't..."
-    window hide dissolve
-    stop music fadeout(3.0)
-    pause 1.5
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch4_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch4_s2"] = True
@@ -1703,14 +1692,7 @@ label goingback:
     $l_exp = "determined"
     "Of course I am."
     play sound "audio/se/truck start.ogg"
-    hide screen laura
-    window hide dissolve
-    stop music fadeout(3.0)
-    pause 1.5
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch4_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch4_s3"] = True

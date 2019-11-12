@@ -109,18 +109,18 @@ screen say(who, what):
                 text who id "who"
 
         text what id "what"
+    if quick_menu:
+        hbox:
+            style_prefix "quick"
 
-    hbox:
-        style_prefix "quick"
+            xalign 0.73
+            yalign 0.975
 
-        xalign 0.73
-        yalign 0.975
-
-        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-        textbutton _("Save") action ShowMenu('save')
-        textbutton _("Load") action ShowMenu('load')
-        textbutton _("Options") action ShowMenu('preferences')
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Save") action ShowMenu('save')
+            textbutton _("Load") action ShowMenu('load')
+            textbutton _("Options") action ShowMenu('preferences')
+            textbutton _("Auto") action Preference("auto-forward", "toggle")
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
@@ -218,6 +218,7 @@ screen choice(items):
     style_prefix "choice"
     add "choice_bg" at choice_dissolve
     vbox at choice_dissolve:
+        xalign 0.5 yalign 0.55
         for i in items:
             if i.chosen:
                 textbutton "{color=c0c0c0}[i.caption]{/color}" action i.action
@@ -761,7 +762,20 @@ screen preferences():
                     if persistent.gore:
                         textbutton "On" action ToggleVariable('persistent.gore', False)
                     else:
-                        textbutton "Off" action ToggleVariable('persistent.gore', True)
+                        textbutton "Off" action ToggleVariable('persistent.gore', True),
+                    null height 10
+                    label "Screen Flashes"
+                    if persistent.flash:
+                        textbutton "On" action ToggleVariable('persistent.flash', False)
+                    else:
+                        textbutton "Off" action ToggleVariable('persistent.flash', True)
+                    if renpy.variant("mobile"):
+                        null height 10
+                        label "Vibrate"
+                        if persistent.vibrate:
+                            textbutton "On" action ToggleVariable('persistent.vibrate', False)
+                        else:
+                            textbutton "Off" action [ToggleVariable('persistent.vibrate', True), Function(vibrate)]
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.

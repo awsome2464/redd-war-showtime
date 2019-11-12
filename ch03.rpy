@@ -112,7 +112,13 @@ label firstgame:
     $l_exp = "neutral"
     "He then exited the room and closed the door behind him."
     "The guards looking over us then got back in position, with one in front of the door and the other 4 in one of the room's corners."
+    "They certainly didn't stop keeping their hands off their guns."
+    $l_exp = "surprised"
+    "These didn't look like your average guns, though; they looked more 'futuristic', for a lack of a better term."
+    "It was unlike anything I had ever seen."
     $l_exp = "sad"
+    "Though they still kill people just as well as a human gun, though."
+    "..."
     "The room was uncomfortably silent."
     "Everyone just looked at each other with terror in their faces."
     "What else could we do?"
@@ -490,14 +496,7 @@ label firstgame:
     "We'll get through this for you."
     $l_exp = "surprised"
     "All I ask is for you to be safe..."
-    hide screen laura
-    window hide dissolve
-    pause 1.0
-    stop music fadeout(3.0)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s1"] = True
@@ -597,16 +596,7 @@ label gottago:
     d "..."
     "With that, the girls accepted their defeat and tried to wait patiently for 9 o'clock."
     "However long it is until then."
-    hide kate
-    hide dakota
-    with dissolve
-    window hide dissolve
-    pause 1.0
-    stop music fadeout(3.0)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s2"] = True
@@ -876,12 +866,7 @@ label secondbeating:
     pause 1
     j "..."
     $s_name = "Mr. Sprinkles"
-    window hide dissolve
-    pause 1.0
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s3"] = True
@@ -1088,13 +1073,7 @@ label girlsescape:
     play sound machine_gun
     call gunflash
     scene bg arena_hall_night with dissolve
-    window hide dissolve
-    pause 1.0
-    stop ambience fadeout(3)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s4"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s4"] = True
@@ -1508,14 +1487,7 @@ label nameislaura:
     "Please let this night end faster."
     "Please..."
     "I don't know how much more of this I can take..."
-    hide screen laura
-    window hide dissolve
-    pause 1
-    stop sound2 fadeout(3)
-    stop ambience fadeout(3)
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s5"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s5"] = True
@@ -1752,13 +1724,7 @@ label kidshiding:
     show dakota small_smile
     "Though the idea of seeing her parents again really made Dakota happy..."
     "The best she could do is hope he's telling the truth about everything."
-    window hide dissolve
-    pause 1
-    stop music fadeout(3)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s6"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s6"] = True
@@ -2508,9 +2474,7 @@ label richardtakesplace:
     pause 0.5
     "I will, Richard."
     "I will."
-    window hide dissolve
-    pause 3
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s7"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s7"] = True
@@ -2679,14 +2643,7 @@ label jessicaseye:
     s "Ahahahaha!!!"
     s happy "Alright, folks. After we get cleaned up, we'll get ready for another game~!"
     s jeer "And I assure you, it's only going to get better from here."
-    window hide dissolve
-    pause 1
-    stop music fadeout(3)
-    stop sound2 fadeout(3)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch3_s8"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s8"] = True

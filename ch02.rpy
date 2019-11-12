@@ -166,8 +166,7 @@ label dakotaissorry:
     $l_exp = "concerned"
     "I guess telling that to an already-horrified 9-year-old wasn't the smartest idea."
     $l_exp = "surprised"
-    l "But..."
-    l "I can't stress enough how much I care about making sure we're all safe."
+    l "But I can't stress enough how much I care about making sure we're all safe."
     d mad "So then why don't we just go to the show tonight?! We were gonna go there, anyway!"
     $l_exp = "neutral"
     l "I know."
@@ -313,14 +312,7 @@ label dakotaissorry:
     "He then reached over to the remote and raised the volume on the still-on TV."
     $l_exp = "smile"
     "We both giggled before he leaned over and kissed my neck."
-    hide screen laura
-    window hide dissolve
-    pause 1.0
-    stop music fadeout(3.0)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch2_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s1"] = True
@@ -390,12 +382,7 @@ label backstagedrama:
         ease 1.0 middle_sprinkles
     pause 1.5
     s hat evilgrin "Oh, this show will be successful, don't you worry..."
-    window hide dissolve
-    pause 1
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch2_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s2"] = True
@@ -578,7 +565,7 @@ label arriveatshow:
     hide kate with dissolve
     pause 0.1
     "I still couldn't believe that Jessica Tate was here protesting."
-    "The arena is a Government Safehouse because of Krag Dovason's willingness to help."
+    "The theater is a Government Safehouse because of Krag Dovason's willingness to help."
     $l_exp = "mad"
     "Of course, that would imply that Krag is a nice guy, thus destroying her narrative."
     $l_exp = "concerned"
@@ -591,14 +578,7 @@ label arriveatshow:
     $l_exp = "smile"
     "I'm here for a fun night with my family."
     "I'm not going to let some lunatic take that from me."
-    hide screen laura
-    window hide dissolve
-    pause 1.0
-    stop music fadeout(3.0)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch2_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s3"] = True
@@ -806,6 +786,7 @@ label meetandgreet:
     "...it's just sweet and innocent."
     scene bg arena_hall_day with dissolve
     pause 0.1
+    $l_exp = "smile"
     "Finally, it came the big moment."
     show sprinkles laugh hat leftdown at middle_sprinkles with dissolve
     pause 0.1
@@ -881,8 +862,8 @@ label meetandgreet:
     r "Hold on. Can I ask you something, first?"
     $l_exp = "surprised"
     "Richard, what the hell are you doing...?"
-    s huh "Oh.{w=0.5}{nw}"
-    s laugh "Oh.{fast} Why, certainly, Sir."
+    s huh "Oh."
+    extend laugh " Why, certainly, Sir."
     r concerned "I just..."
     "He then lowered his voice a bit as he leaned forward."
     r crossed "...wanna make sure we're gonna be safe."
@@ -959,9 +940,7 @@ label meetandgreet:
     scene bg fade
     with dissolve
     "Please, let me be."
-    window hide dissolve
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch2_s4"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s4"] = True
@@ -1062,7 +1041,7 @@ label showbegins:
     hide richard with dissolve
     show dakota sad side at middle with dissolve
     pause 0.1
-    "Dakota looked like she was breathing very heavily while she stared ahead."
+    "Dakota was breathing very heavily while she stared ahead."
     "It almost looked like she was going to cry."
     hide dakota
     show kate fidget confused at middle
@@ -1261,7 +1240,7 @@ label showbegins:
     r "Excellent idea! Come on, girls!"
     "I saw several other people nearby stand up and try to get into the aisle."
     show richard concerned
-    "But they were quickly stopped when several of the armored REDD pulled out guns and pointed it at them, which only added to the audience panic."
+    "But they were quickly stopped when several of the armored REDD pulled out a gun and pointed it at them, which only added to the audience panic."
     redd "Get your asses back in your seats!"
     "Richard and I looked back at each other with worry, realizing that it's probably smarter to listen to him."
     "That's when Mr. Sprinkles leaned in towards Ms. Madeline's face."
@@ -1452,16 +1431,7 @@ label showbegins:
 
     For their sake.
     """
-    nvl hide
-    with dissolve
-    window hide dissolve
-    pause 1.0
-    stop music fadeout(3.0)
-    stop ambience fadeout(3.0)
-    scene bg fade
-    with Dissolve(2.0)
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch2_s5"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s5"] = True

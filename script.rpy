@@ -269,6 +269,7 @@ layeredimage tvscreen:
         alpha 0.05
     always:
         "tvscreen.png"
+image dressingroom_blur = im.Blur("BG/dressingroom.jpg", 1.0)
 
 # Text Images
 image announcetext = ParameterizedText(style='announce')
@@ -357,17 +358,25 @@ image bg curtain = "BG/sprinklescurtain.jpg"
 image bg dakotaroom_day = "BG/dakotaroom_day.jpg"
 image bg dakotaroom_night = "BG/dakotaroom_night.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
+image bg dressingroom_woozy:
+    "BG/dressingroom.jpg"
+    "dressingroom_blur" with dissolve
+    pause 0.5
+    "BG/dressingroom.jpg" with dissolve
+    pause 0.5
+    repeat
 image bg janitorcloset = "BG/janitorcloset.jpg"
 image bg livestage = "BG/livestage2.jpg"
 image bg livingroom_day = "BG/livingroom_day.jpg"
 image bg livingroom_night = "BG/livingroom_night.jpg"
+image bg livingroom_night_blur = im.Blur("BG/livingroom_night.jpg", 2.0)
 image bg lobby = "BG/lobby.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg parkinggarage = "BG/parkinggarage.jpg"
 image bg restroom = "BG/restroom.jpg"
 image bg showstage = "BG/showstage.jpg"
 image bg stage = "BG/stage.jpg"
-image bg storage = "BG/storage.jpeg"
+image bg storage = "BG/storage.jpg"
 image bg street = "BG/street.jpg"
 image bg theater_ext = "BG/theaterexterior.jpg"
 image bg warehouse = "BG/warehouse.jpg"
@@ -398,6 +407,7 @@ define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 # Sound Effects
 define audio.airhorn = "audio/se/airhorn.ogg"
 define audio.applause = "audio/se/applause.ogg"
+define audio.beep = "audio/se/beep.ogg"
 define audio.blood = "audio/se/blood.ogg"
 define audio.buzzer_full = "audio/se/buzzer.ogg"
 define audio.buzzer_short = "<to 0.5>audio/se/buzzer.ogg"
@@ -1120,7 +1130,7 @@ default persistent.scenes = {
  "ch2_s1": False, "ch2_s2": False, "ch2_s3": False, "ch2_s4": False, "ch2_s5": False,
  "ch3_s1": False, "ch3_s2": False, "ch3_s3": False, "ch3_s4": False, "ch3_s5": False, "ch3_s6": False, "ch3_s7": False, "ch3_s8": False, 
  "ch4_s1": False, "ch4_s2": False, "ch4_s3": False,
- "ch5_s1": False, "ch5_s2": False}
+ "ch5_s1": False, "ch5_s2": False, "ch5_s3": False}
 
 # Booleans
 default preferences.fullscreen = False
@@ -1164,6 +1174,7 @@ default scene_percent = 100 * len(persistent.scenelist) / len(persistent.scenes)
 label before_main_menu:
     scene bg fade
     if not persistent.gorewarning:
+        $quick_menu = False
         "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){nw}"
         menu:
             "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
@@ -1173,9 +1184,20 @@ label before_main_menu:
             "No, enable them":
                 $persistent.gore = True
                 "Graphic images enabled."
+        "There are also brief moments of the screen flashing a bright light quickly when weapons are fired. Would you like to disable flashing lights? (This can also be changed later in the options menu){nw}"
+        menu:
+            "There are also brief moments of the screen flashing a bright light quickly when weapons are fired. Would you like to disable flashing lights? (This can also be changed later in the options menu){fast}"
+            "Yes, disable them":
+                $persistent.flash = False
+                "Screen flashes disabled."
+            "No, enable them":
+                $persistent.flash = True
+                "Screen flashes enabled."
+        "Thank you. Enjoy the story."
         window hide dissolve
         pause 2
         $persistent.gorewarning = True
+        $quick_menu = True
     play music title noloop
     if persistent.splash:
         pause 1.0
@@ -1215,6 +1237,15 @@ label before_main_menu:
             linear 1.0 size(336, 337)
     pause 1.0
     return
+
+# Start of Story
+label start:
+    play sound "audio/se/gong.ogg"
+    stop music fadeout(3.0)
+    scene bg fade
+    with Dissolve(1.0)
+    pause 3
+    jump chapter_1
 
 # Shows Chapter Name and Subtitle
 label chaptername:
@@ -1268,6 +1299,30 @@ label chapterstart:
     with dissolve
     return
 
+# End of Scene
+label sceneend:
+    if nvl:
+        $nvl = False
+        nvl hide
+        with dissolve
+    else:
+        hide screen laura
+    window hide dissolve
+    stop music fadeout(3.0)
+    stop sound fadeout(3.0)
+    stop sound2 fadeout(3.0)
+    stop ambience fadeout(3.0)
+    stop ambience2 fadeout(3.0)
+    pause 1
+    if not renpy.showing("bg fade"):
+        scene bg fade
+        with Dissolve(2.0)
+        pause 3
+    else:
+        pause 1
+    $renpy.end_replay()
+    return
+
 # Game Over Screen
 label gameover:
     python:
@@ -1284,6 +1339,9 @@ label gameover:
         hide screen gameover
         with Dissolve(2)
         pause 1
+        scene bg fade
+        with Dissolve(1.0)
+        pause 1
         return
     else:
         pause 1
@@ -1297,24 +1355,15 @@ label after_load:
 
 # Shows Flash of Gun/Vibrates Phone
 label gunflash:
-    $renpy.vibrate(0.25)
-    show white zorder 5
-    pause 0.05
-    hide white
+    if persistent.vibrate:
+        $renpy.vibrate(0.25)
+    if persistent.flash:
+        show white zorder 5
+        pause 0.05
+        hide white
+    else:
+        pause 0.05
     return
-
-# Start of Story
-label start:
-    if persistent.credits:
-        $persistent.credits = False
-        return
-    $quick_menu = False
-    play sound "audio/se/gong.ogg"
-    stop music fadeout(3.0)
-    scene bg fade
-    with Dissolve(1.0)
-    pause 3
-    jump chapter_1
 
 # Credits
 label credits:
@@ -1362,10 +1411,7 @@ label credits:
     scene bg fade
     with Dissolve(3.0)
     pause 1
-    if badcredits:
-        show announcetext "The End?" at truecenter
-    else:
-        show announcetext "The End" at truecenter
+    show announcetext "The End" at truecenter
     with Dissolve(3)
     pause 3
     hide announcetext

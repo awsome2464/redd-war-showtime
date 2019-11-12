@@ -421,7 +421,7 @@ label meetthefarrs:
     r glare "..."
     $l_exp = "surprised"
     "I gave him a small hug and leaned my head on his shoulder."
-    l "We live in a new world, Richard. We just gotta accept it. Work around it. Adapt to it."
+    l "We live in a new world, Richard. We just gotta accept it. Work with it. Adapt to it."
     r concerned "..."
     "He finally sighed."
     r "I don't think I'll ever be able to accept it, Laura."
@@ -443,14 +443,7 @@ label meetthefarrs:
     $l_exp = "smug"
     l "As usual."
     "We then gave each other a quick kiss before putting the rest of the groceries away, sans the ones needed for that night's meal."
-    stop music fadeout(5.0)
-    hide screen laura
-    window hide dissolve
-    pause 0.5
-    scene bg fade
-    with Dissolve(2.0)
-    pause 3.0
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch1_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch1_s1"] = True
@@ -685,37 +678,21 @@ label kragonnews:
     "We were a family of statues."
     ".{w=1}.{w=1}.{w=1}{nw}"
     re "Atlanta, United States."
-    $nvl = True
     stop music
     $renpy.pause(delay=3)
-    nvl clear
-    hide screen laura
-    nvl show dissolve
-    narrate """
-    I just continued to stare forward at the screen, not moving.
-
-    He's obviously kidding.
-
-    He has to be.
-
-    It's just a prank on Atlanta.
-
-    Haha, we get it. Very funny, Reddington.
-
-    ...
-    """
-    $nvl = False
-    window show
-    nvl hide
-    with dissolve
+    "I just continued to stare forward at the screen, not moving."
+    "He's obviously kidding."
+    "He has to be."
+    "It's just a prank on Atlanta."
+    "Haha, we get it. Very funny, Reddington."
+    $l_exp = "sad"
+    "..."
     re "These 5 cities are the official War Zones for tomorrow's REDD War."
     re "Very shortly, official members of the REDD Base will be at these locations to place the proper barriers around the Zones."
     re "Everyone living in these zones will have exactly 24 hours to either evacuate the premises or prepare for the War."
     re "To those whose cities were not chosen for the REDD War, I wish to--"
     "I didn't get to hear the rest of what he said because the next thing I knew, I saw Dakota bolt off her chair and run upstairs, her hands over her mouth, sobs coming out."
-    $l_exp = "sad"
-    show screen laura
-    pause 0.6
+    $l_exp = "shocked"
     l "Dakota!"
     "I ran after her to her room."
     "She tried to slam the door on me, but I was too quick for that."
@@ -726,6 +703,7 @@ label kragonnews:
     d "This can't be happening! It {b}CAN'T!!!{/b}"
     "Her face was stuffed into her pillow, her muffled voice still being loud enough for me to hear quite well."
     "I took a deep breath and sat down on the bed, slowly rubbing her back with comfort."
+    $l_exp = "sad"
     l "Dakota..."
     $nvl = True
     hide screen laura
@@ -857,7 +835,7 @@ label kragonnews:
     l "Besides, do you know how heartbroken Kate would be if she missed this show that she's been looking forward to?"
     r rage "Well, when she's older, she'll understand why her meanie-head father didn't take her to see Mr. Sprinkles!"
     r glare crossed "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
-    r "If you wanna be stupid enough to stay and get yourself killed, then..."
+    r "If you wanna be stupid enough to stay and get yourself killed, then go right ahead!"
     $l_exp = "wut"
     l "..."
     r "..."
@@ -913,15 +891,15 @@ label kragonnews:
             hide screen laura
             window hide dissolve
             pause 0.5
-            scene bg fade
+            scene bg livingroom_night_blur
             with Dissolve(3.0)
             pause 2
+            $renpy.end_replay()
             $badcredits = True
             if not persistent.achievements["toosafe"]:
                 $persistent.achievements["toosafe"] = True
                 $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
                 $persistent.achievelist.append(1)
-            $renpy.end_replay()
             jump gameover
         "\"...we should really sleep on it.\"":
             $renpy.music.set_volume(1.0, delay=1, channel='music')
@@ -1040,7 +1018,7 @@ label sleeponit:
 
     When we finally had our bags packed, we went to bed.
 
-    I'd say 'went to sleep', but that just wasn't really possible given our situation.
+    I'd say 'went to sleep', but that just wasn't really possible, given our situation.
 
     How many people before us went through this exact situation?
 
@@ -1057,10 +1035,7 @@ label sleeponit:
     pause 0.1
     "Well, no matter what happens, tomorrow will be an eventful day."
     "I better get myself mentally prepared for it."
-    stop music fadeout(3.0)
-    window hide dissolve
-    pause 4
-    $renpy.end_replay()
+    call sceneend
     if not persistent.scenes["ch1_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch1_s2"] = True
