@@ -326,8 +326,7 @@ label wentright:
                 nvl hide
                 window hide
                 play sound hammer
-                if persistent.gore:
-                    show blood
+                show blood
                 pause 1.5
                 scene bg fade
                 with Dissolve(2.0)
@@ -354,8 +353,7 @@ label wentright:
                 nvl hide
                 window hide
                 play sound hammer
-                if persistent.gore:
-                    show blood
+                show blood
                 pause 1.5
                 scene bg fade
                 with Dissolve(2.0)
@@ -502,8 +500,7 @@ label goright:
             window hide
             stop music
             play sound hammer
-            if persistent.gore:
-                show blood
+            show blood
             pause 1.5
             scene bg fade
             with Dissolve(2.0)
@@ -525,8 +522,7 @@ label goright:
             window hide
             stop music
             play sound hammer
-            if persistent.gore:
-                show blood
+            show blood
             pause 1.5
             scene bg fade
             with Dissolve(2.0)
@@ -563,8 +559,7 @@ label goleft:
                 window hide
                 stop music
                 play sound hammer
-                if persistent.gore:
-                    show blood
+                show blood
                 pause 1.5
                 scene bg fade
                 with Dissolve(2.0)
@@ -631,8 +626,7 @@ label goingstraight:
             window hide
             stop music
             play sound hammer
-            if persistent.gore:
-                show blood
+            show blood
             pause 1.5
             scene bg fade
             with Dissolve(2.0)
@@ -686,8 +680,7 @@ label stayorgo:
             window hide
             stop music
             play sound hammer
-            if persistent.gore:
-                show blood
+            show blood
             pause 1.5
             scene bg fade
             with Dissolve(2.0)
@@ -947,8 +940,7 @@ label wrongcode:
     l "Wait!! Please!!"
     l "Let me--!!"
     $l_exp = "surprised"
-    if persistent.gore:
-        show blood4
+    show blood4
     stop music
     play sound stab
     pause 2
@@ -963,7 +955,7 @@ label wrongcode:
     hide screen laura
     window hide
     play sound blood
-    if persistent.gore:
+    if persistent.gore == '':
         show blood3
         with None
         scene bg blood
@@ -1340,10 +1332,11 @@ label goingback:
     pause 0.1
     s rightdown happy "And if you've got a good memory, you may remember what comes after our jokes with Ms. Madeline!"
     s hat laugh "Let's give a big round of applause for Jessica~!"
-    show sprinkles at two1 with easeinright
-    show jessica zorder 2:
-        offscreenright
-        ease 1.5 two2
+    show sprinkles at two1 zorder 3 with easeinright
+    show jessica full left_oneeye zorder 2:
+        zoom 0.6
+        xalign 1.75
+        ease 1.5 two2_jessica
     pause 2
     $l_exp = "surprised"
     show screen laura
@@ -1368,6 +1361,7 @@ label goingback:
     "Mr. Sprinkles then walked over to the curtain and gave a small chuckle."
     s laugh "Ladies and gentlemen, let's meet our new special guest!"
     "He then yanked off the curtain, revealing the person inside."
+    show jessica left_terror
     "It was a middle-aged man who was gagged and tied in a fashion similar to Jessica."
     $l_exp = "concerned"
     "Only instead of looking terrified, he looked pissed."
@@ -1439,6 +1433,7 @@ label goingback:
     pause 0.1
     s jeer rightdown "Jessica, do you have any comments to make?"
     $l_exp = "surprised"
+    show jessica screaming
     "She tried her best to speak through her gag, but it was all mumbled nonsense."
     "The screams and cries were pretty easy to understand, though."
     s @ hm "Hm. I guess not."
@@ -1451,6 +1446,7 @@ label goingback:
     pause 1
     hide screen laura
     pause 0.6
+    show jessica left_oneeye
     b "You're a goddamn monster, you know that??"
     b "You're evil! Pure evil!! All you fucking REDD are!!"
     s wut "Sir, with all due respect, can you please watch your language?"
@@ -1461,7 +1457,7 @@ label goingback:
     s hat jeer "Oh, well. I suppose this can be a good thing."
     s evilgrin "It'll make what's to come a lot more enjoyable."
     s laugh "After all, everyone loves to see the bad guy get their comeuppance~!"
-    b "Comeuppance?? What are you talking about?!"
+    b "Bad guy?? Comeuppance?? What are you talking about?!"
     b "I didn't do shit!!"
     s rightdown hm "I beg to differ, Mr. Tate."
     s "Your prejudice towards my species was perfectly demonstrated less than a minute ago."
@@ -1484,9 +1480,17 @@ label goingback:
     "Jingle then began pouring gasoline all over Craig!"
     "She seemed careful as to not spread it around too much to where the whole stage is coated in it, but Craig's flailing didn't seem to be doing her any favors."
     $l_exp = "surprised"
+    show jessica terror:
+        linear 0.1 xalign 0.805
+        block:
+            linear 0.2 xalign 0.795
+            linear 0.2 xalign 0.805
+            repeat
     "As she did, Jessica continued to scream and cry, doing her best to move and jiggle around her chair in an attempt to escape, but it was no use."
     "Finally, Jingle stopped pouring the gas and backed up far to the other side of the stage."
     "Jangle handed Mr. Sprinkles the box of matches and went on to join his twin."
+    show jessica left_oneeye:
+        linear 0.1 two2_jessica
     hide screen laura
     pause 0.6
     s jeer leftdown "I should warn you now that the room might just get a little toasty for everyone in the front row."
@@ -1520,9 +1524,11 @@ label goingback:
     play sound2 children_screaming
     play ambience crowd_screaming
     show sprinkles laugh
+    show jessica left_oneeye
     pause 1
     "Almost instantly, the room went into chaos as the audience, Craig, and Jessica all screamed in horror while Mr. Sprinkles laughed."
     "Craig flailed around, the camera not being shy from zooming in on his burning body."
+    show jessica screaming
     "It then panned to Jessica, who looked just absolutely hurt in every way possible, screaming as loud as she could through her gag, the tears seeming to flow down her eye, all while seemingly trying to reach out and grab her husband."
     $l_exp = "crying"
     "As I stared at the poor woman, I could feel my own eyes starting to well up."

@@ -232,6 +232,7 @@ label dakotaissorry:
     r down smile "Hey, you know what I think would cheer us all up?"
     k confused "What?"
     show richard:
+        middle
         ease 0.5 ypos 100
     "He then bent down to the same level as his daughters."
     r "Going to see Mr. Sprinkles tonight!"
@@ -241,6 +242,7 @@ label dakotaissorry:
     l "Richard...?"
     r laughing "What do you say, girls?"
     show kate happy up:
+        xalign 0.25
         ease 0.25 ypos 80
         ease 0.25 ypos 100
         repeat
@@ -541,7 +543,7 @@ label arriveatshow:
     $l_exp = "rage"
     l "...oh, you have got to be kidding."
     scene bg theater_ext
-    show jessica at middle
+    show jessica stand_up at middle
     hide screen laura
     with dissolve
     pause 0.1

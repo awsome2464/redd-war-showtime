@@ -117,7 +117,7 @@ label firstgame:
     "These didn't look like your average guns, though; they looked more 'futuristic', for a lack of a better term."
     "It was unlike anything I had ever seen."
     $l_exp = "sad"
-    "Though they still kill people just as well as a human gun, though."
+    "Though they still kill people just as well as a human gun, as we've seen."
     "..."
     "The room was uncomfortably silent."
     "Everyone just looked at each other with terror in their faces."
@@ -137,10 +137,10 @@ label firstgame:
     s laugh "...Jessica Tate!"
     hide sprinkles with dissolve
     pause 0.5
-    show jessica:
-        offscreenright
-        ease 1.5 middle
-    # She's strapped to a chair, her arms and legs tied to the chair's arms and legs and her head tied across her forehead so she's looking forward. She's also had her mouth gagged.
+    show jessica chair base:
+        zoom 0.6
+        xalign 1.75
+        ease 1.5 middle_jessica
     pause 2
     $l_exp = "sad"
     show screen laura
@@ -149,8 +149,8 @@ label firstgame:
     "She looked just as terrified as the rest of us, but given her current situation, I'm sure she's even more so."
     hide screen laura
     pause 0.1
-    show jessica zorder 2:
-        ease 0.5 two2
+    show jessica left zorder 2:
+        ease 0.5 two2_jessica
     show sprinkles happy rightdown leftdown at two1 zorder 1 with dissolve
     pause 0.1
     s "I must say it's nice to finally meet you, Mrs. Tate!"
@@ -168,6 +168,7 @@ label firstgame:
     s evilgrin "...you might just have some very bad things happen to you in return."
     stop music fadeout(5)
     s laugh "Here, Jessica. Why don't we show the folks at home what I mean?"
+    show jessica base
     "Jessica then started giving some screams through her gag, and her eyes started darting side to side, almost as if she were trying to shake her head."
     s happy rightdown "Don't worry. I won't be too harsh."
     s evilgrin "...yet."
@@ -186,9 +187,15 @@ label firstgame:
     s evilgrin "...is gonna hurt a lot."
     "He then wound up the bat..."
     play sound smack
+    show jessica screaming:
+        linear 0.1 ypos -10
+        linear 0.1 ypos 0
     "And smacked Jessica right in the face with it!"
     "She cried out in pain, but her gag muffled the noise."
     play sound smack
+    show jessica:
+        linear 0.1 ypos -10
+        linear 0.1 ypos 0
     "He smacked her again, only this time, seemingly harder."
     "His sinister grin never left his face while he did."
     play sound children_screaming fadein(5)
@@ -210,6 +217,7 @@ label firstgame:
     pause 0.6
     show sprinkles hat laugh
     "After a few more swings, Mr. Sprinkles dropped the bat and cackled like a madman."
+    show jessica tears
     "Jessica, on the other hand, had blood all over the bottom of her face and tears pouring out of her eyes."
     play music sprinkles_theme
     s "Don't you worry, dear audience!"
@@ -407,8 +415,7 @@ label firstgame:
     s jeer "As for you, Sir..."
     s evilgrin "Thank you for playing."
     play sound shotgun
-    if persistent.gore:
-        show blood zorder 3
+    show blood zorder 3
     call gunflash
     play sound2 children_screaming fadein(1)
     pause 1
@@ -711,11 +718,12 @@ label secondbeating:
     hide madeline
     s happy "Although I do believe that now it's time to bring back out our special guest of the evening!"
     s "Please welcome Mrs. Jessica Tate back to the stage!"
-    show sprinkles at two1 with easeinright
+    show sprinkles at two1 zorder 2 with easeinright
     pause 0.5
-    show jessica:
-        offscreenright
-        ease 1.5 two2
+    show jessica chair left_tears zorder 1:
+        zoom 0.6
+        xalign 1.75
+        ease 1.5 two2_jessica
     pause 2
     s jeer leftdown "So, Jessica, how are you enjoying the show so far?"
     "She responded with more cries through her gag."
@@ -725,6 +733,7 @@ label secondbeating:
     $l_exp = "sad"
     "This is not gonna be a pretty sight..."
     s jeer rightdown "Thank you, Jingle."
+    show jessica tears
     "Jessica went into full panic mode, squirming around in her chair, trying to break free."
     show sprinkles laugh
     "But Sprinkles just chuckled and seemingly ignored her efforts."
@@ -734,6 +743,12 @@ label secondbeating:
     s jeer "You know, Jessica, I realized that you're going to be in that chair all night."
     s "So, really, there's no need for your legs tonight, correct?"
     $l_exp = "surprised"
+    show jessica:
+        linear 0.1 xalign 0.805
+        block:
+            linear 0.2 xalign 0.795
+            linear 0.2 xalign 0.805
+            repeat
     "Sensing where this was going, Jessica squirmed around even more, but to no avail."
     s evilgrin "Then allow me to get this burden out of your way!"
     "He wound up the hammer."
@@ -750,9 +765,16 @@ label secondbeating:
     pause 0.6
     "Jessica's high-pitched scream through the gag rang through my ears."
     "I then got the courage to open my eyes and look at the screen."
+    $quickhide = True
+    hide screen laura
+    window hide
+    show jessica screaming oneknee at two2_jessica
     show sprinkles laugh rightdown leftdown
     hide black with dissolve
-    pause 0.1
+    pause 1
+    $quickhide = False
+    show screen laura
+    window show dissolve
     "Her jeans were covering her legs, but a dark red puddle was forming on her right knee."
     "Jessica herself was still screaming, eyes tightly closed, tears flowing down, and her hands clenched in tight fists."
     s wut "Hmm. You don't seem very grateful."
@@ -797,14 +819,15 @@ label secondbeating:
     pause 1
     scene bg basement
     with Dissolve(2.0)
-    window show dissolve
-    show jessica at two1 zorder 1 with dissolve
-    pause 0.5
+    show jessica oneknee left_tears at two1_jessica zorder 1 with dissolve
+    pause 1
     play sound footsteps
-    pause 6
+    show jessica right_tears with dissolve
+    pause 5.5
     show sprinkles evilgrin cane hat at two2_sprinkles zorder 2
     with Dissolve(1.0)
     pause 0.5
+    window show dissolve
     play music into_the_haunted_forest
     $s_name = "Krag"
     s "Hello, Mrs. Tate."
@@ -864,7 +887,7 @@ label secondbeating:
     hide sprinkles
     with Dissolve(1.0)
     pause 1
-    j "..."
+    j left_tears "..."
     $s_name = "Mr. Sprinkles"
     call sceneend
     if not persistent.scenes["ch3_s3"]:
@@ -1253,7 +1276,7 @@ label showmustgoon:
             play sound machine_gun
             call gunflash
             play sound2 crowd_screaming
-            if persistent.gore:
+            if persistent.gore == '':
                 scene bg blood
                 with Dissolve(2.0)
             else:
@@ -1458,17 +1481,14 @@ label nameislaura:
     play sound blood
     pause 0.1
     play sound2 children_screaming
-    if persistent.gore:
-        show blood
-        pause 0.25
-        show blood2
-        pause 0.25
-        show blood3
-        pause 0.1
-        show blood4
-        pause 1
-    else:
-        pause 1.6
+    show blood
+    pause 0.25
+    show blood2
+    pause 0.25
+    show blood3
+    pause 0.1
+    show blood4
+    pause 1
     show screen laura
     window show dissolve
     pause 0.1
@@ -1846,14 +1866,12 @@ label deadlygame:
     s wut "What a shame."
     s evilgrin hat "Well, thank you for playing~!"
     play sound shotgun
-    if persistent.gore:
-        show blood2
+    show blood2
     call gunflash
     pause 0.1
     play ambience crowd_screaming
     play sound2 shotgun
-    if persistent.gore:
-        show blood4
+    show blood4
     call gunflash
     pause 1
     s laugh "Ahaha~!"
@@ -2067,13 +2085,12 @@ label richarddoesnttakeplace:
     $l_exp = "mad"
     "I run around the first corner."
     stop music
-    if persistent.gore:
-        show blood
+    show blood
     play sound stab
     $l_exp = "surprised"
     pause 1
     "And straight into a sharp pole."
-    if persistent.gore:
+    if persistent.gore == '':
         show red zorder 2:
             alpha 0.0
             ease 3.0 alpha 1.0
@@ -2399,8 +2416,7 @@ label richardtakesplace:
         xalign 0.5 yalign 1.5
         linear 0.15 yalign -0.25
     pause 0.15
-    if persistent.gore:
-        show blood3
+    show blood3
     play sound impact
     $renpy.pause(delay=3)
     window show
@@ -2572,10 +2588,11 @@ label jessicaseye:
     s laugh hat "Fortunately, everything is proceeding as planned, which is good for everyone!"
     s @ evilgrin "Well, maybe not {b}everyone{/b}...~"
     s "Which segways nicely back to our guest, Mrs. Jessica Tate!"
-    show sprinkles at two1 zorder 2 with easeinright
-    show jessica zorder 2:
-        offscreenright
-        ease 1.5 two2
+    show sprinkles at two1 zorder 3 with easeinright
+    show jessica bothknees left_tears zorder 2:
+        zoom 0.6
+        xalign 1.75
+        ease 1.5 two2_jessica
     pause 1.6
     play music sprinkles_spooky
     s happy rightdown "Welcome back to the stage, Jessica!"
@@ -2584,7 +2601,7 @@ label jessicaseye:
     s laugh "Great to hear~!"
     play sound snap
     pause 1.0
-    show jingle zorder 3:
+    show jingle zorder 4:
         offscreenleft
         yalign 0.5
         ease 0.5 xalign 0.1
@@ -2592,7 +2609,7 @@ label jessicaseye:
     hide jingle with easeoutleft
     pause 0.1
     s happy leftdown "Now, Jessica, do you know what this is in my hand?"
-    j "..."
+    j tears "..."
     s laugh "That's right: a power drill!"
     play sound snap
     pause 1.0
@@ -2617,24 +2634,25 @@ label jessicaseye:
     $renpy.music.set_volume(1.0, delay=0.5, channel="ambience")
     play sound blood loop
     play sound2 children_screaming
-    if persistent.gore:
+    if persistent.gore == '':
+        pass
         #Show CG of drill in eye
-        show blood3 zorder 3
-        pause 2
-        show blood4 zorder 3
-        pause 0.25
-        show blood zorder 3
-        pause 1.5
-        show blood2 zorder 3
-        pause 2.25
     else:
-        pause 6
+        pass
+    show blood3 zorder 3
+    pause 2
+    show blood4 zorder 3
+    pause 0.25
+    show blood zorder 3
+    pause 1.5
+    show blood2 zorder 3
+    pause 2.25
     stop ambience
     stop sound
     $renpy.music.set_volume(1.0, delay=1.0, channel="music")
     pause 0.5
     show sprinkles leftdown hat laugh at two1 zorder 2
-    show jessica at two2 zorder 2
+    show jessica bothknees blank at two2_jessica zorder 2
     show jangle zorder 1:
         xalign 0.9 yalign 0.5
     with dissolve

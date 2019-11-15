@@ -48,7 +48,9 @@ define woman = Character("Woman", what_prefix='"', what_suffix='"')
 
 ## Images #######################################################################################################################
 
-# Characters
+## Characters
+
+# Dakota
 layeredimage dakota:
     group body:
         pos (-50,100)
@@ -81,14 +83,77 @@ layeredimage dakota:
         attribute smirk:
             "Characters/Dakota/smirk.png"
 
+# Jangle
 image jangle = Placeholder("boy")
 
-image jessica:
-    ypos 500
-    Placeholder("girl")
+# Jessica
+image jessica_base:
+    "Characters/Jessica/torture_base_r.png"
+    pause 0.5
+    "Characters/Jessica/torture_base_l.png"
+    pause 0.5
+    repeat
+image jessica_tears:
+    "Characters/Jessica/torture_tears_r.png"
+    pause 0.5
+    "Characters/Jessica/torture_tears_l.png"
+    pause 0.5
+    repeat
+image jessica_terror:
+    "Characters/Jessica/torture_terror[persistent.gore]_r.png"
+    pause 0.5
+    "Characters/Jessica/torture_terror[persistent.gore]_l.png"
+    pause 0.5
+    repeat
+layeredimage jessica:
+    group full:
+        attribute stand_hip:
+            zoom 0.9
+            ypos 100
+            "Characters/Jessica/standing_hip.png"
+        attribute stand_up:
+            zoom 0.9
+            ypos 100
+            "Characters/Jessica/standing_up.png"
+        attribute wheelchair:
+            "Characters/Jessica/wheelchair[persistent.gore].png"
+    group chair:
+        attribute bothknees:
+            "Characters/Jessica/chair_bothknees.png"
+        attribute full:
+            "Characters/Jessica/chair_full[persistent.gore].png"
+        attribute oneknee:
+            "Characters/Jessica/chair_oneknee.png"
+        attribute chair:
+            "Characters/Jessica/chair.png"
+    group face:
+        attribute base:
+            "jessica_base"
+        attribute blank:
+            "Characters/Jessica/torture_blank[persistent.gore].png"
+        attribute left:
+            "Characters/Jessica/torture_base_l.png"
+        attribute left_oneeye:
+            "Characters/Jessica/torture_oneeye[persistent.gore]_l.png"
+        attribute left_tears:
+            "Characters/Jessica/torture_tears_l.png"
+        attribute left_terror:
+            "Characters/Jessica/torture_terror[persistent.gore]_l.png"
+        attribute terror:
+            "jessica_terror"
+        attribute right:
+            "Characters/Jessica/torture_base_r.png"
+        attribute right_tears:
+            "Characters/Jessica/torture_tears_r.png"
+        attribute screaming:
+            "Characters/Jessica/torture_screaming.png"
+        attribute tears:
+            "jessica_tears"
 
+# Jingle
 image jingle = Placeholder("girl")
 
+# Kate
 layeredimage kate:
     group body:
         ypos 180
@@ -120,6 +185,7 @@ layeredimage kate:
         ypos 180
         "Characters/Kate/hat.png"
 
+# Krag
 layeredimage krag:
     group body:
         yalign -0.09
@@ -142,12 +208,14 @@ layeredimage krag:
         attribute worried:
             "Characters/Krag/worried.png"
 
+# Laura
 layeredimage laura:
     always:
         "Characters/Laura/[clothing].png"
     always:
         "Characters/Laura/[l_exp].png"
 
+# Madeline
 layeredimage madeline:
     group full:
         yalign 0.0
@@ -174,6 +242,7 @@ layeredimage madeline:
         attribute stabbed:
             "Characters/Madeline/Stabbed.png"
 
+# Richard
 layeredimage richard:
     group body:
         yalign 0.0
@@ -196,6 +265,7 @@ layeredimage richard:
         attribute smile:
             "Characters/Richard/smile.png"
 
+# Mr. Sprinkles
 layeredimage sprinkles:
     group leftarm:
         yalign 0.0
@@ -228,7 +298,9 @@ layeredimage sprinkles:
         attribute hat:
             "Characters/Sprinkles/Hand on hat.png"
 
+# Trosh
 image trosh = Placeholder("boy")
+
 
 # Main Images
 image black = "#000000"
@@ -244,21 +316,22 @@ image curtain_overlay = "gui/save_curtain.png"
 image helmet = "helmet.png"
 image bus_window = "window.png"
 image spotlight = "spotlight.png"
+image blood_base = "blood[persistent.gore].png"
 image blood:
-    "blood.png"
+    "blood_base"
     alpha 0.75
 image blood2:
-    "blood.png"
+    "blood_base"
     xzoom -1.0
     xpos 1
     alpha 0.5
 image blood3:
-    "blood.png"
+    "blood_base"
     yzoom -1.0
     xpos 500
     alpha 0.95
 image blood4:
-    "blood.png"
+    "blood_base"
     xzoom -1.0 yzoom -1.0
     xpos 1000
     alpha 0.25
@@ -358,6 +431,7 @@ image bg curtain = "BG/sprinklescurtain.jpg"
 image bg dakotaroom_day = "BG/dakotaroom_day.jpg"
 image bg dakotaroom_night = "BG/dakotaroom_night.jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
+image bg dressingroom_blur = im.Blur("BG/dressingroom.jpg", 2.0)
 image bg dressingroom_woozy:
     "BG/dressingroom.jpg"
     "dressingroom_blur" with dissolve
@@ -368,6 +442,7 @@ image bg dressingroom_woozy:
 image bg janitorcloset = "BG/janitorcloset.jpg"
 image bg livestage = "BG/livestage2.jpg"
 image bg livingroom_day = "BG/livingroom_day.jpg"
+image bg livingroom_day_blur = im.Blur("BG/livingroom_day.jpg", 2.0)
 image bg livingroom_night = "BG/livingroom_night.jpg"
 image bg livingroom_night_blur = im.Blur("BG/livingroom_night.jpg", 2.0)
 image bg lobby = "BG/lobby.jpg"
@@ -376,10 +451,13 @@ image bg parkinggarage = "BG/parkinggarage.jpg"
 image bg restroom = "BG/restroom.jpg"
 image bg showstage = "BG/showstage.jpg"
 image bg stage = "BG/stage.jpg"
+image bg stage_blur = im.Blur("BG/stage.jpg", 2.0)
 image bg storage = "BG/storage.jpg"
 image bg street = "BG/street.jpg"
 image bg theater_ext = "BG/theaterexterior.jpg"
+image bg theater_ext_blur = im.Blur("BG/theaterexterior.jpg", 2.0)
 image bg warehouse = "BG/warehouse.jpg"
+image bg warehouse_blur = im.Blur("BG/warehouse.jpg", 2.0)
 
 ## Audio ##########################################################################################################################
 
@@ -486,6 +564,9 @@ transform credit_scroll_3:
 transform middle:
     zoom 0.75
     xalign 0.5 ypos 0
+transform middle_jessica:
+    zoom 0.6
+    xalign 0.5 ypos 0
 transform middle_short:
     zoom 0.75
     xalign 0.5 ypos 100
@@ -516,12 +597,18 @@ transform right_sprinkles:
 transform two1:
     zoom 0.75
     xalign 0.25 ypos 0
+transform two1_jessica:
+    zoom 0.6
+    xalign 0.2 ypos 0
 transform two1_short:
     zoom 0.75
     xalign 0.25 ypos 100
 
 transform two2:
     zoom 0.75
+    xalign 0.8 ypos 0
+transform two2_jessica:
+    zoom 0.6
     xalign 0.8 ypos 0
 transform two2_short:
     zoom 0.75
@@ -590,11 +677,13 @@ style chaptertext:
     font "fonts/circula-medium.otf"
     color "#d00000"
     text_align 0.5
+    outlines [(1.0 ,'#000000', 0.0, 0.0)]
     size 75
 style chaptersub:
     font "fonts/Stanberry.ttf"
     color "#ffffff"
     text_align 0.5
+    outlines [(1.0 ,'#000000', 0.0, 0.0)]
     size 50
 style game:
     font "fonts/Stanberry.ttf"
@@ -1115,6 +1204,7 @@ init python:
         clickortap = "Click"
     else:
         clickortap = "Tap"
+define config.hard_rollback_limit = 1000000
 define config.replay_scope = {"_game_menu_screen": "pause"}
 
 ## Persistents and Preferences
@@ -1179,10 +1269,10 @@ label before_main_menu:
         menu:
             "This visual novel contains graphic violence and has visuals to accommodate it. Would you like to disable the graphic images? (This can be changed later in the options menu){fast}"
             "Yes, disable them":
-                $persistent.gore = False
+                $persistent.gore = "_sfw"
                 "Graphic images disabled."
             "No, enable them":
-                $persistent.gore = True
+                $persistent.gore = ""
                 "Graphic images enabled."
         "There are also brief moments of the screen flashing a bright light quickly when weapons are fired. Would you like to disable flashing lights? (This can also be changed later in the options menu){nw}"
         menu:
@@ -1249,11 +1339,23 @@ label start:
 
 # Shows Chapter Name and Subtitle
 label chaptername:
+    if save_name == "Chapter 1":
+        scene bg livingroom_day_blur
+    elif save_name == "Chapter 2":
+        scene bg theater_ext_blur
+    elif save_name == "Chapter 3":
+        scene bg stage_blur
+    elif save_name == "Chapter 4":
+        scene bg warehouse_blur
+    elif save_name == "Chapter 5":
+        scene bg dressingroom_blur
+    with Dissolve(2.0)
     show screen chaptername
     with dissolve
     $renpy.pause(delay=3)
     hide screen chaptername
-    with dissolve
+    scene bg fade
+    with Dissolve(2.0)
     pause 2
     return
 

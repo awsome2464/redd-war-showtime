@@ -759,10 +759,10 @@ screen preferences():
                 vbox:
                     style_prefix "radio"
                     label "Visual Gore"
-                    if persistent.gore:
-                        textbutton "On" action ToggleVariable('persistent.gore', False)
+                    if persistent.gore == '':
+                        textbutton "On" action SetVariable('persistent.gore', '_sfw')
                     else:
-                        textbutton "Off" action ToggleVariable('persistent.gore', True),
+                        textbutton "Off" action SetVariable('persistent.gore', '')
                     null height 10
                     label "Screen Flashes"
                     if persistent.flash:

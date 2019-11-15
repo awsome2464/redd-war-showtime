@@ -311,7 +311,7 @@ label backattheater:
     $l_exp = "surprised"
     "And as I approached the bottom, I could see, sitting only a few feet from the stairs..."
     pause 1
-    show jessica at middle with dissolve
+    show jessica full blank at middle_jessica with dissolve
     pause 1
     "She didn't seem to pay mind to my presence."
     "Her blank stare ahead really made me question if she was actually still alive."
@@ -477,7 +477,7 @@ label backattheater:
     "I looked at him for a few more seconds before turning around and walking back to Jessica."
     stop music fadeout(3)
     scene bg basement
-    show jessica at middle
+    show jessica full blank at middle_jessica
     with dissolve
     pause 0.1
     l "Come on."
@@ -497,7 +497,7 @@ label deadchild:
     pause 2
     play music classy_ghouls
     scene bg basement_hall
-    show jessica at middle zorder 1
+    show jessica wheelchair at middle_jessica zorder 1
     show helmet zorder 3
     with Dissolve(2.0)
     show screen laura
@@ -635,8 +635,7 @@ label deadchild:
     $renpy.music.set_volume(1.0, channel="ambience")
     stop music
     play sound machine_gun
-    if persistent.gore:
-        show blood2 zorder 3
+    show blood2 zorder 3
     call gunflash
     $l_exp = "shocked"
     show sprinkles horror
@@ -823,7 +822,7 @@ label deadchild:
     t "Heh. You really think so?"
     $l_exp = "mad"
     l "Want proof?"
-    l "Look at Jessica.{w} Look at what she did because of the shit you pulled last year."
+    l "Look at Jessica.{w} Look at what she did because of the shit that happened last year."
     "He got a more furious look on his face, but still seemed to be focused on what I had to say."
     l "You received no legal trouble for killing those people, yet she attacked you and your brother nonstop. And that was just because of several households!"
     l "You take that established hatred of Krag mixed with the {b}many{/b} innocent parents he's killed tonight, and you've got a ticking time bomb!"
@@ -891,7 +890,12 @@ label deadchild:
     l "..."
     l "Well..."
     l "You're right. I have every reason to want to see him get what he deserves."
-    l "But I guess the humanity in me realizes that two wrongs don't make a right."
+    l "The things he's done tonight are awful."
+    l "Torturing Jessica, killing parents who were here to enjoy their night and protect themselves from the War..."
+    $l_exp = "surprised"
+    l "But at the same time, I can't really place all the blame on the guy."
+    $l_exp = "sad"
+    l "I truly believe that he would have never even thought of doing these things if it wasn't for Jessica fighting against him and having her little army threatening him."
     l "As terrible as it is seeing him get off the hook, hurting a guy who did all this because he felt like he had no other choice would just make me feel even more terrible."
     t "..."
     l "I know that doesn't make sense, but not everything does."
@@ -940,6 +944,12 @@ label escapeplan:
     pause 2
     scene bg storage
     with Dissolve(2.0)
+    pause 0.1
+    t "Get in!"
+    pause 0.5
+    play sound smack
+    pause 1
     show screen laura
     window show dissolve
     pause 0.1
+    l "..."
