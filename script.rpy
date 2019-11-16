@@ -219,8 +219,9 @@ layeredimage laura:
 layeredimage madeline:
     group full:
         yalign 0.0
+        xpos -100
         attribute dead:
-            "Characters/Madeline/Dead.png"
+            "Characters/Madeline/Dead[persistent.gore].png"
     group body:
         yalign -0.1
         attribute down:
@@ -407,10 +408,9 @@ image ctc_arrow_nvl:
 image fire:
     "#d57500"
     alpha 0.0
-    ease 0.25 alpha 0.25
     block:
-        ease 0.25 alpha 0.125
         ease 0.25 alpha 0.25
+        ease 0.25 alpha 0.125
         repeat
 
 ## Backgrounds ####################################################################################################################
@@ -482,7 +482,7 @@ define audio.the_twins = "<to 68 loop 4>audio/music/The Twins.mp3"
 define audio.title = "audio/music/title.ogg"
 define audio.vast_places = "audio/music/Vast-Places_Looping.mp3"
 
-# Sound Effects
+# Sound Effects / Ambience
 define audio.airhorn = "audio/se/airhorn.ogg"
 define audio.applause = "audio/se/applause.ogg"
 define audio.beep = "audio/se/beep.ogg"
@@ -535,12 +535,11 @@ transform choice_dissolve:
         ease 0.5 alpha 0.0
 transform spotlight_wander:
     xalign 1.0 yalign 1.0
-    block:
-        linear 1.0 xalign 0.0 yalign 0.0
-        linear 0.5 yalign 1.0
-        linear 1.0 xalign 1.0 yalign 0.0
-        linear 0.5 yalign 1.0
-        repeat
+    linear 1.0 xalign 0.0 yalign 0.0
+    linear 0.5 yalign 1.0
+    linear 1.0 xalign 1.0 yalign 0.0
+    linear 0.5 yalign 1.0
+    repeat
 transform spotlight_focus:
     linear 0.1 xalign 0.5 yalign 0.5
 transform game_name_flash:
@@ -957,7 +956,7 @@ screen chapterselect():
                     textbutton "Mirror Madness" xalign 0.5:
                         hovered SetVariable("replay_num", 16)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1000,6 +999,36 @@ screen chapterselect():
                         hovered SetVariable("replay_num", 20)
                         unhovered SetVariable("replay_num", 0)
                         action [SetVariable("replay_num", 0), Replay("deadchild", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.scenes["ch5_s3"]:
+                    textbutton "Fight for Freedom" xalign 0.5:
+                        hovered SetVariable("replay_num", 21)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("escapeplan", scope={"curentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.scenes["ch5_s4"]:
+                    textbutton "Final Confrontation" xalign 0.5:
+                        hovered SetVariable("replay_num", 22)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("finalconfrontation", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                else:
+                    textbutton "LOCKED" xalign 0.5:
+                        hovered SetVariable("replay_num", -1)
+                        unhovered SetVariable("replay_num", 0)
+                        action NullAction()
+                if persistent.scenes["ch5_s5"]:
+                    textbutton "Epilogue" xalign 0.5:
+                        hovered SetVariable("replay_num", 23)
+                        unhovered SetVariable("replay_num", 0)
+                        action [SetVariable("replay_num", 0), Replay("epilogue")]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1054,6 +1083,12 @@ screen chapterselect():
                 text "Laura sneaks her way back into the theater to try and stop Mr. Sprinkles." style "replay_desc" xalign 0.5
             elif replay_num == 20:
                 text "Things don't go according to Mr. Sprinkles's plan when an unexpected casualty occurs." style "replay_desc" xalign 0.5
+            elif replay_num == 21:
+                text "A battle within the War commences as the hostages fight back against their captors." style "replay_desc" xalign 0.5
+            elif replay_num == 22:
+                text "A confrontation between Laura and Krag that might spell the end of this show." style "replay_desc" xalign 0.5
+            elif replay_num == 23:
+                text "A few months later, Laura returns to her safe haven." style "replay_desc" xalign 0.5
     frame:
         xalign 0.13 yalign 0.95
         xpadding 20 ypadding 5
@@ -1220,7 +1255,7 @@ default persistent.scenes = {
  "ch2_s1": False, "ch2_s2": False, "ch2_s3": False, "ch2_s4": False, "ch2_s5": False,
  "ch3_s1": False, "ch3_s2": False, "ch3_s3": False, "ch3_s4": False, "ch3_s5": False, "ch3_s6": False, "ch3_s7": False, "ch3_s8": False, 
  "ch4_s1": False, "ch4_s2": False, "ch4_s3": False,
- "ch5_s1": False, "ch5_s2": False, "ch5_s3": False}
+ "ch5_s1": False, "ch5_s2": False, "ch5_s3": False, "ch5_s4": False, "ch5_s5": False}
 
 # Booleans
 default preferences.fullscreen = False
@@ -1327,15 +1362,6 @@ label before_main_menu:
             linear 1.0 size(336, 337)
     pause 1.0
     return
-
-# Start of Story
-label start:
-    play sound "audio/se/gong.ogg"
-    stop music fadeout(3.0)
-    scene bg fade
-    with Dissolve(1.0)
-    pause 3
-    jump chapter_1
 
 # Shows Chapter Name and Subtitle
 label chaptername:

@@ -1,4 +1,9 @@
-label chapter_1:
+label start:
+    play sound "audio/se/gong.ogg"
+    stop music fadeout(3.0)
+    scene bg fade
+    with Dissolve(1.0)
+    pause 3
     call chaptername
 label meetthefarrs:
     stop music

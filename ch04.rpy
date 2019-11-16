@@ -920,7 +920,6 @@ label citychase:
         renpy.block_rollback()
         nicetry = True
         password = renpy.input("What was it??", allow=alpha, length=10)
-        nicetry = False
     if not password:
         l "I-I don't know!"
     else:
