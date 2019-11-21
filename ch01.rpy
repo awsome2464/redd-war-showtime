@@ -174,8 +174,8 @@ label meetthefarrs:
     stop music fadeout(3.0)
     play sound applause
     hide sprinkles with dissolve
-    show jingle at two1
-    show jangle at two2
+    show jingle up smile at two1
+    show jangle up smile at two2
     with dissolve
     pause 0.1
     "On cue, the twin mimes entered the stage with a bow."

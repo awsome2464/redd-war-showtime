@@ -172,8 +172,19 @@ label firstgame:
     "Jessica then started giving some screams through her gag, and her eyes started darting side to side, almost as if she were trying to shake her head."
     s happy rightdown "Don't worry. I won't be too harsh."
     s evilgrin "...yet."
+    show jingle bat open_smile at left zorder 3
+    show sprinkles at middle_sprinkles
+    show jessica at right_jessica
+    with easeinleft
+    pause 0.1
     "On cue, Jingle skipped onto the stage and handed Mr. Sprinkles an aluminum baseball bat."
+    show jingle down
     "After he accepted the gift, she gave a small curtsy and skipped back off."
+    hide jingle
+    show sprinkles at two1
+    show jessica at two2_jessica
+    with easeoutleft
+    pause 0.1
     $l_exp = "concerned"
     show screen laura
     pause 0.6
@@ -234,17 +245,17 @@ label firstgame:
     $l_exp = "sad"
     play sound door_open
     "A few seconds later, the door opened up, revealing yet another REDD."
-    show trosh at middle with dissolve
+    show trosh gun angry at middle with dissolve
     pause 0.1
     t "Alright! You and you are coming with me!"
     "He then pointed to a man and woman near the front of the pile."
     man "Wha-"
     t "{b}Now!{/b}"
     woman "B-But he hasn't even picked the game yet!"
-    t "Ahahaha!!"
+    t laugh "Ahahaha!!"
     t "You really think the games are selected at random?"
-    t "Grow up."
-    t "Now {b}move!!{/b}"
+    t concerned "Grow up."
+    t angry "Now {b}move!!{/b}"
     "Given no other option, the two exited the room with the REDD keeping his weapon pointed at them at all times."
     hide trosh with dissolve
     pause 0.1
@@ -1161,20 +1172,21 @@ label showmustgoon:
     play sound door_open
     "On cue, the big REDD came back in."
     hide richard
-    show trosh at middle
+    show trosh gun angry at middle
     with dissolve
     pause 0.1
     t "Alright, you two are next!"
     "He exclaimed as he pointed to two of the people near the front."
     woman "P-Please! I can't!"
-    t "Is that right?"
+    t concerned "Is that right?"
     "He then pointed his gun at her in the blink of an eye."
     t "Then you're of no use to us."
     woman "WAIT!!"
     woman "I-I'll go..."
-    t "That's what I thought."
+    t laugh "That's what I thought."
     redd "Hey!"
     $l_exp = "concerned"
+    show trosh concerned
     "The big REDD turned to face the doorway, where a fellow REDD could be seen looking in."
     t "What??"
     redd "We found this in one of the hallways."
@@ -1230,18 +1242,18 @@ label showmustgoon:
     redd "Roger that. What should we do if we find someone?"
     t "Krag said if you find a child, bring them back to their seat alive."
     t "But if you 'accidentally' hurt one..."
-    t "...I wouldn't be upset, ehehe."
+    t laugh "...I wouldn't be upset, ehehe."
     $l_exp = "mad"
     "I stood up without thinking."
     "Richard looked at me with confusion and fear."
     l "Don't you dare hurt those kids!"
-    t "..."
+    t fear "..."
     "All eyes were on me now."
     "The big REDD just looked a bit confused."
     t "I'm sorry, I must be hearing things incorrectly."
-    t "It sounded like you just gave me an order."
+    t concerned "It sounded like you just gave me an order."
     l "Oh, you heard correctly."
-    t "Is that right?"
+    t angry "Is that right?"
     stop music fadeout(5)
     "He then walked over to me slowly, everyone in his path quickly trying to move away."
     "He finally stopped about a foot away from me, looking me in the eye."
@@ -1255,7 +1267,7 @@ label showmustgoon:
             $l_exp = "concerned"
             l "Why do you care?"
             l "You see us as nothing but future corpses. Why do you care about names?"
-            t "..."
+            t concerned "..."
             "The room was dead silent."
             "..."
             t "Fair point."
@@ -1267,7 +1279,7 @@ label showmustgoon:
             "The guard did just that, with the terrified women shedding tears as they left."
             "He then looked at me with a grin."
             t "You're right. Humans are nothing but future corpses."
-            t "And you're about to meet your destiny."
+            t laugh "And you're about to meet your destiny."
             $l_exp = "surprised"
             "The next thing I knew, the barrel of his gun was on my chest."
             $quickhide = True
@@ -1295,29 +1307,31 @@ label showmustgoon:
 label nameislaura:
     l "...{w}Laura."
     t "Well, Laura, I must commend you for your bravery."
-    t "As idiotic as it is."
-    t "But let me tell you something as clear as I can."
-    "He then leaned even closer to me."
+    t laugh "As idiotic as it is."
+    t angry "But let me tell you something as clear as I can."
+    "He then took off his helmet and leaned even closer to me."
+    $helmet = ""
+    with dissolve
+    pause 0.1
     $l_exp = "concerned"
     "His breath smelled repulsive, but I kept my cool."
     $l_exp = "neutral"
     t "The only person I take orders from is Krag Dovason."
-    t "{b}NOT{/b} puny, pathetic humans such as yourself."
+    t yelling "{b}NOT{/b} puny, pathetic humans such as yourself."
     $l_exp = "rage"
     l "Then why would you say it would be okay to harm those children when Krag said not to?"
-    t "Are you deaf, Laura?"
+    t concerned "Are you deaf, Laura?"
     t "I said I wouldn't be upset if it happened. I never said it would be okay."
     "That's when we could hear rapid footsteps approach the doorway."
     s "Trosh!"
     play music sprinkles_spooky
     $l_exp = "surprised"
-    show trosh zorder 2:
+    show trosh intrigued zorder 2:
         ease 0.5 two1
     show sprinkles wut rightdown leftdown at two2_sprinkles zorder 1 with dissolve
     pause 0.1
     s "Where are the next contestants?!"
-    "The big REDD turned around and faced Sprinkles."
-    t "Sorry. Had a bit of a conflict."
+    t concerned "Sorry. Had a bit of a conflict."
     s hm "Well, resolve it!! I can't afford any more delays!!"
     t "Understood. I'll bring them out now."
     "After taking a deep breath, Mr. Sprinkles walked away quickly."
@@ -1328,7 +1342,11 @@ label nameislaura:
     $l_exp = "concerned"
     l "Trosh?"
     l "As in Trosh Dovason?"
-    "He glared at me for a second before walking back towards the women he initially chose."
+    show trosh angry
+    "He glared at me for a second before putting his helmet back on and walking back towards the women he initially chose."
+    $helmet = "_helmet"
+    with dissolve
+    pause 0.1
     $t_name = "Trosh"
     t "Move it."
     $l_exp = "neutral"
@@ -1650,7 +1668,7 @@ label kidshiding:
     "The footsteps then got closer."
     pause 2
     show dakota at two1_short with easeinright
-    show trosh at two2
+    show trosh gun concerned at two2
     with Dissolve(1)
     pause 1
     t "Hello."
@@ -1667,15 +1685,21 @@ label kidshiding:
     t "Heh heh... I'll take that as a yes."
     d "H-How do you know that?"
     "He then squatted down and looked at her in the eye."
+    show trosh hips:
+        ease 0.5 two2_short
+    pause 0.6
+    show trosh smile with dissolve
+    pause 0.1
+    $helmet = ""
     t "I actually had a little chat with Laura a while ago."
     t "She's a very brave woman. You're lucky to have her as a mother."
     "Dakota continued to stare in fear, unsure how to feel about this."
     t "Say, you know what will make her happy? Seeing her daughters."
-    t "I'm sure you'd love that, as well, right?"
+    t laugh "I'm sure you'd love that, as well, right?"
     d crossed "Uh... I..."
     "He then extended his hand towards her."
-    t "No tricks. I'll take you back to see her."
-    t "She is alive, after all."
+    t intrigued "No tricks. I'll take you back to see her."
+    t smile "She is alive, after all."
     d small_smile "She is?"
     d "My dad, too?"
     t "Cross my heart."
@@ -1702,7 +1726,8 @@ label kidshiding:
     scene bg arena_hall_night with dissolve
     pause 0.1
     "The girls then got up and followed the guard to the doorway."
-    show trosh at middle with dissolve
+    $helmet = "_helmet"
+    show trosh gun concerned at middle with dissolve
     pause 0.1
     t "Gather up the rest of the kids."
     t "I'm gonna take these two to see their mother."
@@ -1723,17 +1748,17 @@ label kidshiding:
         ease 0.5 left_short
     show dakota:
         ease 0.5 middle_short
-    show trosh at right with dissolve
+    show trosh angry gun at right with dissolve
     pause 0.1
     t "What?"
     d crossed "Why are we the only ones who get to see their parents?"
-    t "Heh. Technically, I'm not even supposed to be taking you two to your parents."
-    t "But something about your mother tells me she'd be {i}really{/i} happy to see you two, so I thought I'd make an exception."
+    t concerned "Heh. Technically, I'm not even supposed to be taking you two to your parents."
+    t laugh "But something about your mother tells me she'd be {i}really{/i} happy to see you two, so I thought I'd make an exception."
     d "So? I'm sure all the parents back there want to see their kids right now."
-    t "If you're gonna be ungrateful, I can take you right back to the others."
+    t angry "If you're gonna be ungrateful, I can take you right back to the others."
     show dakota sad
     k shocked "No!"
-    t "That's what I thought."
+    t concerned "That's what I thought."
     show kate concerned:
         ease 0.5 two1
     show dakota side:
@@ -1890,7 +1915,7 @@ label deadlygame:
     $t_name = "Trosh"
     hide richard with dissolve
     play music classy_ghouls
-    show trosh at middle with dissolve
+    show trosh gun laugh at middle with dissolve
     pause 0.1
     t "Alright, up next is a really special game that I'm going to need a specific volunteer for."
     "He then walked towards the back of the room."
@@ -1898,7 +1923,7 @@ label deadlygame:
     "Closer to me."
     $l_exp = "sad"
     "And stopped directly in front of me."
-    t "You.{w} You're coming with me."
+    t angry "You.{w} You're coming with me."
     $l_exp = "shocked"
     l "W-What??"
     t "You heard me! Move it!"
@@ -1908,24 +1933,25 @@ label deadlygame:
     pause 0.1
     r "Hey! You can't just--!"
     "Trosh then pointed his gun at Richard."
-    t "I can't just what?"
+    t concerned "I can't just what?"
     show richard glare
     "My husband then glared at the REDD before looking back at me."
     t "That's what I thought."
     "Trosh then looked back at me."
-    t "Let's go."
+    t angry "Let's go."
     r rage "Wait! Take me, instead!"
     $l_exp = "sad"
     l "Richard!!"
-    t "I'm sorry?"
+    t fear "I'm sorry?"
     r glare "Take me instead of her!"
-    t "..."
+    t concerned "..."
     l "..."
     r "..."
-    "Trosh then looked at me with a smirk."
-    t "Well, what do you say?"
+    "Trosh then looked at me with a smug look on his face."
+    t laugh "Well, what do you say?"
     $l_exp = "surprised"
     l "I..."
+    show trosh angry
     "He then pointed his gun at me."
     $renpy.music.set_volume(0.5, delay=1, channel="music")
     menu:
@@ -1939,7 +1965,7 @@ label richarddoesnttakeplace:
     $l_exp = "neutral"
     l "N-No. I'll go."
     r shocked "Laura, please!"
-    t "Heh. You heard the lady, bub."
+    t laugh "Heh. You heard the lady, bub."
     $l_exp = "sad"
     "He then grabbed on to my upper arm."
     t "Let's go!"
@@ -1965,7 +1991,7 @@ label richarddoesnttakeplace:
     $l_exp = "concerned"
     "Nothing here indicated that we were headed to one of Mr. Sprinkles' death traps."
     l "You're sure you're taking me to a game?"
-    show trosh at middle with dissolve
+    show trosh gun concerned at middle with dissolve
     pause 0.1
     t "This one can't be played on the stage; we needed more space."
     t "Don't worry; we're not going too far."
@@ -2013,25 +2039,26 @@ label richarddoesnttakeplace:
     k "Mommy!!"
     "My daughters were sitting in chairs with armed guards behind them."
     "They weren't tied down, it seemed, but it's safe to assume they understood what would happen if they tried to get up."
+    $helmet = ""
     show kate zorder 2:
         ease 0.5 left
     show dakota zorder 2:
         ease 0.5 right
-    show trosh at middle zorder 1 with dissolve
+    show trosh gun laugh at middle zorder 1 with dissolve
     pause 0.1
     t "See, girls? I told you you'd get to see your mommy again!"
     $l_exp = "rage"
     l "H-How did you--?!"
-    t "Does it really matter?"
+    t smile "Does it really matter?"
     t "Besides, you should be grateful."
-    t "No other parent tonight has gotten to see their children like this."
+    t laugh "No other parent tonight has gotten to see their children like this."
     t "I figure it'll give you the motivation you need to compete well."
-    t "Or, you know, the added pressure of your children being right here to witness your potential death might fuck you up."
-    t "Either way, it's gonna make for some great footage!"
+    t smile "Or, you know, the added pressure of your children being right here to witness your potential death might fuck you up."
+    t laugh "Either way, it's gonna make for some great footage!"
     l "I swear, if you lay one finger on them--!!"
-    t "If I wanted them dead or hurt, I would've done it by now."
+    t concerned "If I wanted them dead or hurt, I would've done it by now."
     redd "Trosh, we're about to go live."
-    t "Excellent."
+    t smile "Excellent."
     stop music fadeout(3.0)
     stop ambience fadeout(3.0)
     scene bg parkinggarage with dissolve
@@ -2050,7 +2077,7 @@ label richarddoesnttakeplace:
     s "Will she make it to the finish line in one piece? Ohoho! There's only one way to find out~!"
     $l_exp = "mad"
     l "Let me guess. I'm not gonna be told what the obstacles are."
-    show trosh at middle with dissolve
+    show trosh gun smile at middle with dissolve
     pause 0.1
     t "Bingo."
     l "Lovely."
@@ -2116,7 +2143,7 @@ label richardtakesplace:
     "Besides, Richard's stronger and more active than me. He might actually have a better chance."
     l "You're sure, Richard?"
     r crossed "If it keeps you alive, I'm completely sure."
-    t "Sounds like a 'yes' to me."
+    t laugh "Sounds like a 'yes' to me."
     "Trosh then grabbed onto Richard and dragged him out of the room."
     r down shocked "Just stay alive for them, Laura! Please!"
     r concerned "I love you! Just stay alive!!"
@@ -2601,10 +2628,10 @@ label jessicaseye:
     s laugh "Great to hear~!"
     play sound snap
     pause 1.0
-    show jingle zorder 4:
-        offscreenleft
-        yalign 0.5
-        ease 0.5 xalign 0.1
+    show jingle down smile zorder 4:
+        two1
+        xalign -0.6
+        ease 0.5 xalign 0.0
     pause 1.0
     hide jingle with easeoutleft
     pause 0.1
@@ -2613,10 +2640,11 @@ label jessicaseye:
     s laugh "That's right: a power drill!"
     play sound snap
     pause 1.0
-    show jangle:
-        offscreenright
-        yalign 0.5
-        ease 0.5 xalign 0.9
+    show jangle down smile:
+        two2
+        xalign 1.6
+        zoom 0.75
+        ease 0.5 xalign 1.0
     pause 1.1
     scene bg stage
     # CG
@@ -2653,8 +2681,9 @@ label jessicaseye:
     pause 0.5
     show sprinkles leftdown hat laugh at two1 zorder 2
     show jessica bothknees blank at two2_jessica zorder 2
-    show jangle zorder 1:
-        xalign 0.9 yalign 0.5
+    show jangle down happy_grin zorder 1:
+        two2
+        xalign 1.0
     with dissolve
     pause 0.1
     s "There! Now you'll only see {i}{b}half{/b}{/i} the rough things!!"

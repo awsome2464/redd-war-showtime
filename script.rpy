@@ -84,7 +84,37 @@ layeredimage dakota:
             "Characters/Dakota/smirk.png"
 
 # Jangle
-image jangle = Placeholder("boy")
+layeredimage jangle:
+    group body:
+        ypos 50
+        zoom 0.9
+        attribute up:
+            "Characters/Jangle/Arm Up.png"
+        attribute down:
+            "Characters/Jangle/Arms Down.png"
+        attribute axe:
+            "Characters/Jangle/Axe.png"
+        attribute bat:
+            "Characters/Jangle/Bat.png"
+    group head:
+        ypos 50
+        zoom 0.9
+        attribute angry:
+            "Characters/Jangle/Angry.png"
+        attribute happy_grin:
+            "Characters/Jangle/Closed Eye Smile.png"
+        attribute confused:
+            "Characters/Jangle/Confusion.png"
+        attribute evil_grin:
+            "Characters/Jangle/Evil Grin.png"
+        attribute open_smile:
+            "Characters/Jangle/Open Smile.png"
+        attribute smile:
+            "Characters/Jangle/Smile.png"
+        attribute stern:
+            "Characters/Jangle/Stern.png"
+        attribute yell:
+            "Characters/Jangle/Yelling.png"
 
 # Jessica
 image jessica_base:
@@ -151,7 +181,37 @@ layeredimage jessica:
             "jessica_tears"
 
 # Jingle
-image jingle = Placeholder("girl")
+layeredimage jingle:
+    group body:
+        ypos 50
+        zoom 0.9
+        attribute up:
+            "Characters/Jingle/Arm Up.png"
+        attribute down:
+            "Characters/Jingle/Arms Down.png"
+        attribute axe:
+            "Characters/Jingle/Axe.png"
+        attribute bat:
+            "Characters/Jingle/Bat.png"
+    group head:
+        ypos 50
+        zoom 0.9
+        attribute angry:
+            "Characters/Jingle/Angry.png"
+        attribute happy_grin:
+            "Characters/Jingle/Closed Eye Smile.png"
+        attribute confused:
+            "Characters/Jingle/Confusion.png"
+        attribute evil_grin:
+            "Characters/Jingle/Evil Grin.png"
+        attribute open_smile:
+            "Characters/Jingle/Open Smile.png"
+        attribute smile:
+            "Characters/Jingle/Smile.png"
+        attribute stern:
+            "Characters/Jingle/Stern.png"
+        attribute yell:
+            "Characters/Jingle/Yelling.png"
 
 # Kate
 layeredimage kate:
@@ -300,7 +360,29 @@ layeredimage sprinkles:
             "Characters/Sprinkles/Hand on hat.png"
 
 # Trosh
-image trosh = Placeholder("boy")
+layeredimage trosh:
+    group body:
+        zoom 0.9
+        attribute gun:
+            "Characters/Trosh/Holding Gun.png"
+        attribute hips:
+            "Characters/Trosh/Hands on Hips.png"
+    group head:
+        zoom 0.9
+        attribute angry:
+            "Characters/Trosh/angry[helmet].png"
+        attribute concerned:
+            "Characters/Trosh/concerned[helmet].png"
+        attribute fear:
+            "Characters/Trosh/fear[helmet].png"
+        attribute intrigued:
+            "Characters/Trosh/intrigued.png"
+        attribute laugh:
+            "Characters/Trosh/laugh[helmet].png"
+        attribute smile:
+            "Characters/Trosh/smile.png"
+        attribute yelling:
+            "Characters/Trosh/yelling.png"
 
 
 # Main Images
@@ -495,7 +577,9 @@ define audio.crowd_screaming = "audio/se/crowd_screaming.ogg"
 define audio.doorbell = "audio/se/doorbell.ogg"
 define audio.door_creak = "audio/se/door creak.ogg"
 define audio.door_knock = "audio/se/doorknock.ogg"
+define audio.door_locked = "audio/se/locked door.ogg"
 define audio.door_open = "audio/se/door_open.ogg"
+define audio.door_pound = "audio/se/door pound.ogg"
 define audio.drumroll_buildup = "<to 4.9 loop 0.5>audio/se/drumroll.ogg"
 define audio.drumroll_finish = "<from 4.9>audio/se/drumroll.ogg"
 define audio.fire = "<to 55 loop 5>audio/se/fire.ogg"
@@ -586,6 +670,9 @@ transform left_sprinkles:
 transform right:
     zoom 0.75
     xalign 0.9 ypos 0
+transform right_jessica:
+    zoom 0.6
+    xalign 1.0 ypos 0
 transform right_short:
     zoom 0.75
     xalign 0.9 ypos 100
@@ -704,6 +791,12 @@ style creditscreen2:
     color "#a39600"
     text_align 0.5
     size 50
+style credittextbutton:
+    font "fonts/GosmickSans.ttf"
+    idle_color "#e9e9e9"
+    hover_color "#a39600"
+    outlines [(1.0, '#a39600', 0.0, 0.0)]
+    text_align 0.5
 
 ## Custom Screens #################################################################################################################
 
@@ -1141,17 +1234,18 @@ screen credits():
         vbox:
             xalign 0.15 yalign 0.5
             text "Writing and Development" style "creditscreen" xalign 0.5
-            text "Cole Goodrich" xalign 0.5
+            textbutton "Cole Goodrich" text_style "credittextbutton" action OpenURL("https://twitter.com/RealAwsome2464") xalign 0.5
             null height 20
             text "Story" style "creditscreen" xalign 0.5
             text "Cole Goodrich" xalign 0.5
-            text "SlightlySimple" xalign 0.5
+            textbutton "SlightlySimple" text_style "credittextbutton" action OpenURL("https://twitter.com/SimpleSlightly") xalign 0.5
             null height 20
             text "Character Art" style "creditscreen" xalign 0.5
-            text "HazardSquare" xalign 0.5
+            textbutton "HazardSquare" text_style "credittextbutton" action OpenURL("https://twitter.com/hazardsquare") xalign 0.5
             null height 20
             text "Background Art" style "creditscreen" xalign 0.5
-            text "Mattyd (MacDaddyMatty.com)" xalign 0.5
+            textbutton "Mattyd" text_style "credittextbutton" action OpenURL("https://twitter.com/MacDaddyMattyd") xalign 0.5
+            textbutton "MacDaddyMatty.com" text_style "credittextbutton" action OpenURL("https://macdaddymatty.com") xalign 0.5
         vbox:
             xalign 0.5 yalign 0.5
             text "Music" style "creditscreen" xalign 0.5
@@ -1170,7 +1264,8 @@ screen credits():
             text "{i}Shattered Mind{/i}" xalign 0.5
             text "{i}Vast Places{/i}" xalign 0.5
             null height 10
-            text "by Eric Matyas (soundimage.org)" xalign 0.5
+            text "by Eric Matyas" xalign 0.5
+            textbutton "soundimage.org" text_style "credittextbutton" action OpenURL("https://soundimage.org") xalign 0.5
             null height 20
             text "{i}Rotten Sprinkles{/i}" xalign 0.5
             text "{i}Showtime!{/i}" xalign 0.5
@@ -1182,7 +1277,8 @@ screen credits():
         vbox:
             xalign 0.85 yalign 0.5
             text "Sound Effects" style "creditscreen" xalign 0.5
-            text "freesound.org" xalign 0.5
+            textbutton "freesound.org" text_style "credittextbutton" action OpenURL("https://freesound.org") xalign 0.5
+            text "Cole Goodrich" xalign 0.5
             null height 20
             text "Made with Ren'Py 7.3.5" style "creditscreen" xalign 0.5
     vbox:
@@ -1270,6 +1366,7 @@ default currentdate = "March 30th"
 default currenttime = "4:12 PM"
 default direction = ""
 default event = "War Zones are revealed"
+default helmet = "_helmet"
 default l_exp = "neutral"
 default password = ""
 default s_name = "Mr. Sprinkles"
@@ -1297,6 +1394,7 @@ default scene_percent = 100 * len(persistent.scenelist) / len(persistent.scenes)
 
 # Splash Screen/Main Menu Intro
 label before_main_menu:
+    $config.allow_skipping = True
     scene bg fade
     if not persistent.gorewarning:
         $quick_menu = False

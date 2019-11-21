@@ -84,7 +84,7 @@ label mirrormadness:
     stop music fadeout(3.0)
     play sound door_open
     pause 1.5
-    show trosh at middle with dissolve
+    show trosh gun angry at middle with dissolve
     pause 0.1
     $l_exp = "neutral"
     t "Alright! We're gonna need 4 contestants for this one."
@@ -96,7 +96,7 @@ label mirrormadness:
     $l_exp = "surprised"
     "Trosh then moved closer and closer."
     "Closer to me."
-    t "Heh..."
+    t laugh "Heh..."
     t "Looks like you don't have anyone to volunteer as tribute this time."
     $l_exp = "mad"
     l "..."
@@ -121,11 +121,11 @@ label mirrormadness:
     pause 0.1
     $l_exp = "neutral"
     "We were all brought outside to an alley that wasn't too far from the main street."
-    show trosh at middle with dissolve
+    show trosh gun concerned at middle with dissolve
     pause 0.1
     t "Sit tight; our ride will be here shortly."
     man "R-Ride? Where are you taking us??"
-    t "To the game, dumbass!"
+    t angry "To the game, dumbass!"
     t "This one's farther away than the parking garage we used last time."
     t "So just sit there and wait patiently or I'll kill ya and grab another contestant to fill your spot. Capiche?"
     man "...yes."
@@ -203,7 +203,7 @@ label mirrormadness:
     $l_exp = "surprised"
     "!!!"
     "Or a maze."
-    show trosh at middle with dissolve
+    show trosh gun angry at middle with dissolve
     pause 0.1
     t "Alright, everyone get to one of the corners!"
     t "Move it! Come on!"
@@ -349,9 +349,9 @@ label wentright:
 
                 Once I turned...
                 """
-                # Slide in Jingle with axe
                 nvl hide
                 window hide
+                show jingle axe evil_grin at middle
                 play sound hammer
                 show blood
                 pause 1.5
@@ -495,9 +495,9 @@ label goright:
 
             Before I could turn around, though...
             """
-            # show Jangle in reflection
             nvl hide
             window hide
+            show jangle axe evil_grin at middle
             stop music
             play sound hammer
             show blood
@@ -513,13 +513,14 @@ label goright:
             jump gameover
         "{font=fonts/GosmickSans.ttf}Right{/font}":
             nvl clear
-            narrate """
-            I ran to the right.
-
-            Greeting me as I did was Jangle facing me with an axe!
-            """
+            narrate "I ran to the right."
             nvl hide
             window hide
+            show jangle axe open_smile at middle
+            with dissolve
+            pause 1
+            narrate "Greeting me as I did was Jangle facing me with an axe!"
+            nvl hide
             stop music
             play sound hammer
             show blood
@@ -553,10 +554,14 @@ label goleft:
 
                 A few feet later, I came across yet another fork in the path, one going left, and one going{nw}
                 """
-                #Jangle with axe slides in
                 $nvl = False
                 nvl hide
                 window hide
+                show jangle axe evil_grin:
+                    middle
+                    xalign 1.6
+                    ease 0.25 middle
+                pause 0.25
                 stop music
                 play sound hammer
                 show blood
@@ -663,13 +668,16 @@ label stayorgo:
 
             With that, I ran back into the maze.
             """
+            nvl hide
+            window hide
             stop music fadeout(3.0)
-            #Showing Jingle or Jangle depending on value of "axehit"
+            pause 0.5
             if axehit == "Jingle":
-                pass
+                show jingle axe open_smile at middle with dissolve
             elif axehit == "Jangle":
-                pass
-            pause 3
+                show jangle axe open_smile at middle with dissolve
+            pause 1
+            nvl show
             narrate """
             ...only to be greeted by [axehit].
 
@@ -677,7 +685,6 @@ label stayorgo:
             """
             $nvl = False
             nvl hide
-            window hide
             stop music
             play sound hammer
             show blood
@@ -719,14 +726,14 @@ label stayorgo:
             window hide
             stop music fadeout(3.0)
             pause 2
-            show trosh at middle
+            show trosh gun concerned at middle
             with Dissolve(1.0)
             pause 1
             window show dissolve
             pause 0.1
             redd "Shouldn't we try and stop her, Sir?"
             t "Stop a young woman with no weapons from heading towards a densely-populated area during the REDD War?"
-            t "Nah. Let's let nature take its course."
+            t laugh "Nah. Let's let nature take its course."
             redd "Understood."
             call sceneend
             if not persistent.scenes["ch4_s1"]:
@@ -904,7 +911,7 @@ label citychase:
     $l_exp = "concerned"
     "I guess that would make sense."
     $l_exp = "sad"
-    play sound "audio/se/door pound.ogg" loop
+    play sound door_pound loop
     "I then knocked on the door as hard as I could."
     l "{b}PLEASE LET ME IN!!!{/b}"
     stop sound
@@ -935,7 +942,7 @@ label wrongcode:
     man "Sorry, Miss."
     $l_exp = "sad"
     "He then slid the door hole shut!"
-    play sound "audio/se/door pound.ogg" loop
+    play sound door_pound loop
     l "Wait!! Please!!"
     l "Let me--!!"
     $l_exp = "surprised"
@@ -1376,16 +1383,17 @@ label goingback:
     play sound snap
     "He then snapped his fingers and nodded offstage."
     "Almost instantly, Jingle and Jangle entered the stage with bats in their hands."
-    show jingle zorder 1:
-        offscreenright
-        yalign 0.5
-        linear 1.0 offscreenleft
+    show jingle bat happy_grin zorder 1:
+        two2
+        xalign 1.6
+        linear 1.5 xalign -0.6
     pause 0.1
-    show jangle zorder 1:
-        offscreenright
-        yalign 0.5
-        linear 1.0 offscreenleft
-    pause 1
+    show jangle bat happy_grin zorder 1:
+        two2
+        xalign 1.6
+        xzoom -1.0
+        linear 1.5 xalign -0.6
+    pause 1.5
     play sound smack loop
     $l_exp = "sad"
     "And proceeded to start beating the shit out of the man!"
@@ -1437,12 +1445,14 @@ label goingback:
     "The screams and cries were pretty easy to understand, though."
     s @ hm "Hm. I guess not."
     "He then nodded to the twins, who dropped their bats and went offstage."
-    show jangle:
-        linear 1.0 offscreenright
+    show jangle down:
+        xzoom 1.0
+        linear 1.5 xalign 1.6
     pause 0.1
-    show jingle zorder 1:
-        linear 1.0 offscreenright
-    pause 1
+    show jingle down:
+        xzoom -1.0
+        linear 1.5 xalign 1.6
+    pause 1.5
     hide screen laura
     pause 0.6
     show jessica left_oneeye
@@ -1464,6 +1474,12 @@ label goingback:
     s @ laugh "In fact, I used to be such a REDD, myself!"
     s "But I believe there's a saying you humans have: Anyone can change."
     s evilgrin "For better {b}or{/b} worse."
+    show jingle smile:
+        xzoom 1.0
+        ease 0.5 xalign 0.2
+    show jangle smile:
+        xzoom 1.0
+        ease 0.5 xalign 0.5
     stop music fadeout(3.0)
     stop music2 fadeout(3.0)
     show screen laura
@@ -1476,6 +1492,11 @@ label goingback:
     s "And what better way to celebrate tonight than a good old-fashioned bonfire?"
     s huh "Though I seem to have misplaced my firewood..."
     s hat evilgrin "I suppose I'll just have to improvise a bit~!"
+    show jangle happy_grin
+    show jingle happy_grin up:
+        ease 0.5 xalign -0.2
+        ease 0.5 xalign -0.1
+        repeat
     "Jingle then began pouring gasoline all over Craig!"
     "She seemed careful as to not spread it around too much to where the whole stage is coated in it, but Craig's flailing didn't seem to be doing her any favors."
     $l_exp = "surprised"
@@ -1486,21 +1507,29 @@ label goingback:
             linear 0.2 xalign 0.805
             repeat
     "As she did, Jessica continued to scream and cry, doing her best to move and jiggle around her chair in an attempt to escape, but it was no use."
+    show jingle smile down:
+        ease 1.0 xalign 1.05
     "Finally, Jingle stopped pouring the gas and backed up far to the other side of the stage."
     "Jangle handed Mr. Sprinkles the box of matches and went on to join his twin."
     show jessica left_oneeye:
         linear 0.1 two2_jessica
+    show jangle smile:
+        ease 0.5 xalign 1.25
     hide screen laura
     pause 0.6
     s jeer leftdown "I should warn you now that the room might just get a little toasty for everyone in the front row."
     s evilgrin "And especially a certain someone on stage!"
     b "You really think you're gonna get away with this??"
     stop music fadeout(3.0)
+    show jingle confused
+    show jangle confused
     s wut "..."
     s jeer "My, my, my. I do believe my helpers have beaten you a little {b}too{/b} hard!"
     s rightdown laugh "For I'm afraid you seem to have forgotten what day it is!"
     s jeer "If this were any other situation, then no. I would never get away with this."
     s "But you see, Mr. Tate..."
+    show jingle evil_grin
+    show jangle evil_grin
     extend hat evilgrin " this is the exact time, day, and location where I {b}will{/b} get away with this!"
     b "Heh. L-Lucky you, then."
     $l_exp = "surprised"
@@ -1523,7 +1552,9 @@ label goingback:
     play sound2 children_screaming
     play ambience crowd_screaming
     show sprinkles laugh
-    show jessica left_oneeye
+    show jingle happy_grin
+    show jangle happy_grin
+    show jessica left_terror
     pause 1
     "Almost instantly, the room went into chaos as the audience, Craig, and Jessica all screamed in horror while Mr. Sprinkles laughed."
     "Craig flailed around, the camera not being shy from zooming in on his burning body."
