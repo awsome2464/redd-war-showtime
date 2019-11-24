@@ -1073,7 +1073,7 @@ label showbegins:
     hide screen laura
     with dissolve
     pause 1.5
-    play sound "audio/se/spotlight.ogg"
+    play sound spotlight
     scene bg stage
     show sprinkles cane hat jeer at middle_sprinkles
     with Dissolve(0.1)
@@ -1127,7 +1127,7 @@ label showbegins:
     s laugh "Splendid~!"
     "{color=#d00000}Mr. Sprinkles{/color}" "\"Then let's {nw}"
     stop music
-    play sound "audio/se/spotlight.ogg"
+    play sound spotlight
     scene bg fade
     window hide
     $renpy.pause(delay=2)
@@ -1147,7 +1147,7 @@ label showbegins:
     play sound "audio/se/Door Open.ogg"
     stop ambience fadeout(3)
     "Before he could finish that sentence, the doors at the back of the theater slammed open, but the building was too dark to see anything."
-    play sound "audio/se/spotlight.ogg"
+    play sound spotlight
     scene bg livestage
     with Dissolve(0.1)
     pause 1

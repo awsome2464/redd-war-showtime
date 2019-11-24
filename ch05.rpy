@@ -281,10 +281,12 @@ label backattheater:
     pause 0.1
     "He then walked towards the door."
     "I moved out of the way as to not seem like I was doing what I was doing."
-    show sprinkles happy rightdown leftdown at middle_sprinkles with dissolve
+    show sprinkles happy rightdown leftdown at middle_sprinkles with easeinleft
     pause 0.1
     "As he opened the door, he started walking back towards the stage."
     "Once again completely not noticing me."
+    hide sprinkles with easeoutright
+    pause 0.1
     $s_name = "Mr. Sprinkles"
     $l_exp = "sad"
     "Alright, my next objective is clear."
@@ -916,6 +918,10 @@ label deadchild:
     l "But if we can stop this live show and get him to come to his senses about the situation he's created, we might be able to help him form a way to go into hiding until this dies down."
     $l_exp = "surprised"
     l "If he thinks he'll be completely off the hook at 7, he'll be a dead man walking. We need to get him to realize what he's gotten himself into."
+    t "..."
+    $l_exp = "sad"
+    l "Look, you don't have to like me. I'm not even asking you to."
+    l "But if you really do care about Krag as much as I think you do, then please help me."
     t intrigued "..."
     l "..."
     "He finally let out a deep sigh."
@@ -1185,4 +1191,138 @@ label escapeplan:
     t concerned "Well, if you wanna stop Krag, we need to hurry."
     t "He's running out of jokes to tell Madeline."
     $l_exp = "neutral"
-    l "Alright. Let's do this."
+    l "Alright. You got the goods?"
+    "He then pulled the book of matches out of his pocket and handed them to me."
+    l "And you're sure no guards will find me?"
+    t "As long as you stay in this area, you'll be fine."
+    $l_exp = "determined"
+    l "Alright, then. Here goes!"
+    stop music fadeout(3.0)
+    hide trosh with dissolve
+    pause 0.1
+    $l_exp = "neutral"
+    "Trosh walked down the hall that led towards the front of the theater, leaving me all alone to wait for the signal."
+    "No REDD guards in sight, so at least Trosh is staying true to his word."
+    $l_exp = "sad"
+    "That doesn't mean he'll come through with the entire plan, though."
+    "Trusting a REDD hasn't exactly proven to be in my benefit, but I've got no other choice."
+    $l_exp = "concerned"
+    "I watched the screen."
+    play music sprinkles_theme
+    scene bg stage
+    show sprinkles leftdown rightdown happy at two2_sprinkles
+    show madeline dead at two1
+    with dissolve
+    pause 0.1
+    s "How do prisoners call each other?"
+    s jeer "{i}Beats me, Mr. Sprinkles!{/i}"
+    s laugh hat "On {b}cell phones!{/b} Ahaha!"
+    $l_exp = "surprised"
+    redd "Hey!!"
+    scene bg basement_hall with dissolve
+    pause 0.1
+    "I turned around and saw two REDD staring at me."
+    show jingle down angry at two1
+    show jangle down yell at two2
+    with dissolve
+    pause 0.1
+    ja "What the hell are you doing here??"
+    $l_exp = "shocked"
+    "Shit! I didn't take these two into account!"
+    "And they don't look like they'll cooperate as well as Trosh."
+    ji yell "We're gonna have to call security on you!"
+    ja confused "...are you serious?"
+    ji happy_grin "Of course not! It's the REDD War!"
+    ji evil_grin "Let's take care of this the way any REDD should!"
+    ja happy_grin "That's more like it!"
+    s "Alright, Ms. Madeline! That's all the jokes for now!"
+    "{color=d00000}Mr. Sprinkles{/color}" "\"What do you say we{nw}"
+    $quickhide = True
+    hide screen laura
+    window hide
+    stop music
+    play sound spotlight
+    scene bg fade
+    pause 1.5
+    $quickhide = False
+    $l_exp = "smug"
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "Alright, no turning back now."
+    "Let's do this."
+    play music escape
+    "I pulled the matchbox out and lit one of the matches."
+    $l_exp = "surprised"
+    "I could also see Jingle and Jangle turn towards me once I did."
+    play sound fire_start
+    "Being quick, I lit the rest of the matches in the book on fire, creating one large burst of flames."
+    $l_exp = "sad"
+    show jingle down yell:
+        two1
+        alpha 0.0
+        ease 0.5 alpha 0.5
+    show jangle down yell:
+        two2
+        alpha 0.0
+        ease 0.5 alpha 0.5
+    pause 0.6
+    "The larger flame allowed me to see Jingle and Jangle running towards me, and they did not look happy."
+    $l_exp = "surprised"
+    "The original plan involved me throwing it at the curtain, but..."
+    $l_exp = "concerned"
+    "...maybe throwing it at them will work in my favor."
+    $renpy.music.set_volume(0.5, delay=1, channel="music")
+    menu:
+        "What should I do?"
+        "Throw it at the curtain":
+            $renpy.music.set_volume(1.0, delay=1, channel="music")
+            $l_exp = "mad"
+            "No. I gotta stick to the plan."
+            scene bg fade with dissolve
+            pause 0.1
+            "I threw the burning matchbook at the curtain."
+            "As soon as I did, the fire spread up the fabric."
+            $l_exp = "shocked"
+            "And I felt myself being shoved towards it!"
+            "By the time I realized what had happened, it was too late to stop myself."
+            "I landed face-first into the flame."
+            $quickhide = True
+            hide screen laura
+            play sound fire loop
+            show fire
+            pause 1
+            "The next thing I knew, my hair and shirt sleeve were on fire!"
+            stop music fadeout(5.0)
+            "I tried getting down and rolling so I could try and get it out, but the second I got down, it seemed to spread around me even quicker!"
+            "I cried out in pain as I rolled, but it just kept getting worse and worse."
+            "It truly figures."
+            "Even after all this planning and thought..."
+            "...the REDD War finds a way to fuck it up."
+            window hide dissolve
+            stop sound fadeout(3.0)
+            pause 1
+            scene bg fade
+            with Dissolve(2.0)
+            pause 1
+            if not persistent.achievements["sickburn"]:
+                $persistent.achievements["sickburn"] = True
+                $renpy.notify("Achievement Unlocked: {i}Sick Burn{/i}")
+                $persistent.achievelist.append(1)
+            $renpy.end_replay()
+            jump gameover
+        "Throw it at the mimes":
+            $renpy.music.set_volume(1.0, delay=1, channel="music")
+    $l_exp = "mad"
+    "Well, here goes."
+    "I tossed the matchbook towards Jingle and Jangle."
+    scene bg fade with dissolve
+    pause 0.1
+    "I wasn't necessarily trying to throw it {b}on{/b} one of them, just something to potentially scare them."
+    $l_exp = "shocked"
+    play sound fire_start
+    queue sound fire loop
+    show fire
+    "That didn't stop the matches from landing on Jangle and igniting his shirt!"
+    "He cried out in pain as the fire spread across him, with Jingle being too distracted by it to go after me!"
+    ja "{b}{i}GET IT OFF!! GET IT OFF!!{/i}{/b}"

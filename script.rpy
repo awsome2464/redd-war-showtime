@@ -541,6 +541,11 @@ image bg theater_ext_blur = im.Blur("BG/theaterexterior.jpg", 2.0)
 image bg warehouse = "BG/warehouse.jpg"
 image bg warehouse_blur = im.Blur("BG/warehouse.jpg", 2.0)
 
+## CGs ############################################################################################################################
+
+image cg jessicainsane1 = "CG/Jessica Insane/Jessica Insanity1[persistent.gore].png"
+image cg jessicainsane2 = "CG/Jessica Insane/Jessica Insanity2[persistent.gore].png"
+
 ## Audio ##########################################################################################################################
 
 # Music
@@ -600,6 +605,7 @@ define audio.siren = "audio/se/siren.ogg"
 define audio.slow_footsteps = "audio/se/slow footsteps.ogg"
 define audio.smack = "audio/se/smack.ogg"
 define audio.snap = "audio/se/snap.ogg"
+define audio.spotlight = "audio/se/spotlight.ogg"
 define audio.stab = "audio/se/stab.ogg"
 
 # Custom Audio Channels
@@ -1220,7 +1226,13 @@ screen achievements():
             null height 25
             if persistent.achievements["memoryloss"]:
                 text "{i}Memory Loss{/i}" xalign 0.5
-                text "Forget the password to Frank's Bar" xalign 0.5
+                text "Forget the Password to Frank's Bar" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievements["sickburn"]:
+                text "{i}Sick Burn{/i}" xalign 0.5
+                text "Stick to the Plan" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
         text "[achieve_percent]% Completed" xalign 0.95 yalign 0.95
@@ -1345,7 +1357,7 @@ default persistent.achievelist = []
 default persistent.scenelist = []
 
 # Dictionaries
-default persistent.achievements = {"toosafe": False, "futurecorpses": False, "epicfail": False, "rattrap": False, "memoryloss": False}
+default persistent.achievements = {"toosafe": False, "futurecorpses": False, "epicfail": False, "rattrap": False, "memoryloss": False, "sickburn": False}
 default persistent.scenes = {
 "ch1_s1": False, "ch1_s2": False,
  "ch2_s1": False, "ch2_s2": False, "ch2_s3": False, "ch2_s4": False, "ch2_s5": False,
