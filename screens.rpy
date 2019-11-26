@@ -216,14 +216,23 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
-    add "choice_bg" at choice_dissolve
-    vbox at choice_dissolve:
-        xalign 0.5 yalign 0.55
-        for i in items:
-            if i.chosen:
-                textbutton "{color=c0c0c0}[i.caption]{/color}" action i.action
-            else:
-                textbutton i.caption action i.action
+    if not finalchoice:
+        add "choice_bg" at choice_dissolve
+        vbox at choice_dissolve:
+            xalign 0.5 yalign 0.55
+            for i in items:
+                if i.chosen:
+                    textbutton "{color=c0c0c0}[i.caption]{/color}" action i.action
+                else:
+                    textbutton i.caption action i.action
+    else:
+        vbox at choice_dissolve2:
+            xalign 0.5 yalign 0.5
+            for i in items:
+                if i.chosen:
+                    textbutton "{color=c0c0c0}[i.caption]{/color}" action i.action
+                else:
+                    textbutton i.caption action i.action
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,

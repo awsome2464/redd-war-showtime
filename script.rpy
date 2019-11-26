@@ -491,8 +491,8 @@ image fire:
     "#d57500"
     alpha 0.0
     block:
-        ease 0.25 alpha 0.25
-        ease 0.25 alpha 0.125
+        ease 0.5 alpha 0.25
+        ease 0.5 alpha 0.125
         repeat
 
 ## Backgrounds ####################################################################################################################
@@ -500,18 +500,17 @@ image fire:
 # Solid Backgrounds
 image bg fade = "#000000"
 image bg flash = "#ffffff"
+image bg floor = "#412206"
 image bg blood = "#f00000"
 
 # Image Backgrounds
 image bg alley = "BG/alley.jpg"
-image bg arena_hall_day = "BG/arenahall_day.jpg"
-image bg arena_hall_night = "BG/arenahall_night.jpg"
+image bg arena_hall = "BG/arenahall_[timeofday].jpg"
 image bg bar = "BG/bar.jpg"
 image bg basement = "BG/basement.jpg"
 image bg basement_hall = "BG/basementhall.jpg"
 image bg curtain = "BG/sprinklescurtain.jpg"
-image bg dakotaroom_day = "BG/dakotaroom_day.jpg"
-image bg dakotaroom_night = "BG/dakotaroom_night.jpg"
+image bg dakotaroom = "BG/dakotaroom_[timeofday].jpg"
 image bg dressingroom = "BG/dressingroom.jpg"
 image bg dressingroom_blur = im.Blur("BG/dressingroom.jpg", 2.0)
 image bg dressingroom_woozy:
@@ -522,11 +521,10 @@ image bg dressingroom_woozy:
     pause 0.5
     repeat
 image bg janitorcloset = "BG/janitorcloset.jpg"
+image bg livestage_closed = "BG/livestage_closed.jpg"
 image bg livestage = "BG/livestage2.jpg"
-image bg livingroom_day = "BG/livingroom_day.jpg"
-image bg livingroom_day_blur = im.Blur("BG/livingroom_day.jpg", 2.0)
-image bg livingroom_night = "BG/livingroom_night.jpg"
-image bg livingroom_night_blur = im.Blur("BG/livingroom_night.jpg", 2.0)
+image bg livingroom = "BG/livingroom_[timeofday].jpg"
+image bg livingroom_blur = im.Blur("BG/livingroom_night.jpg", 2.0)
 image bg lobby = "BG/lobby.jpg"
 image bg newsroom = "BG/newsroom.jpg"
 image bg parkinggarage = "BG/parkinggarage.jpg"
@@ -536,15 +534,21 @@ image bg stage = "BG/stage.jpg"
 image bg stage_blur = im.Blur("BG/stage.jpg", 2.0)
 image bg storage = "BG/storage.jpg"
 image bg street = "BG/street.jpg"
-image bg theater_ext = "BG/theaterexterior.jpg"
-image bg theater_ext_blur = im.Blur("BG/theaterexterior.jpg", 2.0)
+image bg theater_ext = "BG/theaterexterior_[timeofday].jpg"
+image bg theater_ext_blur = im.Blur("BG/theaterexterior_night.jpg", 2.0)
 image bg warehouse = "BG/warehouse.jpg"
 image bg warehouse_blur = im.Blur("BG/warehouse.jpg", 2.0)
 
 ## CGs ############################################################################################################################
 
+image cg deadsprinkles1 = "CG/Dead Sprinkles/Dead Sprinkles1[persistent.gore].png"
+image cg deadsprinkles2 = "CG/Dead Sprinkles/Dead Sprinkles2[persistent.gore].png"
+image cg deadsprinkles3 = "CG/Dead Sprinkles/Dead Sprinkles3[persistent.gore].png"
 image cg jessicainsane1 = "CG/Jessica Insane/Jessica Insanity1[persistent.gore].png"
 image cg jessicainsane2 = "CG/Jessica Insane/Jessica Insanity2[persistent.gore].png"
+image cg jessicatorture1 = "CG/Jessica Torture/Jessica Torture1.png"
+image cg jessicatorture2 = "CG/Jessica Torture/Jessica Torture2[persistent.gore].png"
+image cg photo = "CG/Photo With Sprinkles.png"
 
 ## Audio ##########################################################################################################################
 
@@ -558,7 +562,7 @@ define audio.ice_cream_truck = "audio/music/Ice-Cream-Truck_Looping.mp3"
 define audio.into_battle = "audio/music/Into-Battle_v001.mp3"
 define audio.into_the_haunted_forest = "audio/music/Into-the-Haunted-Forest_Looping.mp3"
 define audio.neon_runner = "audio/music/Neon-Runner_Looping.mp3"
-define audio.packing = "audio/music/Packing_Looping.mp3"
+define audio.packing = "audio/music/Packing_Looping.ogg"
 define audio.shattered_mind = "<to 34>audio/music/Shattered-Mind.ogg"
 define audio.sprinkles_radio = "<to 64>audio/music/The Mr Sprinkles Show - Radio.mp3"
 define audio.sprinkles_spooky = "<to 100.364>audio/music/Sprinkles Theme - Spooky.mp3"
@@ -585,12 +589,14 @@ define audio.door_knock = "audio/se/doorknock.ogg"
 define audio.door_locked = "audio/se/locked door.ogg"
 define audio.door_open = "audio/se/door_open.ogg"
 define audio.door_pound = "audio/se/door pound.ogg"
+define audio.dramatic = "audio/se/dramatic.ogg"
 define audio.drumroll_buildup = "<to 4.9 loop 0.5>audio/se/drumroll.ogg"
 define audio.drumroll_finish = "<from 4.9>audio/se/drumroll.ogg"
 define audio.fire = "<to 55 loop 5>audio/se/fire.ogg"
 define audio.fire_start = "audio/se/fire start.ogg"
 define audio.flicker = "audio/se/flicker.ogg"
 define audio.footsteps = "audio/se/footsteps.ogg"
+define audio.gunshot = "audio/se/gunshot.ogg"
 define audio.hammer = "audio/se/hammer.ogg"
 define audio.heartbeat = "audio/se/heartbeat.ogg"
 define audio.helicopter_loop = "<to 6 loop 1>audio/se/helicopter.ogg"
@@ -621,6 +627,11 @@ init python:
 transform choice_dissolve:
     alpha 0.0
     ease 1.0 alpha 1.0
+    on hide:
+        ease 0.5 alpha 0.0
+transform choice_dissolve2:
+    alpha 0.0
+    ease 2.0 alpha 1.0
     on hide:
         ease 0.5 alpha 0.0
 transform spotlight_wander:
@@ -744,6 +755,7 @@ style dateandtime:
     color "#d00000"
     text_align 0.5
     size 100
+    outlines [(1.0 ,'#000000', 0.0, 0.0)]
 style remaining:
     font "fonts/circula-medium.otf"
     color "#d00000"
@@ -909,7 +921,7 @@ screen chapterselect():
                     textbutton "Unfortunate News" xalign 0.5:
                         hovered SetVariable("replay_num", 2)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("kragonnews")]
+                        action [SetVariable("replay_num", 0), Replay("kragonnews", scope={"timeofday": "night"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -921,7 +933,7 @@ screen chapterselect():
                     textbutton "Evening Plans" xalign 0.5:
                         hovered SetVariable("replay_num", 3)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("eveningplans")]
+                        action [SetVariable("replay_num", 0), Replay("eveningplans", scope={"timeofday": "night"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -961,7 +973,7 @@ screen chapterselect():
                     textbutton "Showtime!" xalign 0.5:
                         hovered SetVariable("replay_num", 7)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True})]
+                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True, "timeofday": "night"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1003,7 +1015,7 @@ screen chapterselect():
                     textbutton "Toilet Escape" xalign 0.5:
                         hovered SetVariable("replay_num", 11)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True})]
+                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True, "timeofday": "night"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1023,7 +1035,7 @@ screen chapterselect():
                     textbutton "Hiding in the Closet" xalign 0.5:
                         hovered SetVariable("replay_num", 13)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1087,7 +1099,7 @@ screen chapterselect():
                     textbutton "Sneaking In" xalign 0.5:
                         hovered SetVariable("replay_num", 19)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1104,7 +1116,7 @@ screen chapterselect():
                         unhovered SetVariable("replay_num", 0)
                         action NullAction()
                 if persistent.scenes["ch5_s3"]:
-                    textbutton "Fight for Freedom" xalign 0.5:
+                    textbutton "Sabotage" xalign 0.5:
                         hovered SetVariable("replay_num", 21)
                         unhovered SetVariable("replay_num", 0)
                         action [SetVariable("replay_num", 0), Replay("escapeplan", scope={"curentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
@@ -1117,7 +1129,7 @@ screen chapterselect():
                     textbutton "Final Confrontation" xalign 0.5:
                         hovered SetVariable("replay_num", 22)
                         unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("finalconfrontation", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                        action [SetVariable("replay_num", 0), Replay("finalconfrontation", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "s_name": "Krag", "t_name": "Trosh", "helmet": ""})]
                 else:
                     textbutton "LOCKED" xalign 0.5:
                         hovered SetVariable("replay_num", -1)
@@ -1183,9 +1195,9 @@ screen chapterselect():
             elif replay_num == 20:
                 text "Things don't go according to Mr. Sprinkles's plan when an unexpected casualty occurs." style "replay_desc" xalign 0.5
             elif replay_num == 21:
-                text "A battle within the War commences as the hostages fight back against their captors." style "replay_desc" xalign 0.5
+                text "With the help of Trosh, Laura ruins Mr. Sprinkles' show." style "replay_desc" xalign 0.5
             elif replay_num == 22:
-                text "A confrontation between Laura and Krag that might spell the end of this show." style "replay_desc" xalign 0.5
+                text "A confrontation between Laura and Krag that will end this nightmare." style "replay_desc" xalign 0.5
             elif replay_num == 23:
                 text "A few months later, Laura returns to her safe haven." style "replay_desc" xalign 0.5
     frame:
@@ -1233,6 +1245,12 @@ screen achievements():
             if persistent.achievements["sickburn"]:
                 text "{i}Sick Burn{/i}" xalign 0.5
                 text "Stick to the Plan" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievements["grandprize"]:
+                text "{i}Grand Prize{/i}" xalign 0.5
+                text "Accept Krag's Prize" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
         text "[achieve_percent]% Completed" xalign 0.95 yalign 0.95
@@ -1386,9 +1404,11 @@ default save_name = "Chapter 1"
 default save_subtitle = "The Calm Before the Storm"
 default t_name = "REDD"
 default timeleft = "2 hours and 48 minutes"
+default timeofday = "day"
 
 # Booleans
 default badcredits = False
+default finalchoice = False
 default gotdrink = False
 default k_hat = False
 default leftdeadend = False
@@ -1399,6 +1419,7 @@ default title = True
 
 # Integers
 default achieve_percent = 100 * len(persistent.achievelist) / len(persistent.achievements)
+default giggle_timer = 0
 default replay_num = 0
 default scene_percent = 100 * len(persistent.scenelist) / len(persistent.scenes)
 
@@ -1447,7 +1468,7 @@ label before_main_menu:
         hide splash
         with Dissolve(1.0)
         pause 0.1
-        $ persistent.splash = False
+        $persistent.splash = False
     play sound flicker
     show logo zorder 2:
         xalign 0.5 yalign 0.5
@@ -1476,7 +1497,7 @@ label before_main_menu:
 # Shows Chapter Name and Subtitle
 label chaptername:
     if save_name == "Chapter 1":
-        scene bg livingroom_day_blur
+        scene bg livingroom_blur
     elif save_name == "Chapter 2":
         scene bg theater_ext_blur
     elif save_name == "Chapter 3":
@@ -1543,7 +1564,7 @@ label sceneend:
         $nvl = False
         nvl hide
         with dissolve
-    else:
+    elif renpy.get_screen("laura"):
         hide screen laura
     window hide dissolve
     stop music fadeout(3.0)

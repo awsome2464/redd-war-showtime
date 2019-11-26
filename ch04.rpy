@@ -1201,7 +1201,7 @@ label rightcode:
     "Kate then crossed her arms and turned away from her sister."
     k "I hate Mr. Sprinkles."
     k "I hate how he took Mommy and Daddy away."
-    k "I hate how you keep lying about how we'll be okay!"
+    k "And I hate you for lying about how we'll be okay!"
     show dakota mad side
     "Dakota then grabbed her sister's shoulder and faced her towards her."
     d crying "Kate, listen."
@@ -1212,7 +1212,7 @@ label rightcode:
     d "I'm all you've got right now! So please don't act this way to me!"
     d "You can hate Mr. Sprinkles all you want, but please don't hate me!"
     k "..."
-    d neutral "..."
+    d "..."
     "Kate broke from Dakota's grip and turned back away from her."
     d bawl "..."
     show dakota:

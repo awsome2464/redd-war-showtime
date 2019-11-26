@@ -206,7 +206,7 @@ label backattheater:
     $l_exp = "shocked"
     "I wasn't even aware I was that close to the stage."
     $l_exp = "neutral"
-    show sprinkles jeer rightdown cane at middle_sprinkles with dissolve
+    show sprinkles jeer rightdown cane at two1 with dissolve
     pause 0.1
     "Mr. Sprinkles then appeared in view and walked by me."
     "Didn't even bat an eye."
@@ -721,7 +721,7 @@ label deadchild:
     $l_exp = "surprised"
     t "There you are, Ranigan!"
     play music classy_ghouls
-    show trosh gun concerned at middle with dissolve
+    show trosh gun concerned at two2 with dissolve
     pause 0.1
     "I turned and saw Trosh next to me."
     $l_exp = "wut"
@@ -879,7 +879,8 @@ label deadchild:
     l "And that's nothing to be ashamed about, I assure you."
     "He continued to stare at me for a few seconds."
     $l_exp = "surprised"
-    show trosh hips
+    show trosh hips with dissolve
+    pause 0.1
     "Finally, he lowered his weapon."
     t "Alright, answer me this:"
     t "Why do {b}you{/b} care what happens to Krag?"
@@ -937,12 +938,10 @@ label deadchild:
     t "So what exactly is your plan?"
     $l_exp = "smug"
     "Something tells me I shouldn't tell him that I've been making this up as I go."
-    $l_exp = "neutral"
-    l "Well, for starters, we need to free all the remaining hostages."
     $l_exp = "concerned"
-    l "You pretending like you're not involved will admittedly complicate things."
+    l "Well, you pretending like you're not involved will admittedly complicate things."
     $l_exp = "determined"
-    l "But I've got an idea that might just work."
+    l "I've got some ideas, but if we're gonna pull this off, we'll need to work together on a proper plan."
     call sceneend
     if not persistent.scenes["ch5_s2"]:
         $persistent.scenelist.append(1)
@@ -1201,7 +1200,7 @@ label escapeplan:
     hide trosh with dissolve
     pause 0.1
     $l_exp = "neutral"
-    "Trosh walked down the hall that led towards the front of the theater, leaving me all alone to wait for the signal."
+    "Trosh walked down the hall that led towards the front of the theater, leaving me all alone."
     "No REDD guards in sight, so at least Trosh is staying true to his word."
     $l_exp = "sad"
     "That doesn't mean he'll come through with the entire plan, though."
@@ -1235,40 +1234,19 @@ label escapeplan:
     ji happy_grin "Of course not! It's the REDD War!"
     ji evil_grin "Let's take care of this the way any REDD should!"
     ja happy_grin "That's more like it!"
-    s "Alright, Ms. Madeline! That's all the jokes for now!"
-    "{color=d00000}Mr. Sprinkles{/color}" "\"What do you say we{nw}"
-    $quickhide = True
-    hide screen laura
-    window hide
-    stop music
-    play sound spotlight
-    scene bg fade
-    pause 1.5
-    $quickhide = False
-    $l_exp = "smug"
-    show screen laura
-    window show dissolve
-    pause 0.1
+    $l_exp = "mad"
     "Alright, no turning back now."
     "Let's do this."
     play music escape
-    "I pulled the matchbox out and lit one of the matches."
+    "I pulled the matchbook out and lit one of the matches."
     $l_exp = "surprised"
+    show jingle angry
+    show jangle yell
     "I could also see Jingle and Jangle turn towards me once I did."
     play sound fire_start
     "Being quick, I lit the rest of the matches in the book on fire, creating one large burst of flames."
-    $l_exp = "sad"
-    show jingle down yell:
-        two1
-        alpha 0.0
-        ease 0.5 alpha 0.5
-    show jangle down yell:
-        two2
-        alpha 0.0
-        ease 0.5 alpha 0.5
-    pause 0.6
-    "The larger flame allowed me to see Jingle and Jangle running towards me, and they did not look happy."
     $l_exp = "surprised"
+    "..."
     "The original plan involved me throwing it at the curtain, but..."
     $l_exp = "concerned"
     "...maybe throwing it at them will work in my favor."
@@ -1279,7 +1257,7 @@ label escapeplan:
             $renpy.music.set_volume(1.0, delay=1, channel="music")
             $l_exp = "mad"
             "No. I gotta stick to the plan."
-            scene bg fade with dissolve
+            scene bg basement_hall with dissolve
             pause 0.1
             "I threw the burning matchbook at the curtain."
             "As soon as I did, the fire spread up the fabric."
@@ -1287,18 +1265,19 @@ label escapeplan:
             "And I felt myself being shoved towards it!"
             "By the time I realized what had happened, it was too late to stop myself."
             "I landed face-first into the flame."
-            $quickhide = True
-            hide screen laura
             play sound fire loop
             show fire
             pause 1
-            "The next thing I knew, my hair and shirt sleeve were on fire!"
+            "The next thing I knew, my shirt sleeve was on fire!"
             stop music fadeout(5.0)
+            $l_exp = "crying"
             "I tried getting down and rolling so I could try and get it out, but the second I got down, it seemed to spread around me even quicker!"
             "I cried out in pain as I rolled, but it just kept getting worse and worse."
+            $l_exp = "angry"
             "It truly figures."
             "Even after all this planning and thought..."
             "...the REDD War finds a way to fuck it up."
+            hide screen laura
             window hide dissolve
             stop sound fadeout(3.0)
             pause 1
@@ -1316,7 +1295,7 @@ label escapeplan:
     $l_exp = "mad"
     "Well, here goes."
     "I tossed the matchbook towards Jingle and Jangle."
-    scene bg fade with dissolve
+    scene bg basement_hall with dissolve
     pause 0.1
     "I wasn't necessarily trying to throw it {b}on{/b} one of them, just something to potentially scare them."
     $l_exp = "shocked"
@@ -1326,3 +1305,1071 @@ label escapeplan:
     "That didn't stop the matches from landing on Jangle and igniting his shirt!"
     "He cried out in pain as the fire spread across him, with Jingle being too distracted by it to go after me!"
     ja "{b}{i}GET IT OFF!! GET IT OFF!!{/i}{/b}"
+    $l_exp = "surprised"
+    "Jingle looked like she wanted to help, but didn't know how, especially as Jangle ran around like a chicken without a head."
+    $l_exp = "shocked"
+    "And then stumbled onto the curtain!"
+    "Which then burst up into flames!"
+    $l_exp = "concerned"
+    "Well, I guess that worked out well for the plan...?"
+    hide screen laura
+    $renpy.music.set_volume(0.5, delay=0.5, channel="sound")
+    scene bg stage
+    show madeline dead at two1
+    show sprinkles leftdown rightdown wut at two2_sprinkles
+    with dissolve
+    pause 0.1
+    s "What in the...?"
+    s horror "Oh my goodness!!"
+    $renpy.music.set_volume(1.0, delay=0.5, channel="sound")
+    show fire
+    pause 0.5
+    play sound2 children_screaming fadein(1.0)
+    play ambience crowd_screaming fadein(1.0)
+    pause 1
+    play ambience2 "audio/se/fire alarm.ogg"
+    pause 3
+    scene bg livestage with dissolve
+    pause 0.1
+    show dakota side sad at two1
+    show kate fidget shocked at two2
+    with dissolve
+    pause 0.1
+    k "K-Kota, what's happening??"
+    d "The stage is on fire!"
+    k crying down "!!!"
+    show kate concerned
+    show dakota neutral
+    play audio "audio/se/Door Open.ogg"
+    "Suddenly, the door at the back of the room slammed open."
+    "One of the REDD guards came in, looked at the stage, and stomped over to one of the other guards nearby."
+    scene bg livestage with dissolve
+    $helmet = "_helmet"
+    $t_name = "Guard"
+    show trosh gun concerned at middle with dissolve
+    pause 0.1
+    t "What the hell is going on??"
+    redd "I-I don't know, Sir! The stage just caught fire!"
+    t angry "Well don't just fuckin' stand there! Put it out!"
+    t "All of you! Let's go! Find extinguishers and get this shit out!"
+    "The rest of the guards looked around the room, trying to find a fire extinguisher or anything that can put the fire out."
+    stop ambience fadeout(1.0)
+    $l_exp = "surprised"
+    show screen laura
+    scene bg basement_hall
+    show fire
+    with dissolve
+    pause 0.1
+    "Jingle wrapped her brother up in an unburned curtain to try and extinguish him."
+    "After he seemed to be out, she unwrapped him."
+    $l_exp = "shocked"
+    "Only to reveal his whole body was burned to a crisp."
+    "And he wasn't moving."
+    $l_exp = "surprised"
+    "While she was distracted with that, I ran towards the front of the theater for the next step in the plan."
+    scene bg lobby with dissolve
+    pause 0.1
+    "The doors were open, which made this next part easy."
+    $l_exp = "rage"
+    l "{b}EVERYONE GET INTO THE LOBBY!! LET'S GO!!{/b}"
+    hide screen laura
+    scene bg livestage
+    show dakota side neutral at two1
+    show kate down shocked at two2
+    with dissolve
+    pause 0.1
+    "Kate and Dakota turned towards the opened doorway with shock and confusion."
+    k "M...Mommy??"
+    d sad "!!!"
+    l "{b}LET'S GO, LET'S GO!! MOVE IT!!{/b}"
+    hide kate
+    hide dakota
+    show trosh hips concerned at middle
+    with dissolve
+    pause 0.1
+    redd "What the hell??"
+    $t_name = "Trosh"
+    t angry "Hey! Focus on the fire!"
+    redd "The audience is getting away!"
+    t "They won't be able to escape the building; we'll collect them after the fire's out!"
+    redd "And further delay this damn show??"
+    t "The show will be delayed indefinitely if the building burns to the fucking ground with us all in it!!"
+    redd "But--"
+    t "Put the damn fire out and worry about the damn audience later! I'm not gonna tell you again!"
+    redd "..."
+    redd "Understood."
+    hide trosh with dissolve
+    pause 0.5
+    scene bg stage
+    show fire zorder 3
+    with dissolve
+    pause 0.5
+    show sprinkles horror rightdown leftdown at two1 with dissolve
+    show trosh hips concerned at two2 with easeinright
+    pause 0.1
+    t "Krag, get to your dressing room until we can get this fire out!"
+    $s_name = "Krag"
+    s "B-But..."
+    t "Come on! We'll fix this for you! Just get to your dressing room!"
+    s "I... This can't be...!"
+    show sprinkles:
+        ease 0.5 two1_short
+    "Krag was starting to hyperventilate as he fell to his knees."
+    t fear "Krag!"
+    show trosh:
+        ease 0.5 two2_short
+    pause 1
+    $helmet = ""
+    with dissolve
+    pause 0.1
+    t "Krag, don't you do this to me! Get up!"
+    pause 1
+    show sprinkles:
+        ease 1.0 two1
+    show trosh:
+        ease 1.0 two2
+    pause 1.5
+    t intrigued "Come on. Let's get you to safety."
+    pause 0.5
+    hide trosh
+    hide sprinkles
+    with Dissolve(1.0)
+    pause 1
+    $l_exp = "mad"
+    show screen laura
+    scene bg lobby with dissolve
+    pause 0.1
+    l "Let's go, let's go! Move it!"
+    "More and more people ran into the lobby in a panic."
+    l "Get somewhere safe! Hide wherever you can! Go, go, go!"
+    "As people ran down hallways, went into bathrooms, and just went anywhere that wasn't the main theater, I could see the fire being extinguished and Mr. Sprinkles nowhere on the stage."
+    $l_exp = "concerned"
+    "I could also see a half-burned body standing upright on a pole."
+    "Well, I hope Madeline's family planned on a cremation."
+    stop music fadeout(5.0)
+    stop sound fadeout(5.0)
+    stop ambience2 fadeout(5.0)
+    $l_exp = "mad"
+    "Alright. All that's left is the final step in the plan."
+    "Making my way through the crowd, I walked back towards the backstage area."
+    "Time to end this once and for all."
+    hide screen laura
+    pause 2
+    show dakota sad crossed at two1
+    show kate fidget concerned at two2
+    with Dissolve(1.0)
+    pause 0.5
+    k "Mommy?? Mommy!!"
+    d "Mom, where are you?? Mom!!!"
+    call sceneend
+    if not persistent.scenes["ch5_s3"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch5_s3"] = True
+
+
+label finalconfrontation:
+    python:
+        currenttime = "4:32 AM"
+        timeleft = "2 hours and 28 minutes"
+        l_exp = "neutral"
+    call chapterstart
+    pause 2
+    scene bg basement_hall
+    with Dissolve(2.0)
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "I approached the dressing room, where a familiar ally could be spotted."
+    show trosh hips intrigued at middle with dissolve
+    pause 0.1
+    t "You actually pulled it off."
+    $l_exp = "smug"
+    l "{b}We{/b} pulled it off."
+    t concerned "Hm."
+    t "You really think you'll be able to get him to listen to reason?"
+    $l_exp = "concerned"
+    l "It's a little late to think otherwise, don't you think?"
+    t "Perhaps."
+    l "And we're good with the guards?"
+    t smile "Any sane REDD who's told that Lord Reddington is disappointed in their failure knows to get a hundred miles away from their last-known location."
+    $l_exp = "smug"
+    l "And they actually believed you?"
+    t "I'm their boss. They have to whether they want to or not."
+    $l_exp = "smile"
+    l "Okay, then. I guess this is it."
+    t concerned "Good luck."
+    $l_exp = "neutral"
+    l "Thanks."
+    hide trosh with dissolve
+    pause 1
+    "Taking a deep breath, I opened up the dressing room door."
+    play sound door_open
+    scene bg dressingroom with dissolve
+    pause 0.1
+    "Opposite of me, staring blankly into the mirror, was Krag Dovason."
+    show sprinkles rightdown leftdown hm at middle_sprinkles with dissolve
+    pause 0.1
+    "He didn't seem to react when I opened the door."
+    "He just continued to stare forward with his hands in his lap and his phone on the desk."
+    l "Hello, Krag."
+    s "..."
+    "He then readjusted himself in his seat a bit before sighing."
+    play music vast_places
+    s "I just received a call from Lord Reddington."
+    s "He informed me that he saw that little stunt you pulled."
+    s "Of course, explaining to him that it wasn't me, but rather a human, led to him asking how a human was given the chance to do it in the first place."
+    s "Needless to say, the most powerful REDD on the planet is very disappointed in me."
+    s "Very, {b}very{/b} disappointed."
+    $l_exp = "surprised"
+    l "..."
+    "He said all that in a deadpan tone while not looking away from his reflection."
+    $l_exp = "sad"
+    "I don't think he even blinked once."
+    s "Any chance I had at saving my show..."
+    s "Gone."
+    s "Down the drain."
+    "He took another deep breath before slowly standing up from his seat and turning towards me."
+    $l_exp = "shocked"
+    "And revealing that he had a pistol in his hand!"
+    l "Krag!"
+    "It wasn't being pointed at me, but the fact that he had it made the situation problematic."
+    s "I don't know who you are."
+    s "I don't know how you managed to do this."
+    s "But..."
+    $l_exp = "surprised"
+    s jeer "Congratulations."
+    s "You stopped me from performing my big, grand performance."
+    s "And now I am left with nothing."
+    s "No show, no audience, no fans, no support."
+    s "All I have left is the joy that this night brought me."
+    s "I haven't felt this alive in years."
+    s "So at least now, despite it not ending the way I had planned, I can rest knowing that, if only for one night, I was happy."
+    $l_exp = "shocked"
+    "He then held onto the gun's barrel and pointed it towards me handle-first."
+    s "Here. You deserve this."
+    $l_exp = "surprised"
+    l "..."
+    "I was hesitant, but I slowly took the weapon from his hands."
+    s "You win, my dear."
+    s "You may now claim your prize."
+    stop music fadeout(5.0)
+    show sprinkles hat
+    "He then tipped his hat to me before turning back around."
+    hide sprinkles with dissolve
+    pause 0.1
+    "Through the mirror, I could see him close his eyes and give a large grin."
+    "..."
+    $l_exp = "concerned"
+    "..."
+    hide screen laura
+    window hide dissolve
+    pause 1
+    $finalchoice = True
+    menu:
+        "Claim Your Prize":
+            jump claimprize
+        "Decline Your Prize":
+            jump declineprize
+
+label claimprize:
+    pause 1
+    play sound gunshot
+    call gunflash
+    show blood2
+    pause 2
+    $l_exp = "crying"
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "..."
+    "I..."
+    "I can't believe I just..."
+    pause 1
+    show trosh gun intrigued at middle with dissolve
+    pause 0.1
+    t "What just--"
+    t fear "{b}Krag!!{b}"
+    show trosh:
+        ease 0.5 middle_short
+    "He ran to his brother and dropped to his knees."
+    t "Krag! Oh God!! {b}KRAG!!{/b}"
+    "He then turned to me."
+    show trosh intrigued
+    $l_exp = "surprised"
+    "And noticed the gun still in my hand."
+    t "..."
+    show trosh:
+        ease 1.0 middle
+    pause 2
+    t "You mean to tell me..."
+    t "After all that talk about you wanting him safe..."
+    t "About how watching him get hurt despite everything he's done felt wrong..."
+    $l_exp = "sad"
+    l "T-Trosh, let me explain!"
+    "He slowly walked towards me."
+    t "After all of that..."
+    $l_exp = "crying"
+    l "Trosh, I--!"
+    t "I trusted you."
+    t "I trusted a human for the first time in my life."
+    t "Well, I guess now I know better."
+    t concerned "And I assure you that's a mistake I'll never make again."
+    l "Trosh, please!"
+    t "Now, if you'll excuse me..."
+    t angry "...I have a right to exercise."
+    l "{b}TRO--!!{/b}"
+    $quickhide = True
+    hide screen laura
+    window hide
+    play sound machine_gun
+    call gunflash
+    pause 1
+    scene bg blood
+    with Dissolve(3.0)
+    pause 3
+    scene bg fade
+    with Dissolve(3.0)
+    pause 1
+    if not persistent.achievements["grandprize"]:
+        $persistent.achievements["grandprize"] = True
+        $renpy.notify("Achievement Unlocked: {i}Grand Prize{/i}")
+        $persistent.achievelist.append(1)
+    $renpy.end_replay()
+    jump gameover
+
+label declineprize:
+    pause 1
+    $l_exp = "mad"
+    show screen laura
+    window show dissolve
+    pause 0.1
+    l "No."
+    l "I won't do it."
+    s "..."
+    "His eyes remained closed, but his smile went away."
+    s "Is that right?"
+    l "That's right."
+    s "..."
+    $l_exp = "neutral"
+    "He opened his eyes and turned towards me."
+    show sprinkles hm rightdown leftdown at middle_sprinkles with dissolve
+    pause 0.1
+    s "Very well."
+    s jeer "I suppose I'll take that back, then."
+    "He extended his hand towards me."
+    $l_exp = "mad"
+    l "Why? So you can use it on yourself?"
+    s @ wut "..."
+    s "Heh. That's funny."
+    s "Most people would think that if you gave a REDD a gun, he'd use it to kill {b}you{/b}, not himself."
+    $l_exp = "concerned"
+    l "Well, I'm not most people."
+    l "And you're not most REDD."
+    s wut "Ma'am, with all due respect..."
+    s hm "...you are very, {b}very{/b} foolish if you believe that after everything I've done tonight."
+    l "Look, Krag, I'm not gonna turn a blind eye to everything you've done tonight."
+    l "You've done things that might be arguably worse than things other REDD have done."
+    $l_exp = "sad"
+    l "But..."
+    l "I really gotta know: {w}Why?"
+    l "Why would you do all of this?"
+    s wut "..."
+    l "If this was all a way to get back at Jessica, then why bring innocent parents into this?"
+    l "Why kill the people who came here because they respected and trusted you?"
+    s hm "It's like I said at the beginning of the night: I'm a REDD. I can't and shouldn't be trusted."
+    $l_exp = "mad"
+    l "Bullshit."
+    l "If you wanted humans dead, you wouldn't have waited 7 years to do it."
+    s "..."
+    $l_exp = "sad"
+    l "Come on, Krag. The least you can do is be honest about this."
+    s wut "..."
+    "He sighed and looked down."
+    play music packing
+    s "Do you know what it's like to be one step away from losing everything you've worked so hard to achieve?"
+    $l_exp = "neutral"
+    l "I can't say that I do."
+    s jeer "Well, I can honestly say it's not a fun feeling."
+    s "At all."
+    s wut "As plain old Krag Dovason, I'm just... a REDD."
+    s "Nothing special. Nothing unique."
+    s jeer "But... as Mr. Sprinkles..."
+    s @ laugh "I... I'm loved."
+    s hat "I know the other REDD don't really get it."
+    s "Even my own brother doesn't fully get it."
+    s rightdown happy "But when I put on this suit and hat..."
+    s laugh "Ahaha... It just makes me feel like who I was always meant to be."
+    s hm "So to have that all taken away..."
+    s wut "Because of something that wasn't even my fault!!"
+    $l_exp = "sad"
+    l "I get that, Krag. Believe me, I've been vocal about how unfair you were treated, as well."
+    s hm "Well, it didn't matter. Everyone's minds were already made up."
+    s "And I just felt so..."
+    s "..."
+    s wut "Well, 'angry' doesn't do it justice."
+    s "It's like in that period of time, I finally 'became a REDD'."
+    s "I just couldn't stop picturing what it was like to see all of those protesters flattened on the street or set ablaze."
+    s jeer hat "How their screams of pain and begs for mercy would sound so pleasant to my ears."
+    s "It just felt so..."
+    s evilgrin "{i}Wonderful.{/i}"
+    $l_exp = "shocked"
+    "He was actually starting to scare me."
+    $l_exp = "concerned"
+    "But I have to stay calm and in control."
+    l "So you decided to put on a show where you'd get to kill people?"
+    s rightdown jeer "It was only fitting; the REDD War was just around the corner."
+    s huh "The biggest issue was location."
+    s "If the War wasn't going to be local, then there would be no point."
+    $l_exp = "mad"
+    l "And that's when Reddington got involved?"
+    s hat laugh "My, my. You certainly have quite the brain in there."
+    s rightdown jeer "As you probably already know, my brother is a very well-respected member in the REDD military."
+    s "He's one of the few REDD who have close connections with Lord Reddington."
+    s laugh "So having him set up a meeting between us wasn't as difficult as you'd think."
+    s wut "Though the guy is just as intimidating as you'd expect him to be, if not more so."
+    $l_exp = "wut"
+    l "...I see."
+    s jeer "Anyway, I spoke with Reddington about my situation and how I wanted one of the War Zones to be located in Atlanta."
+    s laugh hat "It felt like a natural pick, anyway. A large city that's never been picked while in an area of the country that REDD War activity is seldom seen in was bound to be chosen eventually."
+    $l_exp = "concerned"
+    l "But why would Reddington make Atlanta one of the five War Zones just because you wanted him to? I'm sure he gets requests all the time from REDD with more tendency to take advantage of the REDD War."
+    s wut rightdown "Oh, absolutely. He even told me as much."
+    s huh "I'm not sure whether it was because I was Trosh's brother or if he truly wanted to see if I would go through with it or whatever."
+    s jeer hat "But he accepted my offer. He even offered to fund the entire show from his own pocket!"
+    s "And not only that, but he told... no, {b}promised{/b}! That if this 12-hour extravaganza went well..."
+    s laugh "He'd be the main producer for the main TV series, no matter how low the ratings!"
+    s "I'd be free to continue making episodes of Mr. Sprinkles forever!"
+    s hm "But, well..."
+    s "A certain someone had to go and spoil the fun."
+    $l_exp = "wut"
+    l "So, you did all this just so you could keep making your show?"
+    l "Even if it was just an audience of no one?"
+    l "Even if the entire world literally wanted your head on a pike?"
+    s rightdown wut "You just don't get it, do you?"
+    s "Having an audience doesn't matter to me."
+    s hat "What matters is I was able to continue doing what I love."
+    $l_exp = "mad"
+    l "But at what cost, Krag?"
+    l "Is it really worth being hated by those who loved you?"
+    s hm "Believe me, I would've loved the circumstances to be different."
+    s jeer "Having more fans means having more money."
+    $l_exp = "wut"
+    l "...really?"
+    $l_exp = "mad"
+    l "I don't believe for a second that you only loved having fans for the money."
+    s wut "..."
+    $l_exp = "concerned"
+    l "You said it, yourself: being Mr. Sprinkles made you loved."
+    l "But now, after this live show, you'll be lucky if anyone who used to be a fan of yours will continue to love you."
+    l "That has to be eating at you."
+    s "..."
+    l "It's like I told you: you're not most REDD."
+    $l_exp = "sad"
+    l "You actually care about humans."
+    l "Not many REDD seem to care about anyone, much less a human."
+    l "But you..."
+    $l_exp = "surprised"
+    l "..."
+    $l_exp = "smile"
+    l "Here. Let me show you something."
+    "I reached into my pocket and pulled out my phone."
+    "After opening my gallery, I pointed the screen at him."
+    show cg photo zorder 3 with dissolve
+    pause 0.5
+    l "Do you remember these girls?"
+    s "..."
+    "He slowly approached the phone to get a better look at the picture."
+    s "..."
+    s "Yeah... I do, actually."
+    s "I pretended the girl on the left was my reflection."
+    l "That's right."
+    l "Those are my daughters. Before this show started, they were as happy and excited as any child would be."
+    $l_exp = "surprised"
+    l "But now?"
+    $l_exp = "sad"
+    l "Now they don't have a father."
+    l "Now they must be worried sick about whether or not they'll see their mother again."
+    l "Now they must be so scared and horrified by what you've done."
+    s "..."
+    show sprinkles hm rightdown
+    hide cg photo with dissolve
+    pause 0.1
+    "I put my phone away."
+    l "Krag, you need to see the bigger picture of what you've done tonight."
+    l "You may have been trying to save your show, but at what cost, man?"
+    l "Ruining the lives of all these children? Children who didn't do anything to hurt you?"
+    s @ wut "..."
+    s "Well... does it really matter now, anyway?"
+    s "What's done is done."
+    s "Those people are still dead. My show is still ruined."
+    s wut "And Reddington is still going to kill me."
+    $l_exp = "surprised"
+    l "Well, you're right about what's done being done."
+    $l_exp = "sad"
+    l "But your future doesn't have to be so grim."
+    l "You can still find ways to get through this."
+    s hm "Ha. Such as?"
+    l "You'll need to hide. Stay off the grid. Go somewhere where nobody will find you."
+    s wut "No such place exists."
+    s "Reddington will find me no matter where I go."
+    l "It's still something, Krag."
+    l "If you play your cards right and hide until this situation is forgotten about, or at least out of the public mind, you can have a chance to start over."
+    s hm "..."
+    s "You truly don't understand."
+    s wut "I don't {b}want{/b} to start over. I {b}can't{/b} start over!"
+    $l_exp = "mad"
+    l "Well, there are a lot of things I want right now, but I just can't have them."
+    $l_exp = "concerned"
+    l "But if you want to have any chance of living--"
+    $l_exp = "surprised"
+    s huh "Why do you even care so much, anyway?"
+    s "Why are you pushing me so hard to try and fix this when I don't deserve it?"
+    $l_exp = "mad"
+    l "Because you're wrong, Krag."
+    l "You {b}do{/b} deserve it! {b}Everyone{/b} deserves a second chance!"
+    l "The question is are you willing to accept one."
+    s hm "..."
+    $l_exp = "sad"
+    l "Krag..."
+    l "I can't promise what the future holds."
+    l "I don't know how many people will forgive you."
+    $l_exp = "smile"
+    l "But that's the biggest difference between humans and REDD:"
+    l "Humans have compassion and empathy. We can look at things objectively and see things from other perspectives."
+    l "Look at me, for example. I didn't shoot you despite everything you've done."
+    l "That's because I see what you're going through. I can understand why you did what you did."
+    $l_exp = "wut"
+    l "Do I agree with why you did it? Not really."
+    $l_exp = "surprised"
+    l "But I can at least see it from your eyes and figure out why you did it."
+    $l_exp = "smile"
+    l "And if I can do it, so can any other human."
+    l "If you go into hiding for a bit, come back and explain your side of the story..."
+    $l_exp = "excited"
+    l "Well, you never know who will understand you, too."
+    s wut "..."
+    $l_exp = "determined"
+    l "What do you say, Krag?"
+    s "I..."
+    $l_exp = "surprised"
+    "He covered his mouth and looked up, as if he was on the verge of tears."
+    s "I don't know."
+    s hm "The truth is, your compassion and forgiveness is something I've never understood about you humans."
+    s "With REDD, it's 'if you mess up, kiss your ass goodbye'."
+    s wut "But humans..."
+    s "You... you're so..."
+    "He took another deep breath and wiped his eyes."
+    s jeer "Alright. We'll go with your plan."
+    $l_exp = "smile"
+    l "I'm glad to hear it."
+    s "Thank you. Really."
+    $l_exp = "determined"
+    l "Any time."
+    s hat happy "If you don't mind, I'd, uh... like some time alone."
+    s jeer "I'm gonna need to think of a hiding spot, after all."
+    l "Fair enough."
+    s rightdown "Thanks again. I truly do mean it."
+    $l_exp = "smile"
+    l "Just take it easy, okay?"
+    s laugh "Will do."
+    stop music fadeout(5.0)
+    $quickhide = True
+    hide screen laura
+    window hide
+    pause 1
+    scene bg basement_hall
+    with Dissolve(3.0)
+    pause 1
+    $l_exp = "neutral"
+    $quickhide = False
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "I sat by one of the stage curtains (the one that wasn't burned up) and let out a huge sigh."
+    "That truly was more difficult than I had expected."
+    $l_exp = "surprised"
+    play sound footsteps
+    "I heard footsteps approaching."
+    show trosh hips intrigued at middle with dissolve
+    pause 0.1
+    t "Well?"
+    $l_exp = "smug"
+    l "We're all good to go."
+    l "He's agreed to go into hiding until more people are willing to forgive him."
+    t concerned "Wow. I'm actually impressed."
+    l "Never underestimate the power of humans."
+    t "Hm..."
+    $l_exp = "neutral"
+    l "Speaking of which, where are all the audience members?"
+    t "Scattered across the theater."
+    t "None are in this backstage area, at least that I've found."
+    t "Well, outside of the hostages who never got the chance to play the games."
+    $l_exp = "smile"
+    l "But they're all safe?"
+    t "I haven't been walking around the place, since I don't wanna spook them and cause a frenzy."
+    t smile "But yeah. It seems like they're safe."
+    l "That's good to hear."
+    t "..."
+    t "You know, I never thought I'd say this to a human, but..."
+    t "You did good."
+    $l_exp = "smug"
+    l "{b}We{/b} did good, Trosh."
+    t "Heh. Yeah, I guess {b}we{/b} did."
+    t concerned "But it's like I told you--"
+    $l_exp = "determined"
+    l "Don't worry. I won't tell anyone that you helped."
+    l "And if someone were to ever find out, we can just say that I blackmailed you or some shit."
+    t laugh "Hahaha! Not sure how many REDD would believe that."
+    l "Hey, I'm just trying to help here!"
+    $l_exp = "smile"
+    "We both then let out a laugh."
+    t intrigued "Hey, uh..."
+    t "Does Krag know that I'm still here?"
+    $l_exp = "surprised"
+    l "I'm not sure, actually."
+    t smile "I guess the least I can do is check up on him and see how he's doing."
+    $l_exp = "excited"
+    l "Great idea! I really feel like he needs that right now."
+    hide trosh with dissolve
+    pause 0.1
+    $l_exp = "smile"
+    "Trosh then went around the corner and out of sight as he went towards the dressing room."
+    "Well, all things considered, everything turned out okay."
+    $l_exp = "sad"
+    "It sucks that so many people still died here, but..."
+    $l_exp = "smile"
+    "At least a good amount were still saved."
+    "At least some children could return home with both of their parents."
+    "At least most of the children could return home with at least one parent."
+    "..."
+    $l_exp = "neutral"
+    "I then felt my eyelids get heavy."
+    "Geez, I've had way too long of a night."
+    "I guess now's a good time to try and get some rest."
+    "I then slowly started to close my eyes."
+    $l_exp = "shocked"
+    t "{b}OH MY GOD!!!{/b}"
+    "My eyes sprung open as I turned towards the hall Trosh went down."
+    "What happened? What's wrong??"
+    "I quickly got up and ran towards Trosh's voice."
+    $l_exp = "surprised"
+    "The hallway was empty, but the dressing room door was wide open."
+    "I ran inside to see what the problem was."
+    $l_exp = "shocked"
+    "When I did..."
+    l "Oh..."
+    l "My..."
+    l "God..."
+    hide screen laura
+    window hide dissolve
+    scene bg flash
+    with Dissolve(1.0)
+    pause 1
+    play audio dramatic
+    scene bg floor
+    show cg deadsprinkles1
+    pause 2
+    show white zorder 2
+    pause 0.1
+    show cg deadsprinkles2
+    play audio dramatic
+    hide white
+    pause 2
+    show white zorder 2
+    pause 0.5
+    play audio dramatic
+    show cg deadsprinkles3
+    hide white
+    pause 3
+    show screen laura
+    window show dissolve
+    "..."
+    "I couldn't believe what I was looking at."
+    "This... can't be real."
+    "It just... can't!"
+    "Trosh was crouched next to Krag, staring in shock and awe."
+    "He then slowly turned towards Jessica, who was facing down towards her lap, not moving a muscle."
+    t "How the... how did..."
+    $l_exp = "surprised"
+    "I slowly walked over to Jessica."
+    hide cg deadsprinkles3
+    show bg dressingroom_blur:
+        xalign 0.5 yalign 0.5
+        zoom 1.15
+    with dissolve
+    pause 0.5
+    show cg jessicainsane1
+    with Dissolve(1.0)
+    pause 0.5
+    "I tried to look at her face, but it was covered by her hair."
+    l "J... Jessica?"
+    l "W-What happened?"
+    "I could then hear some soft giggling come from her."
+    "It's the most I've heard out of her in hours."
+    l "Jessica?"
+    $l_exp = "sad"
+    l "Jessica!"
+    hide screen laura
+    window hide dissolve
+    $giggle_timer = renpy.random.randint(1, 3)
+    if giggle_timer == 1:
+        pause 2
+    elif giggle_timer == 2:
+        pause 2.5
+    else:
+        pause 3
+    play music shattered_mind
+    show cg jessicainsane2
+    with Dissolve(0.2)
+    show cg jessicainsane2:
+        linear 45.0 zoom 1.15
+    show bg dressingroom_blur:
+        linear 45.0 zoom 1.0
+    pause 2
+    $l_exp = "shocked"
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "She wouldn't stop laughing."
+    "She just stared blankly ahead and laughed like a maniac."
+    "..."
+    $l_exp = "sad"
+    "..."
+    "She's officially lost it."
+    "All the torture..."
+    "All the pain..."
+    "It's all destroyed her brain."
+    "And it's brought her to this."
+    "To murder."
+    "And seemingly no understanding of the consequences."
+    "..."
+    "I looked back down at Krag."
+    "No signs of breathing."
+    $l_exp = "crying"
+    "Damn it."
+    "Damn it!!"
+    $l_exp = "angry"
+    l "{b}{i}DAMN IT!!!{/i}{/b}"
+    scene bg dressingroom
+    "I stood up and slammed my fist against the counter."
+    "It fucking hurt, but I didn't care."
+    l "This wasn't how this was supposed to go!!"
+    l "This wasn't supposed to happen!!"
+    "I slammed my fist against the counter 3 times in a row, giving a loud {b}'FUCK!!'{/b} with each one."
+    $l_exp = "crying"
+    "I took a deep breath and turned towards Trosh, who was still staring at his dead brother."
+    l "T-Trosh, I--"
+    t "Please..."
+    t "Just... leave me alone with him."
+    l "..."
+    $l_exp = "sad"
+    l "..."
+    l "...okay..."
+    "I said in a near-whisper."
+    stop music fadeout(5.0)
+    $quickhide = True
+    hide screen laura
+    window hide
+    pause 1
+    scene bg basement_hall
+    with Fade(1.0, 1.0, 1.0)
+    pause 1
+    play music vast_places
+    $quickhide = False
+    $nvl = True
+    nvl clear
+    nvl show dissolve
+    narrate """
+    I put Jessica back in the closet.
+
+    I made sure to face her towards the back this time so she couldn't reach the handle.
+
+    After that, I slowly walked back towards the stage.
+
+    {clear}
+
+    All that effort...
+
+    All that work...
+
+    All that hope...
+
+    For nothing.
+
+    {nw}
+
+    Krag is dead.
+
+    Jessica killed him.
+
+    I gave her the weapon she used to kill him.
+
+    That can't possibly be my fault, though, right?
+
+    I gave her that cane to defend herself.
+
+    ...
+
+    {clear}
+
+    That... wasn't self-defense.
+
+    She techincally broke REDD War rules...!
+
+    ...
+    """
+    $nvl = False
+    $l_exp = "angry"
+    show screen laura
+    window show
+    nvl hide
+    with dissolve
+    pause 0.1
+    "I screamed as loud as I could into the open hallway."
+    l "{b}FUCK YOU, REDD WAR!!!{/b}"
+    l "{b}FUCK!!! {i}YOOOUUUUU!!!!!{/i}{/b}"
+    $l_exp = "crying"
+    "I then leaned my head back and starting crying."
+    l "Please..."
+    l "Just let this goddamn piece of shit night be over already!"
+    "I then tightly closed my eyes and continued to cry."
+    "There are only about 2 more hours left until this fucking War ends."
+    "And they can't get here soon enough."
+    hide screen laura
+    window hide dissolve
+    stop music fadeout(3.0)
+    pause 1
+    show black:
+        alpha 0.0
+        linear 2.0 alpha 1.0
+    pause 1.75
+    stop music
+    hide black
+    window show
+    d "Mom??"
+    $l_exp = "shocked"
+    show screen laura
+    pause 0.6
+    "That voice...!"
+    l "Dakota??"
+    d "MOM!!"
+    $l_exp = "crying"
+    l "DAKOTA!!"
+    "I bolted towards that voice. It was coming from the hall that led to the lobby."
+    scene bg lobby with dissolve
+    pause 0.1
+    "When I got into the doorway that led to the lobby, I saw nobody in the room."
+    "At least, at first."
+    "Towards the main entrance was--"
+    l "Dakota! Kate!"
+    show dakota bawl side at two1
+    show kate crying fidget at two2
+    with dissolve
+    pause 0.1
+    k "Mommy!!"
+    "Both girls ran towards me, and I towards them."
+    "I can't believe it! They're alive!"
+    "They're safe! They're--!"
+    $l_exp = "concerned"
+    show dakota sad
+    show kate shocked
+    "...they're stopping and pointing at me."
+    d "{b}MOM, BEHIND YOU!!{/b}"
+    $l_exp = "surprised"
+    "I stopped and turned around."
+    hide dakota
+    hide kate
+    with easeoutleft
+    show jingle yell axe at middle zorder 2 with easeinright
+    play music shattered_mind
+    $l_exp = "shocked"
+    "Oh, fuck!!"
+    "She then swung the axe down at me, but I was barely able to dodge it by jumping to the side!"
+    show jingle evil_grin
+    "She then turned to me with a psychotic smile."
+    ji "You may have stopped the show..."
+    ji angry "...but the War's not over yet, bitch!!"
+    "She then swung again, with me barely dodging it before falling down on my ass."
+    $l_exp = "crying"
+    "No. It can't end like this."
+    "After everything..."
+    "Not like this!"
+    "Not in front of my little girls!"
+    show jingle evil_grin
+    "She then raised her axe again."
+    ji "Thanks for playing~!"
+    show jingle yell up:
+        linear 0.1 xalign 0.55
+        linear 0.1 xalign 0.5
+    $l_exp = "surprised"
+    ji "Gah!!"
+    "Her head suddenly jerked back as her axe fell out of her hands."
+    "I was quick to get out of the way before it hit me."
+    "After that, I crawled back and away from her."
+    $l_exp = "shocked"
+    "And I was surprised at what I saw:"
+    show kate up mad at two2_short zorder 1 with dissolve
+    pause 0.1
+    "Kate was pulling on one of Jingle's twin tails!"
+    k "{b}LEAVE MY MOMMY ALONE!!!{b}"
+    show jingle:
+        linear 0.1 xalign 0.55
+        linear 0.1 xalign 0.5
+    show kate:
+        linear 0.1 xalign 0.85
+        linear 0.1 xalign 0.8
+    "Kate then yanked hard, which seemed to disorient Jingle even more!"
+    ji angry down "Get off me, you fucking brat!!"
+    $l_exp = "surprised"
+    d "She's not a brat, you idiot!!"
+    show dakota side crying at two1_short with dissolve
+    pause 0.1
+    "Dakota then ran over and yanked on the other twin tail!"
+    show jingle:
+        linear 0.1 xalign 0.45
+        linear 0.1 xalign 0.5
+    show dakota:
+        linear 0.1 xalign 0.2
+        linear 0.1 xalign 0.25
+    ji "Gah!!"
+    show jingle:
+        linear 0.1 xalign 0.55
+        linear 0.1 xalign 0.5
+    show kate:
+        linear 0.1 xalign 0.85
+        linear 0.1 xalign 0.8
+    ji "Argh!!"
+    ji "You goddamn {b}cunts{/b}!!"
+    show jingle up
+    show kate concerned
+    show dakota sad
+    "Jingle then reached and grabbed each of my daughters by the arm."
+    $l_exp = "shocked"
+    show dakota bawl
+    show kate crying
+    "And seemingly squeezed them as tight as she could!"
+    "It seemed to do the trick, as they let go of her hair."
+    show dakota:
+        ease 0.25 left_short
+    show kate down:
+        ease 0.25 two1_short
+    show jingle down:
+        ease 0.25 right
+    "With that, Jingle quickly turned around and screamed!"
+    ji yell"{b}YOU'RE FUCKING DEAD!! BOTH OF YOU!!!{b}"
+    $l_exp = "rage"
+    "Not on my fucking watch!!"
+    "Without any hesitation, I picked up the axe and sprinted at her!"
+    "Before I realized what I was doing...!"
+    stop music
+    play sound hammer
+    call gunflash
+    show blood zorder 5
+    show dakota neutral
+    show kate shocked
+    hide jingle
+    pause 2
+    $l_exp = "surprised"
+    show dakota bawl:
+        ease 1.0 two1
+    show kate fidget crying:
+        ease 1.0 two2
+    show blood:
+        ease 1.0 alpha 0.0
+    pause 2
+    k "M... Mommy...?"
+    $l_exp = "crying"
+    l "..."
+    "I dropped down to my knees and extended my arms to the side."
+    "On cue, my daughters bolted towards me and hugged me as tight as they could, with me wrapping my arms around both of them like a boa constrictor."
+    play music packing
+    "Loud sobs from all three of us could be heard echoing through the lobby."
+    d "I love you, Mom!! I love you!!"
+    k "I love you, too, Mommy!!"
+    l "I love both of you so much! God, I really do!!"
+    "I gave each of them a long, hard kiss on the top of the head before going back to placing my head between them."
+    "Yes, I was covered in blood."
+    "Yes, they've witnessed me kill someone."
+    "Yes, they've witnessed a lot of people being killed tonight, including their father."
+    "But none of that mattered right now."
+    "My babies were alive and in my arms."
+    "At this point in time, literally not a single other thing matters."
+    k "M... Mommy?"
+    l "Yes, Kate?"
+    k "I liked her better... when she didn't talk."
+    $l_exp = "smile"
+    "I couldn't help but start laughing through my tears."
+    l "Me, too, Kate. Me, too."
+    hide screen laura
+    window hide dissolve
+    pause 1
+    scene bg fade
+    with Dissolve(2.0)
+    pause 2
+    $nvl = True
+    nvl clear
+    nvl show dissolve
+    narrate """
+    After we finally let go of each other, we walked around the theater to try and find anyone else.
+
+    There were a lot of them in a spare janitor's closet that the girls said they hid in earlier.
+
+    After getting settled in, we huddled together.
+
+    We didn't really say much; after everything that's happened, what {b}could{/b} we say?
+
+    The other families in there with us seemed to have the same idea.
+
+    {nw}
+
+    But to everyone's surprise, time was moving faster than expected.
+
+    Because before we knew it...
+    """
+    nvl hide
+    pause 0.5
+    play sound siren
+    pause 8
+    if not persistent.scenes["ch5_s4"]:
+        $persistent.scenelist.append(1)
+        $persistent.scenes["ch5_s4"] = True
+
+
+label epilogue:
+    if not renpy.music.get_playing() == "audio/music/Packing_Looping.ogg":
+        play music packing
+    python:
+        currenttime = "6:09 PM"
+        currentdate = "June 7th"
+        clothing = "main"
+        l_exp = "neutral"
+    play sound2 flicker
+    show screen dateandtime
+    with Dissolve(0.05)
+    hide screen dateandtime
+    with Dissolve(0.05)
+    show screen dateandtime
+    with Dissolve(0.05)
+    hide screen dateandtime
+    with Dissolve(0.05)
+    show screen dateandtime
+    with Dissolve(0.05)
+    hide screen dateandtime
+    with Dissolve(0.05)
+    show screen dateandtime
+    with Dissolve(0.05)
+    hide screen dateandtime
+    with Dissolve(0.05)
+    pause 0.5
+    show screen dateandtime
+    with dissolve
+    $renpy.pause(delay=5)
+    hide screen dateandtime
+    with Dissolve(2.0)
+    pause 2
+    scene bg bar
+    with Dissolve(2.0)
+    show screen laura
+    window show dissolve
+    pause 0.1
+    "I sat down at the stool."

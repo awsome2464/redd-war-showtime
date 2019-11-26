@@ -44,7 +44,7 @@ label meetthefarrs:
     s hat "Ahahaha! Alright, then! Let's start the show!"
     window hide
     pause 1.0
-    scene bg livingroom_day
+    scene bg livingroom
     with Dissolve(1.5)
     pause 0.1
     show screen laura
@@ -135,7 +135,7 @@ label meetthefarrs:
     hide game_name
     s happy rightdown "Alright, we will need 4 brave volunteers to play this game with us!"
     show screen laura
-    scene bg livingroom_day
+    scene bg livingroom
     with dissolve
     pause 0.1
     "Mr. Sprinkles and Ms. Madeline each picked 2 children from the audience to join them on the stage."
@@ -206,7 +206,7 @@ label meetthefarrs:
     s "Alright, is everyone ready?"
     $l_exp = "neutral"
     show screen laura
-    scene bg livingroom_day
+    scene bg livingroom
     with dissolve
     pause 0.1
     "Suddenly, Dakota stood up and walked out of the room."
@@ -223,7 +223,7 @@ label meetthefarrs:
     "Kate, meanwhile, just turned back to the TV."
     stop music fadeout(3.0)
     pause 0.5
-    scene bg dakotaroom_day
+    scene bg dakotaroom
     with dissolve
     pause 0.5
     "I found my daughter lying on her bed, phone in hand."
@@ -259,7 +259,7 @@ label meetthefarrs:
     "She looked at me for a second before accepting it tightly."
     l "Listen, baby, the REDD War is something we just need to accept as reality."
     l "We should be thankful that Atlanta's never been chosen for one."
-    d neutral "But what if this time, it is?"
+    d "But what if this time, it is?"
     "She held on to me even tighter."
     $l_exp = "surprised"
     l "I..."
@@ -272,7 +272,7 @@ label meetthefarrs:
 
     While larger cities always have a higher chance of being picked as a War Zone, there are so many in both the country and the world that the chances of ours getting picked is like winning the lottery.
 
-    You know, the kind you DON'T want to win.
+    You know, the kind you {b}don't{/b} want to win.
     """
     nvl clear
     narrate """
@@ -286,7 +286,7 @@ label meetthefarrs:
 
     But just because it's all you know doesn't mean you get used to it.
 
-    Honestly, I don't think I WANT my little angels to be used to it.
+    Honestly, I don't think I {b}want{/b} my little angels to be used to it.
 
     Thankfully, Kate's at that age where she's a bit oblivious to the world around her, always seeing the best in everything.
 
@@ -330,7 +330,7 @@ label meetthefarrs:
     "Maybe Richard and I can talk about this tonight."
     "With that, I went downstairs."
     stop music fadeout(0.6)
-    scene bg livingroom_day
+    scene bg livingroom
     show kate excited up at middle_short zorder 1
     with dissolve
     pause 0.1
@@ -351,11 +351,11 @@ label meetthefarrs:
     r laughing "Oh, is that right?"
     "He then glanced over at me for confirmation."
     $l_exp = "determined"
-    l "She WISHES it was that big."
+    l "She {b}wishes{/b} it was that big."
     "I ratted as I walked over and rubbed Kate's back with a chuckle."
     show richard at left
     show kate at middle
-    show dakota determined hips at right_short
+    show dakota confident hips at right_short
     with easeinright
     pause 0.1
     d "Yeah, and I'M the one who had to end up finishing it for her!"
@@ -365,10 +365,12 @@ label meetthefarrs:
     "Clearly caught in her lie, Kate buried her head in her father's shoulder in defeat."
     r smile "Hahaha! Alright, did anything else exciting happen today?"
     k happy up "I got to watch Mr. Sprinkles!"
-    r concerned "...is that right?"
+    show richard concerned
+    "He then looked towards the TV."
+    r "...is that right?"
     $l_exp = "neutral"
+    show dakota neutral
     l "..."
-    d neutral "..."
     k "Yeah, and it was awesome!!"
     r laughing "Oh, I'm sure it was, sweetie!"
     show kate:
@@ -377,7 +379,7 @@ label meetthefarrs:
     r smile "Anyway, we've got groceries to get in! Everyone helps!"
     hide screen laura
     stop music fadeout(3.0)
-    scene bg livingroom_day
+    scene bg livingroom
     with dissolve
     pause 0.1
     "After we all got the groceries in the house, the girls went back into the living room to watch TV, leaving Richard and I to put them all away."
@@ -395,21 +397,20 @@ label meetthefarrs:
     r down "I just don't want her to get hurt."
     r "Sooner or later, she's going to realize what he is and what they do."
     $l_exp = "concerned"
-    l "Richard, the whole point of his show is to show that--"
+    l "Richard--"
     r @ glare "I know not all of them are like that."
-    r "But as long as there's a REDD War, the ones that ARE like that will continue to just..."
-    r crossed glare "Well, you know what that producer from the show did last year."
+    r "But as long as there's a REDD War, the ones that {b}are{/b} like that will continue to just..."
+    r crossed glare "Well, you know what that producer did last year."
     $l_exp = "neutral"
     "I took a deep breath and looked down."
     l "Yes, I do."
-    r @ concerned "I know it's wrong to judge a group based on one member, but..."
-    r "How am I supposed to trust any of those things when they say they're good, only for them to kill an entire household?"
-    r "A household that had {b}children{/b} in it?"
+    r "How am I supposed to trust any of those things when they kill entire households?"
+    r "Households that had {b}children{/b} in them?"
     r rage "That's just fu--"
     r concerned "...{b}messed{/b} up."
     $l_exp = "sad"
     l "I'm not denying that, Richard."
-    l "But like you said, I'm not going to judge them all based on the actions of one."
+    l "But I'm not going to judge them all based on the actions of majority."
     $l_exp = "surprised"
     l "Plus, Krag Dovason has made it very clear that he disapproved his brother's actions."
     r glare "Oh, I'm sure anyone who has their show being boycotted would say something like that."
@@ -419,7 +420,7 @@ label meetthefarrs:
     "He sighed before turning towards the living room."
     "Kate's eyes were glued to the TV while Dakota's were on her phone."
     r down "I just want our girls to be safe."
-    r "To have a long, healthy life."
+    r "To have long, healthy lives."
     l "And I do, too, Richard. I want that more than anything."
     l "But the REDD aren't going anywhere, and neither is the REDD War."
     l "If it hasn't gone away in 7 years of protest, what chance does it have of ever going away in the future?"
@@ -439,9 +440,9 @@ label meetthefarrs:
     r glare "..."
     $l_exp = "excited"
     l "At least for the show tomorrow."
-    l "They're really looking forward to this, honey. Don't let your personal feelings get in the way of their fun."
+    l "They're really looking forward to this, honey. Don't let your bias get in the way of their fun."
     $l_exp = "determined"
-    l "Tomorrow's about THEM."
+    l "Tomorrow's about {b}them{/b}."
     r concerned "..."
     "Finally he gave a small smile."
     r down smile "Alright, you win."
@@ -459,16 +460,17 @@ label kragonnews:
         l_exp = "neutral"
         currenttime = "6:39 PM"
         timeleft = "21 minutes"
+        timeofday = "night"
     call chapterstart
     pause 1
     play music the_calm
-    scene bg livingroom_night
+    scene bg livingroom
     with Dissolve(2.0)
     pause 0.5
     show screen laura
     window show dissolve
     pause 0.1
-    "After dinner, the girls were upstairs doing their own thing while Richard and I stayed in the living room."
+    "After dinner, the girls went upstairs to do their own thing while Richard and I stayed in the living room."
     "Though we weren't really talking to each other much; we were mostly just scrolling through our phones, only occasionally showing each other funny or relevant posts."
     "But then..."
     show richard down glare at middle with dissolve
@@ -505,8 +507,7 @@ label kragonnews:
     j stand_up "We will not rest until {i}Mr. Sprinkles{/i} is dead and forgotten!!"
     "Crowd" "\"Yeah!!!\""
     $quickhide = False
-    pause 0.5
-    scene bg livingroom_night
+    scene bg livingroom
     show screen laura
     show richard down concerned at middle
     with dissolve
@@ -567,7 +568,7 @@ label kragonnews:
     a "You certainly seem to have everyone's best interest in mind."
     kr smile "I'm an entertainer, Chuck. If I'm not entertaining someone, my life has no purpose."
     $l_exp = "neutral"
-    scene bg livingroom_night
+    scene bg livingroom
     show screen laura
     with dissolve
     pause 0.1
@@ -616,7 +617,7 @@ label kragonnews:
     a "Oh, really? Well, that sounds fantastic!"
     kr laughing "That's the idea~!"
     $l_exp = "smug"
-    scene bg livingroom_night
+    scene bg livingroom
     show richard down concerned at middle
     show screen laura
     with dissolve
@@ -696,13 +697,13 @@ label kragonnews:
     re "Very shortly, official members of the REDD Base will be at these locations to place the proper barriers around the Zones."
     re "Everyone living in these zones will have exactly 24 hours to either evacuate the premises or prepare for the War."
     re "To those whose cities were not chosen for the REDD War, I wish to--"
-    "I didn't get to hear the rest of what he said because the next thing I knew, I saw Dakota bolt off her chair and run upstairs, her hands over her mouth, sobs coming out."
     $l_exp = "shocked"
+    "I didn't get to hear the rest of what he said because the next thing I knew, I saw Dakota bolt off her chair and run upstairs, her hands over her mouth, sobs coming out."
     l "Dakota!"
     "I ran after her to her room."
     "She tried to slam the door on me, but I was too quick for that."
     play music vast_places
-    scene bg dakotaroom_night with dissolve
+    scene bg dakotaroom with dissolve
     pause 0.1
     l "Dakota, honey..."
     d "This can't be happening! It {b}CAN'T!!!{/b}"
@@ -796,9 +797,9 @@ label kragonnews:
         ease 0.5 ypos 0
     "Regardless, he stood back up and looked at our daughters."
     r "Start packing. Please."
-    scene bg dakotaroom_night with dissolve
+    scene bg dakotaroom with dissolve
     pause 0.5
-    scene bg livingroom_night with dissolve
+    scene bg livingroom with dissolve
     pause 0.1
     "We then made our way downstairs."
     show richard down glare at middle with dissolve
@@ -806,10 +807,10 @@ label kragonnews:
     r "..."
     $l_exp = "neutral"
     l "Look, Richard--"
-    r "You're not seriously considering staying, are you?"
+    r "Please tell me you're not going to suggest we stay here."
     $l_exp = "surprised"
     l "Well..."
-    r crossed rage "Oh, my God, Laura!"
+    r crossed rage "Oh my God, Laura!"
     l "Richard, hear me out.{w=0.5} Please."
     r glare "..."
     $l_exp = "neutral"
@@ -837,7 +838,7 @@ label kragonnews:
     l "But what if they don't touch our house? We wouldn't get a cent from insurance. Then what?"
     r concerned "..."
     $l_exp = "sad"
-    l "Besides, do you know how heartbroken Kate would be if she missed this show that she's been looking forward to?"
+    l "Besides, do you know how heartbroken Kate would be if she missed this show?"
     r rage "Well, when she's older, she'll understand why her meanie-head father didn't take her to see Mr. Sprinkles!"
     r glare crossed "I'm sorry, Laura, but that's the end of this discussion. I'm getting the hell out of Atlanta as soon as I can, and I'm taking my kids with me."
     r "If you wanna be stupid enough to stay and get yourself killed, then go right ahead!"
@@ -885,8 +886,7 @@ label kragonnews:
             $renpy.music.set_volume(1.0, delay=1, channel='music')
             $l_exp = "sad"
             l "...you're right. We should leave."
-            r shocked "..."
-            r down smile "...I knew you'd make the right choice, honey."
+            r down smile "I knew you'd make the right choice, honey."
             r laughing "Now come on. Let's get packing!"
             $l_exp = "smile"
             "Richard and I then went upstairs to pack."
@@ -896,9 +896,10 @@ label kragonnews:
             hide screen laura
             window hide dissolve
             pause 0.5
-            scene bg livingroom_night_blur
+            scene bg livingroom with dissolve
+            pause 1
+            scene bg livingroom_blur
             with Dissolve(3.0)
-            pause 2
             $renpy.end_replay()
             $badcredits = True
             if not persistent.achievements["toosafe"]:
@@ -976,7 +977,7 @@ label sleeponit:
     $nvl = False
     $l_exp = "neutral"
     nvl hide
-    scene bg dakotaroom_night
+    scene bg dakotaroom
     show dakota mad side at two2_short
     show richard down concerned at two1
     show screen laura
@@ -1001,7 +1002,7 @@ label sleeponit:
     l "Please try and get some sleep, okay?"
     d "...okay..."
     r concerned "..."
-    scene bg dakotaroom_night
+    scene bg dakotaroom
     hide screen laura
     with dissolve
     pause 0.1

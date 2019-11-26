@@ -13,7 +13,7 @@ label eveningplans:
     stop music
     call chapterstart
     pause 1
-    scene bg livingroom_night
+    scene bg livingroom
     with Dissolve(2.0)
     pause 0.5
     window show dissolve
@@ -43,7 +43,7 @@ label eveningplans:
     a "{i}However, for those who still wish to attend, first of all, thank you! {image=reddsmile.png} And secondly, I have been talking with Reddington, and he has agreed to recognize the theater as an official Government Safehouse.{/i}"
     a "{i}No matter which choice you make, I wish you, as well as everyone else, good luck. The next few days are going to be crazy. {color=#00aced}#REDDWar2030{/color}{/i}"
     $l_exp = "excited"
-    scene bg livingroom_night
+    scene bg livingroom
     show richard crossed glare at middle
     show screen laura
     with dissolve
@@ -269,8 +269,8 @@ label dakotaissorry:
     r crossed smile "I suppose we could all use some more shut-eye."
     r "Everyone back to bed; that's an order."
     k "Okay~!"
-    d determined hips "Alright."
-    scene bg livingroom_night
+    d confident hips "Alright."
+    scene bg livingroom
     hide screen laura
     with dissolve
     pause 0.1
@@ -398,6 +398,7 @@ label arriveatshow:
         s_name = "Mr. Sprinkles"
         clothing = "show"
         k_hat = True
+        timeofday = "day"
     call chapterstart
     pause 2
     show screen laura
@@ -595,7 +596,7 @@ label meetandgreet:
     pause 2
     play ambience crowd
     play music the_calm
-    scene bg livestage
+    scene bg livestage_closed
     with Dissolve(2.0)
     pause 0.5
     show screen laura
@@ -678,7 +679,7 @@ label meetandgreet:
     l "Well, we've got about an hour until the session ends; let's get to it!"
     hide screen laura
     pause 1
-    scene bg arena_hall_day with fade
+    scene bg arena_hall with fade
     pause 1
     $l_exp = "neutral"
     show screen laura
@@ -753,7 +754,7 @@ label meetandgreet:
     stop music fadeout(5)
     hide screen laura
     pause 1
-    scene bg arena_hall_day with fade
+    scene bg arena_hall with fade
     pause 1
     $l_exp = "neutral"
     show screen laura
@@ -786,7 +787,7 @@ label meetandgreet:
     k excited down "Of course he does! He's awesome like that!"
     $l_exp = "excited"
     "...it's just sweet and innocent."
-    scene bg arena_hall_day with dissolve
+    scene bg arena_hall with dissolve
     pause 0.1
     $l_exp = "smile"
     "Finally, it came the big moment."
@@ -833,7 +834,7 @@ label meetandgreet:
     pause 0.5
     scene bg flash
     with Dissolve(0.25)
-    scene bg fade # Will be replaced by CG of the photo
+    scene cg photo
     with Dissolve(1.0)
     pause 1.0
     window show dissolve
@@ -841,7 +842,7 @@ label meetandgreet:
     l "Perfect."
     k "Yay~!"
     $quickhide = False
-    scene bg arena_hall_day
+    scene bg arena_hall
     show screen laura
     show sprinkles happy rightdown leftdown at right_sprinkles
     show kate happy down at middle_short
@@ -882,7 +883,7 @@ label meetandgreet:
     r "No, that's it."
     s "Very well."
     s laugh "Next~!"
-    scene bg arena_hall_day with dissolve
+    scene bg arena_hall with dissolve
     pause 0.1
     $l_exp = "neutral"
     "After the four of us got out of the line and started heading back towards the main stage, I leaned a bit closer to Richard."
@@ -953,10 +954,11 @@ label showbegins:
         currenttime = "6:55 PM"
         timeleft = "5 minutes"
         l_exp = "surprised"
+        timeofday = "night"
     call chapterstart
     pause 2
     play ambience crowd
-    scene bg livestage
+    scene bg livestage_closed
     with Dissolve(3)
     play sound "audio/se/chime.ogg"
     pause 2

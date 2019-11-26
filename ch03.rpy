@@ -1090,7 +1090,7 @@ label girlsescape:
     call gunflash
     scene bg lobby with dissolve
     pause 1.0
-    scene bg arena_hall_night with dissolve
+    scene bg arena_hall with dissolve
     pause 0.1
     "Kate then got bumped into so hard that she fell down!"
     show dakota sad side at middle with dissolve
@@ -1106,7 +1106,7 @@ label girlsescape:
     d "You'll be okay, Kate! Let's move!!"
     play sound machine_gun
     call gunflash
-    scene bg arena_hall_night with dissolve
+    scene bg arena_hall with dissolve
     call sceneend
     if not persistent.scenes["ch3_s4"]:
         $persistent.scenelist.append(1)
@@ -1723,7 +1723,7 @@ label kidshiding:
     pause 0.1
     k "Mommy??"
     d "Come on..."
-    scene bg arena_hall_night with dissolve
+    scene bg arena_hall with dissolve
     pause 0.1
     "The girls then got up and followed the guard to the doorway."
     $helmet = "_helmet"
@@ -2570,8 +2570,10 @@ label jessicaseye:
     k mad "Shut up! You hate me, anyway!"
     d mad crossed "No, I don't!!"
     k "You wished I wasn't born! That means you hate me!!"
+    d "{b}NO, IT DOESN'T, YOU IDIOT!!{/b}"
+    k "{b}I'M NOT AN IDIOT!!{/b}"
     d sad "..."
-    "Dakota then sat back down in her own seat, trying to stop herself from crying again."
+    "Dakota then sat back down in her own seat, trying to stop herself from crying."
     "But no matter what she tried to think about, she couldn't get those sounds out of her mind."
     $renpy.music.set_volume(0.25, channel="sound")
     play sound "audio/se/explosion.ogg"
@@ -2585,7 +2587,7 @@ label jessicaseye:
     stop sound
     $renpy.music.set_volume(1.0, channel="sound")
     play music vast_places
-    d bawl side "You're right, Kate. I'm not Mom."
+    d bawl side "You're right, Kate. You're not an idiot. {b}I{/b} am."
     d "I can't protect us from what's happening."
     d "It's because of me that we were out there and saw what happened to Dad."
     d crossed "I'm sorry I can't do what Mom asked me to do."
@@ -2646,8 +2648,8 @@ label jessicaseye:
         zoom 0.75
         ease 0.5 xalign 1.0
     pause 1.1
-    scene bg stage
-    # CG
+    scene bg stage_blur
+    show cg jessicatorture1
     with dissolve
     pause 0.1
     s "You've seen a lot of rough things tonight, haven't you, Jessica?"
@@ -2661,13 +2663,9 @@ label jessicaseye:
     pause 2.0
     $renpy.music.set_volume(1.0, delay=0.5, channel="ambience")
     play sound blood loop
+    show cg jessicatorture2
+    with Dissolve(0.25)
     play sound2 children_screaming
-    if persistent.gore == '':
-        pass
-        #Show CG of drill in eye
-    else:
-        pass
-    show blood3 zorder 3
     pause 2
     show blood4 zorder 3
     pause 0.25
@@ -2679,6 +2677,7 @@ label jessicaseye:
     stop sound
     $renpy.music.set_volume(1.0, delay=1.0, channel="music")
     pause 0.5
+    scene bg stage
     show sprinkles leftdown hat laugh at two1 zorder 2
     show jessica bothknees blank at two2_jessica zorder 2
     show jangle down happy_grin zorder 1:
