@@ -1685,7 +1685,7 @@ label declineprize:
     l "Come on, Krag. The least you can do is be honest about this."
     s wut "..."
     "He sighed and looked down."
-    play music packing
+    play music autumn_changes
     s "Do you know what it's like to be one step away from losing everything you've worked so hard to achieve?"
     $l_exp = "neutral"
     l "I can't say that I do."
@@ -2084,6 +2084,8 @@ label declineprize:
 
     I made sure to face her towards the back this time so she couldn't reach the handle.
 
+    Even then, she still wouldn't stop laughing.
+
     After that, I slowly walked back towards the stage.
 
     {clear}
@@ -2115,6 +2117,12 @@ label declineprize:
     That... wasn't self-defense.
 
     She techincally broke REDD War rules...!
+
+    It's not like Krag threatened her as soon as she came in!
+
+    ...
+
+    ...right?
 
     ...
     """
@@ -2208,7 +2216,7 @@ label declineprize:
     "After that, I crawled back and away from her."
     $l_exp = "shocked"
     "And I was surprised at what I saw:"
-    show kate up mad at two2_short zorder 1 with dissolve
+    show kate down mad at two2_short zorder 1 with dissolve
     pause 0.1
     "Kate was pulling on one of Jingle's twin tails!"
     k "{b}LEAVE MY MOMMY ALONE!!!{b}"
@@ -2297,9 +2305,9 @@ label declineprize:
     k "M... Mommy?"
     l "Yes, Kate?"
     k "I liked her better... when she didn't talk."
-    $l_exp = "smile"
+    d "Or use props!"
     "I couldn't help but start laughing through my tears."
-    l "Me, too, Kate. Me, too."
+    l "Me, too, girls. Me, too."
     hide screen laura
     window hide dissolve
     pause 1
@@ -2336,7 +2344,7 @@ label declineprize:
 
 
 label epilogue:
-    if not renpy.music.get_playing() == "audio/music/Packing_Looping.ogg":
+    if not renpy.music.get_playing() == audio.packing:
         play music packing
     python:
         currenttime = "6:09 PM"

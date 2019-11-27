@@ -90,9 +90,9 @@ label meetthefarrs:
     with dissolve
     pause 0.1
     s "Alright, everyone! Let's start the show!"
-    m "Not without me, you're not!"
+    woman "Not without me, you're not!"
     s huh "Huh? Who said that?"
-    m "I did!"
+    woman "I did!"
     "Suddenly, an energetic young woman entered the set via the fireplace on the back wall."
     play sound applause
     show sprinkles at two2_sprinkles with easeinleft
@@ -174,15 +174,103 @@ label meetthefarrs:
     stop music fadeout(3.0)
     play sound applause
     hide sprinkles with dissolve
-    show jingle up smile at two1
-    show jangle up smile at two2
+    show jingle up open_smile at two1
+    show jangle up open_smile at two2
     with dissolve
     pause 0.1
     "On cue, the twin mimes entered the stage with a bow."
     play music the_twins
     "They then got into position for their skit."
-    "{i}\[The twins then perform a slapstick comedy skit\]{/i}"
+    scene bg showstage with dissolve
+    pause 0.5
+    show jingle down smile at middle zorder 2 with dissolve
+    pause 0.1
+    "Jingle was sitting on an invisible chair flicking through channels on an invisible TV with an invisible remote."
+    show jingle at right
+    show jangle down smile at two1 zorder 1
+    with easeinleft
+    pause 0.1
+    "Jangle walked onto the stage and stopped a few yards away."
+    "After he knocked on the 'door', Jingle turned towards it and walked over."
+    show jingle at two2 with easeinleft
+    pause 0.1
+    show jingle smile
+    "She tried turning the knob and pulling..."
+    show jingle confused
+    "...but the door didn't open."
+    show jangle confused
+    "Jangle, looking a bit confused, knocked again."
+    show jingle stern:
+        ease 0.1 xalign 0.81
+        ease 0.1 xalign 0.8
+    "Jingle grabbed onto the knob with both hands and yanked hard."
+    show jangle stern
+    "Jangle knocked again."
+    "Looking a bit more annoyed, Jingle backed up a bit and tried kicking the door."
+    show jingle:
+        ease 0.5 xalign 0.85
+        ease 0.1 xalign 0.8
+    pause 0.6
+    show jangle confused:
+        ease 0.25 xalign 0.2
+    "Now Jangle backed up and stared at the door with confusion."
+    show jingle:
+        ease 0.1 ypos -10
+        ease 0.1 ypos 0
+        pause 0.1
+        repeat 3
+    "After stomping up and down a few times, Jingle took a deep breath to calm herself."
+    show jingle confused:
+        ease 1.5 right
+    "After then stomping over to the far side of the stage, she spun around on one foot and rolled up her imaginary sleeves in an exaggerated fashion."
+    show jangle:
+        ease 1.0 xalign 0.25
+    "Meanwhile, Jangle slowly re-approached the door."
+    show jingle:
+        ease 0.1 ypos -10
+        ease 0.1 ypos 0
+        repeat
+    "Jingle jogged in place for a second before sprinting towards the door."
+    "When she was halfway there, Jangle grabbed the doorknob and pulled it towards him successfully."
+    window hide
+    show jingle:
+        ease 0.2 xalign 0.33
+    pause 0.2
+    play sound "audio/se/crash.ogg"
+    if persistent.flash:
+        show white zorder 5
+        hide jingle
+        hide jangle
+        pause 0.05
+        hide white
+    else:
+        scene bg showstage with dissolve
+    pause 2
+    window show dissolve
+    "The two stood up while rubbing their heads in pain."
+    show jangle down happy_grin zorder 1:
+        left
+        xalign -0.1
+    show jingle down happy_grin at two1 zorder 2
+    with dissolve
+    pause 0.1
+    "After realizing what had happened, the two gave off silent laughs before hugging each other."
+    show jingle up smile
+    show jangle smile
+    "Jingle then gestured towards the doorway, inviting Jangle into the house."
+    show jingle down:
+        ease 1.0 xalign 1.1
+    show jangle:
+        ease 1.0 two2
+    pause 2
+    show jingle up happy_grin at two2
+    show jangle up happy_grin at two1
+    with easeinright
+    pause 0.1
+    "The twins then took center stage and bowed."
+    stop music fadeout(2.0)
     play sound applause
+    pause 1.5
     scene bg showstage with dissolve
     pause 0.5
     play music sprinkles_theme
