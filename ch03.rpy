@@ -201,14 +201,24 @@ label firstgame:
     show jessica screaming:
         linear 0.1 ypos -10
         linear 0.1 ypos 0
+    show sprinkles:
+        linear 0.1 xalign 0.27
+        linear 0.1 xalign 0.25
     "And smacked Jessica right in the face with it!"
-    "She cried out in pain, but her gag muffled the noise."
-    play sound smack
-    show jessica:
+    play sound2 "audio/voice/jessica_bat.ogg"
+    show jessica screaming:
         linear 0.1 ypos -10
         linear 0.1 ypos 0
-    "He smacked her again, only this time, seemingly harder."
-    "His sinister grin never left his face while he did."
+        pause 0.25
+        repeat
+    show sprinkles:
+        linear 0.1 xalign 0.27
+        linear 0.1 xalign 0.25
+        pause 0.25
+        repeat
+    "He then repeatedly hit her, seeming to get louder and faster with each one!"
+    "She cried out in pain, but her gag muffled the noise."
+    "He continued to hit her, his sinister grin never left his face while he did."
     play sound children_screaming fadein(5)
     "The screaming children certainly didn't help lighten the atmosphere."
     $l_exp = "surprised"
@@ -224,9 +234,13 @@ label firstgame:
     "What are they going through right now?"
     "What are they thinking right now?"
     "Oh, my poor girls..."
+    stop sound2 fadeout(1.0)
     hide screen laura
     pause 0.6
-    show sprinkles hat laugh
+    show sprinkles hat laugh:
+        ease 0.5 xalign 0.25
+    show jessica:
+        ease 0.5 ypos 0
     "After a few more swings, Mr. Sprinkles dropped the bat and cackled like a madman."
     show jessica tears
     "Jessica, on the other hand, had blood all over the bottom of her face and tears pouring out of her eyes."
@@ -770,11 +784,13 @@ label secondbeating:
     hide screen laura
     stop music
     play sound hammer
+    pause 0.1
+    play sound2 "audio/voice/jessica_sledgehammer.ogg"
     $quickhide = False
     pause 1.5
     show screen laura
     pause 0.6
-    "Jessica's high-pitched scream through the gag rang through my ears."
+    "Jessica's scream through the gag rang through my ears."
     "I then got the courage to open my eyes and look at the screen."
     $quickhide = True
     hide screen laura
@@ -2662,10 +2678,10 @@ label jessicaseye:
     $renpy.music.set_volume(0.5, delay=1.0, channel="music")
     pause 2.0
     $renpy.music.set_volume(1.0, delay=0.5, channel="ambience")
+    play sound2 "audio/voice/jessica_eyeball.ogg"
     play sound blood loop
     show cg jessicatorture2
     with Dissolve(0.25)
-    play sound2 children_screaming
     pause 2
     show blood4 zorder 3
     pause 0.25
@@ -2673,8 +2689,9 @@ label jessicaseye:
     pause 1.5
     show blood2 zorder 3
     pause 2.25
-    stop ambience
     stop sound
+    stop sound2
+    stop ambience
     $renpy.music.set_volume(1.0, delay=1.0, channel="music")
     pause 0.5
     scene bg stage

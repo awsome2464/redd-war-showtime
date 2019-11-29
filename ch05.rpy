@@ -1723,7 +1723,7 @@ label declineprize:
     $l_exp = "mad"
     l "And that's when Reddington got involved?"
     s hat laugh "My, my. You certainly have quite the brain in there."
-    s rightdown jeer "As you probably already know, my brother is a very well-respected member in the REDD military."
+    s rightdown jeer "You see, my brother is a very well-respected member in the REDD military."
     s "He's one of the few REDD who have close connections with Lord Reddington."
     s laugh "So having him set up a meeting between us wasn't as difficult as you'd think."
     s wut "Though the guy is just as intimidating as you'd expect him to be, if not more so."
@@ -2004,6 +2004,7 @@ label declineprize:
     "I tried to look at her face, but it was covered by her hair."
     l "J... Jessica?"
     l "W-What happened?"
+    play sound "audio/voice/jessica_giggle.ogg" loop
     "I could then hear some soft giggling come from her."
     "It's the most I've heard out of her in hours."
     l "Jessica?"
@@ -2021,6 +2022,7 @@ label declineprize:
     play music shattered_mind
     show cg jessicainsane2
     with Dissolve(0.2)
+    play sound "audio/voice/jessica_laugh.ogg" loop
     show cg jessicainsane2:
         linear 45.0 zoom 1.15
     show bg dressingroom_blur:
@@ -2066,6 +2068,7 @@ label declineprize:
     l "..."
     l "...okay..."
     "I said in a near-whisper."
+    stop sound fadeout(5.0)
     stop music fadeout(5.0)
     $quickhide = True
     hide screen laura
@@ -2230,7 +2233,7 @@ label declineprize:
     ji angry down "Get off me, you fucking brat!!"
     $l_exp = "surprised"
     d "She's not a brat, you idiot!!"
-    show dakota side crying at two1_short with dissolve
+    show dakota side mad at two1_short with dissolve
     pause 0.1
     "Dakota then ran over and yanked on the other twin tail!"
     show jingle:
@@ -2263,7 +2266,7 @@ label declineprize:
         ease 0.25 two1_short
     show jingle down:
         ease 0.25 right
-    "With that, Jingle quickly turned around and screamed!"
+    "With that, Jingle quickly turned around and threw them to the ground!"
     ji yell"{b}YOU'RE FUCKING DEAD!! BOTH OF YOU!!!{b}"
     $l_exp = "rage"
     "Not on my fucking watch!!"
@@ -2351,6 +2354,8 @@ label epilogue:
         currentdate = "June 7th"
         clothing = "main"
         l_exp = "neutral"
+        b_name = "Bartender"
+        nvl = False
     play sound2 flicker
     show screen dateandtime
     with Dissolve(0.05)
@@ -2375,9 +2380,293 @@ label epilogue:
     hide screen dateandtime
     with Dissolve(2.0)
     pause 2
+    play ambience crowd fadein(2.0)
     scene bg bar
     with Dissolve(2.0)
     show screen laura
     window show dissolve
     pause 0.1
     "I sat down at the stool."
+    stop sound
+    b "Hey, there she is!"
+    $l_exp = "smug"
+    "I gave a small chuckle and wave."
+    b "What can I get ya?"
+    $l_exp = "determined"
+    l "Ginger ale, please."
+    b "Heh. You're probably the only regular we've got at this bar that doesn't order alcohol."
+    $l_exp = "smug"
+    l "I have my reasons, you know."
+    b "Yeah, I know. It's just funny, that's all."
+    $l_exp = "neutral"
+    "He then grabbed a can of ginger ale from behind the counter and poured it into a glass of ice."
+    "After accepting it and thanking him, he nodded and walked away."
+    "As I took a sip, I could hear the news on the bar's TV."
+    a "Prosecutors say they're confident the jury will choose the 'correct' verdict in the trial of Jessica Tate."
+    $l_exp = "concerned"
+    "Curious, I turned towards the TV."
+    $renpy.music.set_volume(0.25, delay=0.5, channel="ambience")
+    hide screen laura
+    scene bg newsroom with dissolve
+    pause 0.1
+    a "The insanity plea the defense has been fighting for has certainly been in their favor, and the responses from protesters outside the courthouse and social media are in favor of Tate."
+    a "However, the prosecution is convinced that their evidence and logic of how the murder of Krag Dovason felt too planned-out to be executed by an insane person will be enough to get Tate a 'guilty' verdict."
+    a "With the final day of trial taking place next week, the world sits in anticipation on whether or not 38-year-old Jessica Tate will find herself in a mental institution or a prison."
+    $renpy.music.set_volume(1.0, delay=0.5, channel="ambience")
+    show screen laura
+    scene bg bar with dissolve
+    pause 0.1
+    "I sighed and took another sip."
+    "Admittedly, I haven't been following the updates of the trial as much as I probably should have."
+    $l_exp = "sad"
+    "But as someone who was there..."
+    "The look in her eyes..."
+    "That wasn't the look of a premeditated murderer."
+    $l_exp = "concerned"
+    "I'm sure the jury will be in favor of her, but I guess time will tell."
+    $l_exp = "surprised"
+    woman "Excuse me."
+    "I turned around and saw a woman staring at me."
+    woman "Y-You're that woman from the Sprinkles show during the REDD War, right?"
+    $l_exp = "concerned"
+    l "...I was there, yes."
+    woman "You... saved everyone, right?"
+    l "..."
+    l "Yeah, you could say that."
+    $l_exp = "surprised"
+    "She then came closer and hugged me."
+    woman "Thank you!"
+    $l_exp = "concerned"
+    l "You're, uh... welcome."
+    "She broke from the hug, wiping some tears as she did."
+    woman "Heh. I'm sorry. It's just..."
+    $l_exp = "sad"
+    "She wiped her eyes again."
+    woman "That night was just..."
+    woman "I-I really thought I was going to die."
+    woman "In fact, from what I understand, I {b}was{/b} going to die."
+    woman "So the fact that I'm still here because of your bravery..."
+    woman "It means a lot. To me and so many others."
+    woman "You're a hero."
+    $l_exp = "smile"
+    l "I appreciate all that; thanks."
+    woman "Can I get you a drink or something?"
+    $l_exp = "smug"
+    l "That's not necessary, I promise."
+    woman "Are you sure?"
+    l "Positive. But I appreciate the gesture."
+    woman "Still, you deserve some sort of reward or recognition!"
+    $l_exp = "neutral"
+    l "Probably, but if it's all the same to you..."
+    $l_exp = "sad"
+    l "...I just wanna put that night behind me and focus on my life going forward."
+    woman "I understand."
+    woman "Well, it was nice to meet you."
+    $l_exp = "smile"
+    l "Same here."
+    woman "I'm truly grateful for what you've done. Thanks again!"
+    $l_exp = "determined"
+    l "Any time."
+    "With that, she walked away and I turned back towards the bar."
+    $l_exp = "neutral"
+    "She's not the first person I've had approach me because of my actions from that night."
+    "I've had a lot of hostages thank me for everything, one of whom was the mother of Rodney, the child who was killed on stage."
+    $l_exp = "sad"
+    "That one in particular was an emotional one, but she was still thankful that her daughter and other son made it through the night, as well."
+    "It really made me happy that I got through the night with both of my children in one piece."
+    $l_exp = "concerned"
+    "Physically, at least."
+    $l_exp = "neutral"
+    "I gulped the rest of my ginger ale and asked the bartender for another."
+    "As he poured it, he struck up a conversation."
+    b "So, how's the house remodeling going?"
+    $l_exp = "concerned"
+    l "About as well as you'd expect."
+    l "I'm just glad REDD insurance is covering the damages."
+    b "Hey, that's what it's there for, after all."
+    $l_exp = "smug"
+    l "Yeah, I know."
+    "He then handed me my refill."
+    $l_exp = "concerned"
+    l "Though it makes paying for everything else less of a financial headache."
+    l "The bills, the groceries..."
+    $l_exp = "sad"
+    l "...the therapy sessions..."
+    b "Yeah, I can only imagine."
+    b "Your girls getting better?"
+    $l_exp = "concerned"
+    l "Well, my youngest can finally start to look at a picture of Mr. Sprinkles without covering her face and crying, so there's progress, I suppose."
+    l "Though she's still way too reclusive for my liking."
+    l "And my oldest..."
+    $l_exp = "sad"
+    l "I just get this feeling that she blames herself for everything that happened."
+    l "As if her being a dick to her dad is the reason he's... you know..."
+    b "Sure."
+    b "What about you? You went through more hell than them, it seems."
+    $l_exp = "concerned"
+    l "Heh."
+    l "I guess I'm getting there."
+    l "Sleeping in a one-person bed at the in-laws' place has helped me get over the mindset of waking up next to him, but..."
+    $l_exp = "sad"
+    l "The nightmares still come and go."
+    b "The in-laws still mad at you for what happened to your husband?"
+    $l_exp = "concerned"
+    l "If they are, they're not showing it as much as they did."
+    l "I still remember Buck claiming that he'd rather see me on the streets than house the woman who convinced his son to stay in Atlanta during the REDD War."
+    $l_exp = "smug"
+    l "Fortunately, though, they love their granddaughters more than they hate me."
+    $l_exp = "neutral"
+    "I took another drink and sighed."
+    l "So, yeah. Could be a hell of a lot better, but a hell of a lot worse."
+    b "Well, if nothing else, you survived the REDD War."
+    b "That's not something a lot of people in Atlanta can say."
+    $l_exp = "smug"
+    l "Kinda hard for a dead person to say anything, wouldn't you agree?"
+    "He rolled his eyes and draped his rag on his shoulder."
+    b "Hey, uh, if you don't mind me asking..."
+    $l_exp = "neutral"
+    l "Look, you're a nice guy, but I'm not ready to start dating again."
+    "He just closed his eyes and gave a soft chuckle."
+    b "That's not at all where I was going, but good to know."
+    $l_exp = "surprised"
+    l "Oh."
+    $l_exp = "sad"
+    l "S-Sorry."
+    b "You're good."
+    b "What I was {b}going{/b} to ask was..."
+    b "...how did you manage to pull that big show-stopper of yours?"
+    $l_exp = "neutral"
+    l "..."
+    b "I know you said you wanna put that night behind you, but I'm curious how you pulled that off without the guards getting ya."
+    "I shrugged and took another sip."
+    l "Doesn't matter. What matters is the show was stopped and lives were saved."
+    "He grinned at me before slowly nodding."
+    b "Yeah, you're right."
+    man "Excuse me, bartender?"
+    "He looked towards the patron for confirmation before giving me a quick nod and walking over to him."
+    $l_exp = "sad"
+    "I gave a small sigh and looked into my drink."
+    "I haven't seen or spoken to Trosh since I left him with his brother's body."
+    "To be fair, I have no way to contact him, but I'm curious as how he's feeling."
+    "Is he still mourning his death? Has his REDD mind gotten past it already?"
+    "It truly does make me wonder..."
+    $nvl = True
+    hide screen laura
+    nvl clear
+    nvl show dissolve
+    narrate """
+    With that, I sat in mostly silence while I continued to drink.
+
+    I caught some more stuff from the news, such an interview with Madeline's parents and how what Jessica did was something everyone would've done if they had the chance.
+
+    I gave a small scoff at that.
+
+    There was even a quoted tweet from Lord Reddington about how on one hand, she did technically break REDD War rules, but on the other hand, he can't be too angry at her for killing someone, as the hypocrisy would be astounding if he did.
+
+    Well, that wasn't his exact reason for not being too angry, but reading between the lines wasn't hard to do.
+
+    {clear}
+
+    A while later, a live interview with Georgia senator Peter Carson was broadcast.
+
+    He wasn't necessarily angry towards Jessica or Krag, but rather the concept of the REDD War, as a whole, saying things like \"This would have never happened if the REDD War didn't exist.\" and \"There are children who are now orphaned because of what the REDD War allowed.\"
+
+    He was careful with his words, but it was clear that he was throwing shade at Lord Reddington.
+
+    Politics, I tell ya...
+    """
+    $l_exp = "neutral"
+    $nvl = False
+    show screen laura
+    nvl hide
+    with dissolve
+    pause 0.1
+    "Finally, I was ready to head home for the night."
+    "I reached into my purse to grab my credit card."
+    $l_exp = "shocked"
+    "..."
+    "I felt something smooth and waxy."
+    "I slowly took it out."
+    $l_exp = "concerned"
+    "...as I thought."
+    "It was the playing card that Jangle pulled out of Dakota's ear."
+    "..."
+    "I put it back into my purse and dug around for the card I needed."
+    "After paying my tab, I left the bar and returned to my vehicle."
+    stop ambience fadeout(1.0)
+    scene bg fade with dissolve
+    pause 0.1
+    "..."
+    "I sat in the driver's seat and stared out the windshield for what felt like several minutes."
+    "Finally, I took out my phone and scrolled through my gallery."
+    "Eventually, I found it."
+    hide screen laura
+    window hide dissolve
+    show white:
+        alpha 0.0
+        ease 1.0 alpha 1.0
+    pause 2
+    scene cg photo
+    with Dissolve(3.0)
+    pause 2
+    $nvl = True
+    nvl clear
+    nvl show dissolve
+    narrate """
+    I feel like most people would've erased any ties and connections to that night.
+
+    Honestly, part of me feels like I should.
+
+    But...
+
+    When I look at this picture, my mind doesn't jump to the bad things that happened that night.
+
+    Instead, I look at how happy my little girls are.
+
+    How this was the last photo I ever got of them when they were still happy.
+
+    When they were just innocent kids who didn't have firsthand experience of the horrors the REDD War brings.
+
+    They may never fully recover from that night.
+
+    They may spend the rest of their lives bitter and upset at the the things that happened.
+
+    But when I look at this picture, I can assure myself that that night wasn't all bad.
+
+    That some joy and happiness was found from the Farr family on March 31st, 2030.
+    """
+    nvl hide
+    pause 3
+    nvl clear
+    nvl show dissolve
+    narrate """
+    I don't think the REDD War is going anywhere.
+
+    Even after the whole Mr. Sprinkles fiasco, something people are already calling 'the biggest tragedy in REDD War history', I don't think it's gonna stop.
+
+    If anything, the REDD are just gonna protest to add more things in their favor.
+
+    Fortunately, now that the REDD War has happened in Atlanta, it shouldn't take place here again.
+
+    ...at least, I hope it doesn't...
+
+    Regardless, we've survived the worst event in modern human history.
+
+    Like the bartender said, not everyone was so lucky.
+
+    I'm reminded of that every time I glance down at my wedding ring.
+
+    But if my girls and I can get through the REDD War, then what can stop us?
+
+    {clear}
+
+    No matter what happens now, all 3 of us will be together.
+
+    As long as that's true, nothing will stand in our way.
+    """
+    nvl hide
+    pause 2
+    show cg photo_blur
+    with Dissolve(3.0)
+    $goodcredits = True
+    jump gameover

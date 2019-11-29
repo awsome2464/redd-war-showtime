@@ -549,6 +549,7 @@ image cg jessicainsane2 = "CG/Jessica Insane/Jessica Insanity2[persistent.gore].
 image cg jessicatorture1 = "CG/Jessica Torture/Jessica Torture1.png"
 image cg jessicatorture2 = "CG/Jessica Torture/Jessica Torture2[persistent.gore].png"
 image cg photo = "CG/Photo With Sprinkles.png"
+image cg photo_blur = im.Blur("CG/Photo With Sprinkles.png", 2.0)
 
 ## Audio ##########################################################################################################################
 
@@ -846,7 +847,7 @@ screen timeremaining():
 screen gameover():
     vbox:
         xalign 0.5 yalign 0.5
-        if badcredits:
+        if badcredits or goodcredits:
             text "THE END" style "dateandtime"
         else:
             text "YOU DIED" style "dateandtime"
@@ -1253,6 +1254,12 @@ screen achievements():
                 text "Accept Krag's Prize" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
+            null height 25
+            if persistent.achievements["inourway"]:
+                text "{i}Nothing in Our Way{/i}" xalign 0.5
+                text "Complete the True Ending" xalign 0.5
+            else:
+                text "LOCKED" xalign 0.5
         text "[achieve_percent]% Completed" xalign 0.95 yalign 0.95
     null height 10
     textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
@@ -1308,6 +1315,10 @@ screen credits():
             xalign 0.85 yalign 0.5
             text "Sound Effects" style "creditscreen" xalign 0.5
             textbutton "freesound.org" text_style "credittextbutton" action OpenURL("https://freesound.org") xalign 0.5
+            text "Cole Goodrich" xalign 0.5
+            null height 20
+            text "Vocals" style "creditscreen" xalign 0.5
+            textbutton "perennial_28" text_style "credittextbutton" action OpenURL("https://instagram.com/perennial_28") xalign 0.5
             text "Cole Goodrich" xalign 0.5
             null height 20
             text "Made with Ren'Py 7.3.5" style "creditscreen" xalign 0.5
@@ -1375,7 +1386,7 @@ default persistent.achievelist = []
 default persistent.scenelist = []
 
 # Dictionaries
-default persistent.achievements = {"toosafe": False, "futurecorpses": False, "epicfail": False, "rattrap": False, "memoryloss": False, "sickburn": False}
+default persistent.achievements = {"toosafe": False, "futurecorpses": False, "epicfail": False, "rattrap": False, "memoryloss": False, "sickburn": False, "grandprize": False, "inourway": False}
 default persistent.scenes = {
 "ch1_s1": False, "ch1_s2": False,
  "ch2_s1": False, "ch2_s2": False, "ch2_s3": False, "ch2_s4": False, "ch2_s5": False,
@@ -1408,6 +1419,7 @@ default timeofday = "day"
 
 # Booleans
 default badcredits = False
+default goodcredits = False
 default finalchoice = False
 default gotdrink = False
 default k_hat = False
@@ -1588,12 +1600,12 @@ label gameover:
         renpy.block_rollback()
         config.skipping = False
         config.allow_skipping = False
-    if not badcredits:
+    if not badcredits and not goodcredits:
         play music creaky_country_fair
     pause 0.75
     show screen gameover
     with Dissolve(2)
-    if badcredits:
+    if badcredits or goodcredits:
         $renpy.pause(delay=5)
         hide screen gameover
         with Dissolve(2)
@@ -1601,6 +1613,23 @@ label gameover:
         scene bg fade
         with Dissolve(1.0)
         pause 1
+        if goodcredits:
+            show splash at truecenter
+            with Dissolve(3.0)
+            pause 3
+            stop music fadeout(5.0)
+            hide splash
+            with Dissolve(3.0)
+            pause 2
+            if not persistent.achievements["inourway"]:
+                $persistent.achievements["inourway"] = True
+                $renpy.notify("Achievement Unlocked: {i}Nothing in Our Way{/i}")
+                $persistent.achievelist.append(1)
+                pause 7
+            if not persistent.scenes["ch5_s5"]:
+                $persistent.scenelist.append(1)
+                $persistent.scenes["ch5_s5"] = True
+        $renpy.end_replay()
         return
     else:
         pause 1
@@ -1626,11 +1655,7 @@ label gunflash:
 
 # Credits
 label credits:
-    scene bg fade
-    if not badcredits:
-        play music title
-    else:
-        stop music
+    play music title
     play sound flicker
     show logo:
         xalign 0.5 yalign 0.5
@@ -1661,21 +1686,17 @@ label credits:
     pause 5
     show credit_2 "Music\n{font=fonts/Stanberry.ttf}{color=#ffffff}Eric Matyas\nCole Goodrich{/color}{/font}" at credit_scroll_1
     pause 5
-    show credit_3 "Sound Effects\n{font=fonts/Stanberry.ttf}{color=#ffffff}freesound.org{/color}{/font}" at credit_scroll_2
+    show credit_3 "Sound Effects\n{font=fonts/Stanberry.ttf}{color=#ffffff}freesound.org\nCole Goodrich{/color}{/font}" at credit_scroll_2
     pause 3
-    show credit_1 "Made with Ren'Py 7.3.2" at credit_scroll_1
+    show credit_1 "Vocals\n{font=fonts/Stanberry.ttf}{color=#ffffff}perennial_28\nCole Goodrich{/color}{/font}" at credit_scroll_1
+    pause 3
+    show credit_1 "Made with Ren'Py 7.3.5" at credit_scroll_2
     pause 5
-    show credit_2 "Special Thanks\n{font=fonts/Stanberry.ttf}{color=#ffffff}God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nDems\nYou{/color}{/font}" at credit_scroll_3
+    show credit_2 "Special Thanks\n{font=fonts/Stanberry.ttf}{color=#ffffff}God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nJed Elinoff and Scott Thomas\nSlightlySimple\nMattyd\nThugzilla\nXeno\nYou{/color}{/font}" at credit_scroll_3
     pause 13
     scene bg fade
     with Dissolve(3.0)
     pause 1
-    show announcetext "The End" at truecenter
-    with Dissolve(3)
-    pause 3
-    hide announcetext
-    with Dissolve(3)
-    pause 2
     show splash at truecenter
     with Dissolve(3)
     pause 3

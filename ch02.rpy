@@ -751,6 +751,170 @@ label meetandgreet:
     $l_exp = "mad"
     "I don't know what her percentage is at, but I know she's certainly not doing herself any favors by using her phone right now."
     "Oh well. Her loss."
+    $l_exp = "surprised"
+    k "Mommy, look!"
+    stop music fadeout(3)
+    stop ambience fadeout(3)
+    "I looked to where Kate was pointing."
+    "Other people seemed to be looking in that general direction, as well."
+    $l_exp = "shocked"
+    "Eventually, I could see what they were looking at:"
+    show jingle down smile at two1
+    show jangle down smile at two2
+    with dissolve
+    pause 0.1
+    $l_exp = "smile"
+    "Jingle and Jangle were approaching the line!"
+    play sound applause
+    show jingle happy_grin up
+    show jangle happy_grin up
+    "The crowd in the line was clapping at their appearance, with the mimes giving a bow in response."
+    hide jingle
+    hide jangle
+    show kate down excited at middle
+    with dissolve
+    pause 0.1
+    k "Mommy, do you think they're gonna do a skit?"
+    $l_exp = "determined"
+    l "I don't know; let's find out."
+    hide kate with dissolve
+    pause 0.1
+    $l_exp = "neutral"
+    "The twins then faced each other."
+    play music the_twins
+    show jangle down smile at two1
+    show jingle down smile at two2
+    with dissolve
+    pause 0.1
+    "Jangle pulled something imaginary out his pocket and was holding it in his left hand."
+    "Based on how he was holding it, I reckon it was maybe a phone."
+    $l_exp = "concerned"
+    "He then took his right hand and seemed to pick the item up and move it up and down back into his left one."
+    $l_exp = "smug"
+    "Ah; it's a deck of cards, and he's 'shuffling' them."
+    $l_exp = "smile"
+    show jangle open_smile up
+    "He then fanned the cards out and held them in front of Jingle."
+    show jingle confused
+    "She looked at the cards in heavy thought."
+    show jingle smile
+    "Finally, she picked one out of the deck and held it against her chest."
+    show jangle happy_grin down
+    "When she did, Jangle shuffled the nonexistent cards some more before holding the deck towards her, turning his head to the side and using his other hand to cover his eyes."
+    $l_exp = "smug"
+    "A few people, children and adults, laughed at the unnecessary task."
+    $l_exp = "smile"
+    show jingle open_smile
+    "Once Jingle put her imaginary card on the imaginary deck, she tapped her brother's arm."
+    show jangle smile
+    "He then shuffled the deck one more time, even being sure to do some crazy, throw-them-in-the-air-and-catch-them moves that I'm sure have to be impossible with real cards."
+    show jangle open_smile
+    "Once he was done with that, he held the card stack out in front of him and smiled proudly at his sister."
+    show jangle happy_grin
+    "He picked up the top card and faced it towards her."
+    $l_exp = "surprised"
+    show jingle confused
+    "...only for her to stare at it confused and shake her head."
+    show jangle stern
+    "Naturally, he looked a little confused, as well."
+    "He looked at the card's face and turned it back towards her, moving it a bit closer, as if to ask {i}\"Are you sure?\"{/i}."
+    show jingle stern
+    "But she just shook her head again and shrugged."
+    $l_exp = "neutral"
+    show jangle smile
+    "Jangle tossed the incorrect card to the side and picked up the next card from the top of the deck."
+    "Once again, Jingle shook her head."
+    show jangle stern
+    "He gave a bit of a pout as he tossed that card aside, as well."
+    "Finally, he reached for the next card."
+    $l_exp = "surprised"
+    "...paused..."
+    show jangle up smile
+    "...and cut the deck in half, throwing the top half in the air."
+    "Jingle looked up at the 'falling' cards, even moving a bit out of the way to dodge one."
+    show jangle open_smile down
+    "After the audience finished giggling, Jangle picked up the new top card and showed it to Jingle."
+    $l_exp = "concerned"
+    "...who once again shook her head."
+    show jangle stern up
+    "Jangle finally gave up and threw the rest of the cards in the air before hanging his head down in shame."
+    $l_exp = "sad"
+    show jingle:
+        ease 0.5 xalign 0.45
+    "The crowd gave some 'awws' of sympathy as Jingle came over and patted his shoulder to cheer him up."
+    $l_exp = "surprised"
+    play sound snap
+    show jangle open_smile down
+    show jingle confused
+    "After a second, though, Jangle snapped his fingers in a 'ah-ha!' moment of realization."
+    show jingle:
+        ease 0.5 two2
+    $l_exp = "neutral"
+    "He then turned towards the crowd and eyeballed everyone, as if looking for someone in particular."
+    "He panned for a few seconds before stopping and pointing at..."
+    hide jingle
+    show dakota crossed neutral at two2_short zorder 2
+    with dissolve
+    pause 0.1
+    $l_exp = "shocked"
+    "...Dakota!"
+    d sad "!!"
+    $l_exp = "surprised"
+    show jangle smile zorder 1:
+        ease 0.5 xalign 0.6
+    "Jangle walked up to her, flourished his hand, and reached behind her ear."
+    "When he pulled his hand back..."
+    show jangle:
+        ease 0.5 two1
+    pause 0.5
+    $l_exp = "shocked"
+    show dakota neutral
+    "...he was holding a real playing card!"
+    "The crowd gasped, went 'woah!' and the like as Jangle turned around and pointed the card at Jingle."
+    hide dakota
+    show jingle happy_grin up at two2
+    with dissolve
+    pause 0.1
+    "She nodded with glee in response!"
+    $l_exp = "excited"
+    play sound applause
+    show jangle happy_grin up
+    "The audience applauded the two as they gathered back together and bowed."
+    show jingle smile down
+    show jangle smile down
+    "Jangle then walked back over to Dakota and offered her the card."
+    hide jingle
+    show dakota crossed small_smile at two2_short
+    with dissolve
+    d "Th-Thank you..."
+    show jangle up open_smile
+    "He tipped his hat and rejoined his sister."
+    $l_exp = "smile"
+    stop music fadeout(3)
+    "The two then went further down the line, most likely to do the trick again for the people towards the back."
+    hide jangle with dissolve
+    pause 0.1
+    play music the_calm
+    show kate up excited at two1_short with dissolve
+    k "Wow, that was awesome!!"
+    show kate zorder 2:
+        ease 0.5 left_short
+    show dakota zorder 2:
+        ease 0.5 middle_short
+    show richard crossed laughing at right zorder 2 with dissolve
+    pause 0.1
+    r "That was, actually!"
+    k down happy "How do you think he did that?"
+    $l_exp = "smug"
+    l "With magic, silly~"
+    "I replied as I tussled her hair."
+    d confident "Hey, Mom, can you hold onto this for me?"
+    $l_exp = "smile"
+    "Sure!"
+    "I took the card from her and slipped it into my purse."
+    "Well, that was certainly a fun little distraction."
+    $l_exp = "smug"
+    "Plus, it got Dakota to look away from her phone for more than 5 seconds."
     stop music fadeout(5)
     hide screen laura
     pause 1
@@ -1007,21 +1171,21 @@ label showbegins:
     hide screen laura
     pause 0.6
     stop ambience
-    play sound "audio/voice/commence01.ogg"
+    voice "audio/voice/commence01.ogg"
     an "This is not a test. This is the official commencement of the Annual REDD War."
-    play sound "audio/voice/commence02.ogg"
+    voice "audio/voice/commence02.ogg"
     an "At the siren, all REDD within certified War Zones will be exempt from any and all crime, including murder, for 12 consecutive hours."
-    play sound "audio/voice/commence03.ogg"
+    voice "audio/voice/commence03.ogg"
     an "All humans who commit crime during these hours, excluding crimes committed for self-defense purposes, will receive the appropriate punishment at the conclusion of the REDD War."
-    play sound "audio/voice/commence04.ogg"
+    voice "audio/voice/commence04.ogg"
     an "Weapons of Class 3 and lower have been authorized for use; all other weapons are forbidden."
-    play sound "audio/voice/commence05.ogg"
+    voice "audio/voice/commence05.ogg"
     an "Government Safehouses, and by extension the contents within, have been granted immunity from the REDD War and must not be harmed."
-    play sound "audio/voice/commence06.ogg"
+    voice "audio/voice/commence06.ogg"
     an "All emergency services will be suspended until the siren sounds again at the conclusion of the REDD War."
-    play sound "audio/voice/commence07.ogg"
+    voice "audio/voice/commence07.ogg"
     an "On behalf of your government and the REDD, we thank you for your cooperation and wish you the best of luck."
-    play sound "audio/voice/commence08.ogg"
+    voice "audio/voice/commence08.ogg"
     an "The REDD War will begin in 5... 4... 3... 2... 1."
     play sound siren
     pause 5

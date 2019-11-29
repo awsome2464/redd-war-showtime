@@ -1549,7 +1549,6 @@ label goingback:
     queue sound fire loop
     show fire zorder 3
     pause 0.2
-    play sound2 children_screaming
     play ambience crowd_screaming
     show sprinkles laugh
     show jingle happy_grin
@@ -1559,6 +1558,8 @@ label goingback:
     "Almost instantly, the room went into chaos as the audience, Craig, and Jessica all screamed in horror while Mr. Sprinkles laughed."
     "Craig flailed around, the camera not being shy from zooming in on his burning body."
     show jessica screaming
+    $renpy.music.set_volume(0.25, delay=1.0, channel="ambience")
+    play ambience2 "audio/voice/jessica_burn.ogg"
     "It then panned to Jessica, who looked just absolutely hurt in every way possible, screaming as loud as she could through her gag, the tears seeming to flow down her eye, all while seemingly trying to reach out and grab her husband."
     $l_exp = "crying"
     "As I stared at the poor woman, I could feel my own eyes starting to well up."
@@ -1566,7 +1567,7 @@ label goingback:
     "But this... being burned alive..."
     $l_exp = "surprised"
     stop ambience
-    stop sound2
+    stop ambience2
     play sound "audio/se/tv.ogg"
     scene bg flash
     with Dissolve(0.1)

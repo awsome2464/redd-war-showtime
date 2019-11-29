@@ -495,7 +495,9 @@ label meetthefarrs:
     r "How am I supposed to trust any of those things when they kill entire households?"
     r "Households that had {b}children{/b} in them?"
     r rage "That's just fu--"
-    r concerned "...{b}messed{/b} up."
+    show richard concerned
+    "He then shot a quick glance towards the living room and then back at me."
+    r "...{b}messed{/b} up."
     $l_exp = "sad"
     l "I'm not denying that, Richard."
     l "But I'm not going to judge them all based on the actions of majority."
@@ -988,7 +990,6 @@ label kragonnews:
             pause 1
             scene bg livingroom_blur
             with Dissolve(3.0)
-            $renpy.end_replay()
             $badcredits = True
             if not persistent.achievements["toosafe"]:
                 $persistent.achievements["toosafe"] = True
