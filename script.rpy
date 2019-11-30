@@ -522,7 +522,8 @@ image bg dressingroom_woozy:
     repeat
 image bg janitorcloset = "BG/janitorcloset.jpg"
 image bg livestage_closed = "BG/livestage_closed.jpg"
-image bg livestage = "BG/livestage2.jpg"
+image bg livestage_fire = "BG/livestage_fire.jpg"
+image bg livestage_open = "BG/livestage_open.jpg"
 image bg livingroom = "BG/livingroom_[timeofday].jpg"
 image bg livingroom_blur = im.Blur("BG/livingroom_night.jpg", 2.0)
 image bg lobby = "BG/lobby.jpg"
@@ -532,6 +533,7 @@ image bg restroom = "BG/restroom.jpg"
 image bg showstage = "BG/showstage.jpg"
 image bg stage = "BG/stage.jpg"
 image bg stage_blur = im.Blur("BG/stage.jpg", 2.0)
+image bg stage_fire = "BG/stage_fire.jpg"
 image bg storage = "BG/storage.jpg"
 image bg street = "BG/street.jpg"
 image bg theater_ext = "BG/theaterexterior_[timeofday].jpg"
@@ -541,6 +543,10 @@ image bg warehouse_blur = im.Blur("BG/warehouse.jpg", 2.0)
 
 ## CGs ############################################################################################################################
 
+image bodies_front = "CG/Body Pile/Body Pile 1[persistent.gore].png"
+image bodies_middle = "CG/Body Pile/Body Pile 2.png"
+image bodies_back = "CG/Body Pile/Body Pile 3.png"
+image cg bodies = "CG/Body Pile/Body Pile Base.png"
 image cg deadsprinkles1 = "CG/Dead Sprinkles/Dead Sprinkles1[persistent.gore].png"
 image cg deadsprinkles2 = "CG/Dead Sprinkles/Dead Sprinkles2[persistent.gore].png"
 image cg deadsprinkles3 = "CG/Dead Sprinkles/Dead Sprinkles3[persistent.gore].png"
@@ -1236,7 +1242,8 @@ screen achievements():
                 text "Fall Victim to the {i}Mirror Madness{/i} Maze" xalign 0.5
             else:
                 text "LOCKED" xalign 0.5
-            null height 25
+        vbox:
+            xalign 0.75 yalign 0.5
             if persistent.achievements["memoryloss"]:
                 text "{i}Memory Loss{/i}" xalign 0.5
                 text "Forget the Password to Frank's Bar" xalign 0.5
@@ -1262,7 +1269,7 @@ screen achievements():
                 text "LOCKED" xalign 0.5
         text "[achieve_percent]% Completed" xalign 0.95 yalign 0.95
     null height 10
-    textbutton "Return" action ShowMenu("extras") xalign 0.5 yalign 0.9
+    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.1 yalign 0.9
 screen credits():
     tag title
     frame:
@@ -1654,54 +1661,54 @@ label gunflash:
     return
 
 # Credits
-label credits:
-    play music title
-    play sound flicker
-    show logo:
-        xalign 0.5 yalign 0.5
-        alpha 0.0
-        pause 0.1
-        block:
-            ease 0.05 alpha 0.5
-            ease 0.05 alpha 0.0
-            repeat 4
-        pause 0.2
-        ease 0.2 alpha 0.5
-        ease 0.2 alpha 0.0
-        pause 0.4
-        ease 0.2 alpha 1.0
-        pause 3.0
-        ease 1.0 alpha 0.0
-    pause 6.6
-    if not badcredits:
-        scene bg stage
-        with Dissolve(1)
-    show credit_1 "Writing and Development\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich{/color}{/font}" at credit_scroll_1
-    pause 5
-    show credit_2 "Story\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich\nSlightlySimple{/color}{/font}" at credit_scroll_2
-    pause 5
-    show credit_3 "Character Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}HazardSquare{/color}{/font}" at credit_scroll_1
-    pause 5
-    show credit_1 "Background Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}Mattyd (MacDaddyMatty.com){/color}{/font}" at credit_scroll_2
-    pause 5
-    show credit_2 "Music\n{font=fonts/Stanberry.ttf}{color=#ffffff}Eric Matyas\nCole Goodrich{/color}{/font}" at credit_scroll_1
-    pause 5
-    show credit_3 "Sound Effects\n{font=fonts/Stanberry.ttf}{color=#ffffff}freesound.org\nCole Goodrich{/color}{/font}" at credit_scroll_2
-    pause 3
-    show credit_1 "Vocals\n{font=fonts/Stanberry.ttf}{color=#ffffff}perennial_28\nCole Goodrich{/color}{/font}" at credit_scroll_1
-    pause 3
-    show credit_1 "Made with Ren'Py 7.3.5" at credit_scroll_2
-    pause 5
-    show credit_2 "Special Thanks\n{font=fonts/Stanberry.ttf}{color=#ffffff}God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nJed Elinoff and Scott Thomas\nSlightlySimple\nMattyd\nThugzilla\nXeno\nYou{/color}{/font}" at credit_scroll_3
-    pause 13
-    scene bg fade
-    with Dissolve(3.0)
-    pause 1
-    show splash at truecenter
-    with Dissolve(3)
-    pause 3
-    stop music fadeout(6.0)
-    hide splash
-    with Dissolve(3)
-    pause 3
-    return
+# label credits:
+#     play music title
+#     play sound flicker
+#     show logo:
+#         xalign 0.5 yalign 0.5
+#         alpha 0.0
+#         pause 0.1
+#         block:
+#             ease 0.05 alpha 0.5
+#             ease 0.05 alpha 0.0
+#             repeat 4
+#         pause 0.2
+#         ease 0.2 alpha 0.5
+#         ease 0.2 alpha 0.0
+#         pause 0.4
+#         ease 0.2 alpha 1.0
+#         pause 3.0
+#         ease 1.0 alpha 0.0
+#     pause 6.6
+#     if not badcredits:
+#         scene bg stage
+#         with Dissolve(1)
+#     show credit_1 "Writing and Development\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich{/color}{/font}" at credit_scroll_1
+#     pause 5
+#     show credit_2 "Story\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich\nSlightlySimple{/color}{/font}" at credit_scroll_2
+#     pause 5
+#     show credit_3 "Character Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}HazardSquare{/color}{/font}" at credit_scroll_1
+#     pause 5
+#     show credit_1 "Background Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}Mattyd (MacDaddyMatty.com){/color}{/font}" at credit_scroll_2
+#     pause 5
+#     show credit_2 "Music\n{font=fonts/Stanberry.ttf}{color=#ffffff}Eric Matyas\nCole Goodrich{/color}{/font}" at credit_scroll_1
+#     pause 5
+#     show credit_3 "Sound Effects\n{font=fonts/Stanberry.ttf}{color=#ffffff}freesound.org\nCole Goodrich{/color}{/font}" at credit_scroll_2
+#     pause 3
+#     show credit_1 "Vocals\n{font=fonts/Stanberry.ttf}{color=#ffffff}perennial_28\nCole Goodrich{/color}{/font}" at credit_scroll_1
+#     pause 3
+#     show credit_1 "Made with Ren'Py 7.3.5" at credit_scroll_2
+#     pause 5
+#     show credit_2 "Special Thanks\n{font=fonts/Stanberry.ttf}{color=#ffffff}God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nJed Elinoff and Scott Thomas\nSlightlySimple\nMattyd\nThugzilla\nXeno\nYou{/color}{/font}" at credit_scroll_3
+#     pause 13
+#     scene bg fade
+#     with Dissolve(3.0)
+#     pause 1
+#     show splash at truecenter
+#     with Dissolve(3)
+#     pause 3
+#     stop music fadeout(6.0)
+#     hide splash
+#     with Dissolve(3)
+#     pause 3
+#     return

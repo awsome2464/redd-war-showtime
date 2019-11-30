@@ -322,6 +322,7 @@ label wentright:
 
                 Before I could react in any way...!
                 """
+                stop music
                 $nvl = False
                 nvl hide
                 window hide
@@ -349,6 +350,7 @@ label wentright:
 
                 Once I turned...
                 """
+                stop music
                 nvl hide
                 window hide
                 show jingle axe evil_grin at middle
@@ -1173,7 +1175,7 @@ label rightcode:
     lt "I promise"
     window hide dissolve
     pause 1
-    scene bg livestage
+    scene bg livestage_open
     show dakota sad hips at two1 zorder 2
     show kate mad fidget at two2 zorder 1
     with Dissolve(2.0)
@@ -1510,7 +1512,7 @@ label goingback:
     show jingle smile down:
         ease 1.0 xalign 1.05
     "Finally, Jingle stopped pouring the gas and backed up far to the other side of the stage."
-    "Jangle handed Mr. Sprinkles the box of matches and went on to join his twin."
+    "Jangle handed Mr. Sprinkles the book of matches and went on to join his twin."
     show jessica left_oneeye:
         linear 0.1 two2_jessica
     show jangle smile:

@@ -370,8 +370,26 @@ label backattheater:
     $l_exp = "shocked"
     "When I did, I almost dropped the phone in fear."
     play music shattered_mind
-    scene bg fade with dissolve # CG of body pile
+    scene cg bodies:
+        xalign 0.0
+    show bodies_back zorder 1:
+        xalign 0.0 ypos -50
+    show bodies_middle zorder 2:
+        xalign 0.0 ypos -50
+    show bodies_front zorder 3:
+        xalign 0.0 ypos -50
+    show flashlight zorder 4:
+        xalign 1.0
+    with dissolve
     pause 0.1
+    show bodies_front:
+        linear 30.0 xalign 0.8
+    show bodies_middle:
+        linear 30.0 xalign 0.7
+    show bodies_back:
+        linear 30.0 xalign 0.6
+    show cg bodies:
+        linear 30.0 xalign 0.5
     "On the other side of the basement was a pile of bodies."
     "They weren't just any bodies, though; I recognized plenty of them."
     "They were the contestants who lost the games."
@@ -393,7 +411,18 @@ label backattheater:
     "As I looked at the far end of the pile, I saw something."
     "Or rather, some{b}one{/b}."
     "Someone too familiar."
-    # Fades and focuses on Richard
+    show bodies_front:
+        linear 1.0 xalign 1.0
+    show bodies_middle:
+        linear 1.0 xalign 0.95
+    show bodies_back:
+        linear 1.0 xalign 0.9
+    show cg bodies:
+        linear 1.0 xalign 0.85
+    pause 1
+    show flashlight:
+        linear 0.5 xalign 0.0
+    pause 1.5
     "Richard..."
     play music packing
     "I approached my husband and felt my throat tighten."
@@ -546,7 +575,6 @@ label deadchild:
     "But how in the hell am I going to free all of the remaining hostages?"
     "There's only so far wearing this guard outfit will go before questions are asked."
     $l_exp = "surprised"
-    "It's already bad enough that Krag seems suspicious of my presence near his location."
     "..."
     $l_exp = "concerned"
     "Well, at the very least, let's see if I can find the room and go from there."
@@ -597,7 +625,7 @@ label deadchild:
     $l_exp = "surprised"
     stop music fadeout(3)
     "I heard a child's voice through the speaker."
-    scene bg livestage with dissolve
+    scene bg livestage_open with dissolve
     pause 0.1
     "Turning back to the screen revealed the camera pointed to a little boy  around Dakota's age in the audience."
     "He was standing up and staring at the stage with tears in his eyes."
@@ -1069,7 +1097,7 @@ label escapeplan:
     man "And how exactly do you plan to do this?"
     $l_exp = "determined"
     l "Locking you all in here is a start. You can't play a game if you can't get to your players, right?"
-    man "Yeah, but how long until the other guards get suspicious and busts the door down? Then what??"
+    man "Yeah, but how long until the other guards get suspicious and bust the door down? Then what??"
     l "Then it's just a repeat of what we did to that poor sap over there."
     woman "You expect us to just start tackling and fighting the guards?? There are so many of them!"
     $l_exp = "mad"
@@ -1322,14 +1350,16 @@ label escapeplan:
     s "What in the...?"
     s horror "Oh my goodness!!"
     $renpy.music.set_volume(1.0, delay=0.5, channel="sound")
+    show bg stage_fire
     show fire
+    with dissolve
     pause 0.5
     play sound2 children_screaming fadein(1.0)
     play ambience crowd_screaming fadein(1.0)
     pause 1
     play ambience2 "audio/se/fire alarm.ogg"
     pause 3
-    scene bg livestage with dissolve
+    scene bg livestage_fire with dissolve
     pause 0.1
     show dakota side sad at two1
     show kate fidget shocked at two2
@@ -1343,7 +1373,7 @@ label escapeplan:
     play audio "audio/se/Door Open.ogg"
     "Suddenly, the door at the back of the room slammed open."
     "One of the REDD guards came in, looked at the stage, and stomped over to one of the other guards nearby."
-    scene bg livestage with dissolve
+    scene bg livestage_fire with dissolve
     $helmet = "_helmet"
     $t_name = "Guard"
     show trosh gun concerned at middle with dissolve
@@ -1373,7 +1403,7 @@ label escapeplan:
     $l_exp = "rage"
     l "{b}EVERYONE GET INTO THE LOBBY!! LET'S GO!!{/b}"
     hide screen laura
-    scene bg livestage
+    scene bg livestage_fire
     show dakota side neutral at two1
     show kate down shocked at two2
     with dissolve
@@ -1400,7 +1430,7 @@ label escapeplan:
     redd "Understood."
     hide trosh with dissolve
     pause 0.5
-    scene bg stage
+    scene bg stage_fire
     show fire zorder 3
     with dissolve
     pause 0.5
@@ -2547,7 +2577,7 @@ label epilogue:
     $l_exp = "sad"
     "I gave a small sigh and looked into my drink."
     "I haven't seen or spoken to Trosh since I left him with his brother's body."
-    "To be fair, I have no way to contact him, but I'm curious as how he's feeling."
+    "To be fair, I have no way to contact him, but I'm curious as to how he's feeling."
     "Is he still mourning his death? Has his REDD mind gotten past it already?"
     "It truly does make me wonder..."
     $nvl = True
@@ -2557,7 +2587,7 @@ label epilogue:
     narrate """
     With that, I sat in mostly silence while I continued to drink.
 
-    I caught some more stuff from the news, such an interview with Madeline's parents and how what Jessica did was something everyone would've done if they had the chance.
+    I caught some more stuff from the news, such as an interview with Madeline's parents and how what Jessica did was something everyone would've done if they had the chance.
 
     I gave a small scoff at that.
 

@@ -500,7 +500,7 @@ label meetthefarrs:
     r "...{b}messed{/b} up."
     $l_exp = "sad"
     l "I'm not denying that, Richard."
-    l "But I'm not going to judge them all based on the actions of majority."
+    l "But I'm not going to judge them all based on the actions of the majority."
     $l_exp = "surprised"
     l "Plus, Krag Dovason has made it very clear that he disapproved his brother's actions."
     r glare "Oh, I'm sure anyone who has their show being boycotted would say something like that."

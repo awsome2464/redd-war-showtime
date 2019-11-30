@@ -112,7 +112,7 @@ label firstgame:
     $l_exp = "neutral"
     "He then exited the room and closed the door behind him."
     "The guards looking over us then got back in position, with one in front of the door and the other 4 in one of the room's corners."
-    "They certainly didn't stop keeping their hands off their guns."
+    "They certainly didn't stop keeping their hands on their guns."
     $l_exp = "surprised"
     "These didn't look like your average guns, though; they looked more 'futuristic', for a lack of a better term."
     "It was unlike anything I had ever seen."
@@ -464,7 +464,7 @@ label firstgame:
     $l_exp = "neutral"
     "She then slowly but surely got out of her seat and made her way to the edge of the stage and dropped down."
     hide sprinkles
-    show bg livestage
+    show bg livestage_open
     with dissolve
     pause 0.1
     "Once on the ground, she picked up the pace and ran towards the back of the room."
@@ -541,7 +541,7 @@ label gottago:
     call chapterstart
     pause 2
     play music classy_ghouls
-    scene bg livestage
+    scene bg livestage_open
     with Dissolve(2.0)
     pause 0.5
     window show dissolve
@@ -739,7 +739,7 @@ label secondbeating:
         ease 1.5 xalign -0.6
     show sprinkles:
         ease 0.5 middle_sprinkles
-    "Madeline was then rolled off the the stage while Mr. Sprinkles cleared his throat."
+    "Madeline was then rolled off the stage while Mr. Sprinkles cleared his throat."
     hide madeline
     s happy "Although I do believe that now it's time to bring back out our special guest of the evening!"
     s "Please welcome Mrs. Jessica Tate back to the stage!"
@@ -955,7 +955,7 @@ label girlsescape:
     "How in the world are they right now??"
     "They must be worried sick about Richard and I!"
     $renpy.music.set_volume(1.0, delay=0.5, channel="music")
-    scene bg livestage
+    scene bg livestage_open
     show dakota sad crossed at two1
     show kate shocked down at two2
     hide screen laura
@@ -983,7 +983,6 @@ label girlsescape:
             ease 0.25 ypos 0
             repeat
     show dakota sad hips at two1 with dissolve
-    pause 0.1
     k "Nnnnggg...!"
     d "We're almost there, Kate! Try to think about something else!"
     k "I can't!"
@@ -2461,6 +2460,7 @@ label richardtakesplace:
     pause 0.15
     show blood3
     play sound impact
+    $renpy.vibrate(1.5)
     $renpy.pause(delay=3)
     window show
     show screen laura
@@ -2558,7 +2558,7 @@ label jessicaseye:
     s @ laugh "That said, it's time for another 15 minute break!"
     s "Hopefully, we'll have no issues this time..."
     stop music fadeout(3.0)
-    scene bg livestage
+    scene bg livestage_open
     with Dissolve(1.0)
     pause 1.0
     show dakota sad hips at two1

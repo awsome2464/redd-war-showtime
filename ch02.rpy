@@ -113,7 +113,7 @@ label eveningplans:
     "...I was in too much shock."
     "Richard seemed the same way."
     show dakota neutral
-    "Even Dakota seemed to finally realize what she said in her fit of anger."
+    "Dakota herself seemed to finally realize what she said in her fit of anger."
     "Before anyone could say anything else..."
     "...we heard what sounded like someone running up the stairs."
     "We all turned to see a quick blur go around the corner."
@@ -786,7 +786,7 @@ label meetandgreet:
     show jingle down smile at two2
     with dissolve
     pause 0.1
-    "Jangle pulled something imaginary out his pocket and was holding it in his left hand."
+    "Jangle pulled something imaginary out of his pocket and was holding it in his left hand."
     "Based on how he was holding it, I reckon it was maybe a phone."
     $l_exp = "concerned"
     "He then took his right hand and seemed to pick the item up and move it up and down back into his left one."
@@ -910,7 +910,7 @@ label meetandgreet:
     "I replied as I tussled her hair."
     d confident "Hey, Mom, can you hold onto this for me?"
     $l_exp = "smile"
-    "Sure!"
+    l "Sure!"
     "I took the card from her and slipped it into my purse."
     "Well, that was certainly a fun little distraction."
     $l_exp = "smug"
@@ -1259,7 +1259,7 @@ label showbegins:
     m "I did!"
     "That's when a door at the back of the theater opened up."
     $l_exp = "neutral"
-    scene bg livestage
+    scene bg livestage_open
     show screen laura
     with dissolve
     pause 0.1
@@ -1314,7 +1314,7 @@ label showbegins:
     stop ambience fadeout(3)
     "Before he could finish that sentence, the doors at the back of the theater slammed open, but the building was too dark to see anything."
     play sound spotlight
-    scene bg livestage
+    scene bg livestage_open
     with Dissolve(0.1)
     pause 1
     $l_exp = "sad"
@@ -1392,7 +1392,7 @@ label showbegins:
     "She sounded like she was both gagging on something and gasping for air, struggling to breathe."
     stop sound2
     $l_exp = "shocked"
-    scene bg livestage
+    scene bg livestage_open
     show kate shocked fidget at middle
     show screen laura
     with dissolve
@@ -1455,11 +1455,13 @@ label showbegins:
     s "So tonight's show is going to be dedicated to all my fellow REDD who are watching this show from their television sets."
     s laugh "I'm going to give you all a performance that will not disappoint~!"
     s jeer rightdown "But in order to do that, I'm going to ask all the adults in the audience to please follow these fine gentlemen."
-    scene bg livestage
+    scene bg livestage_open
     show screen laura
     with dissolve
     pause 0.1
     "On cue, the armored REDD all drew out their weapons and spread out across the room."
+    show trosh gun angry at middle with dissolve
+    pause 0.1
     redd "Let's go! Move it! All adults! No exceptions!"
     $l_exp = "sad"
     "This can't be happening."
@@ -1478,7 +1480,9 @@ label showbegins:
     "Without hesitation, the REDD shot the man dead."
     "The blood-covered woman and children next to him started screaming and crying as they watched him fall over."
     redd "Anyone else wanna be uncooperative?!"
-    show richard crossed concerned at middle zorder 2 with dissolve
+    hide trosh
+    show richard crossed concerned at middle zorder 2
+    with dissolve
     pause 0.1
     r "..."
     l "..."
@@ -1551,7 +1555,7 @@ label showbegins:
     pause 0.1
     k "Mommy! Daddy!"
     l "I love you girls so much!!"
-    scene bg livestage with dissolve
+    scene bg livestage_open with dissolve
     pause 0.1
     $renpy.music.set_volume(1.0, delay=3, channel='ambience')
     hide screen laura
