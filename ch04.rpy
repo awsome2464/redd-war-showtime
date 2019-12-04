@@ -2,14 +2,14 @@ label chapter_4:
     python:
         save_name = "Chapter 4"
         save_subtitle = "Fleeing the Storm"
-    call chaptername
+    call chaptername from _call_chaptername_3
 label mirrormadness:
     python:
         currenttime = "12:32 AM"
         timeleft = "6 hours and 28 minutes"
         nvl = True
         l_exp = "crying"
-    call chapterstart
+    call chapterstart from _call_chapterstart_15
     pause 2
     nvl clear
     nvl show dissolve
@@ -326,6 +326,8 @@ label wentright:
                 $nvl = False
                 nvl hide
                 window hide
+                if persistent.vibrate:
+                    $renpy.vibrate(0.25)
                 play sound hammer
                 show blood
                 pause 1.5
@@ -354,6 +356,8 @@ label wentright:
                 nvl hide
                 window hide
                 show jingle axe evil_grin at middle
+                if persistent.vibrate:
+                    $renpy.vibrate(0.25)
                 play sound hammer
                 show blood
                 pause 1.5
@@ -389,6 +393,8 @@ label hijingle:
     nvl hide
     window hide
     $renpy.music.set_volume(1.0, channel="sound")
+    if persistent.vibrate:
+        $renpy.vibrate(0.25)
     play sound hammer
     pause 1.5
     window show
@@ -445,6 +451,8 @@ label runfurther:
 
     I had no idea where I was going from here, but anywhere that didn't have a REDD mime with an axe was good enough for me.
     """
+    if persistent.vibrate:
+        $renpy.vibrate(0.25)
     play sound hammer
     narrate"""
     {nw}
@@ -458,9 +466,12 @@ label runfurther:
     Of course, even if I wanted to go back, a quick look in the mirrors showed Jingle was on her way towards me!
 
     Hoping for the best, I kept moving forward.
-
-    {nw}
-
+    """
+    if renpy.variant("mobile"):
+        nvl clear
+    else:
+        narrate "{nw}"
+    narrate """
     Another fork, left or right.
 
     Where to?{nw}
@@ -501,6 +512,8 @@ label goright:
             window hide
             show jangle axe evil_grin at middle
             stop music
+            if persistent.vibrate:
+                $renpy.vibrate(0.25)
             play sound hammer
             show blood
             pause 1.5
@@ -524,6 +537,8 @@ label goright:
             narrate "Greeting me as I did was Jangle facing me with an axe!"
             nvl hide
             stop music
+            if persistent.vibrate:
+                $renpy.vibrate(0.25)
             play sound hammer
             show blood
             pause 1.5
@@ -565,6 +580,8 @@ label goleft:
                     ease 0.25 middle
                 pause 0.25
                 stop music
+                if persistent.vibrate:
+                    $renpy.vibrate(0.25)
                 play sound hammer
                 show blood
                 pause 1.5
@@ -632,6 +649,8 @@ label goingstraight:
             nvl hide
             window hide
             stop music
+            if persistent.vibrate:
+                $renpy.vibrate(0.25)
             play sound hammer
             show blood
             pause 1.5
@@ -688,6 +707,8 @@ label stayorgo:
             $nvl = False
             nvl hide
             stop music
+            if persistent.vibrate:
+                $renpy.vibrate(0.25)
             play sound hammer
             show blood
             pause 1.5
@@ -737,7 +758,7 @@ label stayorgo:
             t "Stop a young woman with no weapons from heading towards a densely-populated area during the REDD War?"
             t laugh "Nah. Let's let nature take its course."
             redd "Understood."
-            call sceneend
+            call sceneend from _call_sceneend_15
             if not persistent.scenes["ch4_s1"]:
                 $persistent.scenelist.append(1)
                 $persistent.scenes["ch4_s1"] = True
@@ -748,7 +769,7 @@ label citychase:
         currenttime = "1:15 AM"
         timeleft = "5 hours and 45 minutes"
         l_exp = "concerned"
-    call chapterstart
+    call chapterstart from _call_chapterstart_16
     pause 2
     $renpy.music.set_volume(0.75, channel="ambience")
     play music into_the_haunted_forest
@@ -1230,7 +1251,7 @@ label rightcode:
     d "I wish you were here with me!"
     d "I don't want you to be gone!"
     d "I really don't..."
-    call sceneend
+    call sceneend from _call_sceneend_16
     if not persistent.scenes["ch4_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch4_s2"] = True
@@ -1241,7 +1262,7 @@ label goingback:
         currenttime = "2:34 AM"
         timeleft = "4 hours and 26 minutes"
         l_exp = "neutral"
-    call chapterstart
+    call chapterstart from _call_chapterstart_17
     pause 2
     play music ten_past_midnight
     play ambience crowd
@@ -1731,7 +1752,7 @@ label goingback:
     $l_exp = "determined"
     "Of course I am."
     play sound "audio/se/truck start.ogg"
-    call sceneend
+    call sceneend from _call_sceneend_17
     if not persistent.scenes["ch4_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch4_s3"] = True

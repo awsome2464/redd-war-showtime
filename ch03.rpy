@@ -2,7 +2,7 @@ label chapter_3:
     python:
         save_name = "Chapter 3"
         save_subtitle = "The Storm Arrives"
-    call chaptername
+    call chaptername from _call_chaptername_1
 label firstgame:
     python:
         currenttime = "7:14 PM"
@@ -11,7 +11,7 @@ label firstgame:
         l_exp = "excited"
         cane_blood = False
     stop music
-    call chapterstart
+    call chapterstart from _call_chapterstart_5
     pause 1
     play music classy_ghouls
     scene bg storage
@@ -441,7 +441,7 @@ label firstgame:
     s evilgrin "Thank you for playing."
     play sound shotgun
     show blood zorder 3
-    call gunflash
+    call gunflash from _call_gunflash_2
     play sound2 children_screaming fadein(1)
     pause 1
     $l_exp = "shocked"
@@ -528,7 +528,7 @@ label firstgame:
     "We'll get through this for you."
     $l_exp = "surprised"
     "All I ask is for you to be safe..."
-    call sceneend
+    call sceneend from _call_sceneend_5
     if not persistent.scenes["ch3_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s1"] = True
@@ -538,7 +538,7 @@ label gottago:
     python:
         currenttime = "7:43 PM"
         timeleft = "11 hours and 17 minutes"
-    call chapterstart
+    call chapterstart from _call_chapterstart_6
     pause 2
     play music classy_ghouls
     scene bg livestage_open
@@ -628,7 +628,7 @@ label gottago:
     d "..."
     "With that, the girls accepted their defeat and tried to wait patiently for 9 o'clock."
     "However long it is until then."
-    call sceneend
+    call sceneend from _call_sceneend_6
     if not persistent.scenes["ch3_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s2"] = True
@@ -639,7 +639,7 @@ label secondbeating:
         currenttime = "8:27 PM"
         timeleft = "10 hours and 33 minutes"
         l_exp = "concerned"
-    call chapterstart
+    call chapterstart from _call_chapterstart_7
     pause 2
     play music sprinkles_theme
     scene bg stage
@@ -916,7 +916,7 @@ label secondbeating:
     pause 1
     j left_tears "..."
     $s_name = "Mr. Sprinkles"
-    call sceneend
+    call sceneend from _call_sceneend_7
     if not persistent.scenes["ch3_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s3"] = True
@@ -927,7 +927,7 @@ label girlsescape:
         currenttime = "9:00 PM"
         timeleft = "10 hours"
         t_name = "Guard"
-    call chapterstart
+    call chapterstart from _call_chapterstart_8
     pause 2
     play music sprinkles_theme
     scene bg stage
@@ -1071,7 +1071,7 @@ label girlsescape:
     "The woman replied with a rude voice."
     woman "Oh, I'm sorry. Are you offended by that word, you {b}alien{/b}?"
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash_3
     show dakota sad
     show kate shocked
     pause 0.25
@@ -1096,13 +1096,13 @@ label girlsescape:
     d "Anywhere but here!!"
     "All around them, people were bumping into them, scrambling away from the guards and the stage entrance."
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash_4
     pause 0.5
     t "Everyone get your asses back here or I {b}will{/b} shoot you!!"
     k crying "K-Kota!!"
     d "Keep running, Kate! We'll be fine!!"
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash_5
     scene bg lobby with dissolve
     pause 1.0
     scene bg arena_hall with dissolve
@@ -1120,9 +1120,9 @@ label girlsescape:
     k "Kota, my hat!"
     d "You'll be okay, Kate! Let's move!!"
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash_6
     scene bg arena_hall with dissolve
-    call sceneend
+    call sceneend from _call_sceneend_8
     if not persistent.scenes["ch3_s4"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s4"] = True
@@ -1134,7 +1134,7 @@ label showmustgoon:
         timeleft = "9 hours and 42 minutes"
         l_exp = "neutral"
         t_name = "Big REDD"
-    call chapterstart
+    call chapterstart from _call_chapterstart_9
     pause 2
     play music classy_ghouls
     scene bg storage
@@ -1301,7 +1301,7 @@ label showmustgoon:
             hide screen laura
             window hide
             play sound machine_gun
-            call gunflash
+            call gunflash from _call_gunflash_7
             play sound2 crowd_screaming
             if persistent.gore == '':
                 scene bg blood
@@ -1540,7 +1540,7 @@ label nameislaura:
     "Please let this night end faster."
     "Please..."
     "I don't know how much more of this I can take..."
-    call sceneend
+    call sceneend from _call_sceneend_9
     if not persistent.scenes["ch3_s5"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s5"] = True
@@ -1550,7 +1550,7 @@ label kidshiding:
     python:
         currenttime = "10:27 PM"
         timeleft = "8 hours and 33 minutes"
-    call chapterstart
+    call chapterstart from _call_chapterstart_10
     pause 2
     play music autumn_changes
     scene bg janitorcloset
@@ -1784,7 +1784,7 @@ label kidshiding:
     show dakota small_smile
     "Though the idea of seeing her parents again really made Dakota happy..."
     "The best she could do is hope he's telling the truth about everything."
-    call sceneend
+    call sceneend from _call_sceneend_10
     if not persistent.scenes["ch3_s6"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s6"] = True
@@ -1795,7 +1795,7 @@ label deadlygame:
         currenttime = "11:11 PM"
         timeleft = "7 hours and 49 minutes"
         l_exp = "surprised"
-    call chapterstart
+    call chapterstart from _call_chapterstart_11
     pause 2
     play music sprinkles_theme
     scene bg stage
@@ -1907,12 +1907,12 @@ label deadlygame:
     s evilgrin hat "Well, thank you for playing~!"
     play sound shotgun
     show blood2
-    call gunflash
+    call gunflash from _call_gunflash_8
     pause 0.1
     play ambience crowd_screaming
     play sound2 shotgun
     show blood4
-    call gunflash
+    call gunflash from _call_gunflash_9
     pause 1
     s laugh "Ahaha~!"
     stop ambience fadeout(3.0)
@@ -2026,7 +2026,7 @@ label richarddoesnttakeplace:
 
     All around me, the city seemed to still be somewhat standing, but fires and the occasional explosion reminded me that we still had plenty of time for that to change.
 
-    It's kinda funny, really.{w} I've been exposed to the horrors the REDD War can bring for the past 4 hours, yet I still can believe that it's happening.
+    It's kinda funny, really.{w} I've been exposed to the horrors the REDD War can bring for the past 4 hours, yet I still can't believe that it's happening.
 
     The fact that the War isn't even halfway done yet brings a shiver down my spine.
 
@@ -2397,6 +2397,8 @@ label richardtakesplace:
     $l_exp = "shocked"
     nvl hide
     window hide
+    if persistent.vibrate:
+        $renpy.vibrate(1.0)
     play sound "audio/se/explosion.ogg"
     scene bg flash with explosion
     pause 0.5
@@ -2533,7 +2535,7 @@ label richardtakesplace:
     pause 0.5
     "I will, Richard."
     "I will."
-    call sceneend
+    call sceneend from _call_sceneend_11
     if not persistent.scenes["ch3_s7"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s7"] = True
@@ -2545,7 +2547,7 @@ label jessicaseye:
         timeleft = "7 hours"
         currentdate = "April 1st"
         quickhide = False
-    call chapterstart
+    call chapterstart from _call_chapterstart_12
     pause 2
     play music sprinkles_theme
     scene bg stage
@@ -2675,8 +2677,11 @@ label jessicaseye:
     play ambience saw
     pause 1.0
     s "Stay still, Jessica; you might lose more than intended if you don't!"
+    window hide
     $renpy.music.set_volume(0.5, delay=1.0, channel="music")
     pause 2.0
+    if persistent.vibrate:
+        $renpy.vibrate(2.0)
     $renpy.music.set_volume(1.0, delay=0.5, channel="ambience")
     play sound2 "audio/voice/jessica_eyeball.ogg"
     play sound blood loop
@@ -2701,12 +2706,13 @@ label jessicaseye:
         two2
         xalign 1.0
     with dissolve
+    window show dissolve
     pause 0.1
     s "There! Now you'll only see {i}{b}half{/b}{/i} the rough things!!"
     s "Ahahahaha!!!"
     s happy "Alright, folks. After we get cleaned up, we'll get ready for another game~!"
     s jeer "And I assure you, it's only going to get better from here."
-    call sceneend
+    call sceneend from _call_sceneend_12
     if not persistent.scenes["ch3_s8"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch3_s8"] = True

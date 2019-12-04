@@ -2,13 +2,13 @@ label chapter_5:
     python:
         save_name = "Chapter 5"
         save_subtitle = "Stopping the Storm"
-    call chaptername
+    call chaptername from _call_chaptername_4
 label backattheater:
     python:
         currenttime = "3:12 AM"
         timeleft = "3 hours and 48 minutes"
         l_exp = "determined"
-    call chapterstart
+    call chapterstart from _call_chapterstart_18
     pause 2
     play music into_the_haunted_forest
     scene bg theater_ext
@@ -507,7 +507,7 @@ label backattheater:
     pause 0.1
     l "Come on."
     l "Let's get you out of here."
-    call sceneend
+    call sceneend from _call_sceneend_18
     if not persistent.scenes["ch5_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch5_s1"] = True
@@ -518,7 +518,7 @@ label deadchild:
         currenttime = "3:43 AM"
         timeleft = "3 hours and 17 minutes"
         l_exp = "neutral"
-    call chapterstart
+    call chapterstart from _call_chapterstart_19
     pause 2
     play music classy_ghouls
     scene bg basement_hall
@@ -663,7 +663,7 @@ label deadchild:
     stop music
     play sound machine_gun
     show blood2 zorder 3
-    call gunflash
+    call gunflash from _call_gunflash_10
     $l_exp = "shocked"
     show sprinkles horror
     pause 0.1
@@ -787,7 +787,7 @@ label deadchild:
     hide screen laura
     window hide
     play sound smack
-    call gunflash
+    call gunflash from _call_gunflash_11
     show bg dressingroom_woozy
     pause 1
     $l_exp = "wut"
@@ -970,7 +970,7 @@ label deadchild:
     l "Well, you pretending like you're not involved will admittedly complicate things."
     $l_exp = "determined"
     l "I've got some ideas, but if we're gonna pull this off, we'll need to work together on a proper plan."
-    call sceneend
+    call sceneend from _call_sceneend_19
     if not persistent.scenes["ch5_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch5_s2"] = True
@@ -982,7 +982,7 @@ label escapeplan:
         timeleft = "2 hours and 58 minutes"
         l_exp = "rage"
         helmet = "_helmet"
-    call chapterstart
+    call chapterstart from _call_chapterstart_20
     pause 2
     scene bg storage
     with Dissolve(2.0)
@@ -1491,7 +1491,7 @@ label escapeplan:
     pause 0.5
     k "Mommy?? Mommy!!"
     d "Mom, where are you?? Mom!!!"
-    call sceneend
+    call sceneend from _call_sceneend_20
     if not persistent.scenes["ch5_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch5_s3"] = True
@@ -1502,7 +1502,7 @@ label finalconfrontation:
         currenttime = "4:32 AM"
         timeleft = "2 hours and 28 minutes"
         l_exp = "neutral"
-    call chapterstart
+    call chapterstart from _call_chapterstart_21
     pause 2
     scene bg basement_hall
     with Dissolve(2.0)
@@ -1604,7 +1604,7 @@ label finalconfrontation:
 label claimprize:
     pause 1
     play sound gunshot
-    call gunflash
+    call gunflash from _call_gunflash_12
     show blood2
     pause 2
     $l_exp = "crying"
@@ -1618,7 +1618,7 @@ label claimprize:
     show trosh gun intrigued at middle with dissolve
     pause 0.1
     t "What just--"
-    t fear "{b}Krag!!{b}"
+    t fear "{b}Krag!!{/b}"
     show trosh:
         ease 0.5 middle_short
     "He ran to his brother and dropped to his knees."
@@ -1652,7 +1652,7 @@ label claimprize:
     hide screen laura
     window hide
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash_13
     pause 1
     scene bg blood
     with Dissolve(3.0)
@@ -2252,7 +2252,7 @@ label declineprize:
     show kate down mad at two2_short zorder 1 with dissolve
     pause 0.1
     "Kate was pulling on one of Jingle's twin tails!"
-    k "{b}LEAVE MY MOMMY ALONE!!!{b}"
+    k "{b}LEAVE MY MOMMY ALONE!!!{/b}"
     show jingle:
         linear 0.1 xalign 0.55
         linear 0.1 xalign 0.5
@@ -2297,14 +2297,14 @@ label declineprize:
     show jingle down:
         ease 0.25 right
     "With that, Jingle quickly turned around and threw them to the ground!"
-    ji yell"{b}YOU'RE FUCKING DEAD!! BOTH OF YOU!!!{b}"
+    ji yell"{b}YOU'RE FUCKING DEAD!! BOTH OF YOU!!!{/b}"
     $l_exp = "rage"
     "Not on my fucking watch!!"
     "Without any hesitation, I picked up the axe and sprinted at her!"
     "Before I realized what I was doing...!"
     stop music
     play sound hammer
-    call gunflash
+    call gunflash from _call_gunflash_14
     show blood zorder 5
     show dakota neutral
     show kate shocked

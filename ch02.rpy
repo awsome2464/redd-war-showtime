@@ -2,7 +2,7 @@ label chapter_2:
     python:
         save_name = "Chapter 2"
         save_subtitle = "The Storm Approaches"
-    call chaptername
+    call chaptername from _call_chaptername
 label eveningplans:
     python:
         currenttime = "5:23 AM"
@@ -11,7 +11,7 @@ label eveningplans:
         event = "REDD War begins"
         clothing = "pjs"
     stop music
-    call chapterstart
+    call chapterstart from _call_chapterstart
     pause 1
     scene bg livingroom
     with Dissolve(2.0)
@@ -40,7 +40,10 @@ label eveningplans:
     a "{i}I'm very heartbroken about the announcement {color=#00aced}@lordreddington{/color} made regarding {color=#00aced}#REDDWar2030{/color}. For those who were planning to go to the Mr. Sprinkles live show, I'll look into a solution.{/i}"
     a "A few hours later, Dovason made these Tweets:"
     a "{i}If you wish to not attend the live show tomorrow, I completely understand. Simply request a refund on the official site and it will be provided to you.{/i}"
-    a "{i}However, for those who still wish to attend, first of all, thank you! {image=reddsmile.png} And secondly, I have been talking with Reddington, and he has agreed to recognize the theater as an official Government Safehouse.{/i}"
+    if not renpy.variant("mobile"):
+        a "{i}However, for those who still wish to attend, first of all, thank you! {image=reddsmile.png} And secondly, I have been talking with Reddington, and he has agreed to recognize the theater as an official Government Safehouse.{/i}"
+    else:
+        a "{i}However, for those who still wish to attend, first of all, thank you! {image=reddsmile_mobile.png} And secondly, I have been talking with Reddington, and he has agreed to recognize the theater as an official Government Safehouse.{/i}"
     a "{i}No matter which choice you make, I wish you, as well as everyone else, good luck. The next few days are going to be crazy. {color=#00aced}#REDDWar2030{/color}{/i}"
     $l_exp = "excited"
     scene bg livingroom
@@ -299,7 +302,7 @@ label dakotaissorry:
     $l_exp = "smug"
     l "But..."
     "I then slowly ran my hand up his leg and onto his thigh."
-    l "...I'm sure you've got SOME energy."
+    l "...I'm sure you've got {b}some{/b} energy."
     r concerned "..."
     "He then took a peek towards the staircase."
     r down "You realize they might hear us, right?"
@@ -314,7 +317,7 @@ label dakotaissorry:
     "He then reached over to the remote and raised the volume on the still-on TV."
     $l_exp = "smile"
     "We both giggled before he leaned over and kissed my neck."
-    call sceneend
+    call sceneend from _call_sceneend
     if not persistent.scenes["ch2_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s1"] = True
@@ -325,7 +328,7 @@ label backstagedrama:
         currenttime = "2:42 PM"
         timeleft = "4 hours and 18 minutes"
         s_name = "Krag"
-    call chapterstart
+    call chapterstart from _call_chapterstart_1
     pause 1
     scene bg dressingroom
     with Dissolve(2.0)
@@ -384,7 +387,7 @@ label backstagedrama:
         ease 1.0 middle_sprinkles
     pause 1.5
     s hat evilgrin "Oh, this show will be successful, don't you worry..."
-    call sceneend
+    call sceneend from _call_sceneend_1
     if not persistent.scenes["ch2_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s2"] = True
@@ -399,7 +402,7 @@ label arriveatshow:
         clothing = "show"
         k_hat = True
         timeofday = "day"
-    call chapterstart
+    call chapterstart from _call_chapterstart_2
     pause 2
     show screen laura
     window show dissolve
@@ -486,7 +489,7 @@ label arriveatshow:
     d "I know, Kate."
     k "Ooo! Ooo! Do you think they'll play it on stage tonight?"
     d "It's a 12-hour show, Kate. I'm sure they'll find time."
-    k excited "That would be AWESOME!!!"
+    k excited "That would be {b}awesome{/b}!!!"
     d "Heh. Yes, it would."
     $l_exp = "concerned"
     "Dakota certainly has been acting a bit weird the entire way here."
@@ -573,7 +576,7 @@ label arriveatshow:
     "Of course, that would imply that Krag is a nice guy, thus destroying her narrative."
     $l_exp = "concerned"
     "What exactly is she planning on doing once it's time for the REDD War, anyway?"
-    "Does she actually have the courage to go inside the arena for protection?"
+    "Does she actually have the courage to go inside the theater for protection?"
     $l_exp = "mad"
     "Of course, maybe she'll continue protesting once she's inside because she has nothing better to do with her time."
     $l_exp = "neutral"
@@ -581,7 +584,7 @@ label arriveatshow:
     $l_exp = "smile"
     "I'm here for a fun night with my family."
     "I'm not going to let some lunatic take that from me."
-    call sceneend
+    call sceneend from _call_sceneend_2
     if not persistent.scenes["ch2_s3"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s3"] = True
@@ -592,7 +595,7 @@ label meetandgreet:
         currenttime = "5:13 PM"
         timeleft = "1 hour and 47 minutes"
         l_exp = "neutral"
-    call chapterstart
+    call chapterstart from _call_chapterstart_3
     pause 2
     play ambience crowd
     play music the_calm
@@ -1107,7 +1110,7 @@ label meetandgreet:
     scene bg fade
     with dissolve
     "Please, let me be."
-    call sceneend
+    call sceneend from _call_sceneend_3
     if not persistent.scenes["ch2_s4"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s4"] = True
@@ -1119,7 +1122,7 @@ label showbegins:
         timeleft = "5 minutes"
         l_exp = "surprised"
         timeofday = "night"
-    call chapterstart
+    call chapterstart from _call_chapterstart_4
     pause 2
     play ambience crowd
     scene bg livestage_closed
@@ -1440,7 +1443,7 @@ label showbegins:
     show sprinkles hm
     "He then looked towards the back of the room and gave a small nod."
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash
     "Suddenly, a REDD in the back fired his weapon in the air and shouted."
     redd "{b}HEY! THE REDD'S TALKING!!{/b}"
     stop ambience fadeout(5)
@@ -1474,7 +1477,7 @@ label showbegins:
     redd "I said move it!"
     man "Hell no! You're not--"
     play sound machine_gun
-    call gunflash
+    call gunflash from _call_gunflash_1
     play ambience crowd_screaming fadein(1)
     $l_exp = "shocked"
     "Without hesitation, the REDD shot the man dead."
@@ -1603,7 +1606,7 @@ label showbegins:
 
     For their sake.
     """
-    call sceneend
+    call sceneend from _call_sceneend_4
     if not persistent.scenes["ch2_s5"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch2_s5"] = True

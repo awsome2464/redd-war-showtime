@@ -110,17 +110,24 @@ screen say(who, what):
 
         text what id "what"
     if quick_menu:
+        if renpy.variant("mobile"):
+            variant "touch"
         hbox:
             style_prefix "quick"
 
-            xalign 0.73
-            yalign 0.975
+            if not renpy.variant("mobile"):
+                xalign 0.72 yalign 0.975
+            else:
+                xalign 0.5 yalign 0.98
 
+            textbutton _("Back") action Rollback()
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Load") action ShowMenu('load')
             textbutton _("Options") action ShowMenu('preferences')
             textbutton _("Auto") action Preference("auto-forward", "toggle")
+            if renpy.variant("mobile"):
+                textbutton _("Main Menu") action MainMenu()
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
@@ -185,7 +192,8 @@ screen input(prompt):
     style_prefix "input"
 
     window:
-
+        if renpy.variant("mobile"):
+            yalign 0.0
         vbox:
             xalign gui.dialogue_text_xalign
             xpos gui.dialogue_xpos
@@ -217,7 +225,10 @@ style input:
 screen choice(items):
     style_prefix "choice"
     if not finalchoice:
-        add "choice_bg" at choice_dissolve
+        if not renpy.variant("mobile"):
+            add "choice_bg" at choice_dissolve
+        else:
+            add "choice_bg_mobile" at choice_dissolve
         vbox at choice_dissolve:
             xalign 0.5 yalign 0.55
             for i in items:
@@ -644,8 +655,10 @@ screen file_slots(title):
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
 
-                xalign 0.13
-                yalign 0.45
+                if not renpy.variant("mobile"):
+                    xalign 0.13 yalign 0.45
+                else:
+                    xalign -0.25 yalign 0.45
 
                 spacing gui.slot_spacing
 
@@ -733,112 +746,122 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
+init python:
+    if renpy.variant("mobile"):
+        pref_scroll = "viewport"
+    else:
+        pref_scroll = None
+
 screen preferences():
 
     tag menu
     
-    use game_menu(_("Options"), scroll="viewport", yinitial=0.5):
+    use game_menu(_("Options"), scroll=pref_scroll, yinitial=0.0):
+        frame:
+            if not renpy.variant("mobile"):
+                xpadding 75 ypadding 10
+            else:
+                xpadding 100 ypadding 50
+            vbox:
+                xalign 0.5
+                hbox:
+                    box_wrap True
 
-        vbox:
-            xalign 0.5
-            hbox:
-                box_wrap True
+                    if renpy.variant("pc"):
 
-                if renpy.variant("pc"):
+                        vbox:
+                            style_prefix "radio"
+                            label _("Display")
+                            textbutton _("Window") action Preference("display", "window")
+                            textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+                    # vbox:
+                    #     style_prefix "radio"
+                    #     label _("Rollback Side")
+                    #     textbutton _("Disable") action Preference("rollback side", "disable")
+                    #     textbutton _("Left") action Preference("rollback side", "left")
+                    #     textbutton _("Right") action Preference("rollback side", "right")
 
                     vbox:
+                        style_prefix "check"
+                        label _("Skip")
+                        textbutton _("Unseen Text") action Preference("skip", "toggle")
+                        textbutton _("After Choices") action Preference("after choices", "toggle")
+                        textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    vbox:
                         style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
-
-                # vbox:
-                #     style_prefix "radio"
-                #     label _("Rollback Side")
-                #     textbutton _("Disable") action Preference("rollback side", "disable")
-                #     textbutton _("Left") action Preference("rollback side", "left")
-                #     textbutton _("Right") action Preference("rollback side", "right")
-
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-                vbox:
-                    style_prefix "radio"
-                    label "Visual Gore"
-                    if persistent.gore == '':
-                        textbutton "On" action SetVariable('persistent.gore', '_sfw')
-                    else:
-                        textbutton "Off" action SetVariable('persistent.gore', '')
-                    null height 10
-                    label "Screen Flashes"
-                    if persistent.flash:
-                        textbutton "On" action ToggleVariable('persistent.flash', False)
-                    else:
-                        textbutton "Off" action ToggleVariable('persistent.flash', True)
-                    if renpy.variant("mobile"):
-                        null height 10
-                        label "Vibrate"
-                        if persistent.vibrate:
-                            textbutton "On" action ToggleVariable('persistent.vibrate', False)
+                        label "Visual Gore"
+                        if persistent.gore == '':
+                            textbutton "On" action SetVariable('persistent.gore', '_sfw')
                         else:
-                            textbutton "Off" action [ToggleVariable('persistent.vibrate', True), Function(vibrate)]
+                            textbutton "Off" action SetVariable('persistent.gore', '')
+                        null height 10
+                        label "Screen Flashes"
+                        if persistent.flash:
+                            textbutton "On" action ToggleVariable('persistent.flash', False)
+                        else:
+                            textbutton "Off" action ToggleVariable('persistent.flash', True)
+                        if renpy.variant("mobile"):
+                            null height 10
+                            label "Vibrate"
+                            if persistent.vibrate:
+                                textbutton "On" action ToggleVariable('persistent.vibrate', False)
+                            else:
+                                textbutton "Off" action [ToggleVariable('persistent.vibrate', True), Function(vibrate)]
 
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                    ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                    ## added here, to add additional creator-defined preferences.
 
-            null height (4 * gui.pref_spacing)
+                null height (4 * gui.pref_spacing)
 
-            hbox:
-                style_prefix "slider"
-                box_wrap True
+                hbox:
+                    style_prefix "slider"
+                    box_wrap True
 
-                vbox:
+                    vbox:
 
-                    label _("Text Speed")
+                        label _("Text Speed")
 
-                    bar value Preference("text speed")
+                        bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                        label _("Auto-Forward Time")
 
-                    bar value Preference("auto-forward time")
+                        bar value Preference("auto-forward time")
 
-                vbox:
+                    vbox:
 
-                    if config.has_music:
-                        label _("Music Volume")
+                        if config.has_music:
+                            label _("Music Volume")
 
-                        hbox:
-                            bar value Preference("mixer music volume")
+                            hbox:
+                                bar value Preference("mixer music volume")
 
-                    if config.has_sound:
+                        if config.has_sound:
 
-                        label _("Sound Volume")
+                            label _("Sound Volume")
 
-                        hbox:
-                            bar value Preference("mixer sound volume")
+                            hbox:
+                                bar value Preference("mixer sound volume")
 
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
+                                if config.sample_sound:
+                                    textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                        if config.has_voice:
+                            label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                            hbox:
+                                bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                                if config.sample_voice:
+                                    textbutton _("Test") action Play("voice", config.sample_voice)
 
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
+                        if config.has_music or config.has_sound or config.has_voice:
+                            null height gui.pref_spacing
 
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                            textbutton _("Mute All"):
+                                action Preference("all mute", "toggle")
+                                style "mute_all_button"
 
 
 style pref_label is gui_label
@@ -1356,17 +1379,25 @@ screen nvl(dialogue, items=None):
             textbutton i.caption:
                 action i.action
                 style "nvl_button"
-    hbox:
-        style_prefix "quick"
+    if quick_menu:
+        if renpy.variant("mobile"):
+            variant "touch"
+        hbox:
+            style_prefix "quick"
 
-        xalign 0.76
-        yalign 0.975
+            if not renpy.variant("mobile"):
+                xalign 0.76 yalign 0.975
+            else:
+                xalign 0.5 yalign 0.98
 
-        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-        textbutton _("Save") action ShowMenu('save')
-        textbutton _("Load") action ShowMenu('load')
-        textbutton _("Options") action ShowMenu('preferences')
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Back") action Rollback()
+            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Save") action ShowMenu('save')
+            textbutton _("Load") action ShowMenu('load')
+            textbutton _("Options") action ShowMenu('preferences')
+            textbutton _("Auto") action Preference("auto-forward", "toggle")
+            if renpy.variant("mobile"):
+                textbutton _("Main Menu") action MainMenu()
 
     add SideImage() xalign 0.0 yalign 1.0
 
@@ -1462,22 +1493,7 @@ style pref_vbox:
 ## Since a mouse may not be present, we replace the quick menu with a version
 ## that uses fewer and bigger buttons that are easier to touch.
 screen quick_menu():
-    variant "touch"
-
-    zorder 100
-
-    if quick_menu:
-
-        hbox:
-            style_prefix "quick"
-
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("Back") action Rollback()
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menu") action ShowMenu()
+    pass       
 
 
 style window:

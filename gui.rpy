@@ -37,7 +37,7 @@ define gui.hover_color = '#d00000'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = '#ffffff'
+define gui.selected_color = "ffffff"
 
 ## The color used for a text button when it cannot be selected.
 define gui.insensitive_color = '#8888887f'
@@ -433,14 +433,14 @@ init python:
 
         ## Adjust the location of the textbox.
         gui.textbox_height = 240
-        gui.name_xpos = 80
+        gui.name_xpos = 185
         gui.text_xpos = 90
         gui.text_width = 1100
 
         ## Change the size and spacing of various things.
-        gui.slider_size = 36
+        gui.slider_size = 25
 
-        gui.choice_button_width = 1240
+        gui.choice_button_width = 790
 
         gui.navigation_spacing = 20
         gui.pref_button_spacing = 10
@@ -455,7 +455,7 @@ init python:
         gui.file_slot_rows = 2
 
         ## NVL-mode.
-        gui.nvl_height = 170
+        gui.nvl_height = None
 
         gui.nvl_name_width = 305
         gui.nvl_name_xpos = 325

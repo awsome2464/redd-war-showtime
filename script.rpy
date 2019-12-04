@@ -395,6 +395,7 @@ image dark:
 image splash = "Good Tales Transparent.png"
 image logo = "gui/logo.png"
 image choice_bg = "gui/choice_bg.png"
+image choice_bg_mobile = "gui/choice_bg_mobile.png"
 image curtain_overlay = "gui/save_curtain.png"
 image helmet = "helmet.png"
 image bus_window = "window.png"
@@ -481,6 +482,22 @@ image ctc_arrow_1:
         repeat
 image ctc_arrow_nvl:
     xalign 0.95 yalign 0.99
+    alpha 0.0
+    "gui/ctc_arrow.png"
+    block:
+        ease 0.5 alpha 1.0
+        ease 0.5 alpha 0.0
+        repeat
+image ctc_arrow_mobile:
+    xalign 1.1 yalign 0.99
+    alpha 0.0
+    "gui/ctc_arrow.png"
+    block:
+        ease 0.5 alpha 1.0
+        ease 0.5 alpha 0.0
+        repeat
+image ctc_arrow_nvl_mobile:
+    xalign 3.5 yalign 0.99
     alpha 0.0
     "gui/ctc_arrow.png"
     block:
@@ -739,6 +756,18 @@ transform sideimage:
 transform sideimagequick:
     size(250, 250)
     xalign 0.05 yalign 1.026
+transform sideimage_mobile:
+    size(275, 275)
+    xalign 0.0 yalign 1.03
+    alpha 1.0
+    on show:
+        alpha 0.0
+        ease 0.5 alpha 1.0
+    on hide:
+        ease 0.5 alpha 0.0
+transform sideimagequick_mobile:
+    size(275, 275)
+    xalign 0.0 yalign 1.03
 
 ## Transitions ####################################################################################################################
 
@@ -822,6 +851,25 @@ style credittextbutton:
     hover_color "#a39600"
     outlines [(1.0, '#a39600', 0.0, 0.0)]
     text_align 0.5
+style credittextbutton_2:
+    font "fonts/GosmickSans.ttf"
+    idle_color "#e9e9e9"
+    hover_color "#a39600"
+    outlines [(1.0, '#a39600', 0.0, 0.0)]
+    text_align 0.5
+    size gui.text_size - mobile_subtractant_2
+style mobilecredits:
+    size gui.text_size - mobile_subtractant
+style mobilecredits_2:
+    size gui.text_size - mobile_subtractant_2
+
+init python:
+    if renpy.variant("mobile"):
+        mobile_subtractant = 10
+        mobile_subtractant_2 = 5
+    else:
+        mobile_subtractant = 0
+        mobile_subtractant_2 = 0
 
 ## Custom Screens #################################################################################################################
 
@@ -829,15 +877,27 @@ style credittextbutton:
 screen ctc():
     zorder 100
     if nvl:
-        add "ctc_arrow_nvl"
+        if not renpy.variant("mobile"):
+            add "ctc_arrow_nvl"
+        else:
+            add "ctc_arrow_nvl_mobile"
     else:
-        add "ctc_arrow_1"
+        if not renpy.variant("mobile"):
+            add "ctc_arrow_1"
+        else:
+            add "ctc_arrow_mobile"
 screen laura():
     zorder 100
-    if not quickhide:
-        add "laura" at sideimage
+    if not renpy.variant("mobile"):
+        if not quickhide:
+            add "laura" at sideimage
+        else:
+            add "laura" at sideimagequick
     else:
-        add "laura" at sideimagequick
+        if not quickhide:
+            add "laura" at sideimage_mobile
+        else:
+            add "laura" at sideimagequick_mobile
 screen chaptername():
     vbox:
         xalign 0.5 yalign 0.5
@@ -845,7 +905,10 @@ screen chaptername():
         text "[save_subtitle]" style "chaptersub" xalign 0.5
 screen dateandtime():
     vbox:
-        xalign 0.5 yalign 0.25
+        if not finalchoice:
+            xalign 0.5 yalign 0.25
+        else:
+            xalign 0.5 yalign 0.5
         text "[currenttime]" style "dateandtime" xalign 0.5
         text "[currentdate], 2030" style "dateandtime" xalign 0.5
 screen timeremaining():
@@ -863,7 +926,8 @@ screen loadorquit():
         spacing 10
         textbutton "Load Game" action ShowMenu('load') xalign 0.5
         textbutton "Main Menu" action MainMenu() xalign 0.5
-        textbutton "Quit" action Quit() xalign 0.5
+        if not renpy.variant("mobile"):
+            textbutton "Quit" action Quit() xalign 0.5
 
 # Menu Screens
 screen pause():
@@ -880,7 +944,8 @@ screen pause():
                 textbutton "Load" action ShowMenu('load') xalign 0.5
                 textbutton "Options" action ShowMenu('preferences') xalign 0.5
                 textbutton "Main Menu" action MainMenu() xalign 0.5
-                textbutton "Quit" action Quit() xalign 0.5
+                if not renpy.variant("mobile"):
+                    textbutton "Quit" action Quit() xalign 0.5
                 null height 10
                 textbutton "Return" action Return() xalign 0.5
         else:
@@ -903,11 +968,17 @@ screen chapterselect():
     add "dark"
     add "curtain_overlay"
     frame:
-        xysize(250, 550)
+        if not renpy.variant("mobile"):
+            xysize(250, 550)
+        else:
+            xysize(285, 550)
         xalign 0.1 yalign 0.5
         xpadding 25 ypadding 15
         viewport id "vp":
-            child_size(250, 500)
+            if not renpy.variant("mobile"):
+                child_size(250, 500)
+            else:
+                child_size(285, 500)
             mousewheel True
             draggable True
             scrollbars "vertical"
@@ -916,246 +987,438 @@ screen chapterselect():
                 text "Chapter 1" xalign 0.5
                 if persistent.scenes["ch1_s1"]:
                     textbutton "Meet the Farrs" xalign 0.5:
-                        hovered SetVariable("replay_num", 1)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("meetthefarrs")]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 1)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("meetthefarrs")]
+                        else:
+                            action SetVariable("replay_num", 1)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch1_s2"]:
                     textbutton "Unfortunate News" xalign 0.5:
-                        hovered SetVariable("replay_num", 2)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("kragonnews", scope={"timeofday": "night"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 2)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("kragonnews", scope={"timeofday": "night"})]
+                        else:
+                            action SetVariable("replay_num", 2)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 null height 20
                 text "Chapter 2" xalign 0.5
                 if persistent.scenes["ch2_s1"]:
                     textbutton "Evening Plans" xalign 0.5:
-                        hovered SetVariable("replay_num", 3)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("eveningplans", scope={"timeofday": "night"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 3)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("eveningplans", scope={"timeofday": "night"})]
+                        else:
+                            action SetVariable("replay_num", 3)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch2_s2"]:
                     textbutton "Backstage Drama" xalign 0.5:
-                        hovered SetVariable("replay_num", 4)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 4)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
+                        else:
+                            action SetVariable("replay_num", 4)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch2_s3"]:
                     textbutton "Packed Parking" xalign 0.5:
-                        hovered SetVariable("replay_num", 5)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins", "k_hat": True})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 5)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins", "k_hat": True})]
+                        else:
+                            action SetVariable("replay_num", 5)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch2_s4"]:
                     textbutton "Meet and Greet" xalign 0.5:
-                        hovered SetVariable("replay_num", 6)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 6)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True})]
+                        else:
+                            action SetVariable("replay_num", 6)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch2_s5"]:
                     textbutton "Showtime!" xalign 0.5:
-                        hovered SetVariable("replay_num", 7)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True, "timeofday": "night"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 7)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True, "timeofday": "night"})]
+                        else:
+                            action SetVariable("replay_num", 7)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 null height 20
                 text "Chapter 3" xalign 0.5
                 if persistent.scenes["ch3_s1"]:
                     textbutton "The First Game" xalign 0.5:
-                        hovered SetVariable("replay_num", 8)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True, "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 8)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True, "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 8)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s2"]:
                     textbutton "When You Gotta Go..." xalign 0.5:
-                        hovered SetVariable("replay_num", 9)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 9)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True})]
+                        else:
+                            action SetVariable("replay_num", 9)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s3"]:
                     textbutton "Laughs and Cracks" xalign 0.5:
-                        hovered SetVariable("replay_num", 10)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 10)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 10)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s4"]:
                     textbutton "Toilet Escape" xalign 0.5:
-                        hovered SetVariable("replay_num", 11)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True, "timeofday": "night"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 11)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True, "timeofday": "night"})]
+                        else:
+                            action SetVariable("replay_num", 11)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s5"]:
                     textbutton "Standing Up" xalign 0.5:
-                        hovered SetVariable("replay_num", 12)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 12)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 12)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s6"]:
                     textbutton "Hiding in the Closet" xalign 0.5:
-                        hovered SetVariable("replay_num", 13)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 13)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
+                        else:
+                            action SetVariable("replay_num", 13)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s7"]:
                     textbutton "A Special Game" xalign 0.5:
-                        hovered SetVariable("replay_num", 14)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("deadlygame", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 14)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("deadlygame", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 14)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch3_s8"]:
                     textbutton "Eyesore" xalign 0.5:
-                        hovered SetVariable("replay_num", 15)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("jessicaseye", scope={"event": "REDD War ends", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 15)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("jessicaseye", scope={"event": "REDD War ends", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 15)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 null height 20
                 text "Chapter 4" xalign 0.5
                 if persistent.scenes["ch4_s1"]:
                     textbutton "Mirror Madness" xalign 0.5:
-                        hovered SetVariable("replay_num", 16)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 16)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                        else:
+                            action SetVariable("replay_num", 16)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch4_s2"]:
                     textbutton "Safe Haven" xalign 0.5:
-                        hovered SetVariable("replay_num", 17)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("citychase", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 17)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("citychase", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 17)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch4_s3"]:
                     textbutton "Going Back" xalign 0.5:
-                        hovered SetVariable("replay_num", 18)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("goingback", scope={"currentdate": "April 1st", "event": "REDD War ends", "b_name": "Bartender", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 18)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("goingback", scope={"currentdate": "April 1st", "event": "REDD War ends", "b_name": "Bartender", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 18)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 null height 20
                 text "Chapter 5" xalign 0.5
                 if persistent.scenes["ch5_s1"]:
                     textbutton "Sneaking In" xalign 0.5:
-                        hovered SetVariable("replay_num", 19)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 19)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
+                        else:
+                            action SetVariable("replay_num", 19)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch5_s2"]:
                     textbutton "Unexpected Events" xalign 0.5:
-                        hovered SetVariable("replay_num", 20)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("deadchild", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 20)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("deadchild", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                        else:
+                            action SetVariable("replay_num", 20)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch5_s3"]:
                     textbutton "Sabotage" xalign 0.5:
-                        hovered SetVariable("replay_num", 21)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("escapeplan", scope={"curentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 21)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("escapeplan", scope={"curentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                        else:
+                            action SetVariable("replay_num", 21)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch5_s4"]:
                     textbutton "Final Confrontation" xalign 0.5:
-                        hovered SetVariable("replay_num", 22)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("finalconfrontation", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "s_name": "Krag", "t_name": "Trosh", "helmet": ""})]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 22)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("finalconfrontation", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "s_name": "Krag", "t_name": "Trosh", "helmet": ""})]
+                        else:
+                            action SetVariable("replay_num", 22)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 if persistent.scenes["ch5_s5"]:
                     textbutton "Epilogue" xalign 0.5:
-                        hovered SetVariable("replay_num", 23)
-                        unhovered SetVariable("replay_num", 0)
-                        action [SetVariable("replay_num", 0), Replay("epilogue")]
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", 23)
+                            unhovered SetVariable("replay_num", 0)
+                            action [SetVariable("replay_num", 0), Replay("epilogue", scope={"finalchoice": True})]
+                        else:
+                            action SetVariable("replay_num", 23)
                 else:
                     textbutton "LOCKED" xalign 0.5:
-                        hovered SetVariable("replay_num", -1)
-                        unhovered SetVariable("replay_num", 0)
-                        action NullAction()
+                        if not renpy.variant("mobile"):
+                            hovered SetVariable("replay_num", -1)
+                            unhovered SetVariable("replay_num", 0)
+                            action NullAction()
+                        else:
+                            action SetVariable("replay_num", -1)
                 null height 10
-
+    if renpy.variant("mobile"):
+        frame:
+            xysize(200, 50)
+            xalign 0.65 yalign 0.7
+            if replay_num != 0 or replay_num != -1:
+                textbutton "Replay Scene" xalign 0.5 yalign 0.5:
+                    if replay_num == 1:
+                        action [SetVariable("replay_num", 0), Replay("meetthefarrs")]
+                    elif replay_num == 2:
+                        action [SetVariable("replay_num", 0), Replay("kragonnews", scope={"timeofday": "night"})]
+                    elif replay_num == 3:
+                        action [SetVariable("replay_num", 0), Replay("eveningplans", scope={"timeofday": "night"})]
+                    elif replay_num == 4:
+                        action [SetVariable("replay_num", 0), Replay("backstagedrama", scope={"currentdate": "March 31st", "event": "REDD War begins"})]
+                    elif replay_num == 5:
+                        action [SetVariable("replay_num", 0), Replay("arriveatshow", scope={"currentdate": "March 31st", "event": "REDD War begins", "k_hat": True})]
+                    elif replay_num == 6:
+                        action [SetVariable("replay_num", 0), Replay("meetandgreet", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True})]
+                    elif replay_num == 7:
+                        action [SetVariable("replay_num", 0), Replay("showbegins", scope={"currentdate": "March 31st", "event": "REDD War begins", "clothing": "show", "k_hat": True, "timeofday": "night"})]
+                    elif replay_num == 8:
+                        action [SetVariable("replay_num", 0), Replay("firstgame", scope={"currentdate": "March 31st", "nvl": True, "clothing": "show"})]
+                    elif replay_num == 9:
+                        action [SetVariable("replay_num", 0), Replay("gottago", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True})]
+                    elif replay_num == 10:
+                        action [SetVariable("replay_num", 0), Replay("secondbeating", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                    elif replay_num == 11:
+                        action [SetVariable("replay_num", 0), Replay("girlsescape", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "k_hat": True, "timeofday": "night"})]
+                    elif replay_num == 12:
+                        action [SetVariable("replay_num", 0), Replay("showmustgoon", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                    elif replay_num == 13:
+                        action [SetVariable("replay_num", 0), Replay("kidshiding", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
+                    elif replay_num == 14:
+                        action [SetVariable("replay_num", 0), Replay("deadlygame", scope={"currentdate": "March 31st", "event": "REDD War ends", "clothing": "show"})]
+                    elif replay_num == 15:
+                        action [SetVariable("replay_num", 0), Replay("jessicaseye", scope={"event": "REDD War ends", "clothing": "show"})]
+                    elif replay_num == 16:
+                        action [SetVariable("replay_num", 0), Replay("mirrormadness", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                    elif replay_num == 17:
+                        action [SetVariable("replay_num", 0), Replay("citychase", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                    elif replay_num == 18:
+                        action [SetVariable("replay_num", 0), Replay("goingback", scope={"currentdate": "April 1st", "event": "REDD War ends", "b_name": "Bartender", "clothing": "show"})]
+                    elif replay_num == 19:
+                        action [SetVariable("replay_num", 0), Replay("backattheater", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "timeofday": "night"})]
+                    elif replay_num == 20:
+                        action [SetVariable("replay_num", 0), Replay("deadchild", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show"})]
+                    elif replay_num == 21:
+                        action [SetVariable("replay_num", 0), Replay("escapeplan", scope={"curentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "t_name": "Trosh"})]
+                    elif replay_num == 22:
+                        action [SetVariable("replay_num", 0), Replay("finalconfrontation", scope={"currentdate": "April 1st", "event": "REDD War ends", "clothing": "show", "s_name": "Krag", "t_name": "Trosh", "helmet": ""})]
+                    elif replay_num == 23:
+                        action [SetVariable("replay_num", 0), Replay("epilogue", scope={"finalchoice": True})]
     frame:
-        xalign 0.75 yalign 0.5
+        if not renpy.variant("mobile"):
+            xalign 0.75 yalign 0.5
+        else:
+            xalign 0.75 yalign 0.3
         xysize (700, 250)
         vbox:
             xalign 0.5 yalign 0.5
@@ -1208,17 +1471,23 @@ screen chapterselect():
             elif replay_num == 23:
                 text "A few months later, Laura returns to her safe haven." style "replay_desc" xalign 0.5
     frame:
-        xalign 0.13 yalign 0.95
+        if not renpy.variant("mobile"):
+            xalign 0.13 yalign 0.95
+        else:
+            xalign 0.12 yalign 0.95
         xpadding 20 ypadding 5
         text "[scene_percent]% Completed" xalign 0.5 yalign 0.5
-    imagebutton auto "gui/return_%s.png" action ShowMenu("extras") xalign 0.65 yalign 0.95
+    imagebutton auto "gui/return_%s.png" action [SetVariable("replay_num", 0), ShowMenu("extras")] xalign 0.65 yalign 0.95
 screen achievements():
     tag title
     frame:
         xysize(1240, 670)
         xalign 0.5 yalign 0.4
         vbox:
-            xalign 0.25 yalign 0.5
+            if not renpy.variant("mobile"):
+                xalign 0.25 yalign 0.5
+            else:
+                xalign 0.1 yalign 0.4
             if persistent.achievements["toosafe"]:
                 text "{i}Playing it TOO Safe{/i}" xalign 0.5
                 text "Escape Atlanta" xalign 0.5
@@ -1243,7 +1512,10 @@ screen achievements():
             else:
                 text "LOCKED" xalign 0.5
         vbox:
-            xalign 0.75 yalign 0.5
+            if not renpy.variant("mobile"):
+                xalign 0.75 yalign 0.5
+            else:
+                xalign 0.9 yalign 0.4
             if persistent.achievements["memoryloss"]:
                 text "{i}Memory Loss{/i}" xalign 0.5
                 text "Forget the Password to Frank's Bar" xalign 0.5
@@ -1276,7 +1548,10 @@ screen credits():
         xysize(1240, 670)
         xalign 0.5 yalign 0.4
         vbox:
-            xalign 0.15 yalign 0.5
+            if not renpy.variant("mobile"):
+                xalign 0.15 yalign 0.5
+            else:
+                xalign 0.05 yalign 0.5
             text "Writing and Development" style "creditscreen" xalign 0.5
             textbutton "Cole Goodrich" text_style "credittextbutton" action OpenURL("https://twitter.com/RealAwsome2464") xalign 0.5
             null height 20
@@ -1291,35 +1566,41 @@ screen credits():
             textbutton "Mattyd" text_style "credittextbutton" action OpenURL("https://twitter.com/MacDaddyMattyd") xalign 0.5
             textbutton "MacDaddyMatty.com" text_style "credittextbutton" action OpenURL("https://macdaddymatty.com") xalign 0.5
         vbox:
-            xalign 0.5 yalign 0.5
+            if not renpy.variant("mobile"):
+                xalign 0.5 yalign 0.5
+            else:
+                xalign 0.4 yalign 0.5
             text "Music" style "creditscreen" xalign 0.5
             null height 10
-            text "{i}10 Past Midnight{/i}" xalign 0.5
-            text "{i}Autumn Changes{/i}" xalign 0.5
-            text "{i}Bells of Weirdness{/i}" xalign 0.5
-            text "{i}Classy Ghouls Halloween Gathering{i}" xalign 0.5
-            text "{i}Creaky Country Fair{/i}" xalign 0.5
-            text "{i}Escape{/i}" xalign 0.5
-            text "{i}Ice Cream Truck{/i}" xalign 0.5
-            text "{i}Into Battle v001{/i}" xalign 0.5
-            text "{i}Into the Haunted Forest{/i}" xalign 0.5
-            text "{i}Neon Runner{/i}" xalign 0.5
-            text "{i}Packing{/i}" xalign 0.5
-            text "{i}Shattered Mind{/i}" xalign 0.5
-            text "{i}Vast Places{/i}" xalign 0.5
+            text "{i}10 Past Midnight{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Autumn Changes{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Bells of Weirdness{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Classy Ghouls Halloween Gathering{i}" style "mobilecredits" xalign 0.5
+            text "{i}Creaky Country Fair{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Escape{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Ice Cream Truck{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Into Battle v001{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Into the Haunted Forest{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Neon Runner{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Packing{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Shattered Mind{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Vast Places{/i}" style "mobilecredits" xalign 0.5
             null height 10
-            text "by Eric Matyas" xalign 0.5
-            textbutton "soundimage.org" text_style "credittextbutton" action OpenURL("https://soundimage.org") xalign 0.5
+            text "by Eric Matyas" style "mobilecredits_2" xalign 0.5
+            textbutton "soundimage.org" text_style "credittextbutton_2" action OpenURL("https://soundimage.org") xalign 0.5
             null height 20
-            text "{i}Rotten Sprinkles{/i}" xalign 0.5
-            text "{i}Showtime!{/i}" xalign 0.5
-            text "{i}The Calm{/i}" xalign 0.5 
-            text "{i}The Mr. Sprinkles Show{/i}" xalign 0.5
-            text "{i}The Twins{/i}" xalign 0.5
+            text "{i}Rotten Sprinkles{/i}" style "mobilecredits" xalign 0.5
+            text "{i}Showtime!{/i}" style "mobilecredits" xalign 0.5
+            text "{i}The Calm{/i}" style "mobilecredits" xalign 0.5 
+            text "{i}The Mr. Sprinkles Show{/i}" style "mobilecredits" xalign 0.5
+            text "{i}The Twins{/i}" style "mobilecredits" xalign 0.5
             null height 10
-            text "by Cole Goodrich" xalign 0.5
+            text "by Cole Goodrich" style "mobilecredits_2" xalign 0.5
         vbox:
-            xalign 0.85 yalign 0.5
+            if not renpy.variant("mobile"):
+                xalign 0.85 yalign 0.5
+            else:
+                xalign 0.75 yalign 0.5
             text "Sound Effects" style "creditscreen" xalign 0.5
             textbutton "freesound.org" text_style "credittextbutton" action OpenURL("https://freesound.org") xalign 0.5
             text "Cole Goodrich" xalign 0.5
@@ -1339,7 +1620,10 @@ screen credits2():
         xysize(1240, 670)
         xalign 0.5 yalign 0.4
         vbox:
-            xalign 0.5 yalign 0.25
+            if not renpy.variant("mobile"):
+                xalign 0.5 yalign 0.25
+            else:
+                xalign 0.25 yalign 0.25
             text "Special Thanks" style "creditscreen2" xalign 0.5
             null height 20
             text "God" style "creditscreen" xalign 0.5
@@ -1468,6 +1752,16 @@ label before_main_menu:
             "No, enable them":
                 $persistent.flash = True
                 "Screen flashes enabled."
+        if renpy.variant("mobile"):
+            "This visual novel will also vibrate your mobile device in certain areas of the story. Would you like to disable vibration? (This can also be changed later in the options menu){nw}"
+            menu:
+                "This visual novel will also vibrate your mobile device in certain areas of the story. Would you like to disable vibration? (This can also be changed later in the options menu){fast}"
+                "Yes, disable it":
+                    $persistent.vibrate = False
+                    "Vibration disabled."
+                "No, enable it":
+                    $persistent.vibrate = True
+                    "Vibration enabled."
         "Thank you. Enjoy the story."
         window hide dissolve
         pause 2
@@ -1620,6 +1914,12 @@ label gameover:
         scene bg fade
         with Dissolve(1.0)
         pause 1
+        if badcredits:
+            if not persistent.achievements["toosafe"]:
+                $persistent.achievements["toosafe"] = True
+                $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
+                $persistent.achievelist.append(1)
+                pause 7
         if goodcredits:
             show splash at truecenter
             with Dissolve(3.0)
@@ -1636,6 +1936,7 @@ label gameover:
             if not persistent.scenes["ch5_s5"]:
                 $persistent.scenelist.append(1)
                 $persistent.scenes["ch5_s5"] = True
+        $config.allow_skipping = True
         $renpy.end_replay()
         return
     else:
@@ -1659,56 +1960,3 @@ label gunflash:
     else:
         pause 0.05
     return
-
-# Credits
-# label credits:
-#     play music title
-#     play sound flicker
-#     show logo:
-#         xalign 0.5 yalign 0.5
-#         alpha 0.0
-#         pause 0.1
-#         block:
-#             ease 0.05 alpha 0.5
-#             ease 0.05 alpha 0.0
-#             repeat 4
-#         pause 0.2
-#         ease 0.2 alpha 0.5
-#         ease 0.2 alpha 0.0
-#         pause 0.4
-#         ease 0.2 alpha 1.0
-#         pause 3.0
-#         ease 1.0 alpha 0.0
-#     pause 6.6
-#     if not badcredits:
-#         scene bg stage
-#         with Dissolve(1)
-#     show credit_1 "Writing and Development\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich{/color}{/font}" at credit_scroll_1
-#     pause 5
-#     show credit_2 "Story\n{font=fonts/Stanberry.ttf}{color=#ffffff}Cole Goodrich\nSlightlySimple{/color}{/font}" at credit_scroll_2
-#     pause 5
-#     show credit_3 "Character Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}HazardSquare{/color}{/font}" at credit_scroll_1
-#     pause 5
-#     show credit_1 "Background Art\n{font=fonts/Stanberry.ttf}{color=#ffffff}Mattyd (MacDaddyMatty.com){/color}{/font}" at credit_scroll_2
-#     pause 5
-#     show credit_2 "Music\n{font=fonts/Stanberry.ttf}{color=#ffffff}Eric Matyas\nCole Goodrich{/color}{/font}" at credit_scroll_1
-#     pause 5
-#     show credit_3 "Sound Effects\n{font=fonts/Stanberry.ttf}{color=#ffffff}freesound.org\nCole Goodrich{/color}{/font}" at credit_scroll_2
-#     pause 3
-#     show credit_1 "Vocals\n{font=fonts/Stanberry.ttf}{color=#ffffff}perennial_28\nCole Goodrich{/color}{/font}" at credit_scroll_1
-#     pause 3
-#     show credit_1 "Made with Ren'Py 7.3.5" at credit_scroll_2
-#     pause 5
-#     show credit_2 "Special Thanks\n{font=fonts/Stanberry.ttf}{color=#ffffff}God\nTom \"PyTom\" Rothamel\nJames DeMonaco\nSlightlySimple\nJed Elinoff and Scott Thomas\nSlightlySimple\nMattyd\nThugzilla\nXeno\nYou{/color}{/font}" at credit_scroll_3
-#     pause 13
-#     scene bg fade
-#     with Dissolve(3.0)
-#     pause 1
-#     show splash at truecenter
-#     with Dissolve(3)
-#     pause 3
-#     stop music fadeout(6.0)
-#     hide splash
-#     with Dissolve(3)
-#     pause 3
-#     return

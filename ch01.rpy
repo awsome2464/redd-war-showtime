@@ -4,10 +4,10 @@ label start:
     scene bg fade
     with Dissolve(1.0)
     pause 3
-    call chaptername
+    call chaptername from _call_chaptername_2
 label meetthefarrs:
     stop music
-    call chapterstart
+    call chapterstart from _call_chapterstart_13
     pause 2
     play sound drumroll_buildup loop
     scene bg curtain
@@ -383,9 +383,10 @@ label meetthefarrs:
     She's starting to better understand what exactly the REDD are and how that one night affects so many people.
 
     I know I can't shelter her in a little bubble and pretend this doesn't happen, but I'm really not sure what to do to help her.
-
-    It's not like I went through the same thing when I was her age.
     """
+    if renpy.variant("mobile"):
+        nvl clear
+    narrate "It's not like I went through the same thing when I was her age."
     $nvl = False
     nvl clear
     show screen laura
@@ -539,7 +540,7 @@ label meetthefarrs:
     $l_exp = "smug"
     l "As usual."
     "We then gave each other a quick kiss before putting the rest of the groceries away, sans the ones needed for that night's meal."
-    call sceneend
+    call sceneend from _call_sceneend_13
     if not persistent.scenes["ch1_s1"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch1_s1"] = True
@@ -551,7 +552,7 @@ label kragonnews:
         currenttime = "6:39 PM"
         timeleft = "21 minutes"
         timeofday = "night"
-    call chapterstart
+    call chapterstart from _call_chapterstart_14
     pause 1
     play music the_calm
     scene bg livingroom
@@ -991,10 +992,6 @@ label kragonnews:
             scene bg livingroom_blur
             with Dissolve(3.0)
             $badcredits = True
-            if not persistent.achievements["toosafe"]:
-                $persistent.achievements["toosafe"] = True
-                $renpy.notify("Achievement Unlocked: {i}Playing it TOO Safe{/i}")
-                $persistent.achievelist.append(1)
             jump gameover
         "\"...we should really sleep on it.\"":
             $renpy.music.set_volume(1.0, delay=1, channel='music')
@@ -1130,7 +1127,7 @@ label sleeponit:
     pause 0.1
     "Well, no matter what happens, tomorrow will be an eventful day."
     "I better get myself mentally prepared for it."
-    call sceneend
+    call sceneend from _call_sceneend_14
     if not persistent.scenes["ch1_s2"]:
         $persistent.scenelist.append(1)
         $persistent.scenes["ch1_s2"] = True
